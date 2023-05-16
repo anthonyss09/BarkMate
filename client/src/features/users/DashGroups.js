@@ -1,7 +1,6 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
 import { BiFilter } from "react-icons/bi";
 import GroupPreview from "../../components/GroupPreview";
-import ProfilePreview from "../../components/ProfilePreview";
 
 export default function DashGroups() {
   return (
@@ -19,7 +18,6 @@ export default function DashGroups() {
           <p className="p-top">Displaying results within 3 miles...</p>
         </div>
         <div className="profiles-container">
-          {/* <p className="p-top">Displaying results within 3 miles...</p> */}
           <GroupPreview />
           <GroupPreview />
           <GroupPreview />

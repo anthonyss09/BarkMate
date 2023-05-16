@@ -10,7 +10,6 @@ const Wrapper = styled.aside`
     color: var(--test-red);
   }
   .icon-star {
-    text-shadow: 0.5px 0.5px 1px black;
     color: var(--federal-blue);
   }
   .location-container {
@@ -33,17 +32,17 @@ const Wrapper = styled.aside`
     border: 2px solid rgb(230, 230, 230);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
-    background: white;
+    // background: white;
     margin-bottom: 0.6rem;
     z-index: 1;
-    box-shadow: 2px 2px 5px lightGrey;
+    // box-shadow: 2px 2px 5px lightGrey;
   }
-  .option-container {
-    z-index: 1;
-    padding: 0.3rem;
-    background: white;
-    border-radius: 1.3rem;
-  }
+  // .option-container {
+  //   z-index: 1;
+  //   padding: 0.3rem;
+  //   background: white;
+  //   border-radius: 1.3rem;
+  // }
   .profile-preview-body {
     display: flex;
     flex-direction: column;
@@ -51,7 +50,7 @@ const Wrapper = styled.aside`
   }
   .profile-preview-about {
     width: 100%;
-    margin-top: -1.4rem;
+    // margin-top: -1.4rem;
   }
   .profile-preview-center {
     display: flex;
@@ -81,7 +80,7 @@ const Wrapper = styled.aside`
   .profile-preview-name {
     text-align: center;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 400;
     color: black;
     border-radius: 3rem;
     font-family: "Roboto Condensed", sans-serif;
@@ -95,7 +94,8 @@ const Wrapper = styled.aside`
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: -2rem;
+    margin-top: -3.6rem;
+    margin-bottom: 0.4rem;
   }
   .profile-preview-p {
     width: 100%;

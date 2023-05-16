@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  .about-header {
+  .section-header {
     font-size: 1rem;
-    // color: var(--med-bright-blue);
-    color: rgb(80, 80, 80);
+    // color: rgb(80, 80, 80);
     margin-bottom: 0.4rem;
-    // margin-left: 2rem;
     font-family: "Roboto Condensed", sans-serif;
   }
   .add-friend {
     color: var(--test-red);
   }
   .back-button {
-    width: 30vw;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -32,35 +29,16 @@ const Wrapper = styled.main`
     font-size: 0.8rem;
     border-radius: 2rem;
     font-weight: bold;
-    // color: var(--space-cadet);
-    // background: var(--grey-240);
     border: 2px solid var(--grey-240);
-    // color: rgb(60, 60, 60);
     font-family: "Roboto Condensed", sans-serif;
   }
   .dog-detail-weight {
-    // background: var(--sunglow);
-    // background: var(--med-bright-green);
-    // color: white;
     border: 2px solid var(--med-bright-green);
-    // color: var(--med-bright-green);
   }
   .dog-detail-energy {
-    // background: var(--crystal-purple);
-    // background: var(--test-blue);
-    // background: var(--med-bright-blue);
-    // color: white;
     border: 2px solid var(--med-bright-blue);
-    // background: var(--test-blue);
-    // color: black;
   }
-
   .dog-detail-breed {
-    // background: var(--vivid-sky-blue);
-    // background: var(--grey-248);
-    // background: var(--light-light-pink);
-    // background: var(--test-red);
-    // color: white;
     border: 2px solid var(--test-red);
   }
   .dog-details-container {
@@ -75,7 +53,7 @@ const Wrapper = styled.main`
   }
   .group-name {
     width: 84%;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: bold;
     color: rgb(20, 20, 20);
     text-align: center;
@@ -86,54 +64,45 @@ const Wrapper = styled.main`
     flex-direction: column;
     align-items: center;
     gap: 0.4rem;
-    // border-radius: 0.5rem;
-    // border: 1px solid var(--space-cadet);
-    // padding: 0.6rem 0.2rem;
   }
   .groups-container {
-    // background: var(--grey-248);
-    // background: var(--test-blue);
     padding: 0.8rem 0.2rem;
   }
-  .icon-back-arrow {
-  }
-  .icon-camera {
-  }
   .icon-star {
-    color: var(--med-bright-blue);
-    // color: var(--federal-blue);
-  }
-  .icon-star-og {
-    color: var(--sunglow);
+    color: var(--federal-blue);
   }
   .location-container {
-    padding: 0.4rem 0.8rem;
-    border-radius: 1.5rem;
-    border: 1.5px solid rgb(80, 80, 80);
-    // display: flex;
-    // align-items: center;
+    padding: 0.2rem 0;
+    border-radius: 1rem;
   }
-  .location-text {
-    font-size: 0.8rem;
-    color: rgb(80, 80, 80);
-    color: var(--med-bright-blue);
-    font-family: "Roboto Condensed", sans-serif;
+  .location {
+    font-size: 0.6rem;
+    color: rgb(100, 100, 100);
+    font-weight: bold;
   }
   .message-friend {
     color: var(--med-bright-green);
+  }
+  .members {
+    height: min-content;
+    background: var(--test-blue);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: grid;
+    place-items: center;
+    margin-bottom: 0.4rem;
   }
   .option {
     border: 2px solid rgb(240, 240, 240);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
+    // background: white;
   }
   .profile-page-about {
-    // border-radius: 2.5rem;
-    color: rgb(80, 80, 80);
     margin-bottom: 1.6rem;
-    // border-bottom: 1px solid rgb(244, 244, 244);
     padding-bottom: 1rem;
-    // background: var(--test-blue);
   }
   .profile-page-body {
     padding: 0 1rem;
@@ -146,44 +115,48 @@ const Wrapper = styled.main`
   }
   .profile-page-header {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     padding: 0 1rem;
   }
   .profile-page-image {
     width: 80vw;
+    width: 94vw;
+    width: 100vw;
     margin-bottom: 0.6rem;
+    // border-radius: 1rem;
   }
   .profile-page-main {
-    padding-top: 4rem;
+    padding-top: 3rem;
     padding-bottom: 2rem;
   }
-  .profile-page-name {
-    color: rgb(60, 60, 60);
+  .profile-preview-name {
     font-size: 1.4rem;
-    margin-bottom: 0.6rem;
-    font-weight: 500;
+    font-weight: 400;
+    color: black;
+    border-radius: 3rem;
     font-family: "Roboto Condensed", sans-serif;
+  }
+  .profile-preview-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+    margin-bottom: 0.4rem;
   }
   .profile-page-p {
     border-radius: 2rem;
-    color: rgb(120, 120, 120);
     color: rgb(60, 60, 60);
     font-size: 0.9rem;
-    background: var(--test-blue);
-    background: var(--grey-248);
-    padding: 1rem;
-    background: white;
-    border: 2px solid rgb(240, 240, 240);
   }
   .profile-page-options {
     width: 100%;
-    margin-bottom: 1.6rem;
-    padding-bottom: 1rem;
+    padding: 0.4rem 0;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
-    border-bottom: 1px solid rgb(244, 244, 244);
+    margin-top: -5rem;
   }
   .profile-page-social-links {
     margin-top: 1rem;
@@ -219,15 +192,9 @@ const Wrapper = styled.main`
     margin-bottom: 1.6rem;
   }
   .time-slot-available {
-    // border: 2px solid var(--med-bright-blue);
-    // background: var(--test-blue);
     color: var(--med-bright-blue);
   }
-  .time-slot-needed {
-    // border: 2px solid var(--test-red);
-    // color: var(--test-red);
-  }
-  .time-slot-p {
+  .time-slot-title {
     font-weight: 600;
     color: rgb(100, 100, 100);
   }
@@ -238,9 +205,7 @@ const Wrapper = styled.main`
     font-size: 0.9rem;
     gap: 0.4rem;
     color: black;
-    // margin-bottom: 2rem;
     background: var(--test-blue);
-    // background: var(--grey-248);
     width: min-content;
     padding: 0.4rem 0.8rem;
     border-radius: 1.5rem;

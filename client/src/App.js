@@ -9,6 +9,7 @@ import DashCal from "./features/calender/DashCal";
 import DashChats from "./features/chats/DashChats";
 import DashHome from "./features/posts/DashHome";
 import ProfilePage from "./features/users/ProfilePage";
+import GroupPage from "./features/users/GroupPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="chats" element={<DashChats />} />
           </Route>
           <Route exact path="/profileid" element={<ProfilePage />} />
+          <Route exact path="/groupid" element={<GroupPage />} />
         </Routes>
       </div>
     </Router>

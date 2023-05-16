@@ -13,26 +13,26 @@ export default function BigSidebar({ handleClick }) {
     <Wrapper>
       <aside className="big-sidebar-main">
         <div className="big-sidebar-center">
-          <AiOutlineCloseCircle
+          {/* <AiOutlineCloseCircle
             size={25}
             className="icon-close"
             onClick={handleClick}
-          />
+          /> */}
           <div className="links-container-big">
             {" "}
             <Link className="link link-big link-download">
               <GoCloudDownload className="icon-download" />
               Download App
             </Link>
-            <Link className="link link-big link-stars">
-              {/* <AiOutlineStar className="icon-star" />
-              <AiOutlineStar className="icon-star" /> */}
-              <AiOutlineStar className="icon-star" />
-              Verification stars
-            </Link>
             <Link className="link link-big link-story">
               <MdOutlineMenuBook className="icon-book" />
               Story
+            </Link>
+            <Link className="link link-big link-stars">
+              <AiFillStar className="icon-star" size={10} />
+              <AiFillStar className="icon-star" size={10} />
+              <AiFillStar className="icon-star" size={10} />
+              Verification stars
             </Link>
           </div>
           <div className="links-container-small">

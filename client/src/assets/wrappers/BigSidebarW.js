@@ -13,7 +13,8 @@ const Wrapper = styled.aside`
     top: 4.05rem;
     // top: 0;
     left: 0;
-    border-top: 1px solid rgb(240, 240, 240);
+    border-top: 1px solid rgb(244, 244, 244);
+    // border-right: 1px solid rgb(244, 244, 244);
     box-shadow: 2px 2px 5px var(--grey-220);
     z-index: 4;
     font-family: "Ubuntu", sans-serif;
@@ -33,10 +34,11 @@ const Wrapper = styled.aside`
     margin-right: 0.6rem;
     margin-bottom: 0.2rem;
     position: absolute;
+    color: rgb(40, 40, 40);
   }
   .icon-download {
     color: black;
-    // color: var(--test-red);
+    color: var(--test-red);
   }
   .icon-groups {
     color: var(--med-bright-green);
@@ -48,22 +50,23 @@ const Wrapper = styled.aside`
     color: var(--med-bright-blue);
   }
   .icon-star {
-    color: var(--sunglow);
+    color: var(--federal-blue);
   }
   .link {
-    width: 94%;
+    // width: 94%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
     font-weight: 500;
-    color: rgb(40, 40, 40);
+    // color: rgb(40, 40, 40);
   }
   .links-container-big {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
+    // margin-top: 1rem;
   }
   .links-container-small {
     width: 70%;
@@ -76,25 +79,25 @@ const Wrapper = styled.aside`
     width: 100%;
     height: 2.8rem;
     box-shadow: 1px 1px 3px rgb(244, 244, 244);
-    color: rgb(80, 80, 80);
+    color: rgb(40, 40, 40);
   }
   .link-download {
-    color: var(--med-bright-blue);
+    // color: var(--med-bright-blue);
   }
   .link-small {
     height: 2.8rem;
     font-size: 0.8rem;
     font-weight: bold;
     font-weight: 500;
-    color: rgb(60, 60, 60);
+    // color: rgb(60, 60, 60);
     box-shadow: 1px 1px 3px rgb(244, 244, 244);
     border-left: 1px solid rgb(244, 244, 244);
   }
 
   @media (max-width: 400px) {
-    .links-container-big {
-      margin-top: 1.4rem;
-    }
+    // .links-container-big {
+    //   margin-top: 1.4rem;
+    // }
   }
 `;
 

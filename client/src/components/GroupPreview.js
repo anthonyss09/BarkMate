@@ -3,6 +3,7 @@ import goodBoys from "../assets/images/goodBoysSmall.jpg";
 import { FaUserFriends } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function GroupPreview({ image }) {
   return (
@@ -24,7 +25,10 @@ export default function GroupPreview({ image }) {
 
           <div className="group-preview-column">
             {" "}
-            <img src={goodBoys} className="group-preview-image" />
+            <Link to="/groupid" className="link">
+              {" "}
+              <img src={goodBoys} className="group-preview-image" />
+            </Link>
           </div>
           <div className="group-preview-options">
             <div className="option-container">
