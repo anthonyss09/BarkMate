@@ -9,7 +9,7 @@ export default function Logo() {
         <div className="bone">
           <BiBone className="icon-paw" size={25} />
         </div>
-        <p className="pink">Bark</p> Mate
+        BarkMate
       </h1>
     </Wrapper>
   );

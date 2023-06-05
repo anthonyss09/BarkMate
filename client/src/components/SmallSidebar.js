@@ -16,7 +16,7 @@ export default function SmallSidebar() {
             <FaUserFriends className="icon-friends" />
             Friends
           </Link>
-          <Link className="link last-link">
+          <Link to="/" className="link last-link">
             <BiLogOutCircle />
             Logout
           </Link>

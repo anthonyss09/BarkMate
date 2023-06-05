@@ -1,12 +1,21 @@
 import Wrapper from "../../assets/wrappers/FormW";
 import FormRow from "./FormRow";
-import LandingNav from "../../app/LandingNav";
+import Logo from "../../components/Logo";
+import FormSteps from "./FormSteps";
+import { Link } from "react-router-dom";
 
-export default function RegisterTwo() {
+export default function RegisterTwo({
+  handleRegisterTwo,
+  handleRegisterThree,
+}) {
   return (
     <Wrapper>
       <section className="main ">
         <form className="form">
+          <Link to="/" className=" link">
+            <Logo />
+          </Link>
+          <FormSteps />
           <h1 className="form-header">Finish profile</h1>
           <div className="form-row">
             <label for="AboutUs" className="form-label">
@@ -38,9 +47,16 @@ export default function RegisterTwo() {
             name="Social media links"
             value="Social media links"
           />
-          <button className="btn btn-register">Save info</button>
+          <button
+            className="btn btn-register"
+            onClick={() => {
+              handleRegisterTwo();
+              handleRegisterThree();
+            }}
+          >
+            Save info
+          </button>
         </form>
-        <div className="footer"></div>
       </section>
     </Wrapper>
   );

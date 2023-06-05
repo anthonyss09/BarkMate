@@ -10,6 +10,7 @@ import DashChats from "./features/chats/DashChats";
 import DashHome from "./features/posts/DashHome";
 import ProfilePage from "./features/users/ProfilePage";
 import GroupPage from "./features/users/GroupPage";
+import ChatPage from "./features/chats/ChatPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           </Route>
           <Route exact path="/profileid" element={<ProfilePage />} />
           <Route exact path="/groupid" element={<GroupPage />} />
+          <Route exact path="chats/chatid" element={<ChatPage />} />
         </Routes>
       </div>
     </Router>

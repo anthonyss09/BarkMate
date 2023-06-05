@@ -1,5 +1,5 @@
-import Wrapper from "../assets/wrappers/GroupPreviewW";
-import goodBoys from "../assets/images/goodBoysSmall.jpg";
+import Wrapper from "../../assets/wrappers/GroupPreviewW";
+import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { FaUserFriends } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";

@@ -1,5 +1,5 @@
 import Wrapper from "../../assets/wrappers/DashChatsW";
-import ChatPreview from "../../components/ChatPreview";
+import ChatPreview from "./ChatPreview";
 
 export default function DashChats() {
   return (

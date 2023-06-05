@@ -1,5 +1,5 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
-import ProfilePreview from "../../components/ProfilePreview";
+import ProfilePreview from "./ProfilePreview";
 import { IoMdArrowDropup } from "react-icons/io";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { BsFilter } from "react-icons/bs";
@@ -16,9 +16,6 @@ export default function DashProfiles() {
             Filters
           </div>
           <p className="p-top">Displaying results within 3 miles...</p>
-          {/* <div className="filter">Radius</div>
-          <div className="filter">Time available</div>
-          <div className="filter">Time needed</div> */}
         </div>
         <div className="profiles-container">
           <ProfilePreview />

@@ -93,6 +93,7 @@ font-family: 'Ysabeau', sans-serif; */
 
 * {
   margin: 0;
+  transition: all 0.1s ease-in;
 }
 
 body {
@@ -128,10 +129,17 @@ code {
   /* margin: 0 1rem; */
   background: rgb(244, 244, 244);
   /* background: rgb(248, 248, 248); */
-  /* box-shadow: 2px 1px 3px var(--grey-240); */
+  /* background: var(--med-bright-blue); */
+  /* background: var(--bark-pink); */
+  /* color: white; */
+  /* color: black; */
+  /* background: rgb(248, 248, 248); */
+  box-shadow: 2px 1px 3px grey;
   font-family: "Ubuntu", sans-serif;
   font-size: 1.2rem;
   height: 1.35rem;
+  margin: 1rem;
+  margin-bottom: 0;
 }
 .dash-header {
   width: 100%;
@@ -157,7 +165,9 @@ code {
   /* color: var(--federal-blue); */
   margin: 0 0.4rem;
 }
-
+.landing-body {
+  padding-top: 4rem;
+}
 .link {
   text-decoration: none;
   color: black;
@@ -171,14 +181,20 @@ code {
   align-items: center;
   font-weight: bold;
 }
-
 .outlet-container {
   width: 100vw;
   min-height: 80vh;
-  padding-top: 7.6rem;
-  padding-top: 7.7rem;
+  padding-top: 8.2rem;
+  /* padding-top: 7.7rem; */
 }
-
+.scrolled-nav {
+  position: fixed;
+  top: 0;
+}
+.scrolled-task-bar {
+  position: fixed;
+  top: 4rem;
+}
 .test {
   border: 5px solid red;
 }

@@ -5,6 +5,7 @@ const Wrapper = styled.main`
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 0.4rem;
   }
   .dash-chats-main {
     min-height: 80vh;

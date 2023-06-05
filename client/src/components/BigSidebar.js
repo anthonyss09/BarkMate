@@ -36,23 +36,43 @@ export default function BigSidebar({ handleClick }) {
             </Link>
           </div>
           <div className="links-container-small">
-            <Link className="link link-small link-profiles">
+            <Link
+              to="/dashboard/home"
+              className="link link-small link-profiles"
+              onClick={handleClick}
+            >
               <BiHome className="icon-home" />
               Home
             </Link>
-            <Link className="link link-small link-profiles">
+            <Link
+              to="/dashboard/profiles"
+              className="link link-small link-profiles"
+              onClick={handleClick}
+            >
               <MdOutlinePeople className="icon-profile" />
               Profiles
             </Link>
-            <Link className="link link-small link-group">
+            <Link
+              to="/dashboard/groups"
+              className="link link-small link-group"
+              onClick={handleClick}
+            >
               <IoIosPeople className="icon-groups" />
               Groups
             </Link>
-            <Link className="link link-small link-calender">
+            <Link
+              to="/dashboard/calender"
+              className="link link-small link-calender"
+              onClick={handleClick}
+            >
               <BiCalendar className="icon-calender" />
               Calender
             </Link>
-            <Link className="link link-small link-chats">
+            <Link
+              to="/dashboard/chats"
+              className="link link-small link-chats"
+              onClick={handleClick}
+            >
               <HiOutlineChat className="icon-chat" />
               Chats
             </Link>

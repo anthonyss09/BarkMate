@@ -1,6 +1,6 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
 import { BiFilter } from "react-icons/bi";
-import GroupPreview from "../../components/GroupPreview";
+import GroupPreview from "./GroupPreview";
 
 export default function DashGroups() {
   return (

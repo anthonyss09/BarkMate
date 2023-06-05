@@ -36,9 +36,11 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     padding-top: 0.6rem;
-    padding-bottom: 2rem;
+    // padding-bottom: 2rem;
     gap: 2rem;
     background: rgb(244, 244, 244);
+    // background: var(--bark-pink);
+    // background: var(--test-blue);
   }
   .p-top {
     color: rgb(140, 140, 140);
@@ -52,7 +54,7 @@ const Wrapper = styled.section`
   .create-post-container {
     width: 100vw;
     position: fixed;
-    top: 7.7rem;
+    top: 8.2rem;
     left: 0;
     display: flex;
     justify-content: center;
@@ -74,9 +76,11 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     border-top: 1rem solid rgb(244, 244, 244);
+    // border-top: 1rem solid var(--bark-pink);
     gap: 1rem;
     background: rgb(244, 244, 244);
-    padding-bottom: 2rem;
+    // background: var(--bark-pink);
+    // padding-bottom: 2rem;
   }
 `;
 

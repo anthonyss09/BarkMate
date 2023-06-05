@@ -12,8 +12,9 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     position: fixed;
-    top: 3.6rem;
+    top: 4rem;
     background: white;
+    background: var(--test-blue);
     padding-top: 0.6rem;
     z-index: 2;
   }
@@ -41,6 +42,7 @@ const Wrapper = styled.section`
     padding: 0.4rem 6vw;
     border: 1px solid var(--grey-240);
     box-shadow: 5px 2px 5px var(--grey-220);
+    box-shadow: 5px 2px 5px grey;
   }
 `;
 

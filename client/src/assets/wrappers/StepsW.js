@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import meshGradient from "../images/mesh-gradient.png";
 
 const Wrapper = styled.section`
   .btn-step {
@@ -22,10 +23,8 @@ const Wrapper = styled.section`
   }
   .steps-center {
     height: 100%;
-    // width: 100%;
     width: 100vw;
     color: var(--grey-60);
-    background: white;
     padding: 2rem 0;
   }
   .steps-heading {
@@ -35,12 +34,12 @@ const Wrapper = styled.section`
   }
   .steps-main {
     text-align: center;
-    padding-bottom: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--grey-248);
-    padding: 0.4rem;
+    background-image: url(${meshGradient});
+    background-position: center;
+    background-size: cover;
   }
   .icon-step {
     margin-right: 1rem;

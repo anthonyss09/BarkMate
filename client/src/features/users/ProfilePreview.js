@@ -1,5 +1,5 @@
-import Wrapper from "../assets/wrappers/ProfilePreviewW";
-import jennyMax from "../assets/images/jennie&maxSmall.jpg";
+import Wrapper from "../../assets/wrappers/ProfilePreviewW";
+import jennyMax from "../../assets/images/jennie&maxSmall.jpg";
 import { FaUserFriends } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FiMail } from "react-icons/fi";

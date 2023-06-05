@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import meshGradient from "../images/mesh-gradient.png";
 
 const Wrapper = styled.nav`
   .bars {
@@ -38,12 +39,16 @@ const Wrapper = styled.nav`
     align-items: center;
     background: white;
     position: fixed;
-    left: 0;
+    // left: 0;
     z-index: 3;
     border-bottom: 1.5px solid var(--test-blue);
   }
   .nav-main-landing {
     border: none;
+    opacity: 0.95;
+  }
+  .hidden {
+    display: none;
   }
 `;
 
