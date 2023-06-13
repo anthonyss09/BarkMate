@@ -10,9 +10,6 @@ p {
 .p-top {
   margin-bottom: 1rem;
 }
-span {
-    color: var(--bark-pink);
-}
 .btn-register {
     margin-bottom: 1rem;
     width: 10rem;
@@ -39,6 +36,22 @@ span {
     padding: 1rem 2rem 2rem 2rem;
     min-height: 100vh;
 }
+.form-login {
+  min-height: min-content;
+  margin: auto 0;
+}
+.form-checkbox-container {
+  margin-bottom: 1rem;
+}
+.form-checkbox-label {
+    font-size: 0.8rem;
+    color: rgb(120,120,120)
+}
+.form-checkbox-row {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0.3rem 0;
+}
 .form-header {
     width: 20rem;
     margin: 0.4rem 0;
@@ -49,12 +62,14 @@ span {
     font-weight: bold;
 }   
 .form-textarea {
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     border: 2px solid var(--grey-240);
-    color: var(--grey-180);
+    // color: var(--grey-180);
     padding-left: 0.8rem;
     padding-top: 0.6rem;
     background: none;
+    resize: none;
+    
 }
 .logo {
     font-size: 1.4rem;
@@ -67,12 +82,25 @@ span {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+}
+.form-select {
+  width: 90%;
+  border: none;
+}
+.form-select:focus {
+  outline: none;
 }
 .p-bottom {
     color: var(--grey-80);
     margin-bottom: 1rem;
   }
-
+  .profile-image {
+    height: 250px;
+  }
+.span-login {
+    color: var(--bark-pink);
+}
 `;
 
 export default Wrapper;

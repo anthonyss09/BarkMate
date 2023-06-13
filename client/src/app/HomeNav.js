@@ -1,21 +1,33 @@
 import Wrapper from "../assets/wrappers/NavW";
 import Logo from "../components/Logo";
 import { HiBars3 } from "react-icons/hi2";
-import { FaRegUser, FaUser, FaUserCircle } from "react-icons/fa";
-import { TbUserCircle } from "react-icons/tb";
+import { FaUserCircle } from "react-icons/fa";
 import SmallSidebar from "../components/SmallSidebar";
 import { useState } from "react";
 import BigSidebar from "../components/BigSidebar";
+import { logoutUser } from "../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
   const [showBigSidebar, setShowBigSidebar] = useState(false);
+
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const handleSmallSidebar = () => {
     setSmallShowSidebar(!showSmallSidebar);
   };
   const handleBigSidebar = () => {
     setShowBigSidebar(!showBigSidebar);
+  };
+
+  const handleClick = () => {
+    dispatch(logoutUser());
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    Navigate("/");
   };
 
   return (
@@ -28,7 +40,7 @@ export default function NavBar() {
         <Logo />
         <span className="icon-user" onClick={handleSmallSidebar}>
           <FaUserCircle size={25} />
-          {showSmallSidebar && <SmallSidebar />}
+          {showSmallSidebar && <SmallSidebar handleClick={handleClick} />}
         </span>
       </nav>
     </Wrapper>

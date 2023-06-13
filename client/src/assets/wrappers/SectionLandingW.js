@@ -33,6 +33,8 @@ const Wrapper = styled.section`
   }
   .section-landing-image-four {
     margin: 3rem;
+    max-width: 65vw;
+    max-height: 90vh;
   }
   .section-landing-center {
     height: 100%;

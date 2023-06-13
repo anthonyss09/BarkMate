@@ -11,6 +11,7 @@ import DashHome from "./features/posts/DashHome";
 import ProfilePage from "./features/users/ProfilePage";
 import GroupPage from "./features/users/GroupPage";
 import ChatPage from "./features/chats/ChatPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/register" element={<RegisterPage />} />
+          <Route exact path="register" element={<RegisterPage />} />
+          <Route exact path="login" element={<LoginPage />} />
           <Route exact path="dashboard" element={<DashboardPage />}>
             <Route exact path="home" element={<DashHome />} />
             <Route path="profiles" element={<DashProfiles />} />

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaUserFriends, FaUserCircle } from "react-icons/fa";
 import { BiLogOutCircle } from "react-icons/bi";
 
-export default function SmallSidebar() {
+export default function SmallSidebar({ handleClick }) {
   return (
     <Wrapper>
       <aside className="small-sidebar-main">
@@ -16,10 +16,10 @@ export default function SmallSidebar() {
             <FaUserFriends className="icon-friends" />
             Friends
           </Link>
-          <Link to="/" className="link last-link">
+          <div onClick={handleClick} className="link last-link">
             <BiLogOutCircle />
             Logout
-          </Link>
+          </div>
         </div>
       </aside>
     </Wrapper>

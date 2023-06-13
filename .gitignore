@@ -1,0 +1,12 @@
+#miscellaneous
+.env
+
+#build file
+/client/build
+
+##from heroku docs
+/node_modules
+/client/node_modules
+npm-debug.log
+.DS_Store
+/*.env

@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     border-radius: 1.5rem;
     height: 2rem;
     border: 2px solid var(--grey-240);
-    color: var(--grey-220);
+    // color: var(--grey-220);
     padding-left: 0.8rem;
     background: none;
     font-size: 16px;
@@ -22,6 +22,9 @@ const Wrapper = styled.div`
     gap: 0.4rem;
     margin-bottom: 1.2rem;
     position: relative;
+  }
+  .form-input::placeholder {
+    color: rgb(180, 180, 180);
   }
 `;
 

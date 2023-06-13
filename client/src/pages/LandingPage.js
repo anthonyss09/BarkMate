@@ -23,7 +23,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     window.addEventListener("scroll", trackNav);
-    console.log(hideNav);
     return () => {
       window.removeEventListener("scroll", trackNav);
     };

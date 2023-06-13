@@ -1,60 +1,117 @@
 import Wrapper from "../../assets/wrappers/FormW";
-import FormRow from "./FormRow";
 import Logo from "../../components/Logo";
 import FormSteps from "./FormSteps";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FiCamera } from "react-icons/fi";
+import { useState } from "react";
+import FormCheckbox from "./FormCheckbox";
+import { useSelector } from "react-redux";
+import { selectNewUser } from "./authSlice";
+import { useRegisterUserMutation } from "../api/apiSlice";
 
-export default function RegisterTwo({
-  handleRegisterTwo,
-  handleRegisterThree,
+export default function RegisterThree({
+  handleInputChange,
+  handleCheckboxChange,
+  showRegisterThree,
 }) {
+  const [profileImage, setProfileImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
+  const [profileImageName, setProfileImageName] = useState();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const Navigate = useNavigate();
+
+  const newUser = useSelector(selectNewUser);
+
+  const handleImageChange = (e) => {
+    const image = e.target.files[0];
+    setProfileImage(image);
+    setProfileImageName(image.name);
+    const objUrl = URL.createObjectURL(image);
+    setImageUrl(objUrl);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const copyOfUser = { ...newUser };
+    copyOfUser.profileImage = profileImage;
+    copyOfUser.profileImageName = profileImageName;
+    const formData = new FormData();
+    const copyUserArr = Object.entries(copyOfUser);
+    copyUserArr.map((entry) => {
+      formData.append(entry[0], entry[1] || "");
+    });
+
+    try {
+      const response = await registerUser(formData);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      Navigate("/dashboard/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Wrapper>
-      <section className="main ">
-        <form className="form">
+      <section className="form-main">
+        <form
+          encType="multipart/form-data"
+          className="form"
+          onSubmit={handleSubmit}
+        >
           <Link to="/" className=" link">
             <Logo />
           </Link>
-          <FormSteps />
+          <FormSteps showRegisterThree={showRegisterThree} />
           <h1 className="form-header">Finish profile</h1>
           <div className="form-row">
-            <label for="AboutUs" className="form-label">
+            {profileImage && (
+              <div className="profile-image-container">
+                <img src={imageUrl} className="profile-image" />
+              </div>
+            )}
+            <label htmlFor="image" className="form-label form-label-image">
+              <p>Add profile image </p> <FiCamera size={20} />
+              <input
+                id="image"
+                type="file"
+                className="form-input form-input-image"
+                onChange={handleImageChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label htmlFor="aboutUs" className="form-label">
               About us
             </label>
             <textarea
-              id="AboutUs"
+              id="aboutUs"
               name="About us"
               rows="5"
               placeholder="Introduce you and pup!"
               className="form-textarea"
+              onChange={handleInputChange}
             />
           </div>
-          <FormRow
-            type="text"
-            id="Time needed"
-            name="Time needed"
-            value="Time needed"
+          <FormCheckbox
+            label="Time needed"
+            id="timeNeeded"
+            handleCheckboxChange={handleCheckboxChange}
+            inputs={["mornings", "afternoons", "evenings"]}
           />
-          <FormRow
-            type="text"
-            id="Time available"
-            name="Time available"
-            value="Time available"
-          />
-          <FormRow
-            type="text"
-            id="Social media links"
-            name="Social media links"
-            value="Social media links"
+          <FormCheckbox
+            label="Time available"
+            id="timeAvailable"
+            handleCheckboxChange={handleCheckboxChange}
+            inputs={["mornings", "afternoons", "evenings"]}
           />
           <button
             className="btn btn-register"
             onClick={() => {
-              handleRegisterTwo();
-              handleRegisterThree();
+              console.log("submitted");
             }}
           >
-            Save info
+            Finish
           </button>
         </form>
       </section>

@@ -1,10 +1,17 @@
 import Wrapper from "../../assets/wrappers/FormRowW";
 
-export default function FormRow({ id, name, type, value }) {
+export default function FormRow({
+  id,
+  name,
+  type,
+  value,
+  placeholder,
+  onChange,
+}) {
   return (
     <Wrapper>
       <div className="form-row">
-        <label className="form-label" for={id}>
+        <label className="form-label" htmlFor={id}>
           {name}
         </label>
         <input
@@ -12,7 +19,8 @@ export default function FormRow({ id, name, type, value }) {
           type={type}
           id={id}
           name={name}
-          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
         />
       </div>
     </Wrapper>

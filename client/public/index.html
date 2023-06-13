@@ -29,11 +29,37 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- <script>
+      var geocoder;
+      var map;
+      let autoComplete;
+
+      function initMap() {
+        var options = {
+          zoom: 3,
+          center: { lat: 51.541837, lng: -0.139199 },
+        };
+        map = new google.maps.Map(document.getElementById("map"), options);
+        geocoder = new google.maps.Geocoder();
+
+        // autoComplete = new window.google.maps.places.Autocomplete(
+        //   document.getElementById("address"),
+        //   { componentRestrictions: { country: "us" } }
+        // );
+      }
+    </script> -->
+
+    <!-- <script
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw4DzSva3E9fAV7H9zhetiM791lkTKXEQ&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cA"
+      async
+      defer
+    ></script> -->
     <title>Bark Mate</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
