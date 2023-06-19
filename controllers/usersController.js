@@ -4,7 +4,9 @@ import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import User from "../models/userModel.js";
 
 const getProfiles = async (req, res) => {
-  const { distance, coordinates } = req.query;
+  const { distance, coordinates, currentUserName } = req.query;
+  console.log(currentUserName);
+  const distanceInMeters = distance * 1609.34;
   const coordinatesArray = coordinates.split(",");
   const newCoords = [];
   coordinatesArray.map((coord) => newCoords.push(Number(coord)));
@@ -13,11 +15,16 @@ const getProfiles = async (req, res) => {
       location: {
         $near: {
           $geometry: { type: "Point", coordinates: newCoords },
-          $maxDistance: distance,
+          $maxDistance: distanceInMeters,
         },
       },
     });
-    res.status(StatusCodes.OK).json({ matches });
+    const filteredMatches = matches.filter(
+      (match) => match.firstName !== currentUserName
+    );
+    console.log(filteredMatches);
+
+    res.status(StatusCodes.OK).json({ filteredMatches });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
     console.log(error);

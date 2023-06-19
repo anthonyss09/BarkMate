@@ -6,7 +6,16 @@ import { FiMail } from "react-icons/fi";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export default function ProfilePreview() {
+export default function ProfilePreview({
+  firstName,
+  dogName,
+  aboutUs,
+  profileImageName,
+  timeAvailable,
+  timeNeeded,
+}) {
+  const urlPre = "../../data/uploads/";
+
   return (
     <Wrapper>
       <aside className="profile-preview-main">
@@ -46,7 +55,7 @@ export default function ProfilePreview() {
               {" "}
               <img
                 className="profile-preview-pic"
-                src={jennyMax}
+                src={urlPre + profileImageName}
                 alt="jennie & max"
               />
             </Link>{" "}
@@ -67,9 +76,10 @@ export default function ProfilePreview() {
             <div className="profile-preview-about">
               <h1 className="about-heading">About Us</h1>
               <p className="profile-preview-p">
-                "Hey we're Jennie & Max. I work nights & Max loves evening
+                {/* "Hey we're Jennie & Max. I work nights & Max loves evening
                 walks. I'm available to go on walks during the day. We're
-                woofing forward to meeting you!"
+                woofing forward to meeting you!" */}
+                {aboutUs}
               </p>
             </div>
           </div>

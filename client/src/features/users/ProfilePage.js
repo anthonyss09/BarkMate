@@ -26,7 +26,6 @@ export default function ProfilePage() {
   } = useSelector(selectCurrentUser);
 
   const urlPre = "../../data/uploads/";
-  console.log(profileImageName);
 
   const availabity = timeAvailable.map((time, index) => {
     return (

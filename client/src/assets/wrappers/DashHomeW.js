@@ -7,7 +7,7 @@ const Wrapper = styled.section`
     border-radius: 2rem;
   }
   .filter {
-    text-align: center;
+    // text-align: center;
     font-size: 0.8rem;
     border-radius: 0.4rem;
     border: 1px solid rgb(230, 230, 230);
@@ -22,6 +22,7 @@ const Wrapper = styled.section`
     // color: rgb(100, 100, 100);
     margin: 0.6rem 1.7rem;
     margin-right: 0;
+    position: relative;
   }
   .active {
     border: 2px solid var(--grey-248);
