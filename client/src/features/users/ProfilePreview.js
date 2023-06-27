@@ -13,6 +13,7 @@ export default function ProfilePreview({
   profileImageName,
   timeAvailable,
   timeNeeded,
+  id,
 }) {
   const urlPre = "../../data/uploads/";
 
@@ -51,7 +52,7 @@ export default function ProfilePreview({
             </div>
           </div>
           <div className="profile-preview-body">
-            <Link to="/profileid">
+            <Link to={`/${id}`}>
               {" "}
               <img
                 className="profile-preview-pic"

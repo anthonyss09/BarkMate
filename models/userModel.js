@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
-const pointSchema = new mongoose.Schema({
+const PointSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: ["Point"],
@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide adress."],
   },
   location: {
-    type: pointSchema,
+    type: PointSchema,
     required: true,
   },
   email: {
@@ -76,6 +76,9 @@ const UserSchema = new mongoose.Schema({
   },
   profileImageName: {
     type: String,
+  },
+  friends: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Friends" }],
   },
 });
 

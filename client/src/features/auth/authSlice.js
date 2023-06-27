@@ -55,6 +55,18 @@ export const authSlice = createSlice({
         state.token = payload.token;
       }
     );
+    builder.addMatcher(
+      apiSlice.endpoints.requestFriend.matchFulfilled,
+      (state, { payload }) => {
+        state.currentUser = payload.updatedUser;
+      }
+    );
+    builder.addMatcher(
+      apiSlice.endpoints.refreshUserCredentials.matchFulfilled,
+      (state, { payload }) => {
+        state.currentUser = payload.user;
+      }
+    );
   },
 });
 

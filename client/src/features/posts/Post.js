@@ -1,25 +1,30 @@
 import Wrapper from "../../assets/wrappers/PostW";
-import DeanBowie from "../../assets/images/dean&bowieSmall.jpg";
-import Bowie from "../../assets/images/bowie.jpg";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 
-export default function Post() {
+export default function Post({
+  userName,
+  userDogName,
+  text,
+  imageName,
+  userImageName,
+}) {
+  const urlPre = "../../data/uploads/";
   return (
     <Wrapper>
       <aside className="post-main">
         <div className="post-center">
           <div className="post-heading">
-            <img src={DeanBowie} className="post-heading-pic" />
-            <span className="post-name">Dean & Bowie</span>
+            <img src={urlPre + userImageName} className="post-heading-pic" />
+            <span className="post-name">
+              {userName} & {userDogName}
+            </span>
           </div>
-          <div className="post-text">
-            Hey everyone this is my first post! I'm new to the 11105 area and
-            i'm looking for community and help with my best friend Bowie. Here's
-            a pic of my bud!
-          </div>
+          <div className="post-text">{text}</div>
           <div className="post-image">
-            <img src={Bowie} className="post-body-pic" />
+            {imageName && (
+              <img src={urlPre + imageName} className="post-body-pic" />
+            )}
           </div>
           <div className="post-info">
             <div className="post-likes">

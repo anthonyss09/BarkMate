@@ -3,7 +3,7 @@ import ProfilePreview from "./ProfilePreview";
 import { BiFilter } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
-import { selectUsersData, useGetProfilesQuery } from "./extendedApiSlice";
+import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FormDropDown from "../auth/FormDropDown";
 import FiltersDropMenu from "../../components/FiltersDropDown";
@@ -45,6 +45,7 @@ export default function DashProfiles() {
           firstName={match.firstName}
           aboutUs={match.aboutUs}
           profileImageName={match.profileImageName}
+          id={match._id}
         />
       );
     });

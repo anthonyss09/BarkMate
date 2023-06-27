@@ -1,6 +1,5 @@
 import Wrapper from "../../assets/wrappers/ProfilePageW";
 import HomeNav from "../../app/HomeNav";
-import jennieMax from "../../assets/images/jennie&maxSmall.jpg";
 import { FaUserFriends } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import Footer from "../../app/Footer";
@@ -8,26 +7,25 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { HiCamera } from "react-icons/hi";
 import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
-import { selectCurrentUser } from "../auth/authSlice";
+import { useGetProfileByIdQuery, useRequestFriendMutation } from "./UsersSlice";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../auth/authSlice";
 
-export default function ProfilePage() {
-  const {
-    firstName,
-    dogName,
-    breed,
-    weight,
-    aboutUs,
-    energyLevel,
-    timeNeeded,
-    timeAvailable,
-    address,
-    profileImageName,
-  } = useSelector(selectCurrentUser);
-
+export default function ProfilePageView() {
+  const { profileId } = useParams();
+  const { data, error, isLoading } = useGetProfileByIdQuery(profileId);
   const urlPre = "../../data/uploads/";
+  const currentUser = useSelector(selectCurrentUser);
 
-  const availabity = timeAvailable.map((time, index) => {
+  const [requestFriend] = useRequestFriendMutation();
+
+  if (isLoading) {
+    return <div>profile loading</div>;
+  }
+  const { user } = data;
+
+  const availabity = user.timeAvailable.map((time, index) => {
     return (
       <div key={index} className="time-slot time-slot-available">
         {time}
@@ -35,13 +33,25 @@ export default function ProfilePage() {
     );
   });
 
-  const needed = timeNeeded.map((time, index) => {
+  const needed = user.timeNeeded.map((time, index) => {
     return (
       <div key={index} className="time-slot time-slot-needed">
         {time}
       </div>
     );
   });
+
+  const handleFriendRequest = async () => {
+    try {
+      const response = await requestFriend({
+        requester: currentUser._id,
+        recipient: profileId,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Wrapper>
@@ -60,7 +70,7 @@ export default function ProfilePage() {
                 </div>
               </div>
               <h1 className="profile-preview-name">
-                {firstName} & {dogName}
+                {user.firstName} & {user.dogName}
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
@@ -68,10 +78,13 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-          <img src={urlPre + profileImageName} className="profile-page-image" />
+          <img
+            src={urlPre + user.profileImageName}
+            className="profile-page-image"
+          />
 
           <div className="profile-page-options">
-            <div className="add-friend option">
+            <div className="add-friend option" onClick={handleFriendRequest}>
               + <FaUserFriends size={30} />
             </div>
 
@@ -103,16 +116,18 @@ export default function ProfilePage() {
             <div className="profile-page-about">
               {" "}
               <h3 className="section-header">About Us</h3>
-              <p className="profile-page-p">{aboutUs}</p>
+              <p className="profile-page-p">{user.aboutUs}</p>
             </div>
             <div className="profile-page-dog-info">
               <h3 className="section-header">Pup's info</h3>
               <div className="dog-details-container">
-                <div className="dog-detail dog-detail-weight">{weight}</div>
-                <div className="dog-detail dog-detail-energy">
-                  {energyLevel}
+                <div className="dog-detail dog-detail-weight">
+                  {user.weight}
                 </div>
-                <div className="dog-detail dog-detail-breed">{breed}</div>
+                <div className="dog-detail dog-detail-energy">
+                  {user.energyLevel}
+                </div>
+                <div className="dog-detail dog-detail-breed">{user.breed}</div>
               </div>
             </div>
 

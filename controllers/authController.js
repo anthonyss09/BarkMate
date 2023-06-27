@@ -4,7 +4,7 @@ import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import User from "../models/userModel.js";
 
 const registerUser = async (req, res) => {
-  const { firstName, lastName, email, password, location } = req.body;
+  // const { firstName, lastName, email, password, location } = req.body;
 
   const coordinates = location.split(",");
   const newCoords = [Number(coordinates[0]), Number(coordinates[1])];

@@ -8,7 +8,7 @@ export default function SmallSidebar({ handleClick }) {
     <Wrapper>
       <aside className="small-sidebar-main">
         <div className="small-sidebar-center">
-          <Link className="link">
+          <Link className="link" to="/userProfile">
             <FaUserCircle />
             Profile
           </Link>

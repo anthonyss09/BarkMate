@@ -23,10 +23,28 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getProfileById: builder.query({
+      query: (profileId) => ({
+        url: `/users/single-profile?userId=${profileId}`,
+        method: "Get",
+      }),
+    }),
+    requestFriend: builder.mutation({
+      query: ({ requester, recipient }) => ({
+        url: "/friends/request",
+        method: "POST",
+        body: { requester, recipient },
+      }),
+      invalidatesTags: ["CurrentUser"],
+    }),
   }),
 });
 
-export const { useGetProfilesQuery } = extendedApiSlice;
+export const {
+  useGetProfilesQuery,
+  useGetProfileByIdQuery,
+  useRequestFriendMutation,
+} = extendedApiSlice;
 
 export const selectUsersData = (state) => state.users;
 

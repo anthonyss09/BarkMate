@@ -100,6 +100,9 @@ const Wrapper = styled.main`
     border-radius: 1rem;
     // background: white;
   }
+  .option:hover {
+    cursor: pointer;
+  }
   .profile-page-about {
     margin-bottom: 1.6rem;
     padding-bottom: 1rem;

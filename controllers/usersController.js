@@ -31,4 +31,14 @@ const getProfiles = async (req, res) => {
   }
 };
 
-export { getProfiles };
+const getProfileById = async (req, res) => {
+  const { userId } = req.query;
+  try {
+    const user = await User.findOne({ _id: userId });
+    res.status(StatusCodes.OK).json({ user });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ error });
+  }
+};
+
+export { getProfiles, getProfileById };

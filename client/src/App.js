@@ -8,10 +8,11 @@ import DashGroups from "./features/users/DashGroups";
 import DashCal from "./features/calender/DashCal";
 import DashChats from "./features/chats/DashChats";
 import DashHome from "./features/posts/DashHome";
-import ProfilePage from "./features/users/ProfilePage";
+import ProfilePageView from "./features/users/ProfilePageView";
 import GroupPage from "./features/users/GroupPage";
 import ChatPage from "./features/chats/ChatPage";
 import LoginPage from "./pages/LoginPage";
+import ProfilePageEdit from "./features/users/ProfilePageEdit";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
             <Route exact path="calender" element={<DashCal />} />
             <Route exact path="chats" element={<DashChats />} />
           </Route>
-          <Route exact path="/profileid" element={<ProfilePage />} />
+          <Route exact path="/userProfile" element={<ProfilePageEdit />} />
+          <Route exact path="/:profileId" element={<ProfilePageView />} />
           <Route exact path="/groupid" element={<GroupPage />} />
           <Route exact path="chats/chatid" element={<ChatPage />} />
         </Routes>

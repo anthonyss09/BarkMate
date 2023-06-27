@@ -1,4 +1,4 @@
-import { setFilter } from "../features/users/extendedApiSlice";
+import { setFilter } from "../features/users/UsersSlice.js";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 

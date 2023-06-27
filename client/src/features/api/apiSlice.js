@@ -8,7 +8,7 @@ export const apiSlice = createApi({
     //prepare headers
   }),
 
-  tagTypes: ["User"],
+  tagTypes: ["CurrentUser"],
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (newUser) => ({
@@ -24,10 +24,21 @@ export const apiSlice = createApi({
         body: { email, password },
       }),
     }),
+    refreshUserCredentials: builder.query({
+      query: (userId) => ({
+        url: `/users/single-profile?userId=${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["CurrentUser"],
+    }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation } = apiSlice;
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useRefreshUserCredentialsQuery,
+} = apiSlice;
 
 // {
 //         firstName,
