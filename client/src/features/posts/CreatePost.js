@@ -91,8 +91,8 @@ export default function CreatePost({ handleClick }) {
         </div>
         <div className="create-post-form-row">
           <textarea
-            id="aboutUs"
-            name="About us"
+            id="createPost"
+            name="Create post"
             rows="10"
             placeholder="What would you like to share?"
             className="create-post-textarea"

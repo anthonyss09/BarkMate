@@ -1,8 +1,12 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
 import { BiFilter } from "react-icons/bi";
 import GroupPreview from "./GroupPreview";
+import { useEffect } from "react";
 
 export default function DashGroups() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Wrapper>
       <section className="dash-main">

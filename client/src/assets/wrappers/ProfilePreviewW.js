@@ -67,7 +67,8 @@ const Wrapper = styled.aside`
   }
 
   .profile-preview-main {
-    width: 100vw;
+    // width: 100vw;
+    width: 97vw;
     position: relative;
     background: white;
     display: flex;
@@ -75,7 +76,7 @@ const Wrapper = styled.aside`
     align-items: center;
     padding: 1rem 0;
     align-self: center;
-    box-shadow: 2px 2px 5px lightGrey;
+    // box-shadow: 2px 2px 5px lightGrey;
   }
   .profile-preview-name {
     text-align: center;

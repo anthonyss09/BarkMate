@@ -26,6 +26,9 @@ const Wrapper = styled.nav`
     color: var(--space-cadet);
     margin-right: 1rem;
   }
+  .icon-user:hover {
+    cursor: pointer;
+  }
   .logo {
     color: var(--space-cadet);
     font-size: 1.6rem;

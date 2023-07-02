@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import NavBar from "../app/HomeNav";
 import Footer from "../app/Footer";
 import TaskBar from "../components/TaskBar";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
   // const body = document.body;
@@ -19,6 +20,7 @@ export default function DashboardPage() {
   //   }
   //   lastScroll = currentScroll;
   // });
+
   return (
     <div className="main-container full-page">
       <NavBar />

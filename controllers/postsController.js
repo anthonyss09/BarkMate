@@ -70,4 +70,19 @@ const getPosts = async (req, res) => {
   }
 };
 
-export { createPost, getPosts };
+const editPost = async (req, res) => {
+  const { postId, update, currentUserCoords } = req.body;
+
+  try {
+    const editedPost = await Post.findByIdAndUpdate(
+      { _id: postId },
+      { ...update },
+      { new: true }
+    );
+    res.status(StatusCodes.OK).json({ editedPost });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ error });
+  }
+};
+
+export { createPost, getPosts, editPost };

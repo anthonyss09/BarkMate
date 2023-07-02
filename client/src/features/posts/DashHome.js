@@ -10,6 +10,7 @@ import { useGetProfileByIdQuery } from "../users/UsersSlice";
 import CreatePost from "./CreatePost";
 import { useState } from "react";
 import { useGetPostsQuery } from "./PostsSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function DashHome() {
   let user = useSelector(selectCurrentUser);
@@ -33,6 +34,10 @@ export default function DashHome() {
     console.log(updatedUser.friends.length);
   }, [currentUser]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleClick = () => {
     setShowCreatePost(!showCreatePost);
   };
@@ -47,6 +52,14 @@ export default function DashHome() {
           userImageName={post.userImageName}
           imageName={post.imageName}
           key={index}
+          comments={post.comments}
+          likes={post.likes}
+          postId={post._id}
+          currentUserId={userId}
+          currentUserImageName={user.profileImageName}
+          currentUserFirstName={user.firstName}
+          currentUserDogName={user.dogName}
+          currentUserCoords={coordinates}
         />
       );
     })
@@ -80,7 +93,11 @@ export default function DashHome() {
               </div>
             </div>
             <div className="posts-container">
-              {loadingPosts ? <div>loading posts</div> : posts}
+              {loadingPosts ? (
+                <BeatLoader color="silver" size={25} className="beat-loader" />
+              ) : (
+                posts
+              )}
             </div>
           </div>
         )}

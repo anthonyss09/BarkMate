@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.footer`
   .footer-main {
-    background: var(--test-blue);
-    // border-top: 1px solid rgb(234, 234, 234);
+    // background: var(--test-blue);
+    border-top: 8px solid rgb(244, 244, 244);
   }
   .footer-center {
-    height: 30vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,10 +15,9 @@ const Wrapper = styled.footer`
     padding: 2rem;
   }
   .link {
-    color: black;
+    color: rgb(60, 60, 60);
   }
   .link:hover {
-    color: white;
   }
 `;
 

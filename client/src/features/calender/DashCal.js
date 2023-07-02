@@ -3,8 +3,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import { TbArrowBadgeDown } from "react-icons/tb";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
+import { useEffect } from "react";
 
 export default function DashCal() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Wrapper>
       <main className="dash-main">

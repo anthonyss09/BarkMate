@@ -1,7 +1,11 @@
 import Wrapper from "../../assets/wrappers/DashChatsW";
 import ChatPreview from "./ChatPreview";
+import { useEffect } from "react";
 
 export default function DashChats() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Wrapper>
       <main className="dash-chats-main">

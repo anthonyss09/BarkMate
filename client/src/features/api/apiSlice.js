@@ -8,7 +8,7 @@ export const apiSlice = createApi({
     //prepare headers
   }),
 
-  tagTypes: ["CurrentUser"],
+  tagTypes: ["CurrentUser", "Posts"],
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (newUser) => ({

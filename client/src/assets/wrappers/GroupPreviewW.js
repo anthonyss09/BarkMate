@@ -50,7 +50,7 @@ const Wrapper = styled.aside`
     justify-content: space-between;
   }
   .group-preview-main {
-    width: 100vw;
+    width: 97vw;
     background: white;
     padding: 0.6rem;
     box-shadow: 2px 2px 5px lightGrey;

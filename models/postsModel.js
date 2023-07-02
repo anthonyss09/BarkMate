@@ -15,6 +15,13 @@ const CommentsSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    firstName: {
+      type: String,
+    },
+    dogName: {
+      type: String,
+    },
+    userImageName: { type: String },
     text: {
       type: String,
     },

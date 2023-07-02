@@ -7,6 +7,7 @@ import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FormDropDown from "../auth/FormDropDown";
 import FiltersDropMenu from "../../components/FiltersDropDown";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function DashProfiles() {
   const { location, firstName } = useSelector(selectCurrentUser);
@@ -30,12 +31,18 @@ export default function DashProfiles() {
     refetch();
   }, [distance]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   let content;
   if (isLoading) {
-    content = <p>Loading matches</p>;
+    content = <BeatLoader color="silver" size={25} className="beat-loader" />;
   } else if (!data.filteredMatches.length) {
     content = (
-      <div>Currently no matches in your area, try expanding your search.</div>
+      <div className="no-matches">
+        Currently no matches in your area, try expanding your search.
+      </div>
     );
   } else {
     content = data.filteredMatches.map((match, index) => {
@@ -71,14 +78,7 @@ export default function DashProfiles() {
             Displaying results within {distance} mile{distance > 1 && "s"}...
           </p>
         </div>
-        <div className="profiles-container">
-          {/* <ProfilePreview />
-          <ProfilePreview />
-          <ProfilePreview />
-          <ProfilePreview />
-          <ProfilePreview /> */}
-          {content}
-        </div>
+        <div className="profiles-container">{content}</div>
       </section>
     </Wrapper>
   );

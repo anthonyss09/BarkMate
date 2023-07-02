@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
+  .beat-loader {
+    align-self: center;
+  }
   .dash-profile-pic {
     height: 40px;
     width: 40px;
@@ -24,6 +27,9 @@ const Wrapper = styled.section`
     margin-right: 0;
     position: relative;
   }
+  .filter:hover {
+    cursor: pointer;
+  }
   .active {
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);
@@ -31,15 +37,22 @@ const Wrapper = styled.section`
   .header-buttons {
     display: flex;
   }
+  .no-matches {
+    padding: 4rem;
+    font-weight: bold;
+    color: rgb(60, 60, 60);
+    background: white;
+  }
   .profiles-container {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 0.6rem;
+    // padding-top: 0.6rem;
     // padding-bottom: 2rem;
     gap: 2rem;
     background: rgb(244, 244, 244);
+    padding-top: 8px;
     // background: var(--bark-pink);
     // background: var(--test-blue);
   }
@@ -76,12 +89,10 @@ const Wrapper = styled.section`
     margin-top: 3.8rem;
     display: flex;
     flex-direction: column;
-    border-top: 1rem solid rgb(244, 244, 244);
-    // border-top: 1rem solid var(--bark-pink);
-    gap: 1rem;
+    align-items: center;
+    border-top: 8px solid rgb(244, 244, 244);
+    gap: 8px;
     background: rgb(244, 244, 244);
-    // background: var(--bark-pink);
-    // padding-bottom: 2rem;
   }
 `;
 
