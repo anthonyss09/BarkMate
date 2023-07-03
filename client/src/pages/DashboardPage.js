@@ -3,23 +3,19 @@ import NavBar from "../app/HomeNav";
 import Footer from "../app/Footer";
 import TaskBar from "../components/TaskBar";
 import { useEffect } from "react";
+import useWebSocket, { readyState } from "react-use-websocket";
 
 export default function DashboardPage() {
-  // const body = document.body;
-  // const taskbar = document.querySelector(".taskbar");
-  // let lastScroll = 0;
-  // window.addEventListener("scroll", () => {
-  //   let currentScroll = window.pageYOffset;
+  const WS_URL = "ws://localhost:8080";
 
-  //   if (currentScroll - lastScroll > 0) {
-  //     taskbar.classList.add("scroll-down");
-  //     taskbar.classList.remove("scroll-up");
-  //   } else {
-  //     taskbar.classList.add("scroll-up");
-  //     taskbar.classList.remove("scroll-down");
-  //   }
-  //   lastScroll = currentScroll;
-  // });
+  const { sendMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+    onOpen: () => console.log("web socket opened"),
+    shouldReconnect: (closeEvent) => true,
+  });
+
+  useEffect(() => {
+    sendMessage("hello web socket");
+  }, []);
 
   return (
     <div className="main-container full-page">

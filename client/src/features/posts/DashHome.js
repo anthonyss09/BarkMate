@@ -19,7 +19,7 @@ export default function DashHome() {
   const coordinates = user.location.coordinates;
   // const { data, isLoading } = useRefreshUserCredentialsQuery(userId);
   const { data: currentUser, isLoading: loadingUser } =
-    useGetProfileByIdQuery(userId);
+    useRefreshUserCredentialsQuery(userId);
   const { data: postsData, isLoading: loadingPosts } =
     useGetPostsQuery(coordinates);
 
@@ -32,11 +32,10 @@ export default function DashHome() {
     localStorage.setItem("user", JSON.stringify(updatedUser));
     user = updatedUser;
     console.log(updatedUser.friends.length);
+    window.scrollTo(0, 0);
   }, [currentUser]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {}, []);
 
   const handleClick = () => {
     setShowCreatePost(!showCreatePost);
@@ -46,11 +45,12 @@ export default function DashHome() {
     postsData.posts.map((post, index) => {
       return (
         <Post
-          userName={post.userName}
-          userDogName={post.userDogName}
+          authorId={post.authorId}
+          authorName={post.authorName}
+          authorDogName={post.authorDogName}
           text={post.text}
-          userImageName={post.userImageName}
-          imageName={post.imageName}
+          authorImageName={post.authorImageName}
+          postImageName={post.postImageName}
           key={index}
           comments={post.comments}
           likes={post.likes}

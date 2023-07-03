@@ -43,23 +43,23 @@ const PointSchema = new mongoose.Schema({
 
 const PostsSchema = new mongoose.Schema(
   {
-    userId: {
+    authorId: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    userName: {
+    authorName: {
       type: String,
     },
-    userDogName: {
+    authorDogName: {
       type: String,
     },
-    userImageName: {
+    authorImageName: {
       type: String,
     },
     text: {
       type: String,
     },
-    imageName: {
+    postImageName: {
       type: String,
     },
     likes: {

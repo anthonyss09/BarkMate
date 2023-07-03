@@ -22,17 +22,24 @@ const Wrapper = styled.nav`
   }
 
   .icon-user {
-    // color: var(--federal-blue);
     color: var(--space-cadet);
     margin-right: 1rem;
   }
-  .icon-user:hover {
+  .icon-notification {
+    color: var(--space-cadet);
+  }
+  .icon:hover {
     cursor: pointer;
   }
   .logo {
     color: var(--space-cadet);
     font-size: 1.6rem;
     // color: var(--federal-blue);
+  }
+  .nav-icons-container {
+    display: flex;
+    gap: 0.6rem;
+    position: relative;
   }
   .nav-main {
     height: 4rem;
@@ -49,6 +56,20 @@ const Wrapper = styled.nav`
   .nav-main-landing {
     border: none;
     opacity: 0.95;
+  }
+  .notification-count {
+    height: 1rem;
+    width: 1rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    position: absolute;
+    top: -0.4rem;
+    left: 0.6rem;
+    display: grid;
+    place-items: center;
+    background: var(--test-red);
+    color: var(--test-blue);
+    border-radius: 1rem;
   }
   .hidden {
     display: none;

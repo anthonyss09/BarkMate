@@ -20,6 +20,9 @@ const Wrapper = styled.aside`
     font-weight: 500;
     font-family: "Ubuntu", sans-serif;
   }
+  .link:hover {
+    cursor: pointer;
+  }
   .last-link {
     border: none;
     box-shadow: none;

@@ -38,7 +38,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
             "getPosts",
             currentUserCoords,
             (draft) => {
-              console.log(draft);
               const post = draft.posts.find((post) => post._id === postId);
               if (post) {
                 post[Object.keys(update)[0]] = Object.values(update)[0];

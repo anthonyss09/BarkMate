@@ -3,14 +3,16 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { useState } from "react";
 import { useEditPostMutation } from "./PostsSlice";
+import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import Comment from "./Comment";
 
 export default function Post({
-  userName,
-  userDogName,
+  authorId,
+  authorName,
+  authorDogName,
   text,
-  imageName,
-  userImageName,
+  postImageName,
+  authorImageName,
   comments,
   likes,
   postId,
@@ -27,6 +29,7 @@ export default function Post({
   const urlPre = "../../data/uploads/";
 
   const [editPost] = useEditPostMutation();
+  const [createNotification] = useCreateNotificationMutation();
 
   const handleCommentChange = (e) => {
     const val = e.target.value;
@@ -53,6 +56,14 @@ export default function Post({
       update: { comments: commentsCopy },
       currentUserCoords,
     });
+    createNotification({
+      notification: {
+        recipient: authorId,
+        sender: currentUserId,
+        type: "comment",
+      },
+      userId: authorId,
+    });
     setShowPostComment(!showPostComment);
   };
 
@@ -69,6 +80,14 @@ export default function Post({
     } else {
       copyOfLikes.push({ userId: currentUserId });
       editPost({ postId, update: { likes: copyOfLikes }, currentUserCoords });
+      createNotification({
+        notification: {
+          recipient: authorId,
+          sender: currentUserId,
+          type: "like",
+        },
+        userId: authorId,
+      });
     }
   };
 
@@ -100,30 +119,18 @@ export default function Post({
       <aside className="post-main">
         <div className="post-center">
           <div className="post-heading">
-            <img src={urlPre + userImageName} className="post-heading-pic" />
+            <img src={urlPre + authorImageName} className="post-heading-pic" />
             <span className="post-name">
-              {userName} & {userDogName}
+              {authorName} & {authorDogName}
             </span>
           </div>
           <div className="post-text">{text}</div>
           <div className="post-image">
-            {imageName && (
-              <img src={urlPre + imageName} className="post-body-pic" />
+            {postImageName && (
+              <img src={urlPre + postImageName} className="post-body-pic" />
             )}
           </div>
-          <div className="post-info">
-            {/* <div className="post-likes">
-              {" "}
-              {likes.length}
-              <div className="icon-heart-fill">
-                <AiFillHeart size={20} />
-              </div>
-            </div> */}
-
-            {/* <div className="post-comments-button">
-              {comments.length} comment{comments.length > 1 && "s"}
-            </div> */}
-          </div>
+          <div className="post-info"></div>
           <div className="post-options">
             <div className="icon icon-heart-container">
               {userLikes.includes(currentUserId) ? (

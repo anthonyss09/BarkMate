@@ -13,6 +13,7 @@ export default function CreatePost({ handleClick }) {
   const [imageUrl, setImageUrl] = useState();
   const [postImageName, setPostImageName] = useState("");
   const [postText, setPostText] = useState("");
+
   const [createPost] = useCreatePostMutation();
 
   const currentUser = useSelector(selectCurrentUser);
@@ -40,14 +41,14 @@ export default function CreatePost({ handleClick }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("imageName", postImageName);
+    formData.append("postImageName", postImageName);
     formData.append("postImage", postImage);
     formData.append("text", postText);
-    formData.append("userId", currentUser._id);
+    formData.append("authorId", currentUser._id);
     formData.append("coordinates", currentUser.location.coordinates);
-    formData.append("userImageName", user.profileImageName);
-    formData.append("userName", user.firstName);
-    formData.append("userDogName", user.dogName);
+    formData.append("authorImageName", user.profileImageName);
+    formData.append("authorName", user.firstName);
+    formData.append("authorDogName", user.dogName);
     try {
       const post = await createPost(formData);
       setPostImage("");
@@ -55,7 +56,6 @@ export default function CreatePost({ handleClick }) {
       setPostImageName("");
       setPostText("");
       handleClick();
-      console.log(post);
     } catch (error) {
       console.log(error);
     }

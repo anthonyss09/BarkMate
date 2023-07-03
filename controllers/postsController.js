@@ -5,13 +5,13 @@ import Post from "../models/postsModel.js";
 
 const createPost = async (req, res) => {
   const {
-    imageName,
+    postImageName,
     text,
-    userId,
+    authorId,
     coordinates,
-    userImageName,
-    userName,
-    userDogName,
+    authorImageName,
+    authorName,
+    authorDogName,
   } = req.body;
 
   const coordsArray = coordinates.split(",");
@@ -21,21 +21,20 @@ const createPost = async (req, res) => {
 
   const location = { type: "Point", coordinates: newCoords };
 
-  if (!imageName && !text) {
+  if (!postImageName && !text) {
     throw new BadRequestError("Add text or pic to your post.");
   }
 
   try {
     const post = await Post.create({
-      imageName,
+      postImageName,
       text,
-      userId,
+      authorId,
       location,
-      userImageName,
-      userName,
-      userDogName,
+      authorImageName,
+      authorName,
+      authorDogName,
     });
-    console.log(post);
     res.status(StatusCodes.CREATED).json({ post });
   } catch (error) {
     console.log(error);
@@ -45,7 +44,6 @@ const createPost = async (req, res) => {
 const getPosts = async (req, res) => {
   //get user coords
   const { coordinates } = req.query;
-  console.log(coordinates);
   //posts within 5 miles
   const distanceInMeters = 8046.7;
 
@@ -62,7 +60,6 @@ const getPosts = async (req, res) => {
         },
       },
     }).sort({ createdAt: -1 });
-    console.log(posts);
     res.status(StatusCodes.OK).json({ posts });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });

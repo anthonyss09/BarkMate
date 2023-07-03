@@ -6,8 +6,12 @@ import SmallSidebar from "../components/SmallSidebar";
 import { useState } from "react";
 import BigSidebar from "../components/BigSidebar";
 import { logoutUser } from "../features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { IoIosNotifications } from "react-icons/io";
+import { IoNotificationsOutline } from "react-icons/io5";
+import { useGetNotificationsQuery } from "../features/notifications/NotificationsSlice";
+import { selectCurrentUser } from "../features/auth/authSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -15,6 +19,11 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  const { data, error, isLoading } = useGetNotificationsQuery(currentUser._id);
+  const notifications = data ? data.notifications : [];
 
   const handleSmallSidebar = () => {
     setSmallShowSidebar(!showSmallSidebar);
@@ -38,8 +47,17 @@ export default function NavBar() {
           {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
         </div>
         <Logo />
-        <span className="icon-user" onClick={handleSmallSidebar}>
-          <FaUserCircle size={25} />
+        <span className="nav-icons-container">
+          <span className="notification-count">{notifications.length}</span>
+          <IoNotificationsOutline
+            size={25}
+            className="icon icon-notification"
+          />
+          <FaUserCircle
+            size={25}
+            onClick={handleSmallSidebar}
+            className="icon icon-user"
+          />
           {showSmallSidebar && <SmallSidebar handleClick={handleClick} />}
         </span>
       </nav>
