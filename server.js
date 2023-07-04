@@ -13,6 +13,7 @@ import friendsRouter from "./routes/friendsRoutes.js";
 import upload from "./utils/fileUpload.js";
 import postsRouter from "./routes/postsRoutes.js";
 import notificationsRouter from "./routes/notificationRoutes.js";
+import { v4 as uuidv4 } from "uuid";
 
 app.use(express.json());
 
@@ -29,20 +30,29 @@ app.get("/", (req, res) => {
 
 const port = process.env.port || 8080;
 
-const wss = new WebSocket.WebSocketServer({ server });
+export const wss = new WebSocket.WebSocketServer({ server });
+const clients = {};
 
 wss.on("connection", (ws) => {
+  const userId = uuidv4();
   ws.on("error", (error) => {
     console.log(error);
   });
+  console.log("recieved new connection");
+
+  clients[userId] = ws;
+
+  console.log(`${userId} connected`);
 
   ws.on("message", (data) => {
     console.log("message is");
     data = data.toString();
     console.log(data);
+    for (let userId in clients) {
+      let client = clients[userId];
+      client.send(data);
+    }
   });
-
-  ws.send("web socket connected");
 });
 
 const start = async () => {

@@ -21,6 +21,8 @@ export default function Post({
   currentUserFirstName,
   currentUserDogName,
   currentUserCoords,
+  sendMessage,
+  sendJsonMessage,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [comment, setComment] = useState("");
@@ -41,7 +43,7 @@ export default function Post({
     setShowAllComments(false);
   };
 
-  const handlePostComment = () => {
+  const handlePostComment = async () => {
     let commentsCopy = comments.slice();
 
     commentsCopy.push({
@@ -56,7 +58,7 @@ export default function Post({
       update: { comments: commentsCopy },
       currentUserCoords,
     });
-    createNotification({
+    const newNotification = await createNotification({
       notification: {
         recipient: authorId,
         sender: currentUserId,
@@ -64,12 +66,16 @@ export default function Post({
       },
       userId: authorId,
     });
+    sendJsonMessage({
+      type: "notification",
+      content: { ...newNotification.data.newNotification },
+    });
     setShowPostComment(!showPostComment);
   };
 
   const userLikes = likes.map((like) => like.userId);
 
-  const handleLikePost = () => {
+  const handleLikePost = async () => {
     const copyOfLikes = likes.slice();
 
     let index;
@@ -80,13 +86,17 @@ export default function Post({
     } else {
       copyOfLikes.push({ userId: currentUserId });
       editPost({ postId, update: { likes: copyOfLikes }, currentUserCoords });
-      createNotification({
+      const newNotification = await createNotification({
         notification: {
           recipient: authorId,
           sender: currentUserId,
           type: "like",
         },
         userId: authorId,
+      });
+      sendJsonMessage({
+        type: "notification",
+        content: { ...newNotification.data.newNotification },
       });
     }
   };

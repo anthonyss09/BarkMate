@@ -3,6 +3,7 @@ import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Notifications from "../models/notificationModel.js";
 import { STATES } from "mongoose";
+import { wss } from "../server.js";
 
 const getNotifications = async (req, res) => {
   const { userId } = req.query;

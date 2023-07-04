@@ -6,18 +6,16 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useRefreshUserCredentialsQuery } from "../api/apiSlice";
 import { useEffect } from "react";
-import { useGetProfileByIdQuery } from "../users/UsersSlice";
 import CreatePost from "./CreatePost";
 import { useState } from "react";
 import { useGetPostsQuery } from "./PostsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function DashHome() {
+export default function DashHome({ sendJsonMessage, sendMessage }) {
   let user = useSelector(selectCurrentUser);
   const urlPre = "../../data/uploads/";
   const userId = user._id;
   const coordinates = user.location.coordinates;
-  // const { data, isLoading } = useRefreshUserCredentialsQuery(userId);
   const { data: currentUser, isLoading: loadingUser } =
     useRefreshUserCredentialsQuery(userId);
   const { data: postsData, isLoading: loadingPosts } =
@@ -34,8 +32,6 @@ export default function DashHome() {
     console.log(updatedUser.friends.length);
     window.scrollTo(0, 0);
   }, [currentUser]);
-
-  // useEffect(() => {}, []);
 
   const handleClick = () => {
     setShowCreatePost(!showCreatePost);
@@ -60,6 +56,8 @@ export default function DashHome() {
           currentUserFirstName={user.firstName}
           currentUserDogName={user.dogName}
           currentUserCoords={coordinates}
+          sendMessage={sendMessage}
+          sendJsonMessage={sendJsonMessage}
         />
       );
     })

@@ -21,7 +21,7 @@ export default function NavBar() {
   const Navigate = useNavigate();
 
   const currentUser = useSelector(selectCurrentUser);
-
+  console.log(currentUser);
   const { data, error, isLoading } = useGetNotificationsQuery(currentUser._id);
   const notifications = data ? data.notifications : [];
 
