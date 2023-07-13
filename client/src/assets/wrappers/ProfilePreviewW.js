@@ -37,6 +37,9 @@ const Wrapper = styled.aside`
     z-index: 1;
     // box-shadow: 2px 2px 5px lightGrey;
   }
+  .option:hover {
+    cursor: pointer;
+  }
   // .option-container {
   //   z-index: 1;
   //   padding: 0.3rem;
@@ -97,6 +100,7 @@ const Wrapper = styled.aside`
     gap: 2rem;
     margin-top: -3.6rem;
     margin-bottom: 0.4rem;
+    // position: relative;
   }
   .profile-preview-p {
     width: 100%;

@@ -77,6 +77,7 @@ const UserSchema = new mongoose.Schema({
   profileImageName: {
     type: String,
   },
+  profileName: { type: String },
   friends: {
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Friends" }],
   },

@@ -35,6 +35,7 @@ export default function RegisterThree({
     const copyOfUser = { ...newUser };
     copyOfUser.profileImage = profileImage;
     copyOfUser.profileImageName = profileImageName;
+    copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
     const formData = new FormData();
     const copyUserArr = Object.entries(copyOfUser);
     copyUserArr.map((entry) => {

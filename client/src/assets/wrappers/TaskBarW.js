@@ -32,6 +32,7 @@ const Wrapper = styled.section`
   }
   .task-profiles {
     color: var(--med-bright-blue);
+    // color: var(--med-bright-green);
   }
   .task {
     border-radius: 1rem;

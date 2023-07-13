@@ -11,7 +11,8 @@ const Wrapper = styled.aside`
     margin-left: 0.1rem;
   }
   .chat-name {
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.9rem;
     line-height: 1.4rem;
   }
   .chat-preview-image {

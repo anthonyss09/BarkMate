@@ -3,8 +3,9 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { useState } from "react";
 import { useEditPostMutation } from "./PostsSlice";
-import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
+import { useCreateNotificationMutation } from "../api/apiSlice";
 import Comment from "./Comment";
+import { useRef, useEffect } from "react";
 
 export default function Post({
   authorId,
@@ -21,14 +22,14 @@ export default function Post({
   currentUserFirstName,
   currentUserDogName,
   currentUserCoords,
-  sendMessage,
-  sendJsonMessage,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [comment, setComment] = useState("");
   const [showAllComments, setShowAllComments] = useState(false);
 
   const urlPre = "../../data/uploads/";
+
+  const ref = useRef();
 
   const [editPost] = useEditPostMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -41,6 +42,9 @@ export default function Post({
   const handleShowPostComment = () => {
     setShowPostComment(!showPostComment);
     setShowAllComments(false);
+    setTimeout(() => {
+      ref.current.focus();
+    }, 300);
   };
 
   const handlePostComment = async () => {
@@ -66,10 +70,10 @@ export default function Post({
       },
       userId: authorId,
     });
-    sendJsonMessage({
-      type: "notification",
-      content: { ...newNotification.data.newNotification },
-    });
+    // sendJsonMessage({
+    //   type: "notification",
+    //   content: { ...newNotification.data.newNotification },
+    // });
     setShowPostComment(!showPostComment);
   };
 
@@ -94,10 +98,10 @@ export default function Post({
         },
         userId: authorId,
       });
-      sendJsonMessage({
-        type: "notification",
-        content: { ...newNotification.data.newNotification },
-      });
+      // sendJsonMessage({
+      //   type: "notification",
+      //   content: { ...newNotification.data.newNotification },
+      // });
     }
   };
 
@@ -171,27 +175,29 @@ export default function Post({
             </div>
           )}
 
-          {showPostComment && (
-            <div className="post-comment-row">
-              <textarea
-                id="createPost"
-                name="Create post"
-                rows="3"
-                placeholder="Comment on post..."
-                className="post-textarea"
-                onChange={handleCommentChange}
+          <div
+            className={`post-comment-row ${showPostComment ? "" : "hidden"}`}
+          >
+            <textarea
+              ref={ref}
+              id="createComment"
+              name="Create comment"
+              rows="3"
+              placeholder="Comment on post..."
+              className="post-textarea"
+              onChange={handleCommentChange}
+              autoFocus={true}
+            />
+            <button className="btn btn-send">
+              {" "}
+              <AiOutlineSend
+                size={30}
+                className="icon-send"
+                id="postComment"
+                onClick={handlePostComment}
               />
-              <button className="btn btn-send">
-                {" "}
-                <AiOutlineSend
-                  size={30}
-                  className="icon-send"
-                  id="postComment"
-                  onClick={handlePostComment}
-                />
-              </button>
-            </div>
-          )}
+            </button>
+          </div>
         </div>
       </aside>
     </Wrapper>

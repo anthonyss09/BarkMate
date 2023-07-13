@@ -121,6 +121,9 @@ const Wrapper = styled.aside`
   .show-comments:hover {
     cursor: pointer;
   }
+  .hidden {
+    display: none;
+  }
 `;
 
 export default Wrapper;

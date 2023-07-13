@@ -16,9 +16,9 @@ export default function TaskBar() {
           <NavLink to="/dashboard/profiles" className="task task-profiles ">
             <MdOutlinePeople size={20} />
           </NavLink>
-          <NavLink to="/dashboard/groups" className="task task-groups ">
+          {/* <NavLink to="/dashboard/groups" className="task task-groups ">
             <IoIosPeople size={20} />
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/dashboard/calender" className="task task-calendar ">
             <BiCalendar size={20} />
           </NavLink>

@@ -59,11 +59,15 @@ const Wrapper = styled.section`
   .p-top {
     color: rgb(140, 140, 140);
     font-size: 0.8rem;
-    font-weight: bold;
+    // font-weight: bold;
     border-radius: 1rem;
     padding-left: 1.8rem;
     margin-bottom: 0.4rem;
     color: var(--federal-blue);
+    color: rgb(80, 80, 80);
+    // color: rgb(140, 140, 140);
+    color: black;
+    letter-spacing: 0.02rem;
   }
   .create-post-container {
     width: 100vw;
@@ -93,6 +97,7 @@ const Wrapper = styled.section`
     border-top: 8px solid rgb(244, 244, 244);
     gap: 8px;
     background: rgb(244, 244, 244);
+    // background: var(--test-blue);
   }
 `;
 

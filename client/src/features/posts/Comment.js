@@ -12,7 +12,7 @@ export default function Comment({
       <div className={"comment-row"}>
         <img src={commentUserImageName} className="comment-image" />
         <div className="comment-body">
-          <div className="div" className="comment-author">
+          <div className="comment-author">
             {" "}
             {commentFirstName} & {commentDogName}
           </div>

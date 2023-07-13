@@ -20,7 +20,12 @@ export default function LoginForm({
           <h1 className="form-header">
             Login{" "}
             <p className="p-bottom">
-              Not yet a member? <span className="span-login">register</span>
+              Not yet a member?{" "}
+              <span className="span-login">
+                <Link to="/register" className="link span-login">
+                  register
+                </Link>
+              </span>
             </p>
           </h1>
           <FormRow

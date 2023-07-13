@@ -53,6 +53,7 @@ export default function DashProfiles() {
           aboutUs={match.aboutUs}
           profileImageName={match.profileImageName}
           id={match._id}
+          profileName={match.profileName}
         />
       );
     });

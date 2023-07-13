@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useGetPostsQuery } from "./PostsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function DashHome({ sendJsonMessage, sendMessage }) {
+export default function DashHome() {
   let user = useSelector(selectCurrentUser);
   const urlPre = "../../data/uploads/";
   const userId = user._id;
@@ -25,11 +25,19 @@ export default function DashHome({ sendJsonMessage, sendMessage }) {
 
   let updatedUser;
 
+  // const { sendMessage, sendJsonMessage } = useWebSocket(WS_URL, {
+  //   onOpen: (e) => {
+  //     console.log("web socket opened");
+  //     sendJsonMessage({ type: "data", content: userId });
+  //   },
+  //   shouldReconnect: (closeEvent) => true,
+  // });
+
   useEffect(() => {
     updatedUser = currentUser ? currentUser.user : user;
     localStorage.setItem("user", JSON.stringify(updatedUser));
     user = updatedUser;
-    console.log(updatedUser.friends.length);
+    // console.log(updatedUser.friends.length);
     window.scrollTo(0, 0);
   }, [currentUser]);
 
@@ -56,8 +64,6 @@ export default function DashHome({ sendJsonMessage, sendMessage }) {
           currentUserFirstName={user.firstName}
           currentUserDogName={user.dogName}
           currentUserCoords={coordinates}
-          sendMessage={sendMessage}
-          sendJsonMessage={sendJsonMessage}
         />
       );
     })

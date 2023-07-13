@@ -13,6 +13,7 @@ import friendsRouter from "./routes/friendsRoutes.js";
 import upload from "./utils/fileUpload.js";
 import postsRouter from "./routes/postsRoutes.js";
 import notificationsRouter from "./routes/notificationRoutes.js";
+import chatsRouter from "./routes/chatsRoutes.js";
 import { v4 as uuidv4 } from "uuid";
 
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/friends", friendsRouter);
 app.use("/api/posts", upload.single("postImage"), postsRouter);
 app.use("/api/notifications", notificationsRouter);
+app.use("/api/chats", chatsRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Bark Mate!");
@@ -33,24 +35,69 @@ const port = process.env.port || 8080;
 export const wss = new WebSocket.WebSocketServer({ server });
 const clients = {};
 
-wss.on("connection", (ws) => {
-  const userId = uuidv4();
+wss.on("connection", (ws, req) => {
+  const sessionId = uuidv4();
   ws.on("error", (error) => {
     console.log(error);
   });
+
   console.log("recieved new connection");
+  const userId = req.url.slice(1);
+  console.log(userId);
 
+  // figure out way to reference recipient id in clients
+  //prevent overwriting client in the case of unanticipated rerenders client side
+  // if (!Object.keys(clients).includes(userId)) {
+  //   clients[userId] = ws;
+  //   console.log(`${userId} connected`);
+  // }
   clients[userId] = ws;
-
   console.log(`${userId} connected`);
+  clients[userId].send(
+    JSON.stringify({ type: "data", content: { message: "welcome" } })
+  );
+
+  // if (Object.keys(clients).includes(userId)) {
+  //   console.log("client exists");
+  //   console.log(clients[userId][sessionId]);
+  //   clients[userId][sessionId] = ws;
+  // } else {
+  //   clients[userId] = {
+  //     [sessionId]: ws,
+  //   };
+  // }
+
+  // clients[userId][sessionId].send(
+  //   JSON.stringify({ type: "data", content: { userId, sessionId } })
+  // );
 
   ws.on("message", (data) => {
     console.log("message is");
     data = data.toString();
-    console.log(data);
-    for (let userId in clients) {
-      let client = clients[userId];
-      client.send(data);
+    const parsedData = JSON.parse(data);
+    switch (parsedData.type) {
+      case "data":
+        {
+          console.log(parsedData);
+        }
+        break;
+      case "notification":
+        {
+          console.log(parsedData);
+          clients[parsedData.content.recipient].send(data);
+          console.log("sent to client");
+        }
+        break;
+      case "chat":
+        {
+          console.log(parsedData);
+          Object.values(clients).map((client) => client.send(data));
+        }
+        break;
+      default: {
+        console.log(parsedData);
+        break;
+      }
     }
   });
 });

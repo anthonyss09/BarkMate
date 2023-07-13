@@ -5,6 +5,8 @@ import { MdLocationOn } from "react-icons/md";
 import { FiMail } from "react-icons/fi";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import QuickChat from "../chats/QuickChat";
+import { useState } from "react";
 
 export default function ProfilePreview({
   firstName,
@@ -14,8 +16,15 @@ export default function ProfilePreview({
   timeAvailable,
   timeNeeded,
   id,
+  profileName,
 }) {
+  const [showQuickChat, setShowQuickChat] = useState(false);
+
   const urlPre = "../../data/uploads/";
+
+  const handleMessageClick = () => {
+    setShowQuickChat(!showQuickChat);
+  };
 
   return (
     <Wrapper>
@@ -33,7 +42,7 @@ export default function ProfilePreview({
                   <AiOutlineStar className="icon-star" size={10} />
                 </div>
               </div>
-              <h1 className="profile-preview-name">Jennie & Max </h1>
+              <h1 className="profile-preview-name">{profileName}</h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
                 <span className="location">Williamsburg</span>
@@ -69,11 +78,19 @@ export default function ProfilePreview({
               </div>
               <div className="option-container">
                 {" "}
-                <div className="message option">
+                <div className="message option" onClick={handleMessageClick}>
                   <FiMail size={30} className="message-friend" />
                 </div>
               </div>
             </div>
+            {showQuickChat && (
+              <QuickChat
+                recipientId={id}
+                recipientImageName={profileImageName}
+                handleMessageClick={handleMessageClick}
+                recipientProfileName={profileName}
+              />
+            )}
             <div className="profile-preview-about">
               <h1 className="about-heading">About Us</h1>
               <p className="profile-preview-p">

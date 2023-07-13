@@ -52,6 +52,8 @@ const Wrapper = styled.nav`
     // left: 0;
     z-index: 3;
     border-bottom: 1.5px solid var(--test-blue);
+    // border-bottom: 1.5px solid rgb(240, 240, 240);
+    // border-bottom: 8px solid rgb(210, 210, 210);
   }
   .nav-main-landing {
     border: none;
@@ -60,7 +62,7 @@ const Wrapper = styled.nav`
   .notification-count {
     height: 1rem;
     width: 1rem;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: bold;
     position: absolute;
     top: -0.4rem;

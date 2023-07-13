@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { useGetNotificationsQuery } from "../features/notifications/NotificationsSlice";
+import { useGetNotificationsQuery } from "../features/api/apiSlice";
 import { selectCurrentUser } from "../features/auth/authSlice";
 
 export default function NavBar() {
@@ -21,9 +21,13 @@ export default function NavBar() {
   const Navigate = useNavigate();
 
   const currentUser = useSelector(selectCurrentUser);
-  console.log(currentUser);
-  const { data, error, isLoading } = useGetNotificationsQuery(currentUser._id);
+  const { data, error, isLoading, refetch } = useGetNotificationsQuery(
+    currentUser._id
+  );
   const notifications = data ? data.notifications : [];
+
+  const notificationNumber =
+    notifications.length > 50 ? "50+" : notifications.length;
 
   const handleSmallSidebar = () => {
     setSmallShowSidebar(!showSmallSidebar);
