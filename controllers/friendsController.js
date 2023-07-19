@@ -5,23 +5,29 @@ import User from "../models/userModel.js";
 import Friends from "../models/friendsModel.js";
 
 const requestFriend = async (req, res) => {
-  const { requester, recipient } = req.body;
+  const request = req.body;
 
   try {
+    // const friendRequestExists = await Friends.find({
+    //   $and: [{ requester, recipient }],
+    // });
+    // if (friendRequestExists) {
+    //   console.log("friend requested already");
+    //   throw new BadRequestError("friend requested already");
+    // }
     const friends = await Friends.create({
-      requester,
-      recipient,
-      requesterStatus: 2,
-      recipientStatus: 1,
+      ...request,
     });
 
+    console.log("new friend", friends);
+
     const updatedUser = await User.findOneAndUpdate(
-      { _id: requester },
+      { _id: request.requester },
       { $push: { friends: friends._id } }
     );
 
     await User.findOneAndUpdate(
-      { _id: recipient },
+      { _id: request.recipient },
       { $push: { friends: friends._id } }
     );
 
@@ -59,4 +65,16 @@ const declineFriend = async (req, res) => {
   }
 };
 
-export { requestFriend, acceptFriend, declineFriend };
+const getFriends = async (req, res) => {
+  const { friendIds } = req.query;
+  const parsedIds = JSON.parse(friendIds);
+  try {
+    const friends = await Friends.find({ _id: { $in: parsedIds } });
+    res.status(StatusCodes.OK).json({ friends });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ error });
+  }
+};
+
+export { requestFriend, acceptFriend, declineFriend, getFriends };

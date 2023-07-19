@@ -51,7 +51,7 @@ const Wrapper = styled.nav`
     position: fixed;
     // left: 0;
     z-index: 3;
-    border-bottom: 1.5px solid var(--test-blue);
+    // border-bottom: 1.5px solid var(--test-blue);
     // border-bottom: 1.5px solid rgb(240, 240, 240);
     // border-bottom: 8px solid rgb(210, 210, 210);
   }
@@ -72,6 +72,9 @@ const Wrapper = styled.nav`
     background: var(--test-red);
     color: var(--test-blue);
     border-radius: 1rem;
+  }
+  .notification-count:hover {
+    cursor: pointer;
   }
   .hidden {
     display: none;

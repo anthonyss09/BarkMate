@@ -3,8 +3,10 @@ import { FiCamera } from "react-icons/fi";
 import Post from "./Post";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../auth/authSlice";
-import { useRefreshUserCredentialsQuery } from "../api/apiSlice";
+import {
+  selectCurrentUser,
+  useRefreshUserCredentialsQuery,
+} from "../auth/authSlice";
 import { useEffect } from "react";
 import CreatePost from "./CreatePost";
 import { useState } from "react";
@@ -64,6 +66,7 @@ export default function DashHome() {
           currentUserFirstName={user.firstName}
           currentUserDogName={user.dogName}
           currentUserCoords={coordinates}
+          currentUserProfileName={user.profileName}
         />
       );
     })

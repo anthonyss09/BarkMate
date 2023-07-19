@@ -15,7 +15,7 @@ const MessageSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const ParticipantSchema = new mongoose.Schema({
+export const ParticipantSchema = new mongoose.Schema({
   participantId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

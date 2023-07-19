@@ -29,14 +29,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "Get",
       }),
     }),
-    requestFriend: builder.mutation({
-      query: ({ requester, recipient }) => ({
-        url: "/friends/request",
-        method: "POST",
-        body: { requester, recipient },
-      }),
-      invalidatesTags: ["CurrentUser"],
-    }),
   }),
 });
 

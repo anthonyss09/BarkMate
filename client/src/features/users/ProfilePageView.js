@@ -7,18 +7,27 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { HiCamera } from "react-icons/hi";
 import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
-import { useGetProfileByIdQuery, useRequestFriendMutation } from "./UsersSlice";
+import { useGetProfileByIdQuery } from "./UsersSlice";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
+import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
+import mongoose from "mongoose";
+import {
+  useCreateNotificationMutation,
+  useRequestFriendMutation,
+} from "../api/apiSlice";
 
 export default function ProfilePageView() {
   const { profileId } = useParams();
   const { data, error, isLoading } = useGetProfileByIdQuery(profileId);
   const urlPre = "../../data/uploads/";
-  const currentUser = useSelector(selectCurrentUser);
-
+  const localUser = useSelector(selectCurrentUser);
+  const notificationId = new mongoose.Types.ObjectId();
+  const { data: currentUser } = useRefreshUserCredentialsQuery(localUser._id);
+  const friendRequestId = new mongoose.Types.ObjectId();
   const [requestFriend] = useRequestFriendMutation();
+  const [createNotification] = useCreateNotificationMutation();
 
   if (isLoading) {
     return <div>profile loading</div>;
@@ -44,10 +53,40 @@ export default function ProfilePageView() {
   const handleFriendRequest = async () => {
     try {
       const response = await requestFriend({
-        requester: currentUser._id,
-        recipient: profileId,
+        _id: friendRequestId,
+        requester: currentUser.user._id,
+        participants: [
+          {
+            participantId: currentUser.user._id,
+            participantProfileName: currentUser.user.profileName,
+            participantProfileImageName: currentUser.user.profileImageName,
+          },
+          {
+            participantId: user._id,
+            participantProfileName: user.profileName,
+            participantProfileImageName: user.profileImageName,
+          },
+        ],
+        // requesterProfileName: currentUser.user.profileName,
+        // requesterProfileImageName: currentUser.user.profileImageName,
+        recipient: user._id,
+        // recipientProfileName: user.profileName,
+        // recipientProfileImageName: user.profileImageName,
+        requesterStatus: "pending",
+        recipientStatus: "requested",
       });
-      console.log(response);
+      createNotification({
+        _id: notificationId,
+        friendId: profileId,
+        recipient: profileId,
+        sender: currentUser.user._id,
+        senderProfileImageName: currentUser.user.profileImageName,
+        senderProfileName: currentUser.user.profileName,
+        notificationPath: "friendRequests",
+        notificationType: "friendRequest",
+        is_read: false,
+        is_viewed: false,
+      });
     } catch (error) {
       console.log(error);
     }

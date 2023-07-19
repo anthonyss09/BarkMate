@@ -5,6 +5,14 @@ const NotificationsSchema = new mongoose.Schema(
     postId: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
     chatId: { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
     friendId: { type: mongoose.Schema.Types.ObjectId, ref: "Friends" },
+    notificationPath: {
+      type: String,
+      enum: ["chats", "posts", "friendRequests"],
+    },
+    notificationType: {
+      type: String,
+      enum: ["comment", "friendRequest", "like", "message"],
+    },
     sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     senderProfileImageName: {
       type: String,
@@ -13,9 +21,7 @@ const NotificationsSchema = new mongoose.Schema(
       type: String,
     },
     recipient: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    type: {
-      type: String,
-    },
+
     is_read: {
       type: Boolean,
       default: false,

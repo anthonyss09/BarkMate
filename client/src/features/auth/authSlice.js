@@ -55,12 +55,12 @@ export const authSlice = createSlice({
         state.token = payload.token;
       }
     );
-    builder.addMatcher(
-      apiSlice.endpoints.requestFriend.matchFulfilled,
-      (state, { payload }) => {
-        state.currentUser = payload.updatedUser;
-      }
-    );
+    // builder.addMatcher(
+    //   apiSlice.endpoints.requestFriend.matchFulfilled,
+    //   (state, { payload }) => {
+    //     state.currentUser = payload.updatedUser;
+    //   }
+    // );
     builder.addMatcher(
       apiSlice.endpoints.refreshUserCredentials.matchFulfilled,
       (state, { payload }) => {
@@ -70,9 +70,41 @@ export const authSlice = createSlice({
   },
 });
 
+export const extendedApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    registerUser: builder.mutation({
+      query: (newUser) => ({
+        url: "/auth/register",
+        method: "POST",
+        body: newUser,
+      }),
+    }),
+    loginUser: builder.mutation({
+      query: ({ email, password }) => ({
+        url: "/auth/login",
+        method: "Post",
+        body: { email, password },
+      }),
+    }),
+    refreshUserCredentials: builder.query({
+      query: (userId) => ({
+        url: `/users/single-profile?userId=${userId}`,
+        method: "GET",
+      }),
+      providesTags: ["CurrentUser"],
+    }),
+  }),
+});
+
 export const selectNewUser = (state) => state.auth.newUser;
 export const selectCurrentUser = (state) => state.auth.currentUser;
 
 export const { updateNewUserProp, logoutUser } = authSlice.actions;
+
+export const {
+  useRegisterUserMutation,
+  useLoginUserMutation,
+  useRefreshUserCredentialsQuery,
+} = extendedApiSlice;
 
 export default authSlice.reducer;

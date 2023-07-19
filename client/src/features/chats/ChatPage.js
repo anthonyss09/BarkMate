@@ -12,9 +12,11 @@ import ChatLineUser from "./ChatLineUser";
 import { useState } from "react";
 import {
   useCreateChatMutation,
-  useUpdateWebSocketReadyStateMutation,
+  // useUpdateWebSocketReadyStateMutation,
+  useCreateNotificationMutation,
 } from "../api/apiSlice";
 import { selectWebSocketReadyState } from "./ChatsSlice";
+import mongoose from "mongoose";
 
 export default function ChatPage() {
   const {
@@ -25,12 +27,14 @@ export default function ChatPage() {
   const { data, isLoading, isSuccess, error, refetch } =
     useGetChatsQuery(userId);
   const { chatId } = useParams();
+  const id = new mongoose.Types.ObjectId();
 
-  const webSocketReadyState = useSelector(selectWebSocketReadyState);
+  // const webSocketReadyState = useSelector(selectWebSocketReadyState);
 
   const [message, setMessage] = useState("");
   const [createChat] = useCreateChatMutation();
-  const [updateWebSocketReadyState] = useUpdateWebSocketReadyStateMutation();
+  // const [updateWebSocketReadyState] = useUpdateWebSocketReadyStateMutation();
+  const [createNotification] = useCreateNotificationMutation();
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -56,6 +60,18 @@ export default function ChatPage() {
         recipient: friend.participantId,
         content: message,
       },
+    });
+    createNotification({
+      _id: id,
+      chatId,
+      recipient: friend.participantId,
+      sender: userId,
+      senderProfileImageName: profileImageName,
+      senderProfileName: profileName,
+      notificationPath: "chats",
+      notificationType: "message",
+      is_read: false,
+      is_viewed: false,
     });
     setMessage("");
   };

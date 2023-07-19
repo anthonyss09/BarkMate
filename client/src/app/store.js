@@ -5,6 +5,7 @@ import usersSliceReducer from "../features/users/UsersSlice";
 import notificationsReducer from "../features/notifications/NotificationsSlice";
 import socketsMiddleware from "../middleware/sockets";
 import chatsSliceReducer from "../features/chats/ChatsSlice";
+import friendsReducer from "../features/friends/FriendsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     users: usersSliceReducer,
     chats: chatsSliceReducer,
     notifications: notificationsReducer,
+    friends: friendsReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

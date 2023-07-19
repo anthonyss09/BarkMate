@@ -1,83 +1,56 @@
-import { apiSlice } from "../api/apiSlice";
+import { apiSlice, notificationsRecieved } from "../api/apiSlice";
 import {
   createSlice,
   createAction,
   isAnyOf,
   createEntityAdapter,
 } from "@reduxjs/toolkit";
-import { openWebSocket } from "../../modules/webSocket";
 
 const userId = JSON.parse(localStorage.getItem("user"))._id;
 
-// let wsSessionId;
-
-// const ws = openWebSocket();
-// const ws = new WebSocket(`ws://192.168.1.153:8080/${userId}`);
-
-const connectWs = createAction("notifications/socketsConnect");
-const openWs = createAction("notifications/socketsOpen");
-const stateChange = createAction("stateChange");
-
-const initialState = {
-  wsSession: "",
-};
-
-export const extendedApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    // getNotifications: builder.query({
-    //   query: (userId) => ({
-    //     url: `/notifications/get-notifications?userId=${userId}`,
-    //     method: "GET",
-    //   }),
-    //   async onCacheEntryAdded(
-    //     userId,
-    //     { updateCachedData, cacheDataLoaded, cacheEntryRemoved, dispatch }
-    //   ) {
-    //     console.log("web socket opened", ws);
-    //     ws.addEventListener("open", (e) => {
-    //       console.log(e);
-    //     });
-    //     ws.addEventListener("message", (e) => {
-    //       console.log(e);
-    //     });
-    //     try {
-    //       await cacheDataLoaded;
-    //     } catch (error) {}
-    //     await cacheEntryRemoved;
-    //   },
-    // }),
-    // createNotification: builder.mutation({
-    //   query: ({ notification, userId }) => ({
-    //     url: "/notifications/create-notification",
-    //     method: "POST",
-    //     body: notification,
-    //   }),
-    //   async onQueryStarted(
-    //     { userId, notification },
-    //     { dispatch, queryFulfilled }
-    //   ) {
-    //     try {
-    //       await queryFulfilled;
-    //     } catch (error) {
-    //       // patchResult.undo();
-    //     }
-    //   },
-    // }),
-  }),
+const notificationsAdapter = createEntityAdapter({
+  selectId: (notification) => notification._id,
 });
+
+const matchNotificationsRecieved = isAnyOf(
+  apiSlice.endpoints.getNotifications.matchFulfilled,
+  notificationsRecieved
+);
 
 export const notificationsSlice = createSlice({
   name: "notifications",
-  initialState,
-  reducers: {},
-  extraReducers(builder) {
-    builder.addMatcher(stateChange, (state, action) => {
-      state.wsSession = action.payload;
-    });
-  },
+  initialState: notificationsAdapter.getInitialState(),
+  // reducers: {
+  //   markAllStateNotificationsRead(state, action) {
+  //     Object.values(state.entities).forEach((notification) => {
+  //       notification.is_read = true;
+  //     });
+  //   },
+  //   markStateNotificationViewed(state, action) {
+  //     state.entities[action.payload].is_viewed = true;
+  //   },
+  // },
+  // extraReducers(builder) {
+  //   builder.addCase(notificationsRecieved, (state, action) => {
+  //     state.ids.push(action.payload._id);
+  //     state.entities[action.payload._id] = action.payload;
+  //   });
+  //   builder.addMatcher(
+  //     apiSlice.endpoints.getNotifications.matchFulfilled,
+  //     (state, action) => {
+  //       notificationsAdapter.upsertMany(state, action.payload.notifications);
+  //       console.log(action.payload);
+  //     }
+  //   );
+  // },
 });
 
-export const { useGetNotificationsQuery, useCreateNotificationMutation } =
-  extendedApiSlice;
+export const {
+  selectAll: selectAllNotifications,
+  selectById: selectNotificationById,
+} = notificationsAdapter.getSelectors((state) => state.notifications);
+
+export const { markAllStateNotificationsRead, markStateNotificationViewed } =
+  notificationsSlice.actions;
 
 export default notificationsSlice.reducer;

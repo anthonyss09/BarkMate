@@ -129,10 +129,14 @@ select {
 }
 .dash-page-name {
   /* margin-bottom: 0.6rem; */
-  padding: 1rem;
+  /* width: 20vw; */
+  width: min-content;
+  border-radius: 2rem;
+  padding: 1rem 6vw;
   /* border: 1px solid rgb(240, 240, 240); */
   /* margin: 0 1rem; */
   background: rgb(244, 244, 244);
+
   /* background: rgb(248, 248, 248); */
   /* background: var(--med-bright-blue); */
   /* background: var(--bark-pink); */
@@ -140,11 +144,13 @@ select {
   /* color: black; */
   /* background: rgb(248, 248, 248); */
   /* box-shadow: 2px 1px 3px grey; */
-  font-family: "Ubuntu", sans-serif;
+  /* font-family: "Ubuntu", sans-serif; */
   font-size: 1.2rem;
   height: 1.35rem;
   margin: 1rem;
   margin-bottom: 0;
+  /* margin: 0 1rem; */
+  letter-spacing: 0.2rem;
   /* background: var(--test-blue); */
 }
 .dash-header {
@@ -161,6 +167,26 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.filter {
+  font-size: 0.8rem;
+  border-radius: 0.4rem;
+  border-radius: 2rem;
+  border: 1px solid rgb(230, 230, 230);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: rgb(20, 20, 20);
+  align-self: flex-start;
+  padding: 0.5rem 0.8rem;
+  margin: 0.6rem 1.7rem;
+  margin-right: 0;
+  position: relative;
+}
+.filter:hover {
+  cursor: pointer;
 }
 .filters-btn {
   background: white;

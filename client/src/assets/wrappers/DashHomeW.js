@@ -9,27 +9,6 @@ const Wrapper = styled.section`
     width: 40px;
     border-radius: 2rem;
   }
-  .filter {
-    // text-align: center;
-    font-size: 0.8rem;
-    border-radius: 0.4rem;
-    border: 1px solid rgb(230, 230, 230);
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.2rem;
-    color: rgb(20, 20, 20);
-    align-self: flex-start;
-    padding: 0.5rem 0.8rem;
-    // color: rgb(100, 100, 100);
-    margin: 0.6rem 1.7rem;
-    margin-right: 0;
-    position: relative;
-  }
-  .filter:hover {
-    cursor: pointer;
-  }
   .active {
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);

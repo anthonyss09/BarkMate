@@ -2,7 +2,6 @@ import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Notifications from "../models/notificationModel.js";
-import { STATES } from "mongoose";
 import { wss } from "../server.js";
 
 const getNotifications = async (req, res) => {
@@ -17,13 +16,10 @@ const getNotifications = async (req, res) => {
 };
 
 const createNotification = async (req, res) => {
-  const { sender, recipient, type, is_read } = req.body;
-
+  const notification = req.body;
   try {
     const newNotification = await Notifications.create({
-      sender,
-      recipient,
-      type,
+      ...notification,
     });
     console.log(newNotification);
     res.status(StatusCodes.CREATED).json({ newNotification });
@@ -33,4 +29,40 @@ const createNotification = async (req, res) => {
   }
 };
 
-export { createNotification, getNotifications };
+const markAllNotificationsRead = async (req, res) => {
+  try {
+    const response = await Notifications.updateMany(
+      { is_read: false },
+      { $set: { is_read: true } }
+    );
+    console.log(response);
+    res.status(StatusCodes.OK).json({ response });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ error });
+  }
+};
+
+const markNotificationViewed = async (req, res) => {
+  const { notificationId } = req.body;
+
+  try {
+    const updatedNotification = await Notifications.findOneAndUpdate(
+      { _id: notificationId },
+      { is_viewed: true },
+      { new: true }
+    );
+    console.log(updatedNotification);
+    res.status(StatusCodes.OK).json({ updatedNotification });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ error });
+  }
+};
+
+export {
+  createNotification,
+  getNotifications,
+  markAllNotificationsRead,
+  markNotificationViewed,
+};

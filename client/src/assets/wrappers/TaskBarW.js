@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .task-bar-center {
-    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    // background: rgb(244, 244, 244);
+    // padding: 1rem;
+    width: 100vw;
   }
   .task-bar-main {
     height: 3.6rem;
@@ -15,7 +17,10 @@ const Wrapper = styled.section`
     top: 4rem;
     background: white;
     background: var(--test-blue);
-    padding-top: 0.6rem;
+    // background: rgb(244, 244, 244);
+    // background: white;
+    // padding-top: 0.6rem;
+    padding: 0.3rem 0;
     z-index: 2;
   }
   .task-calendar {
@@ -35,16 +40,28 @@ const Wrapper = styled.section`
     // color: var(--med-bright-green);
   }
   .task {
-    border-radius: 1rem;
+    height: 2.4rem;
+    padding: 0 6vw;
+    border-radius: 3rem;
+    display: grid;
+    place-items: center;
+
     background: white;
-    padding: 0.4rem 6vw;
+    // padding: 0.4rem 6vw;
+    // background: var(--test-blue);
   }
   .task.active {
-    padding: 0.4rem 6vw;
+    // padding: 0.4rem 6vw;
+    background: white;
     border: 1px solid var(--grey-240);
     box-shadow: 5px 2px 5px var(--grey-220);
     box-shadow: 5px 2px 5px grey;
   }
+  // .task-container {
+  //   background: rgb(244, 244, 244);
+  //   padding: 0.8rem 1rem;
+  //   border-radius: 5rem;
+  // }
 `;
 
 export default Wrapper;

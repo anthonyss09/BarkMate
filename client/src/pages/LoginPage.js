@@ -1,9 +1,6 @@
 import LoginForm from "../features/auth/LoginForm";
 import { useState } from "react";
-import {
-  useLoginUserMutation,
-  useRefetchCurrentUserDataQuery,
-} from "../features/api/apiSlice";
+import { useLoginUserMutation } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useGetProfileByIdQuery } from "../features/users/UsersSlice";
 export default function LoginPage() {

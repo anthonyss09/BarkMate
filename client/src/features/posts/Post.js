@@ -6,6 +6,7 @@ import { useEditPostMutation } from "./PostsSlice";
 import { useCreateNotificationMutation } from "../api/apiSlice";
 import Comment from "./Comment";
 import { useRef, useEffect } from "react";
+import mongoose from "mongoose";
 
 export default function Post({
   authorId,
@@ -22,12 +23,14 @@ export default function Post({
   currentUserFirstName,
   currentUserDogName,
   currentUserCoords,
+  currentUserProfileName,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [comment, setComment] = useState("");
   const [showAllComments, setShowAllComments] = useState(false);
 
   const urlPre = "../../data/uploads/";
+  const id = new mongoose.Types.ObjectId();
 
   const ref = useRef();
 
@@ -62,19 +65,20 @@ export default function Post({
       update: { comments: commentsCopy },
       currentUserCoords,
     });
-    const newNotification = await createNotification({
-      notification: {
-        recipient: authorId,
-        sender: currentUserId,
-        type: "comment",
-      },
-      userId: authorId,
+    createNotification({
+      _id: id,
+      postId,
+      recipient: authorId,
+      sender: currentUserId,
+      senderProfileImageName: currentUserImageName,
+      senderProfileName: currentUserProfileName,
+      notificationPath: "posts",
+      notificationType: "comment",
+      is_read: false,
+      is_viewed: false,
     });
-    // sendJsonMessage({
-    //   type: "notification",
-    //   content: { ...newNotification.data.newNotification },
-    // });
     setShowPostComment(!showPostComment);
+    setComment("");
   };
 
   const userLikes = likes.map((like) => like.userId);
@@ -90,18 +94,18 @@ export default function Post({
     } else {
       copyOfLikes.push({ userId: currentUserId });
       editPost({ postId, update: { likes: copyOfLikes }, currentUserCoords });
-      const newNotification = await createNotification({
-        notification: {
-          recipient: authorId,
-          sender: currentUserId,
-          type: "like",
-        },
-        userId: authorId,
+      createNotification({
+        _id: id,
+        postId,
+        recipient: authorId,
+        sender: currentUserId,
+        senderProfileImageName: currentUserImageName,
+        senderProfileName: currentUserProfileName,
+        notificationPath: "posts",
+        notificationType: "like",
+        is_read: false,
+        is_viewed: false,
       });
-      // sendJsonMessage({
-      //   type: "notification",
-      //   content: { ...newNotification.data.newNotification },
-      // });
     }
   };
 
@@ -187,6 +191,7 @@ export default function Post({
               className="post-textarea"
               onChange={handleCommentChange}
               autoFocus={true}
+              value={comment}
             />
             <button className="btn btn-send">
               {" "}

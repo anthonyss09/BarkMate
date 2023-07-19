@@ -10,21 +10,34 @@ export default function TaskBar() {
     <Wrapper>
       <section className="task-bar-main">
         <div className="task-bar-center">
-          <NavLink to="/dashboard/home" className="task task-home">
-            <BiHome size={20} />
-          </NavLink>
-          <NavLink to="/dashboard/profiles" className="task task-profiles ">
-            <MdOutlinePeople size={20} />
-          </NavLink>
+          <div className="task-container">
+            {" "}
+            <NavLink to="/dashboard/home" className="task task-home">
+              <BiHome size={20} />
+            </NavLink>
+          </div>
+          <div className="task-container">
+            {" "}
+            <NavLink to="/dashboard/profiles" className="task task-profiles ">
+              <MdOutlinePeople size={20} />
+            </NavLink>
+          </div>
+
           {/* <NavLink to="/dashboard/groups" className="task task-groups ">
             <IoIosPeople size={20} />
           </NavLink> */}
-          <NavLink to="/dashboard/calender" className="task task-calendar ">
-            <BiCalendar size={20} />
-          </NavLink>
-          <NavLink to="/dashboard/chats" className="task task-chats ">
-            <HiOutlineChat size={20} />
-          </NavLink>
+          <div className="task-container">
+            {" "}
+            <NavLink to="/dashboard/calender" className="task task-calendar ">
+              <BiCalendar size={20} />
+            </NavLink>
+          </div>
+          <div className="task-container">
+            {" "}
+            <NavLink to="/dashboard/chats" className="task task-chats ">
+              <HiOutlineChat size={20} />
+            </NavLink>
+          </div>
         </div>
       </section>
     </Wrapper>

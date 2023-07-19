@@ -6,7 +6,7 @@ import { selectCurrentUser } from "../auth/authSlice";
 import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FormDropDown from "../auth/FormDropDown";
-import FiltersDropMenu from "../../components/FiltersDropDown";
+import FiltersDropDown from "../../components/FiltersDropDown";
 import BeatLoader from "react-spinners/BeatLoader";
 
 export default function DashProfiles() {
@@ -69,9 +69,11 @@ export default function DashProfiles() {
             Filters
           </div>
           {showFilters && (
-            <FiltersDropMenu
+            <FiltersDropDown
               filterOptions={filterOptions}
               handleClick={handleClick}
+              filter="distance"
+              filterPrompt="select distance"
             />
           )}
 

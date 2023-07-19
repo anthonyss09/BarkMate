@@ -1,6 +1,6 @@
-import { apiSlice } from "../api/apiSlice";
+// import { apiSlice } from "../api/apiSlice";
 import { createSlice } from "@reduxjs/toolkit";
-import { updateWebSocketReadyState } from "../api/apiSlice";
+// import { updateWebSocketReadyState } from "../api/apiSlice";
 const userId = JSON.parse(localStorage.getItem("user"))._id;
 
 const initialState = {
@@ -12,9 +12,9 @@ export const chatsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(updateWebSocketReadyState, (state, action) => {
-      state.webSocketReadyState = action.payload;
-    });
+    // builder.addCase(updateWebSocketReadyState, (state, action) => {
+    //   state.webSocketReadyState = action.payload;
+    // });
   },
 });
 

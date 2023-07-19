@@ -7,7 +7,7 @@ import { useState } from "react";
 import FormCheckbox from "./FormCheckbox";
 import { useSelector } from "react-redux";
 import { selectNewUser } from "./authSlice";
-import { useRegisterUserMutation } from "../api/apiSlice";
+import { useRegisterUserMutation } from "../auth/authSlice";
 
 export default function RegisterThree({
   handleInputChange,

@@ -84,18 +84,39 @@ wss.on("connection", (ws, req) => {
       case "notification":
         {
           console.log(parsedData);
-          clients[parsedData.content.recipient].send(data);
+          if (parsedData.content.notificationType === "friendRequest") {
+            clients[parsedData.content.sender].send(data);
+          }
+          clients[parsedData.content.recipient] &&
+            clients[parsedData.content.recipient].send(data);
           console.log("sent to client");
+        }
+        break;
+      case "markNotificationsRead":
+        {
+          clients[parsedData.content.recipient].send(data);
+        }
+        break;
+      case "markNotificationViewed":
+        {
+          clients[parsedData.content.userId].send(data);
         }
         break;
       case "chat":
         {
-          console.log(parsedData);
           Object.values(clients).map((client) => client.send(data));
         }
         break;
+      case "friendRequest":
+        {
+          console.log(parsedData);
+          console.log(parsedData.content.requester);
+          clients[parsedData.content.requester].send(data);
+          clients[parsedData.content.recipient] &&
+            clients[parsedData.content.recipient].send(data);
+        }
+        break;
       default: {
-        console.log(parsedData);
         break;
       }
     }
