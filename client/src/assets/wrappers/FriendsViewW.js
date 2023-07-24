@@ -60,7 +60,8 @@ const Wrapper = styled.aside`
     flex-direction: column;
     font-size: 0.8rem;
     border-left: 1px solid rgb(220, 220, 220);
-    box-shadow: -2px 0px 8px 1px rgb(60, 60, 60);
+    // box-shadow: -2px 0px 8px 1px rgb(60, 60, 60);
+    // box-shadow: -5px 2px 5px grey;
   }
   .friends-view-single {
     height: 4.2rem;

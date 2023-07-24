@@ -7,11 +7,11 @@ import {
   selectCurrentUser,
   useRefreshUserCredentialsQuery,
 } from "../auth/authSlice";
-import { useEffect } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import CreatePost from "./CreatePost";
-import { useState } from "react";
 import { useGetPostsQuery } from "./PostsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import { IoIosAdd } from "react-icons/io";
 
 export default function DashHome() {
   let user = useSelector(selectCurrentUser);
@@ -27,13 +27,19 @@ export default function DashHome() {
 
   let updatedUser;
 
-  // const { sendMessage, sendJsonMessage } = useWebSocket(WS_URL, {
-  //   onOpen: (e) => {
-  //     console.log("web socket opened");
-  //     sendJsonMessage({ type: "data", content: userId });
-  //   },
-  //   shouldReconnect: (closeEvent) => true,
-  // });
+  const [scrolled, setScrolled] = useState("");
+
+  const onScroll = () => {
+    if (window.scrollY > 100) {
+      setScrolled("scrolled");
+    } else {
+      setScrolled("");
+    }
+  };
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  });
 
   useEffect(() => {
     updatedUser = currentUser ? currentUser.user : user;
@@ -81,9 +87,9 @@ export default function DashHome() {
           <CreatePost handleClick={handleClick} />
         ) : (
           <div className="dash-center">
-            <div className="create-post-container">
+            <div className={`create-post-container ${scrolled}`}>
               <div className="create-post">
-                <Link to="/userProfile">
+                {/* <Link to="/userProfile">
                   {" "}
                   <img
                     src={urlPre + user.profileImageName}
@@ -96,7 +102,8 @@ export default function DashHome() {
                 </p>
                 <span className="icon-picture" onClick={handleClick}>
                   <FiCamera size={25} />
-                </span>
+                </span> */}
+                <IoIosAdd size={35} className="icon-add" />
               </div>
             </div>
             <div className="posts-container">

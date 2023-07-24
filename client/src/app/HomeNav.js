@@ -116,7 +116,7 @@ export default function NavBar() {
             onClick={handleShowNotifications}
           />
           <FaUserCircle
-            size={25}
+            size={35}
             onClick={handleSmallSidebar}
             className="icon icon-user"
           />

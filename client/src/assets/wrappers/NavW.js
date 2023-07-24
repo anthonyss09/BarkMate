@@ -34,6 +34,8 @@ const Wrapper = styled.nav`
   .logo {
     color: var(--space-cadet);
     font-size: 1.6rem;
+    font-size: 1.7rem;
+    letter-spacing: 0.08rem;
     // color: var(--federal-blue);
   }
   .nav-icons-container {
