@@ -5,14 +5,16 @@ import { selectCurrentUser } from "../auth/authSlice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import { useState } from "react";
-import { useCreatePostMutation } from "./PostsSlice";
+// import { useCreatePostMutation } from "./PostsSlice";
+import { useCreatePostMutation } from "../api/apiSlice";
 import { useNavigate } from "react-router-dom";
 
-export default function CreatePost({ handleClick }) {
+export default function CreatePost({ handleClick, showCreatePost }) {
   const [postImage, setPostImage] = useState("");
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState("");
   const [postImageName, setPostImageName] = useState("");
   const [postText, setPostText] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const [createPost] = useCreatePostMutation();
 
@@ -24,9 +26,12 @@ export default function CreatePost({ handleClick }) {
   const urlPre = "../../data/uploads/";
 
   const handleImageChange = (e) => {
+    console.log(e.target.files);
+
     const image = e.target.files[0] || "";
     setPostImage(image);
     setPostImageName(image.name);
+
     if (image) {
       const objUrl = URL.createObjectURL(image);
       setImageUrl(objUrl);
@@ -36,6 +41,15 @@ export default function CreatePost({ handleClick }) {
   const handleTextChange = (e) => {
     const { value } = e.target;
     setPostText(value);
+  };
+
+  const handleFocus = (e) => {
+    // console.log(e.target.files);
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   const handleSubmit = async (e) => {
@@ -50,9 +64,9 @@ export default function CreatePost({ handleClick }) {
     formData.append("authorName", user.firstName);
     formData.append("authorDogName", user.dogName);
     try {
-      const post = await createPost(formData);
+      await createPost(formData);
       setPostImage("");
-      setImageUrl();
+      setImageUrl("");
       setPostImageName("");
       setPostText("");
       handleClick();
@@ -66,15 +80,19 @@ export default function CreatePost({ handleClick }) {
       {" "}
       <form
         encType="multipart/form-data"
-        className="create-post-main"
+        className={`create-post-main ${isFocused ? "no-scroll" : ""} ${
+          !showCreatePost ? "collapsed" : ""
+        }`}
         onSubmit={handleSubmit}
       >
-        <div className="icon-container">
-          <AiOutlineCloseCircle
-            size={25}
-            className="icon-close"
-            onClick={handleClick}
-          />
+        <div
+          className="icon-container"
+          onClick={() => {
+            handleClick();
+            setIsFocused(false);
+          }}
+        >
+          <AiOutlineCloseCircle size={35} className="icon-close" />
         </div>
 
         <div className="create-post-heading">
@@ -93,13 +111,20 @@ export default function CreatePost({ handleClick }) {
           <textarea
             id="createPost"
             name="Create post"
-            rows="10"
+            rows="5"
             placeholder="What would you like to share?"
             className="create-post-textarea"
             onChange={handleTextChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            value={postText}
           />
         </div>
-        <div className="create-post-form-row post-image-row">
+        <div
+          className={`create-post-form-row post-image-row ${
+            isFocused ? "focused" : ""
+          }`}
+        >
           {postImage && (
             <div className="create-post-image-container">
               <img src={imageUrl} className="post-image" />
@@ -117,10 +142,12 @@ export default function CreatePost({ handleClick }) {
               onChange={handleImageChange}
             />
           </label>
+          <div>
+            <button type="submit" className="btn btn-create-post">
+              Submit post
+            </button>
+          </div>
         </div>
-        <button type="submit" className="btn btn-create-post">
-          Submit post
-        </button>
       </form>
     </Wrapper>
   );

@@ -121,16 +121,17 @@ export default function NotificationsView({
     <Wrapper>
       <aside className="notifications-view-main">
         <div className="div">
-          {" "}
-          <AiOutlineClose
-            size={20}
-            onClick={handleShowNotifications}
-            className="notifications-view-icon-close"
-          />
-        </div>
-        <div className="div">
-          {" "}
-          <h3 className="notifications-view-header">Notifications</h3>
+          <div className="notifications-view-header">
+            <div className="div">
+              {" "}
+              <AiOutlineClose
+                size={30}
+                onClick={handleShowNotifications}
+                className="notifications-view-icon-close"
+              />
+            </div>{" "}
+            <h3> Notifications</h3>
+          </div>
         </div>
 
         {content}

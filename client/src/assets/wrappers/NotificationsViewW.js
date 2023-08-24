@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  h3 {
+    height: min-content;
+    background: var(--test-blue);
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgb(240, 240, 240);
+    letter-spacing: 0.15rem;
+  }
   .notification-image {
     width: 30px;
     height: 30px;
@@ -11,27 +18,24 @@ const Wrapper = styled.aside`
     margin-left: 0.4rem;
   }
   .notifications-view-header {
-    font-size: 1rem;
-    height: 3.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0.2rem 0.2rem;
-    background: rgb(244, 244, 244);
+    font-size: 1.3rem;
+    height: 4.2rem;
     background: var(--test-blue);
     letter-spacing: 0.15rem;
+    padding-bottom: 3rem;
+    margin: 0;
+    background: white;
   }
   .notifications-view-icon-close {
-    color: rgb(100, 100, 100);
-    margin: 0.2rem 0 0 0.2rem;
     margin: 0.4rem;
+    color: black;
   }
   .notifications-view-icon-close:hover {
     cursor: pointer;
   }
   .notifications-view-main {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -44,29 +48,24 @@ const Wrapper = styled.aside`
     font-size: 0.8rem;
     border-left: 1px solid rgb(220, 220, 220);
     border-top: 1px solid rgb(220, 220, 220);
-    // box-shadow: -2px 0px 8px 1px rgb(60, 60, 60);
-    // box-shadow: 5px 2px 5px grey;
-    // transition: all 0.4s eas-in;
+    background: rgb(252, 252, 252, 0.9);
+    box-shadow: -1px 2px 100vw grey;
   }
   .notification-view-single {
     height: 4.2rem;
-    // border: 1px solid grey;
+    height: 5rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.2rem;
-    // padding: 0.4rem;
-    padding-left: 0.4rem;
-    background: var(--test-blue);
-    background: rgb(244, 244, 244);
-
-    // margin: 0.2rem 0.4rem;
-    // margin: 0.2rem 0;
-    // border-radius: 1rem;
-    margin: 0 0.2rem;
+    padding-left: 0.8rem;
+    background: rgb(252, 252, 252);
+    background: rgb(225, 225, 225, 0.8);
+    margin: 0;
+    padding-left: 1.2rem;
   }
   .notification-viewed {
-    background: white;
+    background: rgb(252, 252, 252, 0.8);
   }
 `;
 

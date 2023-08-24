@@ -8,7 +8,6 @@ import BigSidebar from "../components/BigSidebar";
 import { logoutUser } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { IoIosNotifications } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
 import {
   useGetNotificationsQuery,
@@ -17,7 +16,6 @@ import {
 import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
-import { useGetFriendsQuery } from "../features/api/apiSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -55,13 +53,16 @@ export default function NavBar() {
   };
   const handleBigSidebar = () => {
     setShowBigSidebar(!showBigSidebar);
+    setSmallShowSidebar(false);
   };
   const handleShowNotifications = () => {
     setShowNotifications(!showNotifications);
     markAllNotificationsRead(currentUser._id);
+    setSmallShowSidebar(false);
   };
   const handleShowFriends = () => {
     setShowFriends(!showFriends);
+    setSmallShowSidebar(false);
   };
 
   const handleClick = () => {
@@ -76,7 +77,7 @@ export default function NavBar() {
 
     setInterval(function () {
       let currentTime = new Date().getTime();
-      if (currentTime > lastTime + 2000 * 1.5) {
+      if (currentTime > lastTime + 2000 * 2) {
         window.location.reload(true);
       }
       lastTime = currentTime;
@@ -126,6 +127,7 @@ export default function NavBar() {
         <SmallSidebar
           handleClick={handleClick}
           handleShowFriends={handleShowFriends}
+          handleSmallSidebar={handleSmallSidebar}
         />
       )}
     </Wrapper>

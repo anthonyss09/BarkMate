@@ -28,27 +28,21 @@ const Wrapper = styled.div`
     width: 2.8rem;
     color: white;
     background: var(--grey-240);
-    // padding: 0.2rem 0.4rem;
     border-radius: 2rem;
     font-size: 2rem;
     display: grid;
     place-items: center;
   }
   .step-circle-one {
-    background: var(--test-blue);
     background: var(--med-bright-blue);
   }
   .step-circle-two {
-    background: var(--sunglow);
-    background: var(--bark-pink);
     background: var(--test-red);
   }
   .step-circle-three {
-    background: var(--crystaly-green);
     background: var(--med-green);
   }
   .step-circle-active {
-    // background: var(--crystal-blue-green);
     box-shadow: 5px 2px 5px grey;
   }
 `;

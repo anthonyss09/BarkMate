@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  .section-header {
-    font-size: 1rem;
-    // color: rgb(80, 80, 80);
-    margin-bottom: 0.4rem;
-    font-family: "Roboto Condensed", sans-serif;
-  }
   .add-friend {
     color: var(--test-red);
   }
@@ -98,7 +92,6 @@ const Wrapper = styled.main`
     border: 2px solid rgb(240, 240, 240);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
-    // background: white;
   }
   .option:hover {
     cursor: pointer;
@@ -123,11 +116,8 @@ const Wrapper = styled.main`
     padding: 0 1rem;
   }
   .profile-page-image {
-    width: 80vw;
-    width: 94vw;
     width: 100vw;
     margin-bottom: 0.6rem;
-    // border-radius: 1rem;
   }
   .profile-page-main {
     padding-top: 3rem;
@@ -174,6 +164,11 @@ const Wrapper = styled.main`
     color: rgb(100, 100, 100);
     font-size: 0.8rem;
     margin-bottom: 0.4rem;
+  }
+  .section-header {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    font-family: "Roboto Condensed", sans-serif;
   }
   .time-slot {
     padding: 0.4rem 0.8rem;

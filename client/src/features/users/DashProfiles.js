@@ -64,10 +64,10 @@ export default function DashProfiles() {
       <section className="dash-main">
         <div className="dash-header">
           <h1 className="dash-page-name">Profiles </h1>
-          <p className="p-top">
+          {/* <p className="p-top">
             Profiles within {distance}
             <br /> mile{distance > 1 && "s"}...
-          </p>
+          </p> */}
           <div className="filter" onClick={handleClick}>
             <BiFilter size={20} />
             Filters

@@ -12,7 +12,7 @@ export default function TaskBar() {
   const [dropped, setDropped] = useState(false);
 
   const onScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 300) {
       setCollapsed(true);
       setDropped(true);
     } else {
@@ -41,7 +41,7 @@ export default function TaskBar() {
             <div className="task-container">
               {" "}
               <NavLink to="/dashboard/home" className="task task-home">
-                <BiHome size={20} className="task-icon" />
+                <BiHome size={20} className="task-icon icon" />
               </NavLink>
             </div>
             <div className="task-container">

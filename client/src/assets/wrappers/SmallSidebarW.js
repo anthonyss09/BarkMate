@@ -1,24 +1,35 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .icon-close {
+    margin: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .icon-close:hover {
+    cursor: pointer;
+  }
   .icon-friends {
+    color: var(--med-bright-blue);
+  }
+  .icon-logout {
     color: var(--test-red);
   }
+  .icon-user-circle {
+    color: var(--space-cadet);
+  }
   .link {
-    // width: 90%;
     width: 100%;
     height: 2rem;
-    // border-bottom: 1px solid rgb(230, 230, 230);
-    box-shadow: 1px 1px 3px rgb(244, 244, 244);
     text-align: center;
     font-size: 0.8rem;
     color: rgb(40, 40, 40);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.8rem;
     font-weight: 500;
     font-family: "Ubuntu", sans-serif;
+    letter-spacing: 0.03rem;
   }
   .link:hover {
     cursor: pointer;
@@ -32,20 +43,21 @@ const Wrapper = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
   }
   .small-sidebar-main {
-    width: 22vw;
     min-width: 100px;
-    height: 16vh;
-    display: flex;
-    align-items: center;
+    max-width: 200px;
+    width: 50vw;
+    height: 28vh;
     position: absolute;
     top: 3.2rem;
-    right: 0.6rem;
-    background: white;
+    right: 1rem;
     z-index: 3;
-    border: 1px solid rgb(230, 230, 230);
-    // box-shadow: 2px 2px 5px rgb(230, 230, 230);
+    border: 1px solid rgb(240, 240, 240);
+    box-shadow: 5px 2px 5px grey;
+    border-radius: 1.5rem;
+    background: white;
   }
 `;
 

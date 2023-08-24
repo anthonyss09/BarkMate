@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  .header-text {
+    color: rgb(120, 120, 120);
+  }
   .icon-close {
     position: absolute;
     right: 0.6rem;
@@ -8,20 +11,27 @@ const Wrapper = styled.div`
   }
   .icon-close:hover {
     transform: scale(1.1);
+    cursor: pointer;
   }
   .icon:hover {
     cursor: pointer;
+  }
+  .quick-chat-center {
+    transition: all 0.03s ease;
   }
   .quick-chat-btn {
     position: absolute;
     right: 1rem;
     bottom: 1rem;
     background: var(--test-blue);
-    // box-shadow: 5px 2px 5px grey;
   }
   .quick-chat-btn:hover {
-    // box-shadow: 5px 2px 5px grey;
     transform: scale(1.1);
+  }
+  .quick-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
   .quick-chat-image {
     height: 60px;
@@ -33,15 +43,19 @@ const Wrapper = styled.div`
     height: 40vh;
     background: white;
     position: fixed;
-    bottom: 30vh;
-    left: 10vw;
-    box-shadow: 2px 2px 8px rgb(110, 110, 110);
-    box-shadow: 5px 2px 5px grey;
-    border-radius: 1rem;
+    bottom: 3.5rem;
+    right: 1.5rem;
     padding: 1rem;
     padding-top: 2rem;
     box-sizing: border-box;
-    border: 1px solid rgb(220, 220, 220);
+    box-shadow: 5px 2px 5px grey;
+    border-radius: 1rem;
+    border: 1px solid var(--test-blue);
+    transition: all 0.2s ease;
+    z-index: 6;
+  }
+  .quick-chat-recipient {
+    color: black;
   }
   .quick-chat-textarea {
     width: 100%;
@@ -51,6 +65,44 @@ const Wrapper = styled.div`
     border: none;
     outline: none;
     resize: none;
+    background: none;
+  }
+  .hidden {
+    width: 0rem;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    background: none;
+    overflow: hidden;
+  }
+  .no-display {
+    display: none;
+  }
+  @media (max-width: 400px) {
+    .quick-chat-main {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 55vh;
+      z-index: 8;
+      border-radius: 0;
+      height: 100%;
+    }
+    .focused-height {
+      height: 55vh;
+    }
+    .hidden {
+      width: 0rem;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+      background: none;
+      overflow: hidden;
+    }
+    .quick-chat-textarea {
+      margin-top: 2rem;
+    }
   }
 `;
 

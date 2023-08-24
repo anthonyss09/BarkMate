@@ -19,7 +19,6 @@ const Wrapper = styled.main`
   }
   .add-span {
     margin-top: 1rem;
-    color: rgb(110, 110, 110);
     font-weight: bold;
     color: var(--med-bright-blue);
   }
@@ -43,7 +42,6 @@ const Wrapper = styled.main`
     align-items: center;
     padding: 0 1rem;
     font-weight: bold;
-    color: var(--med-bright-blue);
     color: var(--federal-blue);
     display: flex;
     align-items: center;

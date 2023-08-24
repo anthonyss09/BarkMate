@@ -13,8 +13,6 @@ const Wrapper = styled.main`
     bottom: 0;
     width: 100%;
     height: 5rem;
-    // background: rgb(248, 248, 248);
-    // background: var(--test-blue);
     background: white;
     display: flex;
     align-items: center;

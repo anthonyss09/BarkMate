@@ -9,7 +9,8 @@ import {
 } from "../auth/authSlice";
 import { useEffect, useState, useLayoutEffect } from "react";
 import CreatePost from "./CreatePost";
-import { useGetPostsQuery } from "./PostsSlice";
+// import { useGetPostsQuery } from "./PostsSlice";
+import { useGetPostsQuery } from "../api/apiSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { IoIosAdd } from "react-icons/io";
 
@@ -23,6 +24,8 @@ export default function DashHome() {
   const { data: postsData, isLoading: loadingPosts } =
     useGetPostsQuery(coordinates);
 
+  console.log(postsData);
+
   const [showCreatePost, setShowCreatePost] = useState(false);
 
   let updatedUser;
@@ -30,7 +33,7 @@ export default function DashHome() {
   const [scrolled, setScrolled] = useState("");
 
   const onScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 300) {
       setScrolled("scrolled");
     } else {
       setScrolled("");
@@ -73,6 +76,7 @@ export default function DashHome() {
           currentUserDogName={user.dogName}
           currentUserCoords={coordinates}
           currentUserProfileName={user.profileName}
+          createdAt={post.createdAt}
         />
       );
     })
@@ -82,40 +86,23 @@ export default function DashHome() {
 
   return (
     <Wrapper>
-      <section className="dash-main">
-        {showCreatePost ? (
-          <CreatePost handleClick={handleClick} />
-        ) : (
-          <div className="dash-center">
-            <div className={`create-post-container ${scrolled}`}>
-              <div className="create-post">
-                {/* <Link to="/userProfile">
-                  {" "}
-                  <img
-                    src={urlPre + user.profileImageName}
-                    className="dash-profile-pic"
-                  />
-                </Link>
-
-                <p className="post-p" onClick={handleClick}>
-                  Share something with the mates!
-                </p>
-                <span className="icon-picture" onClick={handleClick}>
-                  <FiCamera size={25} />
-                </span> */}
-                <IoIosAdd size={35} className="icon-add" />
-              </div>
-            </div>
-            <div className="posts-container">
-              {loadingPosts ? (
-                <BeatLoader color="silver" size={25} className="beat-loader" />
-              ) : (
-                posts
-              )}
+      <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
+        <div className="dash-center">
+          <div className={`create-post-container ${scrolled}`}>
+            <div className="create-post" onClick={handleClick}>
+              <IoIosAdd size={35} className="icon-add" />
             </div>
           </div>
-        )}
+          <div className="posts-container">
+            {loadingPosts ? (
+              <BeatLoader color="silver" size={25} className="beat-loader" />
+            ) : (
+              posts
+            )}
+          </div>
+        </div>
       </section>
+      <CreatePost handleClick={handleClick} showCreatePost={showCreatePost} />
     </Wrapper>
   );
 }

@@ -7,7 +7,10 @@ import { useLayoutEffect, useState } from "react";
 export default function DashboardPage() {
   return (
     <div className="main-container full-page">
-      <NavBar />
+      <div className="sticky-nav">
+        {" "}
+        <NavBar />
+      </div>
       {/* <TaskBar /> */}
       <div className="outlet-container">
         <TaskBar />

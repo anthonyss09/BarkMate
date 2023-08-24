@@ -20,8 +20,6 @@ const Wrapper = styled.section`
   }
   .chat-section-main {
     // background-image: url(${meshGradient});
-    // background-position: center;
-    // background-size: cover;
     padding: 2rem;
   }
 `;

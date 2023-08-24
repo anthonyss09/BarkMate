@@ -2,11 +2,15 @@ import Wrapper from "../../assets/wrappers/PostW";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { useState } from "react";
-import { useEditPostMutation } from "./PostsSlice";
+// import { useEditPostMutation } from "./PostsSlice";
+import { useEditPostMutation } from "../api/apiSlice";
 import { useCreateNotificationMutation } from "../api/apiSlice";
 import Comment from "./Comment";
 import { useRef, useEffect } from "react";
 import mongoose from "mongoose";
+import moment from "moment";
+// import { AiOutlineCloseCircle } from "react-icons/ai";
+import CreateComment from "./CreateComment";
 
 export default function Post({
   authorId,
@@ -18,6 +22,7 @@ export default function Post({
   comments,
   likes,
   postId,
+  createdAt,
   currentUserId,
   currentUserImageName,
   currentUserFirstName,
@@ -26,9 +31,14 @@ export default function Post({
   currentUserProfileName,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [comment, setComment] = useState("");
   const [showAllComments, setShowAllComments] = useState(false);
 
+  const dateOfPost = moment(createdAt.toString()).startOf("minute").fromNow();
+  const dateCheck = moment(createdAt.toString()).format();
+  const dateShort =
+    dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
   const urlPre = "../../data/uploads/";
   const id = new mongoose.Types.ObjectId();
 
@@ -45,9 +55,9 @@ export default function Post({
   const handleShowPostComment = () => {
     setShowPostComment(!showPostComment);
     setShowAllComments(false);
-    setTimeout(() => {
-      ref.current.focus();
-    }, 300);
+    // setTimeout(() => {
+    //   ref.current.focus();
+    // }, 300);
   };
 
   const handlePostComment = async () => {
@@ -114,6 +124,14 @@ export default function Post({
     setShowPostComment(false);
   };
 
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   let commentCount = 0;
   const content = comments.map((comment, index) => {
     commentCount++;
@@ -139,9 +157,11 @@ export default function Post({
           <div className="post-heading">
             <img src={urlPre + authorImageName} className="post-heading-pic" />
             <span className="post-name">
-              {authorName} & {authorDogName}
+              {authorName} & {authorDogName} <br />
+              <span className="post-date">{dateOfPost}</span>
             </span>
           </div>
+
           <div className="post-text">{text}</div>
           <div className="post-image">
             {postImageName && (
@@ -179,30 +199,24 @@ export default function Post({
             </div>
           )}
 
-          <div
-            className={`post-comment-row ${showPostComment ? "" : "hidden"}`}
-          >
-            <textarea
-              ref={ref}
-              id="createComment"
-              name="Create comment"
-              rows="3"
-              placeholder="Comment on post..."
-              className="post-textarea"
-              onChange={handleCommentChange}
-              autoFocus={true}
-              value={comment}
+          {showPostComment && (
+            <CreateComment
+              postImageName={postImageName}
+              authorName={authorName}
+              authorDogName={authorDogName}
+              isFocused={isFocused}
+              handleShowPostComment={handleShowPostComment}
+              showPostComment={showPostComment}
+              handleCommentChange={handleCommentChange}
+              handlePostComment={handlePostComment}
+              handleFocus={handleFocus}
+              handleBlur={handleBlur}
+              comment={comment}
+              authorImageName={authorImageName}
+              dateOfPost={dateOfPost}
+              text={text}
             />
-            <button className="btn btn-send">
-              {" "}
-              <AiOutlineSend
-                size={30}
-                className="icon-send"
-                id="postComment"
-                onClick={handlePostComment}
-              />
-            </button>
-          </div>
+          )}
         </div>
       </aside>
     </Wrapper>

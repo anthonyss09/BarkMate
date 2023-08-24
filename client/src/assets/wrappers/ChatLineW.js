@@ -9,9 +9,6 @@ const Wrapper = styled.div`
   p {
     max-width: 54vw;
   }
-  .chat-line-user-main {
-    justify-content: flex-end;
-  }
   .chat-line-text {
     border-radius: 5rem;
     padding: 1rem 1.4rem;
@@ -19,6 +16,9 @@ const Wrapper = styled.div`
   }
   .chat-line-text-friend {
     background: rgb(248, 248, 248);
+  }
+  .chat-line-user-main {
+    justify-content: flex-end;
   }
   .chat-line-text-user {
     background: var(--test-blue);

@@ -6,18 +6,18 @@ const Wrapper = styled.aside`
     flex-direction: column;
   }
   .big-sidebar-main {
-    width: 50vw;
+    width: 100vw;
     height: 100vh;
-    background: white;
+    background: rgb(252, 252, 252, 0.8);
     position: absolute;
-    top: 4.05rem;
-    // top: 0;
+    top: 0;
     left: 0;
-    border-top: 1px solid rgb(244, 244, 244);
-    // border-right: 1px solid rgb(244, 244, 244);
-    box-shadow: 2px 2px 5px var(--grey-220);
+    border-right: 1px solid rgb(244, 244, 244);
     z-index: 4;
     font-family: "Ubuntu", sans-serif;
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    transition: all 0.5s ease;
+    overflow: hidden;
   }
   .icon-book {
     color: var(--federal-blue);
@@ -29,15 +29,12 @@ const Wrapper = styled.aside`
     color: var(--med-bright-blue);
   }
   .icon-close {
-    align-self: flex-end;
-    margin-top: 0.6rem;
-    margin-right: 0.6rem;
-    margin-bottom: 0.2rem;
-    position: absolute;
-    color: rgb(40, 40, 40);
+    margin: 0.6rem;
+    margin-bottom: 1rem;
+    margin-bottom: 3rem;
+    color: black;
   }
   .icon-download {
-    color: black;
     color: var(--test-red);
   }
   .icon-groups {
@@ -53,51 +50,41 @@ const Wrapper = styled.aside`
     color: var(--federal-blue);
   }
   .link {
-    // width: 94%;
-    width: 100%;
+    width: min-content;
+    padding: 0.4rem 1.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
     font-weight: 500;
-    // color: rgb(40, 40, 40);
+    border: 1px solid rgb(220, 220, 220);
+    background: rgb(252, 252, 252, 0.8);
+    border-radius: 2rem;
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    height: 2.8rem;
+    letter-spacing: 0.06rem;
   }
   .links-container-big {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin-top: 1rem;
+    height: 100vh;
+    gap: 4vh;
   }
   .links-container-small {
-    width: 70%;
-    align-self: flex-end;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .link-big {
-    width: 100%;
     height: 2.8rem;
-    box-shadow: 1px 1px 3px rgb(244, 244, 244);
-    color: rgb(40, 40, 40);
   }
   .link-download {
-    // color: var(--med-bright-blue);
   }
   .link-small {
     height: 2.8rem;
     font-size: 0.8rem;
-    font-weight: bold;
     font-weight: 500;
-    // color: rgb(60, 60, 60);
-    box-shadow: 1px 1px 3px rgb(244, 244, 244);
-    border-left: 1px solid rgb(244, 244, 244);
-  }
-
-  @media (max-width: 400px) {
-    // .links-container-big {
-    //   margin-top: 1.4rem;
-    // }
   }
 `;
 

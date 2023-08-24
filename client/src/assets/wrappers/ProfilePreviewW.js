@@ -8,128 +8,141 @@ const Wrapper = styled.aside`
   }
   .add-friend {
     color: var(--test-red);
+    position: absolute;
+    left: 2.2rem;
   }
   .icon-star {
     color: var(--federal-blue);
   }
   .location-container {
-    padding: 0.2rem 0;
-    border-radius: 1rem;
+    background: white;
+    padding: 0.1rem 0.3rem;
+    color: black;
   }
   .location {
     font-size: 0.6rem;
-    color: rgb(100, 100, 100);
     font-weight: bold;
+    color: black;
+  }
+  .message {
+    position: absolute;
+    right: 2.2rem;
   }
   .message-friend {
-    color: var(--med-bright-green);
+    color: var(--med-bright-blue);
   }
   .option {
     width: 8vw;
+    max-width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px solid rgb(230, 230, 230);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
-    // background: white;
     margin-bottom: 0.6rem;
     z-index: 1;
-    // box-shadow: 2px 2px 5px lightGrey;
   }
   .option:hover {
     cursor: pointer;
   }
-  // .option-container {
-  //   z-index: 1;
-  //   padding: 0.3rem;
-  //   background: white;
-  //   border-radius: 1.3rem;
-  // }
+  .profile-preview-about {
+    max-width: 440px;
+    width: 90vw;
+    box-sizing: border-box;
+    border-top: 1px solid rgb(244, 244, 244);
+    background: white;
+    margin-top: 3.6rem;
+  }
   .profile-preview-body {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .profile-preview-about {
-    width: 100%;
-    // margin-top: -1.4rem;
+    border-bottom: 1px solid var(--test-blue);
+    padding: 0.6rem 0;
   }
   .profile-preview-center {
+    width: 100%;
+    max-width: 490px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding-top: 1rem;
+    border: 1px solid var(--test-blue);
+    position: relative;
   }
   .profile-preview-header {
     width: 92vw;
+    max-width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.6rem;
+    gap: 1rem;
   }
-
   .profile-preview-main {
-    // width: 100vw;
-    width: 97vw;
-    position: relative;
+    width: 100vw;
     background: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0;
     align-self: center;
-    // box-shadow: 2px 2px 5px lightGrey;
+    box-sizing: border-box;
   }
   .profile-preview-name {
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 400;
-    color: black;
     border-radius: 3rem;
     font-family: "Roboto Condensed", sans-serif;
+    color: rgb(80, 80, 80);
   }
   .profile-preview-name-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 4;
+    color: white;
+    left: 1.2rem;
   }
   .profile-preview-options {
     display: flex;
     justify-content: center;
-    gap: 2rem;
     margin-top: -3.6rem;
     margin-bottom: 0.4rem;
-    // position: relative;
   }
   .profile-preview-p {
     width: 100%;
     font-size: 0.8rem;
     padding: 0.4rem 0.2rem;
-    color: rgb(60, 60, 60);
+    box-sizing: border-box;
+    color: black;
   }
   .profile-preview-pic {
-    width: 94vw;
-    border-radius: 1rem;
+    width: 100vw;
+    max-height: 420px;
+    max-width: 460px;
     z-index: 5;
+  }
+  .profile-pic-container {
+    height: 380px;
+    overflow: hidden;
   }
   .profile-preview-verification {
     margin-top: -1rem;
   }
   .time-slot {
     text-align: center;
-    font-size: 0.8rem;
-    font-weight: bold;
     display: grid;
     place-items: center;
-    padding: 0.4rem 1rem;
     padding: 0.2rem 0.8rem;
-    border-radius: 0.1rem;
     border-radius: 1rem;
     border: 2px solid rgb(234, 234, 234);
     font-weight: bold;
+    font-size: 0.8rem;
     font-family: "Roboto Condensed", sans-serif;
     background: white;
+    opacity: 0.6;
   }
   .time-slot-available {
     color: var(--med-bright-blue);
@@ -144,15 +157,21 @@ const Wrapper = styled.aside`
     justify-content: center;
     display: flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: 48vw;
     font-size: 0.8rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: -40rem;
+    z-index: 6;
+    position: absolute;
+    left: 1.8rem;
   }
   .time-slot-title {
     font-weight: 500;
     font-size: 0.7rem;
     margin: 0;
     font-weight: 600;
+    background: white;
+    border-radius: 1rem;
+    padding: 0.1rem 0.2rem;
   }
 `;
 

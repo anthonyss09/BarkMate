@@ -6,6 +6,9 @@ const Wrapper = styled.nav`
     margin-left: 1rem;
     color: rgb(120, 120, 120);
   }
+  .bars:hover {
+    cursor: pointer;
+  }
   .bone {
     color: var(--space-cadet);
   }
@@ -20,7 +23,6 @@ const Wrapper = styled.nav`
     background: var(--space-cadet);
     color: white;
   }
-
   .icon-user {
     color: var(--space-cadet);
     margin-right: 1rem;
@@ -33,10 +35,8 @@ const Wrapper = styled.nav`
   }
   .logo {
     color: var(--space-cadet);
-    font-size: 1.6rem;
     font-size: 1.7rem;
     letter-spacing: 0.08rem;
-    // color: var(--federal-blue);
   }
   .nav-icons-container {
     display: flex;
@@ -50,12 +50,9 @@ const Wrapper = styled.nav`
     justify-content: space-between;
     align-items: center;
     background: white;
-    position: fixed;
-    // left: 0;
-    z-index: 3;
-    // border-bottom: 1.5px solid var(--test-blue);
-    // border-bottom: 1.5px solid rgb(240, 240, 240);
-    // border-bottom: 8px solid rgb(210, 210, 210);
+    z-index: 7;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    margin-bottom: 0.4rem;
   }
   .nav-main-landing {
     border: none;

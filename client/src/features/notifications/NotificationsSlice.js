@@ -6,7 +6,8 @@ import {
   createEntityAdapter,
 } from "@reduxjs/toolkit";
 
-const userId = JSON.parse(localStorage.getItem("user"))._id;
+const user = JSON.parse(localStorage.getItem("user"));
+const userId = user ? user._id : null;
 
 const notificationsAdapter = createEntityAdapter({
   selectId: (notification) => notification._id,

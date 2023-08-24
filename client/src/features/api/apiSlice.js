@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { current, createAction } from "@reduxjs/toolkit";
-const userId = JSON.parse(localStorage.getItem("user"))._id;
-let ws = new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+const user = JSON.parse(localStorage.getItem("user"));
+const userId = user ? user._id : null;
 
-// export const updateWebSocketReadyState = createAction(
-//   "api/updateWebSocketReadyState"
-// );
+//if user login/register open web socket connection with server and send userId for session reference
+let ws = user && new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+
 export const notificationsRecieved = createAction(
   "/notifications/notificationsRecieved"
 );
@@ -26,17 +26,19 @@ export const apiSlice = createApi({
         url: `/notifications/get-notifications?userId=${userId}`,
         method: "GET",
       }),
+      //notifications retrieved on dashboard home page after login/register, onCacheEntryAdded triggered and event listeners added.
       async onCacheEntryAdded(
         userId,
         { updateCachedData, cacheDataLoaded, cacheEntryRemoved, dispatch }
       ) {
         ws.addEventListener("open", (e) => {
-          console.log(e);
           console.log("web socket opened");
         });
+        //listen for message from server
         ws.addEventListener("message", async (e) => {
           const message = JSON.parse(e.data);
-          console.log(message);
+
+          //update cache data dependant on message type
           switch (message.type) {
             case "notification": {
               updateCachedData((draft) => {
@@ -44,6 +46,7 @@ export const apiSlice = createApi({
                   console.log("recieved a friend request from websocket");
                   dispatch(friendRequest);
                 }
+                //add notification to normalized cached notification data
                 draft[message.content._id] = message.content;
               });
               break;
@@ -73,6 +76,7 @@ export const apiSlice = createApi({
         } catch (error) {}
         await cacheEntryRemoved;
       },
+      //normalize notification data upon retrieval
       transformResponse(responseData) {
         const newResponseData = {};
         responseData.notifications.map(
@@ -142,6 +146,7 @@ export const apiSlice = createApi({
         url: `/chats/get-chats?userId=${userId}`,
         method: "GET",
       }),
+      //getChats query triggered on dashboard chat page, web socket listening for message from server
       async onCacheEntryAdded(
         userId,
         { dispatch, updateCachedData, cacheDataLoaded, cacheEntryRemoved }
@@ -155,6 +160,7 @@ export const apiSlice = createApi({
                 const recipient = data.content.message.recipient;
                 // const existingChatId = data.content.chatId;
                 updateCachedData((draft) => {
+                  //check for existing chat contigient on both senderId and recipientId existing in chatParticipants
                   const existingChatId = draft.chats.map((chat) => {
                     const draftParicipantIds = [];
                     draftParicipantIds.push(
@@ -172,6 +178,7 @@ export const apiSlice = createApi({
                   })[0];
 
                   if (existingChatId) {
+                    //target existing chat and update data
                     const chatIds = draft.chats.map((chat) => chat._id);
                     const chatIndex = chatIds.indexOf(existingChatId);
                     draft.chats[chatIndex].messages.push(data.content.message);
@@ -195,7 +202,10 @@ export const apiSlice = createApi({
         let normParticipants = {};
         let newResponseData = {};
         responseData.chats.map((res) => {
+          //normalize response data
           newResponseData[res._id] = res;
+
+          //identify user and friend, normalize result
           res.participants.map((p) => {
             if (p.participantId == userId) {
               normParticipants.user = { ...p };
@@ -290,54 +300,77 @@ export const apiSlice = createApi({
       },
     }),
 
-    // updateWebSocketReadyState: builder.mutation({
-    //   query: (undefined) => ({
-    //     url: "",
-    //   }),
-    //   async onQueryStarted(undefined, { dispatch }) {
-    //     dispatch(updateWebSocketReadyState(ws.readyState));
+    createPost: builder.mutation({
+      query: (post) => ({
+        url: "/posts/create-post",
+        method: "POST",
+        body: post,
+      }),
+      invalidatesTags: ["Posts"],
+    }),
 
-    //     if (ws.readyState == 0 || ws.readyState == 3) {
-    //       ws = new WebSocket(`ws://192.168.1.153:8080/${userId}`);
-    //     }
-    //   },
-    // }),
+    getPosts: builder.query({
+      query: (coordinates) => ({
+        url: `/posts/get-posts?coordinates=${coordinates}`,
+        method: "GET",
+      }),
+      providesTags: (result = [], error, arg) => [
+        "Posts",
+        "Post",
+        ...result.posts.map(({ _id }) => ({ type: "Post", _id })),
+      ],
+      async onCacheEntryAdded(coordinates, { updateCachedData }) {
+        console.log("something");
+      },
+      transformResponse: (responseData) => {
+        console.log(responseData);
+        return responseData;
+      },
+    }),
 
-    // registerUser: builder.mutation({
-    //   query: (newUser) => ({
-    //     url: "/auth/register",
-    //     method: "POST",
-    //     body: newUser,
-    //   }),
-    // }),
-    // loginUser: builder.mutation({
-    //   query: ({ email, password }) => ({
-    //     url: "/auth/login",
-    //     method: "Post",
-    //     body: { email, password },
-    //   }),
-    // }),
-    // refreshUserCredentials: builder.query({
-    //   query: (userId) => ({
-    //     url: `/users/single-profile?userId=${userId}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: ["CurrentUser"],
-    // }),
+    editPost: builder.mutation({
+      query: ({ postId, update, currentUserCoords }) => ({
+        url: "/posts/edit-post",
+        method: "POST",
+        body: { postId, update, currentUserCoords },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "Post", _id: arg._id }],
+      async onQueryStarted(
+        { postId, update, currentUserCoords },
+        { dispatch, queryFulfilled }
+      ) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData(
+            "getPosts",
+            currentUserCoords,
+            (draft) => {
+              const post = draft.posts.find((post) => post._id === postId);
+              if (post) {
+                post[Object.keys(update)[0]] = Object.values(update)[0];
+              }
+            }
+          )
+        );
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          patchResult.undo();
+        }
+      },
+    }),
   }),
 });
 
 export const {
-  // useRegisterUserMutation,
-  // useLoginUserMutation,
-  // useRefreshUserCredentialsQuery,
   useGetNotificationsQuery,
   useCreateNotificationMutation,
   useGetChatsQuery,
   useCreateChatMutation,
-  // useUpdateWebSocketReadyStateMutation,
   useMarkAllNotificationsReadMutation,
   useMarkNotificationViewedMutation,
   useGetFriendsQuery,
   useRequestFriendMutation,
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useEditPostMutation,
 } = apiSlice;

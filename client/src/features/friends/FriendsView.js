@@ -43,7 +43,8 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 {" "}
                 {friend.friend.participantProfileName}
               </span>
-              <span>accept?</span>
+              <span className="friend-accept">accept?</span>
+              <span className="friend-ignore">Ignore</span>
             </div>
           );
         })}
@@ -63,7 +64,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
               <span className="friend-name">
                 {friend.friend.participantProfileName}{" "}
               </span>
-              pending
+              <span className="friend-pending"> pending</span>
             </div>
           );
         })}
@@ -103,17 +104,17 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
   return (
     <Wrapper>
       <div className="friends-view-main">
-        <div className="div">
+        <div className="friends-view-header">
           {" "}
-          <AiOutlineClose
-            size={20}
-            onClick={handleShowFriends}
-            className="notifications-view-icon-close"
-          />
-        </div>
-        <div>
-          {" "}
-          <h3 className="notifications-view-header">Friends</h3>
+          <div className="div">
+            {" "}
+            <AiOutlineClose
+              size={30}
+              onClick={handleShowFriends}
+              className="notifications-view-icon-close"
+            />
+          </div>
+          <h3>Friends</h3>
         </div>
         {content}
       </div>

@@ -1,7 +1,8 @@
 // import { apiSlice } from "../api/apiSlice";
 import { createSlice } from "@reduxjs/toolkit";
 // import { updateWebSocketReadyState } from "../api/apiSlice";
-const userId = JSON.parse(localStorage.getItem("user"))._id;
+const user = JSON.parse(localStorage.getItem("user"));
+const userId = user ? user._id : null;
 
 const initialState = {
   webSocketReadyState: undefined,

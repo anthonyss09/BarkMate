@@ -4,6 +4,7 @@ import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Post from "../models/postsModel.js";
 
 const createPost = async (req, res) => {
+  console.log("hit bitch");
   const {
     postImageName,
     text,
@@ -35,6 +36,7 @@ const createPost = async (req, res) => {
       authorName,
       authorDogName,
     });
+    console.log(post);
     res.status(StatusCodes.CREATED).json({ post });
   } catch (error) {
     console.log(error);

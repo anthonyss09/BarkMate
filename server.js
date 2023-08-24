@@ -22,7 +22,12 @@ app.use(express.json());
 app.use("/api/auth", upload.single("profileImage"), authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/friends", friendsRouter);
-app.use("/api/posts", upload.single("postImage"), postsRouter);
+app.use(
+  "/api/posts",
+  upload.single("postImage"),
+
+  postsRouter
+);
 app.use("/api/notifications", notificationsRouter);
 app.use("/api/chats", chatsRouter);
 
@@ -32,6 +37,7 @@ app.get("/", (req, res) => {
 
 const port = process.env.port || 8080;
 
+//open web socket upon server spin up
 export const wss = new WebSocket.WebSocketServer({ server });
 const clients = {};
 
@@ -45,32 +51,14 @@ wss.on("connection", (ws, req) => {
   const userId = req.url.slice(1);
   console.log(userId);
 
-  // figure out way to reference recipient id in clients
-  //prevent overwriting client in the case of unanticipated rerenders client side
-  // if (!Object.keys(clients).includes(userId)) {
-  //   clients[userId] = ws;
-  //   console.log(`${userId} connected`);
-  // }
+  //create user session reference in clients object with property of userId;
   clients[userId] = ws;
   console.log(`${userId} connected`);
   clients[userId].send(
     JSON.stringify({ type: "data", content: { message: "welcome" } })
   );
 
-  // if (Object.keys(clients).includes(userId)) {
-  //   console.log("client exists");
-  //   console.log(clients[userId][sessionId]);
-  //   clients[userId][sessionId] = ws;
-  // } else {
-  //   clients[userId] = {
-  //     [sessionId]: ws,
-  //   };
-  // }
-
-  // clients[userId][sessionId].send(
-  //   JSON.stringify({ type: "data", content: { userId, sessionId } })
-  // );
-
+  //web socket listening for message events from client
   ws.on("message", (data) => {
     console.log("message is");
     data = data.toString();
@@ -84,6 +72,7 @@ wss.on("connection", (ws, req) => {
       case "notification":
         {
           console.log(parsedData);
+          //if notification type friend request, send data to both sender and recipient
           if (parsedData.content.notificationType === "friendRequest") {
             clients[parsedData.content.sender].send(data);
           }
@@ -93,6 +82,7 @@ wss.on("connection", (ws, req) => {
         }
         break;
       case "markNotificationsRead":
+        //mark recipient of notification as read
         {
           clients[parsedData.content.recipient].send(data);
         }
@@ -103,11 +93,13 @@ wss.on("connection", (ws, req) => {
         }
         break;
       case "chat":
+        //update and target only participants of chat ****
         {
           Object.values(clients).map((client) => client.send(data));
         }
         break;
       case "friendRequest":
+        //send both requester and recipient of request data
         {
           console.log(parsedData);
           console.log(parsedData.content.requester);

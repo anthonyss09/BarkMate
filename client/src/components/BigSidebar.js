@@ -6,77 +6,76 @@ import { IoIosPeople } from "react-icons/io";
 import { BiCalendar, BiHome } from "react-icons/bi";
 import { HiOutlineChat, HiHome } from "react-icons/hi";
 import { GoCloudDownload } from "react-icons/go";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiOutlineStar, AiFillStar, AiOutlineClose } from "react-icons/ai";
 
 export default function BigSidebar({ handleClick }) {
   return (
     <Wrapper>
       <aside className="big-sidebar-main">
+        <AiOutlineClose
+          size={35}
+          className="icon-close"
+          onClick={handleClick}
+        />
         <div className="big-sidebar-center">
-          {/* <AiOutlineCloseCircle
-            size={25}
-            className="icon-close"
-            onClick={handleClick}
-          /> */}
           <div className="links-container-big">
             {" "}
             <Link className="link link-big link-download">
-              <GoCloudDownload className="icon-download" />
+              <GoCloudDownload className="icon-download" size={35} />
               Download App
             </Link>
             <Link className="link link-big link-story">
-              <MdOutlineMenuBook className="icon-book" />
+              <MdOutlineMenuBook className="icon-book" size={25} />
               Story
             </Link>
-            <Link className="link link-big link-stars">
+            {/* <Link className="link link-big link-stars">
               <AiFillStar className="icon-star" size={10} />
               <AiFillStar className="icon-star" size={10} />
               <AiFillStar className="icon-star" size={10} />
               Verification stars
-            </Link>
-          </div>
-          <div className="links-container-small">
+            </Link> */}
             <Link
               to="/dashboard/home"
-              className="link link-small link-profiles"
+              className="link link-big link-profiles"
               onClick={handleClick}
             >
-              <BiHome className="icon-home" />
+              <BiHome className="icon-home" size={25} />
               Home
             </Link>
             <Link
               to="/dashboard/profiles"
-              className="link link-small link-profiles"
+              className="link link-big link-profiles"
               onClick={handleClick}
             >
-              <MdOutlinePeople className="icon-profile" />
+              <MdOutlinePeople className="icon-profile" size={25} />
               Profiles
             </Link>
-            <Link
+            {/* <Link
               to="/dashboard/groups"
-              className="link link-small link-group"
+              className="link link-big link-group"
               onClick={handleClick}
             >
               <IoIosPeople className="icon-groups" />
               Groups
-            </Link>
+            </Link> */}
             <Link
               to="/dashboard/calender"
-              className="link link-small link-calender"
+              className="link link-big link-calender"
               onClick={handleClick}
             >
-              <BiCalendar className="icon-calender" />
+              <BiCalendar className="icon-calender" size={25} />
               Calender
             </Link>
             <Link
               to="/dashboard/chats"
-              className="link link-small link-chats"
+              className="link link-big link-chats"
               onClick={handleClick}
             >
-              <HiOutlineChat className="icon-chat" />
+              <HiOutlineChat className="icon-chat" size={25} />
               Chats
             </Link>
           </div>
+          <div className="links-container-small"></div>
         </div>
       </aside>
     </Wrapper>
