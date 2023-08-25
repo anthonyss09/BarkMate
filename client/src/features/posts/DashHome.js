@@ -24,7 +24,10 @@ export default function DashHome() {
   const { data: postsData, isLoading: loadingPosts } =
     useGetPostsQuery(coordinates);
 
-  console.log(postsData);
+  let posts;
+  if (!loadingPosts) {
+    posts = Object.values(postsData);
+  }
 
   const [showCreatePost, setShowCreatePost] = useState(false);
 
@@ -56,8 +59,8 @@ export default function DashHome() {
     setShowCreatePost(!showCreatePost);
   };
 
-  const posts = postsData ? (
-    postsData.posts.map((post, index) => {
+  const content = postsData ? (
+    posts.map((post, index) => {
       return (
         <Post
           authorId={post.authorId}
@@ -97,7 +100,7 @@ export default function DashHome() {
             {loadingPosts ? (
               <BeatLoader color="silver" size={25} className="beat-loader" />
             ) : (
-              posts
+              content
             )}
           </div>
         </div>

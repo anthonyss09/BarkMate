@@ -108,6 +108,15 @@ wss.on("connection", (ws, req) => {
             clients[parsedData.content.recipient].send(data);
         }
         break;
+      case "editPost":
+        {
+          console.log("editing post in server socket");
+          console.log(parsedData);
+          Object.values(clients).map((client) => {
+            client.send(data);
+          });
+        }
+        break;
       default: {
         break;
       }

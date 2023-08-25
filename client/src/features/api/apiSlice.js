@@ -317,14 +317,37 @@ export const apiSlice = createApi({
       providesTags: (result = [], error, arg) => [
         "Posts",
         "Post",
-        ...result.posts.map(({ _id }) => ({ type: "Post", _id })),
+        // ...result.posts.map(({ _id }) => ({ type: "Post", _id })),
+        ...Object.values(result).map(({ _id }) => ({ type: "Post", _id })),
       ],
       async onCacheEntryAdded(coordinates, { updateCachedData }) {
-        console.log("something");
+        ws.addEventListener("message", async (e) => {
+          const message = JSON.parse(e.data);
+
+          switch (message.type) {
+            case "editPost":
+              {
+                updateCachedData((draft) => {
+                  console.log(draft);
+                  const targetPost = draft[message.content.postId];
+                  targetPost[Object.keys(message.content.update)[0]] =
+                    Object.values(message.content.update)[0];
+
+                  draft[message.content.postId] = targetPost;
+                });
+              }
+              break;
+            default:
+              break;
+          }
+        });
       },
       transformResponse: (responseData) => {
-        console.log(responseData);
-        return responseData;
+        const newResponseData = {};
+        responseData.posts.map((post) => {
+          newResponseData[post._id] = post;
+        });
+        return newResponseData;
       },
     }),
 
@@ -344,12 +367,18 @@ export const apiSlice = createApi({
             "getPosts",
             currentUserCoords,
             (draft) => {
-              const post = draft.posts.find((post) => post._id === postId);
+              const post = Object.values(draft).find(
+                (post) => post._id === postId
+              );
               if (post) {
                 post[Object.keys(update)[0]] = Object.values(update)[0];
               }
             }
           )
+        );
+
+        ws.send(
+          JSON.stringify({ type: "editPost", content: { postId, update } })
         );
         try {
           await queryFulfilled;
