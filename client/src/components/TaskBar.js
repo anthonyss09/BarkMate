@@ -1,8 +1,7 @@
 import Wrapper from "../assets/wrappers/TaskBarW";
 import { MdOutlinePeople } from "react-icons/md";
-import { IoIosPeople } from "react-icons/io";
 import { BiCalendar, BiHome } from "react-icons/bi";
-import { HiOutlineChat, HiHome } from "react-icons/hi";
+import { HiOutlineChat } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { useLayoutEffect, useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
@@ -50,10 +49,6 @@ export default function TaskBar() {
                 <MdOutlinePeople size={20} />
               </NavLink>
             </div>
-
-            {/* <NavLink to="/dashboard/groups" className="task task-groups ">
-            <IoIosPeople size={20} />
-          </NavLink> */}
             <div className="task-container">
               {" "}
               <NavLink to="/dashboard/calender" className="task task-calendar ">

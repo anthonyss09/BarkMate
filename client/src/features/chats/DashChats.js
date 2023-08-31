@@ -17,8 +17,6 @@ export default function DashChats() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(data);
-
   let chatPreviews;
   if (isLoading) {
     chatPreviews = (
@@ -39,22 +37,6 @@ export default function DashChats() {
       );
     });
   }
-
-  // const chatPreviews = data.chats.length ? (
-  //   data.chats.map((chat, index) => {
-  //     return (
-  //       <ChatPreview
-  //         imageName={chat.participants.sender.participantImageName}
-  //         message={chat.messages[chat.messages.length - 1]}
-  //         key={index}
-  //         profileName={chat.participants.sender.participantProfileName}
-  //         chatId={chat._id}
-  //       />
-  //     );
-  //   })
-  // ) : (
-  //   <div>nochats</div>
-  // );
 
   return (
     <Wrapper>

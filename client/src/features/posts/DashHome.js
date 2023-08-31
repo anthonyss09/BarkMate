@@ -1,7 +1,5 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
-import { FiCamera } from "react-icons/fi";
 import Post from "./Post";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   selectCurrentUser,
@@ -51,7 +49,6 @@ export default function DashHome() {
     updatedUser = currentUser ? currentUser.user : user;
     localStorage.setItem("user", JSON.stringify(updatedUser));
     user = updatedUser;
-    // console.log(updatedUser.friends.length);
     window.scrollTo(0, 0);
   }, [currentUser]);
 

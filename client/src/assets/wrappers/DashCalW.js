@@ -17,6 +17,9 @@ const Wrapper = styled.main`
     align-items: center;
     gap: 0.6rem;
   }
+  .add-line:hover {
+    cursor: pointer;
+  }
   .add-span {
     margin-top: 1rem;
     font-weight: bold;
@@ -42,7 +45,7 @@ const Wrapper = styled.main`
     align-items: center;
     padding: 0 1rem;
     font-weight: bold;
-    color: var(--federal-blue);
+    color: var(--federal-blue); 
     display: flex;
     align-items: center;
     gap: 1rem;

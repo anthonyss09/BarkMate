@@ -25,6 +25,7 @@ const Wrapper = styled.section`
     box-sizing: border-box;
     transition: all 0.2s ease-in;
     border: 1px solid var(--test-blue);
+    margin-top: 4.6rem;
   }
   .task-calendar {
     color: var(--test-red);
@@ -58,6 +59,7 @@ const Wrapper = styled.section`
     top: 80vh;
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     border-radius: 3rem;
+    margin-top: 0;
   }
   .collapsed {
     position: fixed;

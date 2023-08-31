@@ -61,6 +61,7 @@ const Wrapper = styled.aside`
     padding-left: 0.8rem;
     background: rgb(252, 252, 252);
     background: rgb(225, 225, 225, 0.8);
+    background: rgb(244, 244, 244, 0.8);
     margin: 0;
     padding-left: 1.2rem;
   }

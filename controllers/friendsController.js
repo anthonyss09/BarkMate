@@ -19,7 +19,7 @@ const requestFriend = async (req, res) => {
       ...request,
     });
 
-    console.log("new friend", friends);
+    // console.log("new friend", friends);
 
     const updatedUser = await User.findOneAndUpdate(
       { _id: request.requester },
@@ -45,17 +45,20 @@ const acceptFriend = async (req, res) => {
   try {
     const response = await Friends.findOneAndUpdate(
       { _id: requestId },
-      { requesterStatus: 3, recipientStatus: 3 }
+      { requesterStatus: "friends", recipientStatus: "friends" }
     );
-
+    console.log(response);
+    console.log("we are friends");
     res.status(StatusCodes.OK).json({ response });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error });
+    console.log(error);
   }
 };
 
 const declineFriend = async (req, res) => {
   const { requestId } = req.body;
+  console.log("declinging");
 
   try {
     await Friends.findOneAndRemove({ _id: requestId });

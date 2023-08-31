@@ -12,8 +12,14 @@ const Wrapper = styled.aside`
     color: var(--med-bright-blue);
     margin-right: 0.2rem;
   }
+  .friend-accept:hover {
+    cursor: pointer;
+  }
   .friend-ignore {
     color: rgb(120, 120, 120);
+  }
+  .friend-ignore:hover {
+    cursor: pointer;
   }
   .friend-image {
     width: 30px;
@@ -33,7 +39,6 @@ const Wrapper = styled.aside`
     border-bottom: 1px solid rgb(240, 240, 240);
   }
   .friend-list-header {
-    background: rgb(244, 244, 244);
     width: min-content;
     padding: 0.5rem 0.7rem;
     border-radius: 2rem;

@@ -1,6 +1,10 @@
 import Wrapper from "../../assets/wrappers/FriendsViewW";
-import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
-import { useGetFriendsQuery } from "../api/apiSlice";
+import { AiOutlineClose } from "react-icons/ai";
+import {
+  useGetFriendsQuery,
+  useAcceptFriendMutation,
+  useDeclineFriendMutation,
+} from "../api/apiSlice";
 
 export default function FriendsView({ handleShowFriends, currentUser }) {
   let userFriends;
@@ -12,22 +16,22 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
   let userFriendsContent;
   const urlPre = "../../data/uploads/";
   const { data: friends, isLoading } = useGetFriendsQuery(currentUser.friends);
+  const [acceptFriend] = useAcceptFriendMutation();
+  const [declineFriend] = useDeclineFriendMutation();
   console.log("friends are", friends);
 
   if (!isLoading) {
-    friendRequested = Object.values(friends).filter(
-      (friend) => friend.recipient === currentUser._id
-    );
+    userFriends = Object.values(friends)
+      .filter((friend) => friend.recipientStatus === "friends")
+      .filter((friend) => friend.requesterStatus === "friends");
 
-    userRequested = Object.values(friends).filter(
-      (friend) => friend.recipient !== currentUser._id
-    );
+    friendRequested = Object.values(friends)
+      .filter((friend) => friend.recipient === currentUser._id)
+      .filter((friend) => friend.recipientStatus !== "friends");
 
-    userFriends = Object.values(friends).filter(
-      (friend) =>
-        friend.recipientStatus === "friends" &&
-        friend.requesterStatus === "friends"
-    );
+    userRequested = Object.values(friends)
+      .filter((friend) => friend.recipient !== currentUser._id)
+      .filter((friend) => friend.recipientStatus !== "friends");
 
     friendRequestedContent = (
       <div className="friend-list">
@@ -43,8 +47,28 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 {" "}
                 {friend.friend.participantProfileName}
               </span>
-              <span className="friend-accept">accept?</span>
-              <span className="friend-ignore">Ignore</span>
+              <span
+                className="friend-accept"
+                onClick={() => {
+                  const friendCopy = { ...friend };
+                  friendCopy.recipientStatus = "friends";
+                  friendCopy.requesterStatus = "friendss";
+                  acceptFriend({ ...friendCopy, requestId: friend._id });
+                }}
+              >
+                accept?
+              </span>
+              <span
+                className="friend-ignore"
+                onClick={() => {
+                  const friendCopy = { ...friend };
+                  friendCopy.recipient = "";
+                  friendCopy.recipientStatus = "friends";
+                  declineFriend({ ...friendCopy, requestId: friend._id });
+                }}
+              >
+                Ignore
+              </span>
             </div>
           );
         })}
@@ -85,7 +109,6 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 {" "}
                 {friend.friend.participantProfileName}
               </span>
-              <span>accept?</span>
             </div>
           );
         })}

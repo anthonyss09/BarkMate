@@ -13,28 +13,41 @@ import GroupPage from "./features/users/GroupPage";
 import ChatPage from "./features/chats/ChatPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePageEdit from "./features/users/ProfilePageEdit";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="register" element={<RegisterPage />} />
-          <Route exact path="login" element={<LoginPage />} />
-          <Route exact path="dashboard" element={<DashboardPage />}>
-            <Route exact path="home" element={<DashHome />} />
-            <Route path="profiles" element={<DashProfiles />} />
-            <Route exact path="groups" element={<DashGroups />} />
-            <Route exact path="calender" element={<DashCal />} />
-            <Route exact path="chats" element={<DashChats />} />
-          </Route>
-          <Route exact path="/userProfile" element={<ProfilePageEdit />} />
-          <Route exact path="/:profileId" element={<ProfilePageView />} />
-          <Route exact path="/groupid" element={<GroupPage />} />
-          <Route exact path="chats/:chatId" element={<ChatPage />} />
-        </Routes>
-      </div>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<LandingPage />} />
+            <Route exact path="register" element={<RegisterPage />} />
+            <Route exact path="login" element={<LoginPage />} />
+            <Route
+              exact
+              path="dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            >
+              <Route exact path="home" element={<DashHome />} />
+              <Route path="profiles" element={<DashProfiles />} />
+              <Route exact path="groups" element={<DashGroups />} />
+              <Route exact path="calender" element={<DashCal />} />
+              <Route exact path="chats" element={<DashChats />} />
+            </Route>
+            <Route exact path="/userProfile" element={<ProfilePageEdit />} />
+            <Route exact path="/:profileId" element={<ProfilePageView />} />
+            <Route exact path="/groupid" element={<GroupPage />} />
+            <Route exact path="chats/:chatId" element={<ChatPage />} />
+          </Routes>
+        </div>
+      </LocalizationProvider>
     </Router>
   );
 }

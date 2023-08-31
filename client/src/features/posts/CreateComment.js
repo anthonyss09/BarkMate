@@ -1,4 +1,4 @@
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { AiOutlineSend } from "react-icons/ai";
 
 export default function CreateComment({
@@ -23,7 +23,7 @@ export default function CreateComment({
     <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
       <div className="comment-icon-close">
         {" "}
-        <AiOutlineCloseCircle size={35} onClick={handleShowPostComment} />
+        <AiOutlineClose size={35} onClick={handleShowPostComment} />
       </div>
       <div className="post-comment-preview">
         {" "}

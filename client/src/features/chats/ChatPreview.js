@@ -1,6 +1,4 @@
 import Wrapper from "../../assets/wrappers/ChatPreviewW";
-import jennieMax from "../../assets/images/jennie&maxSmall.jpg";
-import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 export default function ChatPreview({

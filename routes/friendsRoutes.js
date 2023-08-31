@@ -8,8 +8,8 @@ import {
 } from "../controllers/friendsController.js";
 
 router.route("/request").post(requestFriend);
-router.route("/accept").put(acceptFriend);
-router.route("/decline").delete(declineFriend);
+router.route("/accept").post(acceptFriend);
+router.route("/decline").post(declineFriend);
 router.route("/get-friends").get(getFriends);
 
 export default router;

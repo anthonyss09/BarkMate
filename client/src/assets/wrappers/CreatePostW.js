@@ -3,7 +3,9 @@ import styled from "styled-components";
 const Wrapper = styled.aside`
   .btn-create-post {
     background: var(--med-bright-blue);
+    // background: var(--test-blue);
     color: white;
+    // color: rgb(60, 60, 60);
     font-size: 1rem;
     width: 100%;
     margin-top: 0.8rem;

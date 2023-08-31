@@ -14,6 +14,7 @@ import upload from "./utils/fileUpload.js";
 import postsRouter from "./routes/postsRoutes.js";
 import notificationsRouter from "./routes/notificationRoutes.js";
 import chatsRouter from "./routes/chatsRoutes.js";
+import eventRouter from "./routes/eventRoutes.js";
 import { v4 as uuidv4 } from "uuid";
 
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use(
 );
 app.use("/api/notifications", notificationsRouter);
 app.use("/api/chats", chatsRouter);
+app.use("/api/events", eventRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Bark Mate!");
@@ -95,7 +97,9 @@ wss.on("connection", (ws, req) => {
       case "chat":
         //update and target only participants of chat ****
         {
-          Object.values(clients).map((client) => client.send(data));
+          // Object.values(clients).map((client) => client.send(data));
+          clients[parsedData.content.message.recipient].send(data);
+          clients[parsedData.content.message.sender].send(data);
         }
         break;
       case "friendRequest":
@@ -103,7 +107,9 @@ wss.on("connection", (ws, req) => {
         {
           console.log(parsedData);
           console.log(parsedData.content.requester);
-          clients[parsedData.content.requester].send(data);
+
+          clients[parsedData.content.requester] &&
+            clients[parsedData.content.requester].send(data);
           clients[parsedData.content.recipient] &&
             clients[parsedData.content.recipient].send(data);
         }

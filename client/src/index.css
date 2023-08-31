@@ -129,12 +129,12 @@ select {
   cursor: pointer;
 }
 .dash-page-name {
+  height: 1.35rem;
   width: min-content;
   border-radius: 2rem;
   padding: 1rem 6vw;
   background: rgb(244, 244, 244);
   font-size: 1.2rem;
-  height: 1.35rem;
   letter-spacing: 0.2rem;
 }
 .dash-header {
@@ -292,7 +292,10 @@ select {
 }
 .outlet-container {
   width: 100vw;
+  height: min-content;
   min-height: 90vh;
+  min-height: 70vh;
+  padding-bottom: 2rem;
 }
 .scrolled-nav {
   position: fixed;
@@ -307,10 +310,26 @@ select {
 }
 .sticky-nav {
   position: sticky;
+  position: fixed;
   top: 0;
   z-index: 7;
+}
+.date-picker {
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.2rem 0;
+  font-size: 16px;
+  color: rgb(100, 100, 100);
+  color: var(--federal-blue);
+  width: 30vw;
+  background: white;
 }
 /* .post-comment-row > ::placeholder {
   color: black;
   opacity: 1;
 } */
+
+select:required:invalid {
+  color: rgb(160, 160, 160);
+}

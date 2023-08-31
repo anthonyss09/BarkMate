@@ -287,7 +287,7 @@ export const apiSlice = createApi({
         body: request,
       }),
       invalidatesTags: ["CurrentUser"],
-      onQueryStarted(request, { dispatch }) {
+      async onQueryStarted(request, { dispatch, queryFulfilled }) {
         console.log("query started");
         ws.send(
           JSON.stringify({
@@ -297,6 +297,45 @@ export const apiSlice = createApi({
             },
           })
         );
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          // patchResult.undo();
+        }
+      },
+    }),
+
+    acceptFriend: builder.mutation({
+      query: (request) => ({
+        url: "/friends/accept",
+        method: "POST",
+        body: request,
+      }),
+      async onQueryStarted(request, { queryFulfilled }) {
+        ws.send(JSON.stringify({ type: "friendRequest", content: request }));
+
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          // patchResult.undo();
+          console.log(error);
+        }
+      },
+    }),
+
+    declineFriend: builder.mutation({
+      query: (request) => ({
+        url: "/friends/decline",
+        method: "POST",
+        body: request,
+      }),
+      async onQueryStarted(request, { queryFulfilled }) {
+        ws.send(JSON.stringify({ type: "friendRequest", content: request }));
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          console.log(error);
+        }
       },
     }),
 
@@ -402,4 +441,6 @@ export const {
   useCreatePostMutation,
   useGetPostsQuery,
   useEditPostMutation,
+  useAcceptFriendMutation,
+  useDeclineFriendMutation,
 } = apiSlice;
