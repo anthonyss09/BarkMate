@@ -23,6 +23,7 @@ const Wrapper = styled.aside`
     font-size: 0.6rem;
     font-weight: bold;
     color: black;
+    color: var(--med-font-blue);
   }
   .message {
     // position: absolute;
@@ -91,7 +92,8 @@ const Wrapper = styled.aside`
     align-items: center;
     align-self: center;
     box-sizing: border-box;
-    padding: 0 1rem;
+    padding: 1rem;
+    padding-top: 0;
   }
   .profile-preview-name {
     // text-align: center;

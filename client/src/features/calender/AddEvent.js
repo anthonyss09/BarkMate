@@ -23,17 +23,21 @@ export default function AddEvent({ setShowAddEvent }) {
   const [createEvent] = useCreateEventMutation();
 
   const handleDateChange = (e) => {
-    const date = {};
     // date.day = e.$D;
     // date.month = e.$M;
     // date.year = e.$y;
+    if (!e) {
+      return;
+    }
+    const date = {};
+
     let day = e.$D;
     if (Number(day) < 10) {
       day = "0" + day;
     }
     let month = e.$M;
     if (Number(month) < 10) {
-      month = "0" + month;
+      month = "0" + (Number(month) + 1).toString();
     }
     date.dateString = e.$y + "-" + month + "-" + day;
     date.dayOfWeek = e.$W;

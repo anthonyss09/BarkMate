@@ -26,7 +26,7 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const urlPre = "../../public/data/uploads/";
+  const urlPre = "../data/uploads/";
 
   const currentUser = useSelector(selectCurrentUser);
   const {
@@ -114,14 +114,18 @@ export default function NavBar() {
             className="icon icon-notification"
             onClick={handleShowNotifications}
           />
-          <div className="nav-profile-imag">
-            <img url={urlPre + currentUser.profileImageName} />
-          </div>
-          <FaUserCircle
+
+          <img
+            src={urlPre + currentUser.profileImageName}
+            className="nav-profile-pic icon-user"
+            onClick={handleSmallSidebar}
+          />
+
+          {/* <FaUserCircle
             size={35}
             onClick={handleSmallSidebar}
             className="icon icon-user"
-          />
+          /> */}
         </span>
       </nav>
       {showSmallSidebar && (

@@ -17,7 +17,7 @@ export default function EventsRow({ eventsTitle, events }) {
             <span className="event-date-text"></span>{" "}
             {newDate.getDate() +
               "/" +
-              newDate.getMonth() +
+              Number(newDate.getMonth() + 1).toString() +
               "/" +
               newDate.getFullYear()}
           </div>

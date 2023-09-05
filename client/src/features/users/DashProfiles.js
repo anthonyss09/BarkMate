@@ -10,13 +10,13 @@ import FiltersDropDown from "../../components/FiltersDropDown";
 import BeatLoader from "react-spinners/BeatLoader";
 
 export default function DashProfiles() {
-  const { location, firstName } = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
   const { filters } = useSelector(selectUsersData);
   const distance = filters.distance;
   const { data, error, isLoading, refetch } = useGetProfilesQuery({
     distance,
-    coordinates: location.coordinates,
-    currentUserName: firstName,
+    coordinates: currentUser.location.coordinates,
+    currentUserName: currentUser.firstName,
   });
 
   const [showFilters, setShowFilters] = useState(false);
@@ -54,6 +54,7 @@ export default function DashProfiles() {
           profileImageName={match.profileImageName}
           id={match._id}
           profileName={match.profileName}
+          currentUser={currentUser}
         />
       );
     });

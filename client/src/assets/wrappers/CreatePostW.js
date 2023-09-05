@@ -4,6 +4,7 @@ const Wrapper = styled.aside`
   .btn-create-post {
     background: var(--med-bright-blue);
     // background: var(--test-blue);
+    // background: var(--med-font-blue);
     color: white;
     // color: rgb(60, 60, 60);
     font-size: 1rem;

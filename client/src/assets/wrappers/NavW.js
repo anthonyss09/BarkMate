@@ -59,8 +59,9 @@ const Wrapper = styled.nav`
     opacity: 0.95;
   }
   .nav-profile-pic {
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
+    border-radius: 5rem;
   }
   .notification-count {
     height: 1rem;

@@ -8,6 +8,11 @@ import { Link } from "react-router-dom";
 import QuickChat from "../chats/QuickChat";
 import { useState, useRef } from "react";
 import { useEffect } from "react";
+import {
+  useRequestFriendMutation,
+  useCreateNotificationMutation,
+} from "../api/apiSlice";
+import mongoose from "mongoose";
 
 export default function ProfilePreview({
   firstName,
@@ -18,10 +23,54 @@ export default function ProfilePreview({
   timeNeeded,
   id,
   profileName,
+  currentUser,
 }) {
   const [showQuickChat, setShowQuickChat] = useState(false);
 
   const urlPre = "../../data/uploads/";
+
+  const [createNotification] = useCreateNotificationMutation();
+  const [requestFriend] = useRequestFriendMutation();
+  const friendRequestId = new mongoose.Types.ObjectId();
+  const notificationId = new mongoose.Types.ObjectId();
+
+  const handleFriendRequest = () => {
+    requestFriend({
+      _id: friendRequestId,
+      requester: currentUser._id,
+      participants: [
+        {
+          participantId: currentUser._id,
+          participantProfileName: currentUser.profileName,
+          participantProfileImageName: currentUser.profileImageName,
+        },
+        {
+          participantId: id,
+          participantProfileName: profileName,
+          participantProfileImageName: profileImageName,
+        },
+      ],
+      // requesterProfileName: currentUser.user.profileName,
+      // requesterProfileImageName: currentUser.user.profileImageName,
+      recipient: id,
+      // recipientProfileName: user.profileName,
+      // recipientProfileImageName: user.profileImageName,
+      requesterStatus: "pending",
+      recipientStatus: "requested",
+    });
+    createNotification({
+      _id: notificationId,
+      friendId: id,
+      recipient: id,
+      sender: currentUser._id,
+      senderProfileImageName: currentUser.profileImageName,
+      senderProfileName: currentUser.profileName,
+      notificationPath: "friendRequests",
+      notificationType: "friendRequest",
+      is_read: false,
+      is_viewed: false,
+    });
+  };
 
   const handleMessageClick = () => {
     setShowQuickChat(!showQuickChat);
@@ -48,7 +97,10 @@ export default function ProfilePreview({
             <div className="profile-preview-options">
               <div className="option-container">
                 {" "}
-                <div className="add-friend option">
+                <div
+                  className="add-friend option"
+                  onClick={handleFriendRequest}
+                >
                   + <FaUserFriends size={45} />
                 </div>
               </div>
@@ -85,9 +137,9 @@ export default function ProfilePreview({
               </h1>
 
               <p className="profile-preview-p">
-                "Hey we're Jennie & Max. I work nights & Max loves evening
+                {/* "Hey we're Jennie & Max. I work nights & Max loves evening
                 walks. I'm available to go on walks during the day. We're
-                woofing forward to meeting you!"
+                woofing forward to meeting you!" */}
                 {aboutUs}
               </p>
             </div>

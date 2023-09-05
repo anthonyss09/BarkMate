@@ -17,6 +17,8 @@ import {
   useCreateNotificationMutation,
   useRequestFriendMutation,
 } from "../api/apiSlice";
+import QuickChat from "../chats/QuickChat";
+import { useState } from "react";
 
 export default function ProfilePageView() {
   const { profileId } = useParams();
@@ -28,6 +30,12 @@ export default function ProfilePageView() {
   const friendRequestId = new mongoose.Types.ObjectId();
   const [requestFriend] = useRequestFriendMutation();
   const [createNotification] = useCreateNotificationMutation();
+
+  const [showQuickChat, setShowQuickChat] = useState(false);
+
+  const handleMessageClick = () => {
+    setShowQuickChat(!showQuickChat);
+  };
 
   if (isLoading) {
     return <div>profile loading</div>;
@@ -100,14 +108,14 @@ export default function ProfilePageView() {
           <div className="back-button"> </div>
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
-              <div className="profile-preview-verification">
+              {/* <div className="profile-preview-verification">
                 <div className="stars-container">
                   {" "}
                   <AiFillStar className="icon-star" size={10} />
                   <AiFillStar className="icon-star" size={10} />
                   <AiOutlineStar className="icon-star" size={10} />
                 </div>
-              </div>
+              </div> */}
               <h1 className="profile-preview-name">
                 {user.firstName} & {user.dogName}
               </h1>
@@ -124,11 +132,11 @@ export default function ProfilePageView() {
 
           <div className="profile-page-options">
             <div className="add-friend option" onClick={handleFriendRequest}>
-              + <FaUserFriends size={30} />
+              + <FaUserFriends size={45} />
             </div>
 
-            <div className="message option">
-              <FiMail size={30} className="message-friend" />
+            <div className="message option" onClick={handleMessageClick}>
+              <FiMail size={45} className="message-friend" />
             </div>
           </div>
           <div className="profile-page-body">
@@ -188,6 +196,13 @@ export default function ProfilePageView() {
         </div>
       </main>
       <Footer />
+      <QuickChat
+        recipientId={profileId}
+        recipientImageName={user.profileImageName}
+        handleMessageClick={handleMessageClick}
+        recipientProfileName={user.profileName}
+        showQuickChat={showQuickChat}
+      />
     </Wrapper>
   );
 }

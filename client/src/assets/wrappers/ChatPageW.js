@@ -3,10 +3,11 @@ import styled from "styled-components";
 const Wrapper = styled.main`
   .chat-page-body {
     padding: 0.6rem;
+    padding: 0 1rem;
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
   }
   .chat-page-footer {
     position: fixed;
@@ -19,6 +20,7 @@ const Wrapper = styled.main`
     justify-content: center;
     gap: 0.4rem;
     border-top: 1px solid rgb(244, 244, 244);
+    border-top: 1px solid rgb(230, 230, 230);
   }
   .chat-page-header {
     width: 100%;
@@ -28,6 +30,7 @@ const Wrapper = styled.main`
     gap: 1rem;
     padding: 0 0.6rem;
     border-bottom: 1px solid rgb(244, 244, 244);
+    border-bottom: 1px solid rgb(230, 230, 230);
     position: fixed;
     top: 0;
     background: white;
@@ -38,6 +41,7 @@ const Wrapper = styled.main`
     padding: 0.4rem;
     border-radius: 2rem;
     border: 2px solid rgb(220, 220, 220);
+    border: 2px solid var(--med-font-blue);
     text-align: center;
     font-size: 16px;
   }
@@ -51,6 +55,7 @@ const Wrapper = styled.main`
   }
   .icon-send {
     color: rgb(60, 60, 60);
+    // color: var(--med-font-blue);
   }
   .start-chat {
     height: 4rem;

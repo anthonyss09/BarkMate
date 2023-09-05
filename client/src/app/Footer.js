@@ -6,7 +6,7 @@ export default function Footer() {
     <Wrapper>
       <section className="footer-main gradient">
         <div className="footer-center">
-          <Link className="link">Join</Link>
+          <Link className="link">Home</Link>
           <Link className="link">FAQS</Link>
           <Link className="link">About</Link>
           <Link className="link">Contact</Link>

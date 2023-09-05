@@ -16,6 +16,7 @@ export default function DashCal() {
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
+  console.log(data);
   console.log(todayString);
 
   let todaysEvents;
@@ -47,10 +48,10 @@ export default function DashCal() {
     const today = new Date();
     let month = today.getMonth().toString();
     if (month.length < 2) {
-      month = "0" + month;
+      month = "0" + (Number(month) + 1).toString();
     }
     let date = today.getDate().toString();
-    if (date < 2) {
+    if (date.length < 2) {
       date = "0" + date;
     }
 

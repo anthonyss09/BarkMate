@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    letter-spacing: 0.02rem;
   }
   .comment-image {
     height: 40px;

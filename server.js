@@ -75,9 +75,9 @@ wss.on("connection", (ws, req) => {
         {
           console.log(parsedData);
           //if notification type friend request, send data to both sender and recipient
-          if (parsedData.content.notificationType === "friendRequest") {
-            clients[parsedData.content.sender].send(data);
-          }
+          // if (parsedData.content.notificationType === "friendRequest") {
+          //   clients[parsedData.content.sender].send(data);
+          // }
           clients[parsedData.content.recipient] &&
             clients[parsedData.content.recipient].send(data);
           console.log("sent to client");

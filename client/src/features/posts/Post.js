@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 import moment from "moment";
 // import { AiOutlineCloseCircle } from "react-icons/ai";
 import CreateComment from "./CreateComment";
+import { Link } from "react-router-dom";
 
 export default function Post({
   authorId,
@@ -155,7 +156,14 @@ export default function Post({
       <aside className="post-main">
         <div className="post-center">
           <div className="post-heading">
-            <img src={urlPre + authorImageName} className="post-heading-pic" />
+            <Link to={"/" + authorId}>
+              {" "}
+              <img
+                src={urlPre + authorImageName}
+                className="post-heading-pic"
+              />
+            </Link>
+
             <span className="post-name">
               {authorName} & {authorDogName} <br />
               <span className="post-date">{dateOfPost}</span>

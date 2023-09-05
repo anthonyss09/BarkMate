@@ -28,8 +28,10 @@ const Wrapper = styled.main`
   }
   .dog-detail-weight {
     border: 2px solid var(--med-bright-green);
+    border: 2px solid var(--med-font-blue);
   }
   .dog-detail-energy {
+    border: 2px solid var(--med-bright-blue);
     border: 2px solid var(--med-bright-blue);
   }
   .dog-detail-breed {
@@ -72,10 +74,12 @@ const Wrapper = styled.main`
   .location {
     font-size: 0.6rem;
     color: rgb(100, 100, 100);
+    color: var(--med-font-blue);
     font-weight: bold;
   }
   .message-friend {
     color: var(--med-bright-green);
+    color: var(--med-font-blue);
   }
   .members {
     height: min-content;
@@ -89,7 +93,7 @@ const Wrapper = styled.main`
     margin-bottom: 0.4rem;
   }
   .option {
-    border: 2px solid rgb(240, 240, 240);
+    // border: 2px solid rgb(240, 240, 240);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
   }
@@ -120,8 +124,9 @@ const Wrapper = styled.main`
     margin-bottom: 0.6rem;
   }
   .profile-page-main {
-    padding-top: 3rem;
+    // padding-top: 3rem;
     padding-bottom: 2rem;
+    margin-top: -1.4rem;
   }
   .profile-preview-name {
     font-size: 1.4rem;
@@ -147,9 +152,9 @@ const Wrapper = styled.main`
     padding: 0.4rem 0;
     margin-bottom: 1rem;
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: -5rem;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    // margin-top: -5rem;
   }
   .profile-page-social-links {
     margin-top: 1rem;

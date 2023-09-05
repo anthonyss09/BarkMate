@@ -132,16 +132,6 @@ export default function ChatPage() {
     content = <div>{error.toString()}</div>;
   }
 
-  // useEffect(() => {
-  //   console.log("change", webSocketReadyState);
-  //   if (webSocketReadyState == 0 || webSocketReadyState == 3) {
-  //     updateWebSocketReadyState();
-  //     console.log("updated socket connection");
-  //     refetch();
-  //     console.log("refetched");
-  //   }
-  // }, [webSocketReadyState]);
-
   return (
     <Wrapper>
       <div className="chat-page-main">
@@ -150,12 +140,12 @@ export default function ChatPage() {
             {" "}
             <TbArrowBackUp size={25} />
           </Link>
-          <h1 className="chat-page-name">Dean & Bowie</h1>
+          <h1 className="chat-page-name">{friend.participantProfileName}</h1>
         </div>
         <div className="start-chat"></div>
         <div className="chat-page-body">
           {content}
-          <div className="end-chat" id="end-chat"></div>;
+          <div className="end-chat" id="end-chat"></div>
         </div>
         <div className="chat-page-footer">
           <input

@@ -51,12 +51,12 @@ export default function ProfilePageEdit() {
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
               <div className="profile-preview-verification">
-                <div className="stars-container">
+                {/* <div className="stars-container">
                   {" "}
                   <AiFillStar className="icon-star" size={10} />
                   <AiFillStar className="icon-star" size={10} />
                   <AiOutlineStar className="icon-star" size={10} />
-                </div>
+                </div> */}
               </div>
               <h1 className="profile-preview-name">
                 {firstName} & {dogName}
