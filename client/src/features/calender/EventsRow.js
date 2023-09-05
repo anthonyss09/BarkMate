@@ -24,7 +24,7 @@ export default function EventsRow({ eventsTitle, events }) {
           <div className="event-time">
             <span className="event-time-text"></span>{" "}
             {newDate.getHours() + ":" + newDate.getMinutes()}
-            {newDate.getMinutes() < 2 && "0"}
+            {newDate.getMinutes().toString().length < 2 && "0"}
           </div>
           <div className="event-note">{event.eventNote}</div>
         </div>

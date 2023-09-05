@@ -17,7 +17,7 @@ export default function LoginPage() {
     } else {
       setPassword(value);
     }
-  };
+  }; 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +26,7 @@ export default function LoginPage() {
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("token", JSON.stringify(response.data.token));
       Navigate("/dashboard/home");
+      window.location.reload(true);
     } catch (error) {
       console.log(error);
     }

@@ -22,10 +22,11 @@ export default function DashChats() {
     chatPreviews = (
       <BeatLoader color="silver" size={25} className="beat-loader" />
     );
-  } else if (!data.chats.length) {
+  } else if (!Object.keys(data).length) {
     chatPreviews = <div>no chats</div>;
   } else {
-    chatPreviews = data.chats.map((chat, index) => {
+    console.log(data);
+    chatPreviews = Object.values(data).map((chat, index) => {
       return (
         <ChatPreview
           imageName={chat.participants.friend.participantImageName}

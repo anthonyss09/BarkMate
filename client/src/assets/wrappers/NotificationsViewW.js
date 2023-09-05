@@ -16,13 +16,19 @@ const Wrapper = styled.aside`
   .notification-sender {
     font-weight: bold;
     margin-left: 0.4rem;
+    margin-right: auto;
+  }
+  .notification-text {
+    margin-right: 0.8rem;
+    color: rgb(60, 60, 60);
+    color: var(--med-font-blue);
   }
   .notifications-view-header {
     font-size: 1.3rem;
-    height: 4.2rem;
+    // height: 4.2rem;
     background: var(--test-blue);
     letter-spacing: 0.15rem;
-    padding-bottom: 3rem;
+    // padding-bottom: 3rem;
     margin: 0;
     background: white;
   }
@@ -36,6 +42,7 @@ const Wrapper = styled.aside`
   .notifications-view-main {
     width: 100%;
     max-width: 320px;
+    max-width: 300px;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -54,16 +61,17 @@ const Wrapper = styled.aside`
   .notification-view-single {
     height: 4.2rem;
     height: 5rem;
+    height: 4.2rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    // justify-content: space-between;
+    flex-wrap: no-wrap;
     gap: 0.2rem;
-    padding-left: 0.8rem;
     background: rgb(252, 252, 252);
     background: rgb(225, 225, 225, 0.8);
     background: rgb(244, 244, 244, 0.8);
     margin: 0;
-    padding-left: 1.2rem;
+    padding-left: 0.8rem;
   }
   .notification-viewed {
     background: rgb(252, 252, 252, 0.8);

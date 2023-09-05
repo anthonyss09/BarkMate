@@ -12,14 +12,11 @@ import EventsRow from "./EventsRow";
 
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
-
-  const today = new Date();
-
-  const todayString =
-    today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+  const [todayString, setTodayString] = useState("");
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
+  console.log(todayString);
 
   let todaysEvents;
   if (!isLoading) {
@@ -47,6 +44,18 @@ export default function DashCal() {
   };
 
   useEffect(() => {
+    const today = new Date();
+    let month = today.getMonth().toString();
+    if (month.length < 2) {
+      month = "0" + month;
+    }
+    let date = today.getDate().toString();
+    if (date < 2) {
+      date = "0" + date;
+    }
+
+    setTodayString(today.getFullYear().toString() + "-" + month + "-" + date);
+
     window.scrollTo(0, 0);
   }, []);
   return (

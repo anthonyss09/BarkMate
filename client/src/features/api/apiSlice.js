@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { current, createAction } from "@reduxjs/toolkit";
+// import { response } from "express";
 const user = JSON.parse(localStorage.getItem("user"));
 const userId = user ? user._id : null;
 
@@ -161,30 +162,53 @@ export const apiSlice = createApi({
                 // const existingChatId = data.content.chatId;
                 updateCachedData((draft) => {
                   //check for existing chat contigient on both senderId and recipientId existing in chatParticipants
-                  const existingChatId = draft.chats.map((chat) => {
-                    const draftParicipantIds = [];
-                    draftParicipantIds.push(
-                      chat.participants.user.participantId
-                    );
-                    draftParicipantIds.push(
-                      chat.participants.friend.participantId
-                    );
-                    if (
-                      draftParicipantIds.includes(sender) &&
-                      draftParicipantIds.includes(recipient)
-                    ) {
-                      return chat._id;
+                  let chatIndex;
+                  const existingChatId = Object.values(draft).map(
+                    (chat, index) => {
+                      chatIndex = index;
+                      const draftParicipantIds = [];
+                      draftParicipantIds.push(
+                        chat.participants.user.participantId
+                      );
+                      draftParicipantIds.push(
+                        chat.participants.friend.participantId
+                      );
+                      if (
+                        draftParicipantIds.includes(sender) &&
+                        draftParicipantIds.includes(recipient)
+                      ) {
+                        return chat._id;
+                      }
                     }
-                  })[0];
+                  )[chatIndex];
+                  console.log("existing id", existingChatId);
 
                   if (existingChatId) {
                     //target existing chat and update data
-                    const chatIds = draft.chats.map((chat) => chat._id);
+                    console.log("chat exists");
+                    const chatIds = Object.values(draft).map(
+                      (chat) => chat._id
+                    );
                     const chatIndex = chatIds.indexOf(existingChatId);
-                    draft.chats[chatIndex].messages.push(data.content.message);
-                    // draft[existingChatId].messages.push(data.content.message)
+                    Object.values(draft)[chatIndex].messages.push(
+                      data.content.message
+                    );
                   } else {
-                    draft.chats.push(data.content);
+                    console.log("new chat");
+                    let newMessages = [];
+                    let newContent = { ...data.content };
+                    let newParticipants = {};
+                    newContent.participants.map((p) => {
+                      if (p.participantId === userId) {
+                        newParticipants.user = { ...p };
+                      } else {
+                        newParticipants.friend = { ...p };
+                      }
+                    });
+                    newMessages.push(data.content.message);
+                    newContent.participants = newParticipants;
+                    newContent.messages = newMessages;
+                    draft["temp id"] = newContent;
                   }
                 });
               }
@@ -201,23 +225,24 @@ export const apiSlice = createApi({
       transformResponse: (responseData) => {
         let normParticipants = {};
         let newResponseData = {};
-        responseData.chats.map((res) => {
-          //normalize response data
-          newResponseData[res._id] = res;
 
-          //identify user and friend, normalize result
-          res.participants.map((p) => {
+        responseData.chats.map((chat) => {
+          let chatCopy = { ...chat };
+          chat.participants.map((p) => {
             if (p.participantId == userId) {
               normParticipants.user = { ...p };
             } else {
               normParticipants.friend = { ...p };
             }
           });
-          res.participants = normParticipants;
+          // chat.participants = normParticipants;
+          chatCopy.participants = normParticipants;
+          normParticipants = {};
+          newResponseData[chat._id] = chatCopy;
         });
-        newResponseData.participants = normParticipants;
 
-        return responseData;
+        // newResponseData.participants = normParticipants;
+        return newResponseData;
       },
     }),
 
@@ -239,11 +264,12 @@ export const apiSlice = createApi({
     }),
 
     getFriends: builder.query({
-      query: (friendIds) => ({
-        url: `/friends/get-friends?friendIds=` + JSON.stringify(friendIds),
+      query: (userId) => ({
+        url: `/friends/get-friends?userId=` + userId,
       }),
 
       async onCacheEntryAdded(friendIds, { updateCachedData }) {
+        console.log("friends fetched");
         ws.addEventListener("message", async (e) => {
           const message = JSON.parse(e.data);
           console.log(message);

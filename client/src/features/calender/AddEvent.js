@@ -38,6 +38,8 @@ export default function AddEvent({ setShowAddEvent }) {
     date.dateString = e.$y + "-" + month + "-" + day;
     date.dayOfWeek = e.$W;
     setEventDate(date);
+    console.log(date);
+    console.log(e);
   };
 
   const handleTimeChange = (e) => {

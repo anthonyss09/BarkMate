@@ -17,6 +17,8 @@ const Wrapper = styled.aside`
   }
   .friend-ignore {
     color: rgb(120, 120, 120);
+    color: var(--med-font-blue);
+    margin-right: 0.4rem;
   }
   .friend-ignore:hover {
     cursor: pointer;
@@ -30,10 +32,14 @@ const Wrapper = styled.aside`
     font-weight: bold;
     margin-left: 0.4rem;
     margin-right: 10vw;
+    margin-right: auto;
   }
   .friend-pending {
     color: rgb(80, 80, 80);
+    color: rgb(120, 120, 120);
+    color: var(--med-font-blue);
     font-style: italic;
+    margin-right: 0.4rem;
   }
   .friend-list {
     border-bottom: 1px solid rgb(240, 240, 240);
@@ -45,7 +51,7 @@ const Wrapper = styled.aside`
     letter-spacing: 0.05rem;
     color: rgb(60, 60, 60);
     margin-bottom: 1rem;
-    box-shadow: 5px 2px 5px grey;
+    // box-shadow: 5px 2px 5px grey;
     background: white;
   }
   .friends-view-body {
@@ -81,7 +87,7 @@ const Wrapper = styled.aside`
     height: 3.6rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     gap: 0.2rem;
     background: white;
     padding-left: 0.8rem;

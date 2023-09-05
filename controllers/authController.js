@@ -23,6 +23,7 @@ const registerUser = async (req, res) => {
     const user = await User.create(newUser);
     user.password = undefined;
     const token = user.createJWT();
+    console.log("registered user", { user, token });
     res.status(StatusCodes.OK).json({ user, token });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });

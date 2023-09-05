@@ -21,6 +21,7 @@ const Wrapper = styled.aside`
   }
   .icon {
     color: rgb(80, 80, 80);
+    color: var(--med-font-blue);
   }
   .icon:hover {
     cursor: pointer;
@@ -109,7 +110,7 @@ const Wrapper = styled.aside`
     gap: 0.4rem;
     padding: 1rem 0;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid rgb(244, 244, 244);
+    // border-bottom: 1px solid rgb(244, 244, 244);
   }
   .post-heading-pic {
     height: 50px;
@@ -152,7 +153,8 @@ const Wrapper = styled.aside`
   }
   .post-text {
     font-size: 0.8rem;
-    padding: 2rem 0;
+    padding: 1rem 0;
+    // padding: 2rem 0;
   }
   .post-textarea {
     width: 100%;

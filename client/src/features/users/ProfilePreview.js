@@ -34,28 +34,7 @@ export default function ProfilePreview({
           {" "}
           <div className="profile-preview-header">
             {" "}
-            <div className="profile-preview-name-container">
-              {/* <div className="profile-preview-verification">
-                <div className="stars-container">
-                  {" "}
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiOutlineStar className="icon-star" size={10} />
-                </div>
-              </div> */}
-              <h1 className="profile-preview-name">{profileName}</h1>
-            </div>
-            <div className="time-slots-container">
-              {" "}
-              <div className="time-slot-column">
-                <h1 className="time-slot-title">I'm available</h1>
-                <div className="time-slot time-slot-available">mornings</div>
-              </div>
-              <div className="time-slot-column">
-                <h1 className="time-slot-title">I need</h1>
-                <div className="time-slot time-slot-needed">nights</div>
-              </div>
-            </div>
+            <h1 className="profile-preview-name">{profileName}</h1>
           </div>
           <div className="profile-preview-body">
             <Link to={`/${id}`} className="profile-pic-container">
@@ -70,7 +49,18 @@ export default function ProfilePreview({
               <div className="option-container">
                 {" "}
                 <div className="add-friend option">
-                  + <FaUserFriends size={35} />
+                  + <FaUserFriends size={45} />
+                </div>
+              </div>
+              <div className="time-slots-container">
+                {" "}
+                <div className="time-slot-column">
+                  <h1 className="time-slot-title">I'm available</h1>
+                  <div className="time-slot time-slot-available">mornings</div>
+                </div>
+                <div className="time-slot-column">
+                  <h1 className="time-slot-title">I need</h1>
+                  <div className="time-slot time-slot-needed">nights</div>
                 </div>
               </div>
               <div className="option-container">
@@ -81,7 +71,7 @@ export default function ProfilePreview({
                     handleMessageClick();
                   }}
                 >
-                  <FiMail size={35} className="message-friend" />
+                  <FiMail size={45} className="message-friend" />
                 </div>
               </div>
             </div>

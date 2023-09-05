@@ -104,7 +104,7 @@ export default function ChatPage() {
   if (isLoading) {
     content = <div>loading</div>;
   } else if (isSuccess) {
-    thisChat = data.chats.filter((chat) => chat._id == chatId)[0];
+    thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
     friend = thisChat.participants.friend;
     user = thisChat.participants.user;
     messages = thisChat.messages;

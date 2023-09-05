@@ -8,15 +8,19 @@ const Wrapper = styled.aside`
     color: rgb(100, 100, 100);
     font-size: 0.9rem;
     margin-left: 0.1rem;
+    letter-spacing: 0.02rem;
+    font-size: 0.8rem;
   }
   .chat-name {
     font-weight: 600;
     font-size: 0.9rem;
-    line-height: 1.4rem;
+    line-height: 1.2rem;
   }
   .chat-preview-image {
     width: 60px;
     height: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 5rem;
   }
   .chat-preview-main {

@@ -81,14 +81,16 @@ const Wrapper = styled.section`
     border-top: 8px solid rgb(244, 244, 244);
     gap: 8px;
     background: rgb(220, 220, 220);
+    // background: rgb(244, 244, 244);
   }
   .profiles-container {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 8px;
     background: rgb(220, 220, 220);
+    background: rgb(244, 244, 244);
     border-top: 8px solid rgb(244, 244, 244);
   }
   .scrolled {

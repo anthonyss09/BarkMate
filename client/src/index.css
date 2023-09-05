@@ -46,6 +46,8 @@ font-family: 'Ysabeau', sans-serif; */
   --crystal-blue-green: #9bf6ff;
   --light-bright-blue: #48cae4;
   --med-bright-blue: #3a86ff;
+  --med-font-blue: #3f587f;
+
   --light-light-green: #c7f9cc;
   --crystaly-green: #72efdd;
   --light-bright-green: #80ed99;
@@ -195,6 +197,7 @@ select {
   position: absolute;
   top: 12.5rem;
   right: 2.6rem;
+  top: 8rem;
   z-index: 2;
   border-radius: 0.4rem;
   border: 1px solid rgb(230, 230, 230);

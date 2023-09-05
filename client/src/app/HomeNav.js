@@ -16,6 +16,7 @@ import {
 import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
+import { useGetFriendsQuery } from "../features/api/apiSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -25,6 +26,7 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
+  const urlPre = "../../public/data/uploads/";
 
   const currentUser = useSelector(selectCurrentUser);
   const {
@@ -34,10 +36,6 @@ export default function NavBar() {
     refetch,
   } = useGetNotificationsQuery(currentUser._id);
   const [markAllNotificationsRead] = useMarkAllNotificationsReadMutation();
-  // const { data: friends, isLoading: friendsLoadingState } = useGetFriendsQuery(
-  //   currentUser.friends
-  // );
-  // console.log("prof view friends", friends);
 
   const notifications = allNotifications ? Object.values(allNotifications) : [];
 
@@ -116,6 +114,9 @@ export default function NavBar() {
             className="icon icon-notification"
             onClick={handleShowNotifications}
           />
+          <div className="nav-profile-imag">
+            <img url={urlPre + currentUser.profileImageName} />
+          </div>
           <FaUserCircle
             size={35}
             onClick={handleSmallSidebar}

@@ -12,10 +12,14 @@ const Wrapper = styled.footer`
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    padding: 2rem;
+    gap: 0.8rem;
+    padding: 1rem;
   }
   .link {
     color: rgb(60, 60, 60);
+    letter-spacing: 0.03rem;
+    color: var(--med-font-blue);
+    // color: var(--federal-blue);
   }
 `;
 

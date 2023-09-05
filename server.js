@@ -95,11 +95,11 @@ wss.on("connection", (ws, req) => {
         }
         break;
       case "chat":
-        //update and target only participants of chat ****
         {
-          // Object.values(clients).map((client) => client.send(data));
-          clients[parsedData.content.message.recipient].send(data);
-          clients[parsedData.content.message.sender].send(data);
+          clients[parsedData.content.message.recipient] &&
+            clients[parsedData.content.message.recipient].send(data);
+          clients[parsedData.content.message.sender] &&
+            clients[parsedData.content.message.sender].send(data);
         }
         break;
       case "friendRequest":

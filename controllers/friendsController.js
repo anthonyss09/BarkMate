@@ -69,10 +69,17 @@ const declineFriend = async (req, res) => {
 };
 
 const getFriends = async (req, res) => {
-  const { friendIds } = req.query;
-  const parsedIds = JSON.parse(friendIds);
+  // const { friendIds } = req.query;
+  // const parsedIds = JSON.parse(friendIds);
+  const { userId } = req.query;
+
   try {
-    const friends = await Friends.find({ _id: { $in: parsedIds } });
+    // const friends = await Friends.find({ _id: { $in: parsedIds } });
+    // res.status(StatusCodes.OK).json({ friends });
+    const friends = await Friends.find({
+      $or: [{ requester: userId }, { recipient: userId }],
+    });
+    console.log("first friends", friends);
     res.status(StatusCodes.OK).json({ friends });
   } catch (error) {
     console.log(error);

@@ -15,7 +15,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
   let userRequestedContent;
   let userFriendsContent;
   const urlPre = "../../data/uploads/";
-  const { data: friends, isLoading } = useGetFriendsQuery(currentUser.friends);
+  const { data: friends, isLoading } = useGetFriendsQuery(currentUser._id);
   const [acceptFriend] = useAcceptFriendMutation();
   const [declineFriend] = useDeclineFriendMutation();
   console.log("friends are", friends);

@@ -44,7 +44,7 @@ export default function NotificationsView({
                 <span className="notification-sender">
                   {notification.senderProfileName}
                 </span>
-                sent you a message
+                <span className="notification-text"> Sent you a message</span>
               </div>
             </Link>
           );
@@ -74,7 +74,10 @@ export default function NotificationsView({
                 <span className="notification-sender">
                   {notification.senderProfileName}
                 </span>
-                sent you a {notification.notificationType}
+                <span className="notification-text">
+                  {" "}
+                  Sent you a {notification.notificationType}
+                </span>
               </div>
             </Link>
           );
@@ -104,7 +107,7 @@ export default function NotificationsView({
                 <span className="notification-sender">
                   {notification.senderProfileName}
                 </span>
-                you recieved a friend request
+                <span className="notification-text">Sent a friend request</span>
               </div>
             </Link>
           );

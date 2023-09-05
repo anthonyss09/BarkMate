@@ -19,8 +19,11 @@ export default function DashHome() {
   const coordinates = user.location.coordinates;
   const { data: currentUser, isLoading: loadingUser } =
     useRefreshUserCredentialsQuery(userId);
-  const { data: postsData, isLoading: loadingPosts } =
-    useGetPostsQuery(coordinates);
+  const {
+    data: postsData,
+    isLoading: loadingPosts,
+    refetch,
+  } = useGetPostsQuery(coordinates);
 
   let posts;
   if (!loadingPosts) {
