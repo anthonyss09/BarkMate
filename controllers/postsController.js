@@ -2,9 +2,15 @@ import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Post from "../models/postsModel.js";
+import {
+  cloudinaryUpload,
+  getAssetInfo,
+  createImageTag,
+} from "../utils/cloudinary_upload.js";
 
 const createPost = async (req, res) => {
   console.log("hit bitch");
+  // console.log(req.file);
   const {
     postImageName,
     text,
@@ -13,20 +19,29 @@ const createPost = async (req, res) => {
     authorImageName,
     authorName,
     authorDogName,
+    imageUrl,
   } = req.body;
 
-  const coordsArray = coordinates.split(",");
+  // const colors = await getAssetInfo(publicId);
+  // const imageTag = createImageTag({ publicId, ...colors });
+  // const imageObject = JSON.stringify({ imageTag });
+  // const imageUrl = imageTag.toString().split("'")[1];
 
-  let newCoords = [];
-  coordsArray.map((coord) => newCoords.push(Number(coord)));
+  // const coordsArray = coordinates.split(",");
 
-  const location = { type: "Point", coordinates: newCoords };
+  // let newCoords = [];
+  // coordsArray.map((coord) => newCoords.push(Number(coord)));
+
+  const location = { type: "Point", coordinates: coordinates };
 
   if (!postImageName && !text) {
     throw new BadRequestError("Add text or pic to your post.");
   }
 
   try {
+    // const result = await cloudinaryUpload(path);
+    // const publicId = result.public_id;
+    // const imageUrl = result.secure_url;
     const post = await Post.create({
       postImageName,
       text,
@@ -35,6 +50,7 @@ const createPost = async (req, res) => {
       authorImageName,
       authorName,
       authorDogName,
+      imageUrl,
     });
     console.log(post);
     res.status(StatusCodes.CREATED).json({ post });
@@ -45,7 +61,9 @@ const createPost = async (req, res) => {
 
 const getPosts = async (req, res) => {
   //get user coords
+  console.log("getting posts");
   const { coordinates } = req.query;
+  console.log(coordinates);
   //posts within 5 miles
   const distanceInMeters = 8046.7;
 
@@ -62,6 +80,7 @@ const getPosts = async (req, res) => {
         },
       },
     }).sort({ createdAt: -1 });
+
     res.status(StatusCodes.OK).json({ posts });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });

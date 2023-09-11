@@ -28,7 +28,7 @@ export default function DashProfiles() {
   const filterOptions = ["1 mile", "2 miles", "3 miles", "4 miles", "5 miles"];
 
   useEffect(() => {
-    refetch();
+    // refetch();
   }, [distance]);
 
   useEffect(() => {

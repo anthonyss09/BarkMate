@@ -71,6 +71,10 @@ const PostsSchema = new mongoose.Schema(
     location: {
       type: PointSchema,
     },
+    imageUrl: { type: String },
+    imageObject: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

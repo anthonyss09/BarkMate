@@ -27,11 +27,13 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
 
     friendRequested = Object.values(friends)
       .filter((friend) => friend.recipient === currentUser._id)
-      .filter((friend) => friend.recipientStatus !== "friends");
+      .filter((friend) => friend.recipientStatus !== "friends")
+      .filter((friend) => friend.recipientStatus != "declined");
 
     userRequested = Object.values(friends)
       .filter((friend) => friend.recipient !== currentUser._id)
-      .filter((friend) => friend.recipientStatus !== "friends");
+      .filter((friend) => friend.recipientStatus !== "friends")
+      .filter((friend) => friend.recipientStatus !== "declined");
 
     friendRequestedContent = (
       <div className="friend-list">
@@ -52,7 +54,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 onClick={() => {
                   const friendCopy = { ...friend };
                   friendCopy.recipientStatus = "friends";
-                  friendCopy.requesterStatus = "friendss";
+                  friendCopy.requesterStatus = "friends";
                   acceptFriend({ ...friendCopy, requestId: friend._id });
                 }}
               >
@@ -62,8 +64,8 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 className="friend-ignore"
                 onClick={() => {
                   const friendCopy = { ...friend };
-                  friendCopy.recipient = "";
-                  friendCopy.recipientStatus = "friends";
+                  friendCopy.recipientStatus = "declined";
+                  friendCopy.requesterStatus = "declined";
                   declineFriend({ ...friendCopy, requestId: friend._id });
                 }}
               >

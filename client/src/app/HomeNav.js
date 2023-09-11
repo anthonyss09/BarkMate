@@ -3,7 +3,7 @@ import Logo from "../components/Logo";
 import { HiBars3 } from "react-icons/hi2";
 import { FaUserCircle } from "react-icons/fa";
 import SmallSidebar from "../components/SmallSidebar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import BigSidebar from "../components/BigSidebar";
 import { logoutUser } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,11 +18,16 @@ import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
 import { useGetFriendsQuery } from "../features/api/apiSlice";
 
-export default function NavBar() {
+export default memo(function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
   const [showBigSidebar, setShowBigSidebar] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showFriends, setShowFriends] = useState(false);
+
+  // let showNotifications;
+  // let setShowNotifications;
+  // let showFriends = false;
+  // let setShowFriends = () => {};
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -137,4 +142,4 @@ export default function NavBar() {
       )}
     </Wrapper>
   );
-}
+});

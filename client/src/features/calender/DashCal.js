@@ -73,7 +73,7 @@ export default function DashCal() {
           />
           <EventsRow
             eventsTitle="Reoccurring events"
-            events={reoccurringEvents}
+            events={reoccurringEvents} 
           />
           <div className="add-line" onClick={handleClick}>
             {" "}

@@ -1,7 +1,7 @@
 import Wrapper from "../../assets/wrappers/PostW";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState } from "react";
+import { useState, memo } from "react";
 // import { useEditPostMutation } from "./PostsSlice";
 import { useEditPostMutation } from "../api/apiSlice";
 import { useCreateNotificationMutation } from "../api/apiSlice";
@@ -13,7 +13,7 @@ import moment from "moment";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
 
-export default function Post({
+export default memo(function Post({
   authorId,
   authorName,
   authorDogName,
@@ -30,6 +30,8 @@ export default function Post({
   currentUserDogName,
   currentUserCoords,
   currentUserProfileName,
+  imageTag,
+  imageUrl,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -169,12 +171,9 @@ export default function Post({
               <span className="post-date">{dateOfPost}</span>
             </span>
           </div>
-
           <div className="post-text">{text}</div>
           <div className="post-image">
-            {postImageName && (
-              <img src={urlPre + postImageName} className="post-body-pic" />
-            )}
+            {postImageName && <img src={imageUrl} className="post-body-pic" />}
           </div>
           <div className="post-info"></div>
           <div className="post-options">
@@ -206,7 +205,6 @@ export default function Post({
               show less comments
             </div>
           )}
-
           {showPostComment && (
             <CreateComment
               postImageName={postImageName}
@@ -229,4 +227,4 @@ export default function Post({
       </aside>
     </Wrapper>
   );
-}
+});

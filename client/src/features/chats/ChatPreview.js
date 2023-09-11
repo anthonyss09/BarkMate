@@ -1,7 +1,8 @@
 import Wrapper from "../../assets/wrappers/ChatPreviewW";
 import { Link } from "react-router-dom";
+import { memo } from "react";
 
-export default function ChatPreview({
+export default memo(function ChatPreview({
   imageName,
   message,
   profileName,
@@ -26,4 +27,4 @@ export default function ChatPreview({
       </Link>
     </Wrapper>
   );
-}
+});

@@ -16,6 +16,7 @@ const Wrapper = styled.aside`
     border: 1px solid rgb(230, 230, 230);
   }
   .comments-container {
+    margin: 0 1rem;
   }
   .comment-icon-close {
     margin-top: 0.4rem;
@@ -163,11 +164,14 @@ const Wrapper = styled.aside`
     justify-content: space-between;
     border-bottom: 1px solid var(--test-blue);
     padding: 0 1rem;
+    padding-bottom: 0.2rem;
+    margin: 0 0.6rem;
   }
   .post-text {
     font-size: 0.8rem;
     padding: 1rem;
     letter-spacing: 0.02rem;
+    margin-left: 1rem;
     // padding: 2rem 0;
   }
   .post-textarea {

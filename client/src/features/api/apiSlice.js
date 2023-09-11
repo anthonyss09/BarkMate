@@ -20,7 +20,7 @@ export const apiSlice = createApi({
     //prepare headers
   }),
 
-  tagTypes: ["CurrentUser", "Posts"],
+  tagTypes: ["CurrentUser", "Posts", "Post"],
   endpoints: (builder) => ({
     getNotifications: builder.query({
       query: (userId) => ({

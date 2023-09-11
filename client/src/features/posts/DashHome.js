@@ -27,7 +27,7 @@ export default function DashHome() {
 
   let posts;
   if (!loadingPosts) {
-    posts = Object.values(postsData);
+    posts = Object.values(postsData).length > 0 ? Object.values(postsData) : [];
   }
 
   const [showCreatePost, setShowCreatePost] = useState(false);
@@ -61,6 +61,9 @@ export default function DashHome() {
 
   const content = postsData ? (
     posts.map((post, index) => {
+      const imageTag = post.imageObject
+        ? JSON.parse(post.imageObject).imageTag
+        : "";
       return (
         <Post
           authorId={post.authorId}
@@ -80,6 +83,7 @@ export default function DashHome() {
           currentUserCoords={coordinates}
           currentUserProfileName={user.profileName}
           createdAt={post.createdAt}
+          imageUrl={post.imageUrl}
         />
       );
     })

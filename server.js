@@ -15,6 +15,7 @@ import postsRouter from "./routes/postsRoutes.js";
 import notificationsRouter from "./routes/notificationRoutes.js";
 import chatsRouter from "./routes/chatsRoutes.js";
 import eventRouter from "./routes/eventRoutes.js";
+import uploadsController from "./routes/uploadRoutes.js";
 import { v4 as uuidv4 } from "uuid";
 
 app.use(express.json());
@@ -23,18 +24,14 @@ app.use(express.json());
 app.use("/api/auth", upload.single("profileImage"), authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/friends", friendsRouter);
-app.use(
-  "/api/posts",
-  upload.single("postImage"),
-
-  postsRouter
-);
+app.use("/api/posts", postsRouter);
 app.use("/api/notifications", notificationsRouter);
 app.use("/api/chats", chatsRouter);
 app.use("/api/events", eventRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Bark Mate!");
+  res.send(imageTag);
 });
 
 const port = process.env.port || 8080;

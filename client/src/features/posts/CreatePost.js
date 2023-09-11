@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
-import { useState } from "react";
+import { useState, memo } from "react";
 // import { useCreatePostMutation } from "./PostsSlice";
 import { useCreatePostMutation } from "../api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import { useUploadPicMutation } from "../uploads/UploadsSlice";
 
-export default function CreatePost({ handleClick, showCreatePost }) {
+export default memo(function CreatePost({ handleClick, showCreatePost }) {
   const [postImage, setPostImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [postImageName, setPostImageName] = useState("");
@@ -17,6 +18,7 @@ export default function CreatePost({ handleClick, showCreatePost }) {
   const [isFocused, setIsFocused] = useState(false);
 
   const [createPost] = useCreatePostMutation();
+  const [uploadPic] = useUploadPicMutation();
 
   const currentUser = useSelector(selectCurrentUser);
 
@@ -31,6 +33,7 @@ export default function CreatePost({ handleClick, showCreatePost }) {
     const image = e.target.files[0] || "";
     setPostImage(image);
     setPostImageName(image.name);
+    console.log(postImageName);
 
     if (image) {
       const objUrl = URL.createObjectURL(image);
@@ -54,17 +57,35 @@ export default function CreatePost({ handleClick, showCreatePost }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("postImageName", postImageName);
-    formData.append("postImage", postImage);
-    formData.append("text", postText);
-    formData.append("authorId", currentUser._id);
-    formData.append("coordinates", currentUser.location.coordinates);
-    formData.append("authorImageName", user.profileImageName);
-    formData.append("authorName", user.firstName);
-    formData.append("authorDogName", user.dogName);
+    // const formData = new FormData();
+    // formData.append("postImageName", postImageName);
+    // formData.append("postImage", postImage);
+    // formData.append("text", postText);
+    // formData.append("authorId", currentUser._id);
+    // formData.append("coordinates", currentUser.location.coordinates);
+    // formData.append("authorImageName", user.profileImageName);
+    // formData.append("authorName", user.firstName);
+    // formData.append("authorDogName", user.dogName);
+
+    const post = {
+      postImageName,
+      postImage,
+      text: postText,
+      authorId: currentUser._id,
+      coordinates: currentUser.location.coordinates,
+      authorImageName: user.profileImageName,
+      authorName: user.firstName,
+      authorDogName: user.dogName,
+    };
+
+    const cloudinaryFormData = new FormData();
+    cloudinaryFormData.append("file", postImage);
+    cloudinaryFormData.append("upload_preset", "bark_mate");
+
     try {
-      await createPost(formData);
+      const cloudinaryResult = await uploadPic(cloudinaryFormData);
+      post.imageUrl = cloudinaryResult.data.secure_url;
+      const newPost = await createPost(post);
       setPostImage("");
       setImageUrl("");
       setPostImageName("");
@@ -151,4 +172,4 @@ export default function CreatePost({ handleClick, showCreatePost }) {
       </form>
     </Wrapper>
   );
-}
+});
