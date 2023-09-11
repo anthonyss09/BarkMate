@@ -19,8 +19,8 @@ const Wrapper = styled.main`
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    border-top: 1px solid rgb(244, 244, 244);
-    border-top: 1px solid rgb(230, 230, 230);
+    // border-top: 1px solid rgb(244, 244, 244);
+    // border-top: 1px solid rgb(230, 230, 230);
   }
   .chat-page-header {
     width: 100%;

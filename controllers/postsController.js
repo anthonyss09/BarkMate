@@ -9,7 +9,6 @@ import {
 } from "../utils/cloudinary_upload.js";
 
 const createPost = async (req, res) => {
-  console.log("hit bitch");
   // console.log(req.file);
   const {
     postImageName,

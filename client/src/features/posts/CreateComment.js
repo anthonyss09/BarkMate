@@ -23,7 +23,7 @@ export default function CreateComment({
     <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
       <div className="comment-icon-close">
         {" "}
-        <AiOutlineClose size={35} onClick={handleShowPostComment} />
+        <AiOutlineClose size={25} onClick={handleShowPostComment} />
       </div>
       <div className="post-comment-preview">
         {" "}

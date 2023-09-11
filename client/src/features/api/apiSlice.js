@@ -422,7 +422,7 @@ export const apiSlice = createApi({
         method: "POST",
         body: { postId, update, currentUserCoords },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "Post", _id: arg._id }],
+      // invalidatesTags: (result, error, arg) => [{ type: "Post", _id: arg._id }],
       async onQueryStarted(
         { postId, update, currentUserCoords },
         { dispatch, queryFulfilled }
