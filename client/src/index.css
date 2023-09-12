@@ -266,6 +266,14 @@ select {
 .form-input::placeholder {
   color: rgb(180, 180, 180);
 }
+.form-textarea {
+  border-radius: 1.5rem;
+  border: 2px solid var(--grey-240);
+  padding-left: 0.8rem;
+  padding-top: 0.6rem;
+  background: none;
+  resize: none;
+}
 .full-page {
   height: 100vh;
   width: 100vw;
@@ -299,6 +307,10 @@ select {
   min-height: 90vh;
   min-height: 70vh;
   padding-bottom: 2rem;
+}
+.profile-input-image {
+  max-width: 200px;
+  margin-bottom: 1rem;
 }
 .scrolled-nav {
   position: fixed;

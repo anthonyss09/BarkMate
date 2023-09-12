@@ -18,6 +18,7 @@ export default function NotificationsView({
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
 
   if (notifications.length) {
+    console.log(notifications);
     content = notifications.map((notification, index) => {
       switch (notification.notificationPath) {
         case "chats": {
@@ -38,7 +39,7 @@ export default function NotificationsView({
                 }}
               >
                 <img
-                  src={urlPre + notification.senderProfileImageName}
+                  src={notification.senderProfileImageUrl}
                   className="notification-image"
                 />
                 <span className="notification-sender">
@@ -68,7 +69,7 @@ export default function NotificationsView({
                 }}
               >
                 <img
-                  src={urlPre + notification.senderProfileImageName}
+                  src={notification.senderProfileImageUrl}
                   className="notification-image"
                 />
                 <span className="notification-sender">
@@ -101,7 +102,7 @@ export default function NotificationsView({
                 }}
               >
                 <img
-                  src={urlPre + notification.senderProfileImageName}
+                  src={notification.senderProfileImageUrl}
                   className="notification-image"
                 />
                 <span className="notification-sender">

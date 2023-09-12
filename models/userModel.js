@@ -74,6 +74,7 @@ const UserSchema = new mongoose.Schema({
     type: [{ type: String }],
     required: [true, "Please provide your availability."],
   },
+  profileImageUrl: { type: String },
   profileImageName: {
     type: String,
   },

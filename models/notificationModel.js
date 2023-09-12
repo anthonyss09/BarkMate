@@ -17,6 +17,7 @@ const NotificationsSchema = new mongoose.Schema(
     senderProfileImageName: {
       type: String,
     },
+    senderProfileImageUrl: { type: String },
     senderProfileName: {
       type: String,
     },

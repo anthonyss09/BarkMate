@@ -5,6 +5,7 @@ import {
   useAcceptFriendMutation,
   useDeclineFriendMutation,
 } from "../api/apiSlice";
+import { Link } from "react-router-dom";
 
 export default function FriendsView({ handleShowFriends, currentUser }) {
   let userFriends;
@@ -39,12 +40,17 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
       <div className="friend-list">
         <h3 className="friend-list-header">Requests</h3>
         {friendRequested.map((friend, index) => {
+          console.log(friend.friend);
           return (
             <div key={index} className="friends-view-single">
-              <img
-                src={urlPre + friend.friend.participantProfileImageName}
-                className="friend-image"
-              />
+              <Link to={"/" + friend.friend.participantId}>
+                {" "}
+                <img
+                  src={friend.friend.participantProfileImageUrl}
+                  className="friend-image"
+                />
+              </Link>
+
               <span className="friend-name">
                 {" "}
                 {friend.friend.participantProfileName}
@@ -83,10 +89,13 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
         {userRequested.map((friend, index) => {
           return (
             <div key={index} className="friends-view-single">
-              <img
-                src={urlPre + friend.friend.participantProfileImageName}
-                className="friend-image"
-              />
+              <Link to={"/" + friend.friend.participantId}>
+                {" "}
+                <img
+                  src={friend.friend.participantProfileImageUrl}
+                  className="friend-image"
+                />
+              </Link>
               <span className="friend-name">
                 {friend.friend.participantProfileName}{" "}
               </span>
@@ -103,10 +112,13 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
         {userFriends.map((friend, index) => {
           return (
             <div key={index} className="friends-view-single">
-              <img
-                src={urlPre + friend.friend.participantProfileImageName}
-                className="friend-image"
-              />
+              <Link to={"/" + friend.friend.participantId}>
+                {" "}
+                <img
+                  src={friend.friend.participantProfileImageUrl}
+                  className="friend-image"
+                />
+              </Link>
               <span className="friend-name">
                 {" "}
                 {friend.friend.participantProfileName}

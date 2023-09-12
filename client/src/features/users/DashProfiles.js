@@ -20,6 +20,7 @@ export default function DashProfiles() {
   });
 
   const [showFilters, setShowFilters] = useState(false);
+  console.log(data);
 
   const handleClick = () => {
     setShowFilters(!showFilters);
@@ -38,7 +39,7 @@ export default function DashProfiles() {
   let content;
   if (isLoading) {
     content = <BeatLoader color="silver" size={25} className="beat-loader" />;
-  } else if (!data.filteredMatches.length) {
+  } else if (data.filteredMatches.length < 1) {
     content = (
       <div className="no-matches">
         Currently no matches in your area, try expanding your search.
@@ -51,7 +52,7 @@ export default function DashProfiles() {
           key={index}
           firstName={match.firstName}
           aboutUs={match.aboutUs}
-          profileImageName={match.profileImageName}
+          profileImageUrl={match.profileImageUrl}
           id={match._id}
           profileName={match.profileName}
           currentUser={currentUser}

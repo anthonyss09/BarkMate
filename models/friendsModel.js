@@ -11,6 +11,9 @@ const participantSchema = new mongoose.Schema({
   participantProfileImageName: {
     type: String,
   },
+  participantProfileImageUrl: {
+    type: String,
+  },
 });
 
 const FriendsSchema = new mongoose.Schema(

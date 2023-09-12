@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import { memo } from "react";
 
 export default memo(function ChatPreview({
-  imageName,
+  profileImageUrl,
   message,
   profileName,
   chatId,
 }) {
-  const urlPre = "../../data/uploads/";
   const { content } = message;
   return (
     <Wrapper>
@@ -17,7 +16,7 @@ export default memo(function ChatPreview({
         <aside className="chat-preview-main">
           {" "}
           <div to="/profileid">
-            <img src={urlPre + imageName} className="chat-preview-image" />
+            <img src={profileImageUrl} className="chat-preview-image" />
           </div>
           <div className="chat-preview-body">
             <div className="chat-name">{profileName}</div>

@@ -12,28 +12,23 @@ import ChatLineUser from "./ChatLineUser";
 import { useState } from "react";
 import {
   useCreateChatMutation,
-  // useUpdateWebSocketReadyStateMutation,
   useCreateNotificationMutation,
 } from "../api/apiSlice";
-import { selectWebSocketReadyState } from "./ChatsSlice";
 import mongoose from "mongoose";
 
 export default function ChatPage() {
   const {
     _id: userId,
-    profileImageName,
     profileName,
+    profileImageUrl,
   } = useSelector(selectCurrentUser);
   const { data, isLoading, isSuccess, error, refetch } =
     useGetChatsQuery(userId);
   const { chatId } = useParams();
   const id = new mongoose.Types.ObjectId();
 
-  // const webSocketReadyState = useSelector(selectWebSocketReadyState);
-
   const [message, setMessage] = useState("");
   const [createChat] = useCreateChatMutation();
-  // const [updateWebSocketReadyState] = useUpdateWebSocketReadyStateMutation();
   const [createNotification] = useCreateNotificationMutation();
 
   const handleInputChange = (e) => {
@@ -47,12 +42,12 @@ export default function ChatPage() {
         {
           participantId: userId,
           participantProfileName: profileName,
-          participantImageName: profileImageName,
+          participantProfileImageUrl: profileImageUrl,
         },
         {
           participantId: friend.participantId,
           participantProfileName: friend.participantImageName,
-          participantImageName: friend.participantProfileName,
+          participantProfileImageUrl: friend.participantProfileImageUrl,
         },
       ],
       message: {
@@ -66,7 +61,7 @@ export default function ChatPage() {
       chatId,
       recipient: friend.participantId,
       sender: userId,
-      senderProfileImageName: profileImageName,
+      senderProfileImageUrl: profileImageUrl,
       senderProfileName: profileName,
       notificationPath: "chats",
       notificationType: "message",
@@ -105,6 +100,7 @@ export default function ChatPage() {
     content = <div>loading</div>;
   } else if (isSuccess) {
     thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
+    console.log("this chat", thisChat);
     friend = thisChat.participants.friend;
     user = thisChat.participants.user;
     messages = thisChat.messages;
@@ -115,7 +111,7 @@ export default function ChatPage() {
           <ChatLineUser
             key={index}
             text={message.content}
-            imageName={user.participantImageName}
+            profileImageUrl={user.participantProfileImageUrl}
           />
         );
       } else {
@@ -123,7 +119,8 @@ export default function ChatPage() {
           <ChatLineFriend
             key={index}
             text={message.content}
-            imageName={friend.participantImageName}
+            profileImageUrl={friend.participantProfileImageUrl}
+            participantId={friend.participantId}
           />
         );
       }

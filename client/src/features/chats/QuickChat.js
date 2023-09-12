@@ -11,16 +11,16 @@ import {
 import mongoose from "mongoose";
 
 export default function QuickChat({
-  recipientImageName,
   recipientId,
   handleMessageClick,
   recipientProfileName,
   showQuickChat,
+  recipientImageUrl,
 }) {
   const {
     _id: currentUserId,
-    profileImageName,
     profileName,
+    profileImageUrl,
   } = useSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -44,12 +44,12 @@ export default function QuickChat({
         {
           participantId: currentUserId,
           participantProfileName: profileName,
-          participantImageName: profileImageName,
+          participantProfileImageUrl: profileImageUrl,
         },
         {
           participantId: recipientId,
           participantProfileName: recipientProfileName,
-          participantImageName: recipientImageName,
+          participantProfileImageUrl: recipientImageUrl,
         },
       ],
       message: {
@@ -63,8 +63,8 @@ export default function QuickChat({
       chatId: newChat._id,
       recipient: recipientId,
       sender: currentUserId,
-      senderProfileImageName: profileImageName,
       senderProfileName: profileName,
+      senderProfileImageUrl: profileImageUrl,
       notificationPath: "chats",
       notificationType: "message",
       is_read: false,
@@ -87,10 +87,7 @@ export default function QuickChat({
             onClick={handleMessageClick}
           />
           <div className="quick-chat-header">
-            <img
-              src={urlPre + recipientImageName}
-              className="quick-chat-image"
-            />
+            <img src={recipientImageUrl} className="quick-chat-image" />
             <div className="header-text">
               {" "}
               <span className="quick-chat-recipient">

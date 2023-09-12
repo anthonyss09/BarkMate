@@ -18,7 +18,8 @@ const createPost = async (req, res) => {
     authorImageName,
     authorName,
     authorDogName,
-    imageUrl,
+    postImageUrl,
+    authorImageUrl,
   } = req.body;
 
   // const colors = await getAssetInfo(publicId);
@@ -49,7 +50,8 @@ const createPost = async (req, res) => {
       authorImageName,
       authorName,
       authorDogName,
-      imageUrl,
+      postImageUrl,
+      authorImageUrl,
     });
     console.log(post);
     res.status(StatusCodes.CREATED).json({ post });

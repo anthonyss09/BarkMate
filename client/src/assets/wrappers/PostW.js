@@ -211,7 +211,7 @@ const Wrapper = styled.aside`
     // padding: 1.6rem;
     padding: 0.6rem;
     height: 6.2rem;
-    border: 2px solid rgb(230, 230, 230);
+    // border: 2px solid rgb(230, 230, 230);
   }
   .show-comments {
     text-align: center;

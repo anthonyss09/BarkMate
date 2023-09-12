@@ -8,6 +8,8 @@ import FormCheckbox from "./FormCheckbox";
 import { useSelector } from "react-redux";
 import { selectNewUser } from "./authSlice";
 import { useRegisterUserMutation } from "../auth/authSlice";
+import ProfileImageInput from "../../components/ProfileImageInput";
+import { useUploadPicMutation } from "../uploads/UploadsSlice";
 
 export default function RegisterThree({
   handleInputChange,
@@ -19,6 +21,8 @@ export default function RegisterThree({
   const [profileImageName, setProfileImageName] = useState();
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const Navigate = useNavigate();
+
+  const [uploadPic] = useUploadPicMutation();
 
   const newUser = useSelector(selectNewUser);
 
@@ -33,17 +37,29 @@ export default function RegisterThree({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const copyOfUser = { ...newUser };
-    copyOfUser.profileImage = profileImage;
-    copyOfUser.profileImageName = profileImageName;
+    // copyOfUser.profileImage = profileImage;
+    // copyOfUser.profileImageName = profileImageName;
     copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
-    const formData = new FormData();
-    const copyUserArr = Object.entries(copyOfUser);
-    copyUserArr.map((entry) => {
-      formData.append(entry[0], entry[1] || "");
-    });
+    // const formData = new FormData();
+    // const copyUserArr = Object.entries(copyOfUser);
+    // copyUserArr.map((entry) => {
+    //   formData.append(entry[0], entry[1] || "");
+    // });
+
+    const cloudinaryFormData = new FormData();
+    cloudinaryFormData.append("file", profileImage);
+    cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
+
+    // const cloudinaryFormDataFull = new FormData();
+    // cloudinaryFormDataFull.append("file", profileImage);
+    // cloudinaryFormDataFull.append("upload_preset", "bark_mate_standard_pics");
 
     try {
-      const response = await registerUser(formData);
+      const cloudinaryResult = await uploadPic(cloudinaryFormData);
+      // const cloudinaryResultFull = await uploadPic(cloudinaryFormDataFull);
+      copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
+      // copyOfUser.imageUrlFull = cloudinaryResultFull.data.secure_url;
+      const response = await registerUser(copyOfUser);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("token", JSON.stringify(response.data.token));
       Navigate("/dashboard/home");
@@ -65,7 +81,7 @@ export default function RegisterThree({
           </Link>
           <FormSteps showRegisterThree={showRegisterThree} />
           <h1 className="form-header">Finish profile</h1>
-          <div className="form-row">
+          {/* <div className="form-row">
             {profileImage && (
               <div className="profile-image-container">
                 <img src={imageUrl} className="profile-image" />
@@ -80,7 +96,13 @@ export default function RegisterThree({
                 onChange={handleImageChange}
               />
             </label>
-          </div>
+          </div> */}
+
+          <ProfileImageInput
+            profileImage={profileImage}
+            handleImageChange={handleImageChange}
+            imageUrl={imageUrl}
+          />
           <div className="form-row">
             <label htmlFor="aboutUs" className="form-label">
               About us

@@ -15,19 +15,13 @@ import {
 import mongoose from "mongoose";
 
 export default function ProfilePreview({
-  firstName,
-  dogName,
   aboutUs,
-  profileImageName,
-  timeAvailable,
-  timeNeeded,
   id,
   profileName,
   currentUser,
+  profileImageUrl,
 }) {
   const [showQuickChat, setShowQuickChat] = useState(false);
-
-  const urlPre = "../../data/uploads/";
 
   const [createNotification] = useCreateNotificationMutation();
   const [requestFriend] = useRequestFriendMutation();
@@ -42,19 +36,15 @@ export default function ProfilePreview({
         {
           participantId: currentUser._id,
           participantProfileName: currentUser.profileName,
-          participantProfileImageName: currentUser.profileImageName,
+          participantProfileImageUrl: currentUser.profileImageUrl,
         },
         {
           participantId: id,
           participantProfileName: profileName,
-          participantProfileImageName: profileImageName,
+          participantProfileImageUrl: profileImageUrl,
         },
       ],
-      // requesterProfileName: currentUser.user.profileName,
-      // requesterProfileImageName: currentUser.user.profileImageName,
       recipient: id,
-      // recipientProfileName: user.profileName,
-      // recipientProfileImageName: user.profileImageName,
       requesterStatus: "pending",
       recipientStatus: "requested",
     });
@@ -63,8 +53,8 @@ export default function ProfilePreview({
       friendId: id,
       recipient: id,
       sender: currentUser._id,
-      senderProfileImageName: currentUser.profileImageName,
       senderProfileName: currentUser.profileName,
+      senderProfileImageUrl: currentUser.profileImageUrl,
       notificationPath: "friendRequests",
       notificationType: "friendRequest",
       is_read: false,
@@ -90,7 +80,7 @@ export default function ProfilePreview({
               {" "}
               <img
                 className="profile-preview-pic"
-                src={urlPre + profileImageName}
+                src={profileImageUrl}
                 alt="jennie & max"
               />
             </Link>{" "}
@@ -148,10 +138,10 @@ export default function ProfilePreview({
       </aside>
       <QuickChat
         recipientId={id}
-        recipientImageName={profileImageName}
         handleMessageClick={handleMessageClick}
         recipientProfileName={profileName}
         showQuickChat={showQuickChat}
+        recipientImageUrl={profileImageUrl}
       />
     </Wrapper>
   );

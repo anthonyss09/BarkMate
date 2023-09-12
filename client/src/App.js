@@ -12,10 +12,11 @@ import ProfilePageView from "./features/users/ProfilePageView";
 import GroupPage from "./features/users/GroupPage";
 import ChatPage from "./features/chats/ChatPage";
 import LoginPage from "./pages/LoginPage";
-import ProfilePageEdit from "./features/users/ProfilePageEdit";
+import UserProfileView from "./features/users/UserProfileView";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import EditProfile from "./features/users/EditProfile";
 
 function App() {
   return (
@@ -41,7 +42,12 @@ function App() {
               <Route exact path="calender" element={<DashCal />} />
               <Route exact path="chats" element={<DashChats />} />
             </Route>
-            <Route exact path="/userProfile" element={<ProfilePageEdit />} />
+            <Route exact path="/userProfile" element={<UserProfileView />} />
+            <Route
+              exact
+              path="/userProfile/editProfile"
+              element={<EditProfile />}
+            />
             <Route exact path="/:profileId" element={<ProfilePageView />} />
             <Route exact path="/groupid" element={<GroupPage />} />
             <Route exact path="chats/:chatId" element={<ChatPage />} />

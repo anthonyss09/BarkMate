@@ -6,11 +6,12 @@ export default function Comment({
   commentFirstName,
   commentDogName,
   border,
+  commentUserProfileImageUrl,
 }) {
   return (
     <Wrapper>
       <div className={"comment-row"}>
-        <img src={commentUserImageName} className="comment-image" />
+        <img src={commentUserProfileImageUrl} className="comment-image" />
         <div className="comment-body">
           <div className="comment-author">
             {" "}

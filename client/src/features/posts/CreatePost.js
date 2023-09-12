@@ -7,7 +7,7 @@ import { FiCamera } from "react-icons/fi";
 import { useState, memo } from "react";
 // import { useCreatePostMutation } from "./PostsSlice";
 import { useCreatePostMutation } from "../api/apiSlice";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 
 export default memo(function CreatePost({ handleClick, showCreatePost }) {
@@ -22,10 +22,10 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
 
   const currentUser = useSelector(selectCurrentUser);
 
-  const Navigate = useNavigate();
+  // const Navigate = useNavigate();
 
   let user = useSelector(selectCurrentUser);
-  const urlPre = "../../data/uploads/";
+  // const urlPre = "../../data/uploads/";
 
   const handleImageChange = (e) => {
     console.log(e.target.files);
@@ -68,23 +68,25 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
     // formData.append("authorDogName", user.dogName);
 
     const post = {
-      postImageName,
-      postImage,
       text: postText,
       authorId: currentUser._id,
       coordinates: currentUser.location.coordinates,
-      authorImageName: user.profileImageName,
+      authorImageUrl: user.profileImageUrl,
       authorName: user.firstName,
       authorDogName: user.dogName,
+      postImageUrl: "",
     };
 
     const cloudinaryFormData = new FormData();
     cloudinaryFormData.append("file", postImage);
-    cloudinaryFormData.append("upload_preset", "bark_mate");
+    cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
 
     try {
-      const cloudinaryResult = await uploadPic(cloudinaryFormData);
-      post.imageUrl = cloudinaryResult.data.secure_url;
+      if (postImage) {
+        const cloudinaryResult = await uploadPic(cloudinaryFormData);
+
+        post.postImageUrl = cloudinaryResult.data.secure_url;
+      }
       const newPost = await createPost(post);
       setPostImage("");
       setImageUrl("");
@@ -119,10 +121,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
         <div className="create-post-heading">
           <Link>
             {" "}
-            <img
-              src={urlPre + user.profileImageName}
-              className="create-post-pic"
-            />
+            <img src={user.profileImageUrl} className="create-post-pic" />
           </Link>
           <span className="create-post-name">
             {currentUser.firstName} & {currentUser.dogName}

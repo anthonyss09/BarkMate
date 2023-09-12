@@ -78,7 +78,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     border-top: 8px solid rgb(220, 220, 220);
-    border-top: 8px solid rgb(244, 244, 244);
+    // border-top: 8px solid rgb(244, 244, 244);
     gap: 8px;
     background: rgb(220, 220, 220);
     // background: rgb(244, 244, 244);
@@ -90,8 +90,9 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 8px;
     background: rgb(220, 220, 220);
-    background: rgb(244, 244, 244);
+    // background: rgb(244, 244, 244);
     border-top: 8px solid rgb(244, 244, 244);
+    border-top: 8px solid rgb(220, 220, 220);
   }
   .scrolled {
     position: fixed;

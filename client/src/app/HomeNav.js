@@ -1,7 +1,6 @@
 import Wrapper from "../assets/wrappers/NavW";
 import Logo from "../components/Logo";
 import { HiBars3 } from "react-icons/hi2";
-import { FaUserCircle } from "react-icons/fa";
 import SmallSidebar from "../components/SmallSidebar";
 import { useState, useEffect, memo } from "react";
 import BigSidebar from "../components/BigSidebar";
@@ -16,9 +15,8 @@ import {
 import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
-import { useGetFriendsQuery } from "../features/api/apiSlice";
 
-export default memo(function NavBar() {
+export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
   const [showBigSidebar, setShowBigSidebar] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -121,7 +119,7 @@ export default memo(function NavBar() {
           />
 
           <img
-            src={urlPre + currentUser.profileImageName}
+            src={currentUser.profileImageUrl}
             className="nav-profile-pic icon-user"
             onClick={handleSmallSidebar}
           />
@@ -142,4 +140,4 @@ export default memo(function NavBar() {
       )}
     </Wrapper>
   );
-});
+}

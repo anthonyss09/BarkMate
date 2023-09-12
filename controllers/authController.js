@@ -6,11 +6,11 @@ import User from "../models/userModel.js";
 const registerUser = async (req, res) => {
   const { firstName, lastName, email, password, location } = req.body;
 
-  const coordinates = location.split(",");
-  const newCoords = [Number(coordinates[0]), Number(coordinates[1])];
+  // const coordinates = location.split(",");
+  // const newCoords = [Number(coordinates[0]), Number(coordinates[1])];
 
   const newUser = { ...req.body };
-  newUser.location = { type: "Point", coordinates: newCoords };
+  newUser.location = { type: "Point", coordinates: location };
 
   try {
     const emailInUse = await User.findOne({ email });

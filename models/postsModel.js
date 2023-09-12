@@ -22,6 +22,7 @@ const CommentsSchema = new mongoose.Schema(
       type: String,
     },
     userImageName: { type: String },
+    userProfileImageUrl: { type: String },
     text: {
       type: String,
     },
@@ -56,6 +57,9 @@ const PostsSchema = new mongoose.Schema(
     authorImageName: {
       type: String,
     },
+    authorImageUrl: {
+      type: String,
+    },
     text: {
       type: String,
     },
@@ -71,7 +75,7 @@ const PostsSchema = new mongoose.Schema(
     location: {
       type: PointSchema,
     },
-    imageUrl: { type: String },
+    postImageUrl: { type: String },
     imageObject: {
       type: String,
     },

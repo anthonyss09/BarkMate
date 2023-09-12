@@ -1,12 +1,19 @@
 import Wrapper from "../../assets/wrappers/ChatLineW";
 import deanBowie from "../../assets/images/dean&bowieSmall.jpg";
+import { Link } from "react-router-dom";
 
-export default function ChatLineFriend({ imageName, text }) {
-  const urlPre = "../../data/uploads/";
+export default function ChatLineFriend({
+  profileImageUrl,
+  text,
+  participantId,
+}) {
   return (
     <Wrapper>
       <div className="chat-line-friend-main main">
-        <img src={urlPre + imageName} />
+        <Link to={"/" + participantId}>
+          <img src={profileImageUrl} />
+        </Link>
+
         <p className="chat-line-text chat-line-text-friend">{text}</p>
       </div>
     </Wrapper>

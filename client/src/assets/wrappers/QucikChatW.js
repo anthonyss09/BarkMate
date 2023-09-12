@@ -34,8 +34,8 @@ const Wrapper = styled.div`
     gap: 0.4rem;
   }
   .quick-chat-image {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     border-radius: 3rem;
   }
   .quick-chat-main {

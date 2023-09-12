@@ -1,14 +1,47 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
-
 p {
   color: var(--grey-180);
   font-size: 0.8rem;
    max-width: 60vw;
 }
+.edit-profile-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.edit-profile-heading {
+  // width: min-content;
+  width: 25vw;
+  // border-radius: 2rem;
+  // padding: 1rem 6vw;
+  // background: rgb(244, 244, 244);
+  // font-size: 1.2rem;
+  letter-spacing: 0.06rem;
+  // margin-bottom: 2rem;
+  // border-bottom: 2px solid black;
+  // margin-top: 1rem;
+}
+ .edit-profile-name {
+    // text-align: center;
+    font-size: 1.6rem;
+    font-weight: 400;
+    border-radius: 3rem;
+    font-family: "Roboto Condensed", sans-serif;
+    color: rgb(80, 80, 80);
+    margin-bottom: 0.8rem;
+  }
 .p-top {
   margin-bottom: 1rem;
+}
+.btn-discard {
+  background: var(--test-blue);
+  color: var(--space-cadet);
+}
+.btn-edit {
+  font-size: 1rem;
+  padding: 1.4rem;
 }
 .btn-register {
     margin-bottom: 1rem;
@@ -21,6 +54,10 @@ p {
 .btn-register:hover {
     background: var(--space-cadet);
     color: white;
+}
+.btn-save {
+  background: var(--med-bright-blue);
+  color: white;
 }
 .footer {
     height: 3rem;
@@ -68,16 +105,15 @@ p {
     padding-left: 0.8rem;
     padding-top: 0.6rem;
     background: none;
-    resize: none;
-    
+    resize: none;  
 }
-.logo {
-    font-size: 1.4rem;
-    color: var(--federal-blue);
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;    
-}
+// .logo {
+//     font-size: 1.4rem;
+//     color: var(--federal-blue);
+//     font-weight: bold;
+//     margin-bottom: 1rem;
+//     text-align: center;    
+// }
 .form-main {
     display: flex;
     flex-direction: column;
@@ -100,6 +136,12 @@ p {
   }
 .span-login {
     color: var(--bark-pink);
+}
+
+@media screen and (max-width: 400px) {
+  .edit-profile-heading {
+    width: 31vw;
+  }
 }
 `;
 

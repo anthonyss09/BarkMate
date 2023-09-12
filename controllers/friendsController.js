@@ -6,6 +6,7 @@ import Friends from "../models/friendsModel.js";
 
 const requestFriend = async (req, res) => {
   const request = req.body;
+  console.log("friend requesting");
 
   try {
     // const friendRequestExists = await Friends.find({

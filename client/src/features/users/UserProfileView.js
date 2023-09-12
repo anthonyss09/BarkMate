@@ -9,8 +9,11 @@ import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useSelector } from "react-redux";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
-export default function ProfilePageEdit() {
+export default function UserProfileView() {
   const {
     firstName,
     dogName,
@@ -22,9 +25,10 @@ export default function ProfilePageEdit() {
     timeAvailable,
     address,
     profileImageName,
+    profileImageUrl,
   } = useSelector(selectCurrentUser);
 
-  const urlPre = "../../data/uploads/";
+  // const urlPre = "../../data/uploads/";
 
   const availabity = timeAvailable.map((time, index) => {
     return (
@@ -66,8 +70,12 @@ export default function ProfilePageEdit() {
                 <span className="location">Williamsburg</span>
               </div>
             </div>
+            <Link to="/userProfile/editProfile" className="link">
+              {" "}
+              <HiOutlinePencilSquare size={35} />
+            </Link>
           </div>
-          <img src={urlPre + profileImageName} className="profile-page-image" />
+          <img src={profileImageUrl} className="profile-page-image" />
 
           {/* <div className="profile-page-options">
             <div className="add-friend option">

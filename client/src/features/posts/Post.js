@@ -18,20 +18,18 @@ export default memo(function Post({
   authorName,
   authorDogName,
   text,
-  postImageName,
-  authorImageName,
+  authorImageUrl,
   comments,
   likes,
   postId,
   createdAt,
   currentUserId,
-  currentUserImageName,
   currentUserFirstName,
   currentUserDogName,
   currentUserCoords,
   currentUserProfileName,
-  imageTag,
-  imageUrl,
+  postImageUrl,
+  currentUserProfileImageUrl,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -45,7 +43,7 @@ export default memo(function Post({
   const urlPre = "../../data/uploads/";
   const id = new mongoose.Types.ObjectId();
 
-  const ref = useRef();
+  // const ref = useRef();
 
   const [editPost] = useEditPostMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -68,7 +66,7 @@ export default memo(function Post({
 
     commentsCopy.push({
       userId: currentUserId,
-      userImageName: currentUserImageName,
+      userProfileImageUrl: currentUserProfileImageUrl,
       firstName: currentUserFirstName,
       dogName: currentUserDogName,
       text: comment,
@@ -83,8 +81,8 @@ export default memo(function Post({
       postId,
       recipient: authorId,
       sender: currentUserId,
-      senderProfileImageName: currentUserImageName,
       senderProfileName: currentUserProfileName,
+      senderPorfileImageUrl: currentUserProfileImageUrl,
       notificationPath: "posts",
       notificationType: "comment",
       is_read: false,
@@ -112,8 +110,8 @@ export default memo(function Post({
         postId,
         recipient: authorId,
         sender: currentUserId,
-        senderProfileImageName: currentUserImageName,
         senderProfileName: currentUserProfileName,
+        senderProfileImageUrl: currentUserProfileImageUrl,
         notificationPath: "posts",
         notificationType: "like",
         is_read: false,
@@ -145,7 +143,7 @@ export default memo(function Post({
     return (
       <Comment
         key={index}
-        commentUserImageName={urlPre + comment.userImageName}
+        commentUserProfileImageUrl={comment.userProfileImageUrl}
         commentText={comment.text}
         commentFirstName={comment.firstName}
         commentDogName={comment.dogName}
@@ -160,10 +158,7 @@ export default memo(function Post({
           <div className="post-heading">
             <Link to={"/" + authorId}>
               {" "}
-              <img
-                src={urlPre + authorImageName}
-                className="post-heading-pic"
-              />
+              <img src={authorImageUrl} className="post-heading-pic" />
             </Link>
 
             <span className="post-name">
@@ -173,7 +168,9 @@ export default memo(function Post({
           </div>
           <div className="post-text">{text}</div>
           <div className="post-image">
-            {postImageName && <img src={imageUrl} className="post-body-pic" />}
+            {postImageUrl && (
+              <img src={postImageUrl} className="post-body-pic" />
+            )}
           </div>
           <div className="post-info"></div>
           <div className="post-options">
@@ -207,7 +204,6 @@ export default memo(function Post({
           )}
           {showPostComment && (
             <CreateComment
-              postImageName={postImageName}
               authorName={authorName}
               authorDogName={authorDogName}
               isFocused={isFocused}
@@ -218,9 +214,10 @@ export default memo(function Post({
               handleFocus={handleFocus}
               handleBlur={handleBlur}
               comment={comment}
-              authorImageName={authorImageName}
               dateOfPost={dateOfPost}
               text={text}
+              authorImageUrl={authorImageUrl}
+              postImageUrl={postImageUrl}
             />
           )}
         </div>

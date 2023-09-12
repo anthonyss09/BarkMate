@@ -29,7 +29,7 @@ export default function DashChats() {
     chatPreviews = Object.values(data).map((chat, index) => {
       return (
         <ChatPreview
-          imageName={chat.participants.friend.participantImageName}
+          profileImageUrl={chat.participants.friend.participantProfileImageUrl}
           message={chat.messages[chat.messages.length - 1]}
           key={index}
           profileName={chat.participants.friend.participantProfileName}

@@ -2,7 +2,6 @@ import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { AiOutlineSend } from "react-icons/ai";
 
 export default function CreateComment({
-  postImageName,
   authorName,
   authorDogName,
   isFocused,
@@ -13,12 +12,11 @@ export default function CreateComment({
   handleFocus,
   handleBlur,
   comment,
-  authorImageName,
   dateOfPost,
   text,
+  authorImageUrl,
+  postImageUrl,
 }) {
-  const urlPre = "../../data/uploads/";
-
   return (
     <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
       <div className="comment-icon-close">
@@ -29,10 +27,7 @@ export default function CreateComment({
         {" "}
         <div className="post-comment-heading">
           {" "}
-          <img
-            src={urlPre + authorImageName}
-            className="post-comment-heading-pic"
-          />
+          <img src={authorImageUrl} className="post-comment-heading-pic" />
           <span className="post-comment-name">
             {authorName} & {authorDogName} <br />
             <span className=" post-comment-date">{dateOfPost}</span>
@@ -41,7 +36,7 @@ export default function CreateComment({
         <div className="post-comment-body">
           <div className="post-comment-text">{text}</div>
           <img
-            src={urlPre + postImageName}
+            src={postImageUrl}
             className={`post-comment-body-pic ${isFocused ? "focused" : ""}`}
           />
         </div>

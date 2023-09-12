@@ -22,11 +22,15 @@ import { useState } from "react";
 
 export default function ProfilePageView() {
   const { profileId } = useParams();
-  const { data, error, isLoading } = useGetProfileByIdQuery(profileId);
-  const urlPre = "../../data/uploads/";
-  const localUser = useSelector(selectCurrentUser);
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useGetProfileByIdQuery(profileId);
+  // const urlPre = "../../data/uploads/";
+  const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();
-  const { data: currentUser } = useRefreshUserCredentialsQuery(localUser._id);
+  // const { data: currentUser } = useRefreshUserCredentialsQuery(localUser._id);
   const friendRequestId = new mongoose.Types.ObjectId();
   const [requestFriend] = useRequestFriendMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -40,44 +44,50 @@ export default function ProfilePageView() {
   if (isLoading) {
     return <div>profile loading</div>;
   }
-  const { user } = data;
 
-  const availabity = user.timeAvailable.map((time, index) => {
-    return (
-      <div key={index} className="time-slot time-slot-available">
-        {time}
-      </div>
-    );
-  });
+  let availability;
+  let needed;
+  if (!isLoading) {
+    availability = userData.user.timeAvailable.map((time, index) => {
+      return (
+        <div key={index} className="time-slot time-slot-available">
+          {time}
+        </div>
+      );
+    });
 
-  const needed = user.timeNeeded.map((time, index) => {
-    return (
-      <div key={index} className="time-slot time-slot-needed">
-        {time}
-      </div>
-    );
-  });
+    needed = userData.user.timeNeeded.map((time, index) => {
+      return (
+        <div key={index} className="time-slot time-slot-needed">
+          {time}
+        </div>
+      );
+    });
+  }
 
   const handleFriendRequest = async () => {
+    console.log(currentUser);
     try {
       const response = await requestFriend({
         _id: friendRequestId,
-        requester: currentUser.user._id,
+        requester: currentUser._id,
         participants: [
           {
-            participantId: currentUser.user._id,
-            participantProfileName: currentUser.user.profileName,
-            participantProfileImageName: currentUser.user.profileImageName,
+            participantId: currentUser._id,
+            participantProfileName: currentUser.profileName,
+            participantProfileImageName: currentUser.profileImageName,
+            participantProfileImageUrl: currentUser.profileImageUrl,
           },
           {
-            participantId: user._id,
-            participantProfileName: user.profileName,
-            participantProfileImageName: user.profileImageName,
+            participantId: userData.user._id,
+            participantProfileName: userData.user.profileName,
+            participantProfileImageName: userData.user.profileImageName,
+            participantProfileImageUrl: userData.user.profileImageUrl,
           },
         ],
         // requesterProfileName: currentUser.user.profileName,
         // requesterProfileImageName: currentUser.user.profileImageName,
-        recipient: user._id,
+        recipient: userData.user._id,
         // recipientProfileName: user.profileName,
         // recipientProfileImageName: user.profileImageName,
         requesterStatus: "pending",
@@ -87,9 +97,10 @@ export default function ProfilePageView() {
         _id: notificationId,
         friendId: profileId,
         recipient: profileId,
-        sender: currentUser.user._id,
-        senderProfileImageName: currentUser.user.profileImageName,
-        senderProfileName: currentUser.user.profileName,
+        sender: currentUser._id,
+        senderProfileImageName: currentUser.profileImageName,
+        senderProfileName: currentUser.profileName,
+        senderProfileImageUrl: currentUser.profileImageUrl,
         notificationPath: "friendRequests",
         notificationType: "friendRequest",
         is_read: false,
@@ -117,7 +128,7 @@ export default function ProfilePageView() {
                 </div>
               </div> */}
               <h1 className="profile-preview-name">
-                {user.firstName} & {user.dogName}
+                {userData.user.firstName} & {userData.user.dogName}
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
@@ -126,7 +137,7 @@ export default function ProfilePageView() {
             </div>
           </div>
           <img
-            src={urlPre + user.profileImageName}
+            src={userData.user.profileImageUrl}
             className="profile-page-image"
           />
 
@@ -152,7 +163,7 @@ export default function ProfilePageView() {
             <div className="time-slots-container">
               <div className="time-slot-column">
                 <p className="time-slot-title">Available</p>
-                {availabity}
+                {availability}
               </div>
               <div className="time-slot-column">
                 <p className="time-slot-title">Need</p>
@@ -163,18 +174,20 @@ export default function ProfilePageView() {
             <div className="profile-page-about">
               {" "}
               <h3 className="section-header">About Us</h3>
-              <p className="profile-page-p">{user.aboutUs}</p>
+              <p className="profile-page-p">{userData.user.aboutUs}</p>
             </div>
             <div className="profile-page-dog-info">
               <h3 className="section-header">Pup's info</h3>
               <div className="dog-details-container">
                 <div className="dog-detail dog-detail-weight">
-                  {user.weight}
+                  {userData.user.weight}
                 </div>
                 <div className="dog-detail dog-detail-energy">
-                  {user.energyLevel}
+                  {userData.user.energyLevel}
                 </div>
-                <div className="dog-detail dog-detail-breed">{user.breed}</div>
+                <div className="dog-detail dog-detail-breed">
+                  {userData.user.breed}
+                </div>
               </div>
             </div>
 
@@ -198,9 +211,10 @@ export default function ProfilePageView() {
       <Footer />
       <QuickChat
         recipientId={profileId}
-        recipientImageName={user.profileImageName}
+        recipientImageName={userData.user.profileImageName}
+        recipientImageUrl={userData.user.profileImageUrl}
         handleMessageClick={handleMessageClick}
-        recipientProfileName={user.profileName}
+        recipientProfileName={userData.user.profileName}
         showQuickChat={showQuickChat}
       />
     </Wrapper>

@@ -23,7 +23,7 @@ export const ParticipantSchema = new mongoose.Schema({
   participantProfileName: {
     type: String,
   },
-  participantImageName: {
+  participantProfileImageUrl: {
     type: String,
   },
 });

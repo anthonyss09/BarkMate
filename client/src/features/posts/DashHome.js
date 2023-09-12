@@ -61,6 +61,7 @@ export default function DashHome() {
 
   const content = postsData ? (
     posts.map((post, index) => {
+      console.log(post);
       const imageTag = post.imageObject
         ? JSON.parse(post.imageObject).imageTag
         : "";
@@ -70,20 +71,20 @@ export default function DashHome() {
           authorName={post.authorName}
           authorDogName={post.authorDogName}
           text={post.text}
-          authorImageName={post.authorImageName}
+          authorImageUrl={post.authorImageUrl}
           postImageName={post.postImageName}
           key={index}
           comments={post.comments}
           likes={post.likes}
           postId={post._id}
           currentUserId={userId}
-          currentUserImageName={user.profileImageName}
           currentUserFirstName={user.firstName}
           currentUserDogName={user.dogName}
           currentUserCoords={coordinates}
           currentUserProfileName={user.profileName}
+          currentUserProfileImageUrl={user.profileImageUrl}
           createdAt={post.createdAt}
-          imageUrl={post.imageUrl}
+          postImageUrl={post.postImageUrl}
         />
       );
     })
