@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 
 export default function UserProfileView() {
   const {
@@ -23,12 +25,12 @@ export default function UserProfileView() {
     energyLevel,
     timeNeeded,
     timeAvailable,
-    address,
-    profileImageName,
     profileImageUrl,
+    _id,
   } = useSelector(selectCurrentUser);
 
   // const urlPre = "../../data/uploads/";
+  const { data } = useRefreshUserCredentialsQuery(_id);
 
   const availabity = timeAvailable.map((time, index) => {
     return (

@@ -1,7 +1,11 @@
 import { StandaloneSearchBox, LoadScript } from "@react-google-maps/api";
 import { places } from "../utils/consts";
 
-export default function AdressInput({ handlePlaceChanged, inputRef }) {
+export default function AddressInput({
+  handlePlaceChanged,
+  inputRef,
+  userAddress,
+}) {
   return (
     <div className="form-row form-row-address">
       <label htmlFor="address" className="form-label">
@@ -19,7 +23,7 @@ export default function AdressInput({ handlePlaceChanged, inputRef }) {
             id="address"
             type="text"
             className="form-input form-input-address"
-            placeholder="Start typing address."
+            placeholder={userAddress}
           />
         </StandaloneSearchBox>
       </LoadScript>

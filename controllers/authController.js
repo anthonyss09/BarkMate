@@ -53,4 +53,39 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser };
+const updateUser = async (req, res) => {
+  const {
+    userId,
+    profileImageUrl,
+    address,
+    location,
+    aboutUs,
+    timeNeeded,
+    timeAvailable,
+  } = req.body;
+
+  console.log(location);
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
+      {
+        $set: {
+          profileImageUrl,
+          address,
+          location,
+          aboutUs,
+          timeNeeded,
+          timeAvailable,
+        },
+      },
+      { returnOriginal: false }
+    );
+    console.log("updated user is", updatedUser);
+    res.status(StatusCodes.OK).json({ updatedUser });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { registerUser, loginUser, updateUser };

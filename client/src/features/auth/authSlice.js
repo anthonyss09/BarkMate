@@ -85,6 +85,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "Post",
         body: { email, password },
       }),
+      providesTags: ["CurrentUser"],
     }),
     refreshUserCredentials: builder.query({
       query: (userId) => ({
@@ -92,6 +93,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["CurrentUser"],
+    }),
+    updateUser: builder.mutation({
+      query: (update) => ({
+        url: "/auth/update-user",
+        method: "POST",
+        body: update,
+      }),
+      invalidatesTags: ["CurrentUser"],
     }),
   }),
 });
@@ -105,6 +114,7 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useRefreshUserCredentialsQuery,
+  useUpdateUserMutation,
 } = extendedApiSlice;
 
 export default authSlice.reducer;

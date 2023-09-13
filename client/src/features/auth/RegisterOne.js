@@ -11,7 +11,7 @@ import { StandaloneSearchBox, LoadScript } from "@react-google-maps/api";
 import { useDispatch } from "react-redux";
 import { updateNewUserProp } from "./authSlice";
 import { places } from "../../utils/consts";
-import AdressInput from "../../components/AdressInput";
+import AddressInput from "../../components/AddressInput";
 
 export default function RegisterOne({
   handleRegisterOne,
@@ -87,7 +87,7 @@ export default function RegisterOne({
             </LoadScript>
           </div> */}
 
-          <AdressInput
+          <AddressInput
             inputRef={inputRef}
             handlePlaceChanged={handlePlaceChanged}
           />
