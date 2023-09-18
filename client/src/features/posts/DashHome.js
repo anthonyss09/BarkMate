@@ -14,11 +14,13 @@ import { IoIosAdd } from "react-icons/io";
 
 export default function DashHome() {
   let user = useSelector(selectCurrentUser);
-  const urlPre = "../../data/uploads/";
   const userId = user._id;
   const coordinates = user.location.coordinates;
-  const { data: currentUser, isLoading: loadingUser } =
-    useRefreshUserCredentialsQuery(userId);
+  const {
+    data: currentUser,
+    isLoading: loadingUser,
+    isSuccess,
+  } = useRefreshUserCredentialsQuery(userId);
   const {
     data: postsData,
     isLoading: loadingPosts,
@@ -59,38 +61,44 @@ export default function DashHome() {
     setShowCreatePost(!showCreatePost);
   };
 
-  const content = postsData ? (
-    posts.map((post, index) => {
-      console.log(post);
-      const imageTag = post.imageObject
-        ? JSON.parse(post.imageObject).imageTag
-        : "";
-      return (
-        <Post
-          authorId={post.authorId}
-          authorName={post.authorName}
-          authorDogName={post.authorDogName}
-          text={post.text}
-          authorImageUrl={post.authorImageUrl}
-          postImageName={post.postImageName}
-          key={index}
-          comments={post.comments}
-          likes={post.likes}
-          postId={post._id}
-          currentUserId={userId}
-          currentUserFirstName={user.firstName}
-          currentUserDogName={user.dogName}
-          currentUserCoords={coordinates}
-          currentUserProfileName={user.profileName}
-          currentUserProfileImageUrl={user.profileImageUrl}
-          createdAt={post.createdAt}
-          postImageUrl={post.postImageUrl}
-        />
-      );
-    })
-  ) : (
-    <div>no content</div>
-  );
+  let content;
+  if (!loadingPosts && isSuccess) {
+    content = postsData ? (
+      posts.map((post, index) => {
+        console.log(post);
+        const imageTag = post.imageObject
+          ? JSON.parse(post.imageObject).imageTag
+          : "";
+        return (
+          <Post
+            authorId={post.authorId}
+            authorName={post.authorName}
+            authorDogName={post.authorDogName}
+            text={post.text}
+            authorImageUrl={post.authorImageUrl}
+            postImageName={post.postImageName}
+            key={index}
+            comments={post.comments}
+            likes={post.likes}
+            postId={post._id}
+            currentUserId={userId}
+            currentUserFirstName={user.firstName}
+            currentUserDogName={user.dogName}
+            currentUserCoords={coordinates}
+            currentUserProfileName={user.profileName}
+            currentUserProfileImageUrl={user.profileImageUrl}
+            createdAt={post.createdAt}
+            postImageUrl={post.postImageUrl}
+          />
+        );
+      })
+    ) : (
+      <div className="no-posts">
+        No posts to display at the moment,
+        <br /> check back again soon!
+      </div>
+    );
+  }
 
   return (
     <Wrapper>
@@ -101,9 +109,13 @@ export default function DashHome() {
               <IoIosAdd size={35} className="icon-add" />
             </div>
           </div>
-          <div className="posts-container">
+          <div
+            className={`posts-container ${
+              loadingPosts ? "background-white" : ""
+            }`}
+          >
             {loadingPosts ? (
-              <BeatLoader color="silver" size={25} className="beat-loader" />
+              <BeatLoader color="lightBlue" size={35} className="beat-loader" />
             ) : (
               content
             )}

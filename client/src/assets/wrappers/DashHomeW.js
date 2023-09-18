@@ -5,9 +5,6 @@ const Wrapper = styled.section`
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);
   }
-  .beat-loader {
-    align-self: center;
-  }
   .create-post-container {
     height: 3rem;
     width: 3rem;
@@ -52,12 +49,6 @@ const Wrapper = styled.section`
   .icon-add {
     color: var(--med-bright-blue);
   }
-  .no-matches {
-    padding: 4rem;
-    font-weight: bold;
-    color: rgb(60, 60, 60);
-    background: white;
-  }
   .p-top {
     color: rgb(170, 170, 167);
     font-size: 0.8rem;
@@ -93,6 +84,9 @@ const Wrapper = styled.section`
     // background: rgb(244, 244, 244);
     border-top: 8px solid rgb(244, 244, 244);
     border-top: 8px solid rgb(220, 220, 220);
+  }
+  .background-white {
+    background: white;
   }
   .scrolled {
     position: fixed;

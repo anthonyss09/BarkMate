@@ -56,7 +56,9 @@ const Wrapper = styled.nav`
   }
   .nav-main-landing {
     border: none;
-    opacity: 0.95;
+    z-index: 20;
+    // opacity: 0.95;
+    border-bottom: 2px solid rgb(240, 240, 240);
   }
   .nav-profile-pic {
     height: 35px;

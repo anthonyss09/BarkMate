@@ -4,8 +4,8 @@ import groupPreview from "../assets/images/groupPreview.jpg";
 export default function HeaderTwo() {
   return (
     <Wrapper>
-      <section className="section-landing-main section-landing-main-two">
-        <div className="section-landing-center">
+      <section className=" section-landing-main-two">
+        <div className="section-landing-center-two">
           <div className="section-landing-heading">
             {" "}
             <h1> Join local groups for added backup & instant references.</h1>

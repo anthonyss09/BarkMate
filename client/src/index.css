@@ -120,6 +120,12 @@ input {
 select {
   outline: none;
 }
+.beat-loader {
+  align-self: center;
+  justify-self: center;
+  padding: auto;
+  margin-top: 20vh;
+}
 .btn {
   border: none;
   font-weight: bold;
@@ -287,9 +293,9 @@ select {
 .icon-paw {
   margin: 0 0.4rem;
 }
-.landing-body {
+/* .landing-body {
   padding-top: 4rem;
-}
+} */
 .link {
   text-decoration: none;
   color: black;
@@ -300,6 +306,19 @@ select {
   display: flex;
   align-items: center;
   font-weight: bold;
+}
+.no-content {
+  background: white;
+  width: 100vw;
+  height: 40vw;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  letter-spacing: 0.02rem;
+  text-align: center;
+  color: rgb(80, 80, 80);
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
 .outlet-container {
   width: 100vw;

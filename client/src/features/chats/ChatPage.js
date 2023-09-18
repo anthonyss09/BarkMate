@@ -15,6 +15,7 @@ import {
   useCreateNotificationMutation,
 } from "../api/apiSlice";
 import mongoose from "mongoose";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function ChatPage() {
   const {
@@ -97,7 +98,9 @@ export default function ChatPage() {
   let friend;
   let user;
   if (isLoading) {
-    content = <div>loading</div>;
+    content = (
+      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
+    );
   } else if (isSuccess) {
     thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
     console.log("this chat", thisChat);

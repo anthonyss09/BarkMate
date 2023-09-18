@@ -34,12 +34,16 @@ const Wrapper = styled.section`
     width: min-content;
     background: white;
     padding: 1.8rem;
+    // background: var(--med-bright-blue);
+    // box-shadow: 5px 2px 5px black;
   }
   .image-container-man {
     width: min-content;
     background: white;
     padding: 1.8rem;
     margin-top: -1.4rem;
+    // background: var(--test-red);
+    // box-shadow: 5px 2px 5px black;
   }
   .image-line-1 {
     width: 100%;
@@ -69,6 +73,7 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     background: var(--test-blue);
+    background: white;
   }
   .village-p {
     width: 60vw;

@@ -158,7 +158,6 @@ export default function EditProfile() {
               placeholder={user.aboutUs}
               className="form-textarea"
               onChange={handleInputChange}
-              value={aboutUs}
             />
           </div>
 

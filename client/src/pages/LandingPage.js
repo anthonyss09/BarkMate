@@ -13,7 +13,7 @@ export default function LandingPage() {
   const [lastScroll, setLastScroll] = useState(0);
 
   const trackNav = () => {
-    if (window.scrollY > lastScroll) {
+    if (window.scrollY > lastScroll && window.scrollY > 80) {
       setHideNav(true);
     } else {
       setHideNav(false);
@@ -33,11 +33,11 @@ export default function LandingPage() {
         <LandingNav hideNav={hideNav} />
         <div className={`${!hideNav ? "landing-body" : ""}`}>
           {" "}
-          <HeaderLanding />
+          {/* <HeaderLanding /> */}
           <SectionLanding />
-          <SectionLandingTwo />
-          <SectionLandingThree />
-          <SectionLandingFour />
+          {/* <SectionLandingTwo /> */}
+          {/* <SectionLandingThree />
+          <SectionLandingFour /> */}
         </div>
         <Footer />
       </main>

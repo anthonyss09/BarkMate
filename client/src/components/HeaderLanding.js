@@ -4,12 +4,14 @@ import womanWalk from "../assets/images/womanWalkSmall.jpg";
 import manWalk from "../assets/images/manWalkSmall.jpg";
 import { TbDog } from "react-icons/tb";
 import { FaDog } from "react-icons/fa";
+import stacyLanding from "../assets/images/stacyLanding.jpeg";
 
 export default function VillageSection() {
   return (
     <Wrapper>
       <section className="village-main">
-        <div className="village-center">
+        {/* <img src={stacyLanding} /> */}
+        {/* <div className="village-center">
           <div className="image-line-1">
             {" "}
             <span className="text-1">I walk yours</span>
@@ -31,14 +33,12 @@ export default function VillageSection() {
             <div className="btn-body">
               {" "}
               <span className="btn-paw">
-                {/* <FaPaw size={25} /> */}
                 <TbDog size={25} />
-                {/* <FaDog size={25} className="icon-dog" /> */}
               </span>
               <span className="btn-text">Download App</span>
             </div>
           </button>
-        </div>
+        </div> */}
       </section>
     </Wrapper>
   );

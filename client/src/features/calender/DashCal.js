@@ -66,14 +66,20 @@ export default function DashCal() {
           <h1 className="dash-page-name">Calender</h1>
         </div>
         <section className="dash-cal-center">
-          <EventsRow eventsTitle="Today's events" events={todaysEvents} />
+          <EventsRow
+            eventsTitle="Today's events"
+            events={todaysEvents}
+            isLoading={isLoading}
+          />
           <EventsRow
             eventsTitle="Upcoming one time events"
             events={upcomingOneTimeEvents}
+            isLoading={isLoading}
           />
           <EventsRow
             eventsTitle="Reoccurring events"
-            events={reoccurringEvents} 
+            events={reoccurringEvents}
+            isLoading={isLoading}
           />
           <div className="add-line" onClick={handleClick}>
             {" "}

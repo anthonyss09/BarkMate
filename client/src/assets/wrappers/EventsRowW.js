@@ -25,6 +25,16 @@ const Wrapper = styled.div`
     gap: 1rem;
     // margin: 1rem 2rem;
   }
+  .no-events {
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    letter-spacing: 0.02rem;
+    text-align: center;
+    color: rgb(80, 80, 80);
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
   .event-note {
     margin-left: 0.6rem;
     // margin-left: 2rem;

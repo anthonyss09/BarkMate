@@ -9,6 +9,7 @@ import { useState, memo } from "react";
 import { useCreatePostMutation } from "../api/apiSlice";
 // import { useNavigate } from "react-router-dom";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default memo(function CreatePost({ handleClick, showCreatePost }) {
   const [postImage, setPostImage] = useState("");
@@ -16,6 +17,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
   const [postImageName, setPostImageName] = useState("");
   const [postText, setPostText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [savingPost, setSavingPost] = useState(false);
 
   const [createPost] = useCreatePostMutation();
   const [uploadPic] = useUploadPicMutation();
@@ -87,7 +89,10 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
 
         post.postImageUrl = cloudinaryResult.data.secure_url;
       }
+
+      setSavingPost(true);
       const newPost = await createPost(post);
+      setSavingPost(false);
       setPostImage("");
       setImageUrl("");
       setPostImageName("");
@@ -101,6 +106,9 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
   return (
     <Wrapper>
       {" "}
+      {savingPost && (
+        <BeatLoader color="lightBlue" size={35} className="beat-loader" />
+      )}
       <form
         encType="multipart/form-data"
         className={`create-post-main ${isFocused ? "no-scroll" : ""} ${
@@ -163,7 +171,11 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
             />
           </label>
           <div>
-            <button type="submit" className="btn btn-create-post">
+            <button
+              type="submit"
+              className="btn btn-create-post"
+              disabled={savingPost}
+            >
               Submit post
             </button>
           </div>

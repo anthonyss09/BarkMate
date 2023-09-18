@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .beat-loader {
+    position: absolute;
+    top: 10vh;
+    left: 40vw;
+    z-index: 30;
+  }
   .btn-create-post {
     background: var(--med-bright-blue);
     // background: var(--test-blue);

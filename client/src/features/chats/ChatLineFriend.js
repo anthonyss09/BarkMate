@@ -6,15 +6,22 @@ export default function ChatLineFriend({
   profileImageUrl,
   text,
   participantId,
+  shadow,
 }) {
   return (
     <Wrapper>
       <div className="chat-line-friend-main main">
         <Link to={"/" + participantId}>
-          <img src={profileImageUrl} />
+          <img src={profileImageUrl} className={`${shadow ? "" : ""}`} />
         </Link>
 
-        <p className="chat-line-text chat-line-text-friend">{text}</p>
+        <p
+          className={`chat-line-text chat-line-text-friend ${
+            shadow ? "shadow" : ""
+          }`}
+        >
+          {text}
+        </p>
       </div>
     </Wrapper>
   );

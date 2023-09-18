@@ -36,6 +36,12 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 1rem;
   }
+  .shadow {
+    box-shadow: 10px 5px 10px rgb(40, 40, 40);
+  }
+  .white-background {
+    background: white;
+  }
 `;
 
 export default Wrapper;

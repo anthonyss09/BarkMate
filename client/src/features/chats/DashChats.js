@@ -12,7 +12,7 @@ export default function DashChats() {
     profileImageName,
     profileName: currentUserProfileName,
   } = useSelector(selectCurrentUser);
-  const { data, isLoading, error } = useGetChatsQuery(userId);
+  const { data, error, isLoading } = useGetChatsQuery(userId);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,10 +20,12 @@ export default function DashChats() {
   let chatPreviews;
   if (isLoading) {
     chatPreviews = (
-      <BeatLoader color="silver" size={25} className="beat-loader" />
+      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
     );
   } else if (!Object.keys(data).length) {
-    chatPreviews = <div>no chats</div>;
+    chatPreviews = (
+      <div className="no-content">No chats to display. Hit someone up!</div>
+    );
   } else {
     console.log(data);
     chatPreviews = Object.values(data).map((chat, index) => {

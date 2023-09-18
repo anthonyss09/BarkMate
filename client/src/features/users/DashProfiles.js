@@ -38,7 +38,9 @@ export default function DashProfiles() {
 
   let content;
   if (isLoading) {
-    content = <BeatLoader color="silver" size={25} className="beat-loader" />;
+    content = (
+      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
+    );
   } else if (data.filteredMatches.length < 1) {
     content = (
       <div className="no-matches">
@@ -84,7 +86,13 @@ export default function DashProfiles() {
           )}
         </div>
 
-        <div className="profiles-container">{content}</div>
+        <div
+          className={`profiles-container ${
+            isLoading ? "background-white" : ""
+          }`}
+        >
+          {content}
+        </div>
       </section>
     </Wrapper>
   );
