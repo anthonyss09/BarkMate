@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  .beat-loader {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 30vw;
+  }
   .header-text {
     color: rgb(120, 120, 120);
   }

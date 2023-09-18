@@ -9,6 +9,7 @@ import {
   useCreateNotificationMutation,
 } from "../api/apiSlice";
 import mongoose from "mongoose";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function QuickChat({
   recipientId,
@@ -23,6 +24,7 @@ export default function QuickChat({
     profileImageUrl,
   } = useSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
+  const [sendingMessage, setSendingMessage] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [createChat] = useCreateChatMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -37,8 +39,8 @@ export default function QuickChat({
   };
 
   const handleSendMessage = async () => {
-    handleMessageClick();
     setMessage("");
+    setSendingMessage(true);
     const newChat = await createChat({
       participants: [
         {
@@ -70,7 +72,10 @@ export default function QuickChat({
       is_read: false,
       is_viewed: false,
     });
+    setSendingMessage(false);
+    handleMessageClick();
   };
+
   return (
     <Wrapper>
       <div
@@ -78,6 +83,9 @@ export default function QuickChat({
           isFocused ? "focused-height" : ""
         }`}
       >
+        {sendingMessage && (
+          <BeatLoader color="lightBlue" size={35} className="beat-loader" />
+        )}
         <div
           className={`quick-chat-center ${!showQuickChat ? "no-display" : ""}`}
         >
@@ -114,6 +122,7 @@ export default function QuickChat({
               type="button"
               className="btn quick-chat-btn"
               onClick={handleSendMessage}
+              disabled={sendingMessage}
             >
               <AiOutlineSend size={35} />
             </button>
