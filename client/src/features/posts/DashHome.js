@@ -7,7 +7,6 @@ import {
 } from "../auth/authSlice";
 import { useEffect, useState, useLayoutEffect } from "react";
 import CreatePost from "./CreatePost";
-// import { useGetPostsQuery } from "./PostsSlice";
 import { useGetPostsQuery } from "../api/apiSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { IoIosAdd } from "react-icons/io";
@@ -37,7 +36,7 @@ export default function DashHome() {
   let updatedUser;
 
   const [scrolled, setScrolled] = useState("");
-  const [creatingComment, setCreatingComment] = useState(false);
+  const [requesting, setRequesting] = useState(false);
 
   const onScroll = () => {
     if (window.scrollY > 300) {
@@ -89,8 +88,8 @@ export default function DashHome() {
             currentUserProfileImageUrl={user.profileImageUrl}
             createdAt={post.createdAt}
             postImageUrl={post.postImageUrl}
-            setCreatingComment={setCreatingComment}
-            creatingComment={creatingComment}
+            requesting={requesting}
+            setRequesting={setRequesting}
           />
         );
       })
@@ -104,7 +103,7 @@ export default function DashHome() {
 
   return (
     <Wrapper>
-      {creatingComment && (
+      {requesting && (
         <BeatLoader size={35} color="lightBlue" className="beat-loader" />
       )}
       <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
@@ -127,7 +126,12 @@ export default function DashHome() {
           </div>
         </div>
       </section>
-      <CreatePost handleClick={handleClick} showCreatePost={showCreatePost} />
+      <CreatePost
+        handleClick={handleClick}
+        showCreatePost={showCreatePost}
+        requesting={requesting}
+        setRequesting={setRequesting}
+      />
     </Wrapper>
   );
 }

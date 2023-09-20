@@ -166,12 +166,7 @@ export default function ProfilePreview({
                 </div>
               </h1>
 
-              <p className="profile-preview-p">
-                {/* "Hey we're Jennie & Max. I work nights & Max loves evening
-                walks. I'm available to go on walks during the day. We're
-                woofing forward to meeting you!" */}
-                {aboutUs}
-              </p>
+              <p className="profile-preview-p">{aboutUs}</p>
             </div>
           </div>
         </div>

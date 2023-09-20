@@ -5,30 +5,29 @@ import { logoutUser, selectCurrentUser } from "../auth/authSlice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import { useState, memo } from "react";
-// import { useCreatePostMutation } from "./PostsSlice";
 import { useCreatePostMutation } from "../api/apiSlice";
-// import { useNavigate } from "react-router-dom";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
-// import { selectAlertsInfo } from "../alerts/alertsSlice";
-import Alert from "../alerts/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default memo(function CreatePost({ handleClick, showCreatePost }) {
+export default memo(function CreatePost({
+  handleClick,
+  showCreatePost,
+  requesting,
+  setRequesting,
+}) {
   const [postImage, setPostImage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [postImageName, setPostImageName] = useState("");
   const [postText, setPostText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const [savingPost, setSavingPost] = useState(false);
 
   const [createPost] = useCreatePostMutation();
   const [uploadPic] = useUploadPicMutation();
 
   const currentUser = useSelector(selectCurrentUser);
-  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
   const Navigate = useNavigate();
   const dispatch = useDispatch();
@@ -90,7 +89,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
       post.postImageUrl = cloudinaryResult.data.secure_url;
     }
 
-    setSavingPost(true);
+    setRequesting(true);
     const newPost = await createPost(post);
     console.log(newPost);
     if (newPost.error) {
@@ -111,7 +110,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
       console.log("the data is", newPost.data.message);
     }
 
-    setSavingPost(false);
+    setRequesting(false);
     setPostImage("");
     setImageUrl("");
     setPostImageName("");
@@ -135,10 +134,9 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
   return (
     <Wrapper>
       {" "}
-      {savingPost && (
+      {/* {savingPost && (
         <BeatLoader color="lightBlue" size={35} className="beat-loader" />
-      )}
-      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
+      )} */}
       <form
         encType="multipart/form-data"
         className={`create-post-main ${isFocused ? "no-scroll" : ""} ${
@@ -204,7 +202,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
             <button
               type="submit"
               className="btn btn-create-post"
-              disabled={savingPost}
+              disabled={requesting}
             >
               Submit post
             </button>

@@ -1,20 +1,16 @@
 import Wrapper from "../../assets/wrappers/PostW";
-import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState, memo, useRef, useEffect } from "react";
-// import { useEditPostMutation } from "./PostsSlice";
+import { useState, memo } from "react";
 import { useEditPostMutation } from "../api/apiSlice";
 import { useCreateNotificationMutation } from "../api/apiSlice";
 import Comment from "./Comment";
 import mongoose from "mongoose";
 import moment from "moment";
-// import { AiOutlineCloseCircle } from "react-icons/ai";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
-// import { selectAlertsInfo } from "../alerts/alertsSlice";
-import Alert from "../alerts/Alert";
 import { logoutUser } from "../auth/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -35,8 +31,8 @@ export default memo(function Post({
   currentUserProfileName,
   postImageUrl,
   currentUserProfileImageUrl,
-  setCreatingComment,
-  creatingComment,
+  requesting,
+  setRequesting,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -47,15 +43,10 @@ export default memo(function Post({
   const dateCheck = moment(createdAt.toString()).format();
   const dateShort =
     dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
-  const urlPre = "../../data/uploads/";
   const id = new mongoose.Types.ObjectId();
-
-  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
   const Navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // const ref = useRef();
 
   const [editPost] = useEditPostMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -68,9 +59,6 @@ export default memo(function Post({
   const handleShowPostComment = () => {
     setShowPostComment(!showPostComment);
     setShowAllComments(false);
-    // setTimeout(() => {
-    //   ref.current.focus();
-    // }, 300);
   };
 
   const handlePostComment = async () => {
@@ -84,13 +72,13 @@ export default memo(function Post({
       text: comment,
     });
 
-    setCreatingComment(true);
+    setRequesting(true);
     const newPost = await editPost({
       postId,
       update: { comments: commentsCopy },
       currentUserCoords,
     });
-    setCreatingComment(false);
+    setRequesting(false);
 
     if (newPost.error) {
       dispatch(
@@ -200,7 +188,6 @@ export default memo(function Post({
 
   return (
     <Wrapper>
-      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
       <aside className="post-main">
         <div className="post-center">
           <div className="post-heading">
@@ -266,7 +253,8 @@ export default memo(function Post({
               text={text}
               authorImageUrl={authorImageUrl}
               postImageUrl={postImageUrl}
-              creatingComment={creatingComment}
+              requesting={requesting}
+              setRequesting={setRequesting}
             />
           )}
         </div>

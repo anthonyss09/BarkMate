@@ -16,7 +16,7 @@ export default function CreateComment({
   text,
   authorImageUrl,
   postImageUrl,
-  creatingComment,
+  requesting,
 }) {
   return (
     <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
@@ -55,7 +55,7 @@ export default function CreateComment({
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
-      <button className={`btn btn-send `} disabled={creatingComment}>
+      <button className={`btn btn-send `} disabled={requesting}>
         {" "}
         <AiOutlineSend
           size={30}
