@@ -9,6 +9,8 @@ import { useGetEventsQuery } from "./CalenderSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import EventsRow from "./EventsRow";
+// import { selectAlertsInfo } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
 
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
@@ -16,8 +18,8 @@ export default function DashCal() {
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
-  console.log(data);
-  console.log(todayString);
+
+  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
   let todaysEvents;
   if (!isLoading) {
@@ -61,6 +63,8 @@ export default function DashCal() {
   }, []);
   return (
     <Wrapper>
+      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
+
       <main className="dash-main">
         <div className="dash-header">
           <h1 className="dash-page-name">Calender</h1>

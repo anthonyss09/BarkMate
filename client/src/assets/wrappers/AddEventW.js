@@ -24,6 +24,9 @@ const Wrapper = styled.aside`
   //  border-bottom: 2px solid rgb(220, 220, 220);
 
   }
+  .beat-loader {
+    position: fixed;
+  }
   .label-note {
     width: min-content;
     padding-bottom: 0.2rem;

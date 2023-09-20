@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useUpdateUserMutation } from "../auth/authSlice";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
@@ -30,6 +31,7 @@ export default function EditProfile() {
   const [timeAvailable, setTimeAvailable] = useState(user.timeAvailable);
   const [timeNeeded, setTimeNeeded] = useState(user.timeNeeded);
   const [aboutUs, setAboutUs] = useState(user.aboutUs);
+  const [savingProfileEdit, setSavingProfileEdit] = useState(false);
 
   const handlePlaceChanged = async () => {
     try {
@@ -94,6 +96,8 @@ export default function EditProfile() {
       userId: user._id,
     };
 
+    setSavingProfileEdit(true);
+
     if (profileImage) {
       const cloudinaryFormData = new FormData();
       cloudinaryFormData.append("file", profileImage);
@@ -102,8 +106,10 @@ export default function EditProfile() {
         const cloudinaryResult = await uploadPic(cloudinaryFormData);
 
         update.profileImageUrl = cloudinaryResult.data.secure_url;
+        setSavingProfileEdit(false);
       } catch (error) {
         console.log(error);
+        setSavingProfileEdit(false);
       }
     }
 
@@ -118,13 +124,20 @@ export default function EditProfile() {
       setTimeAvailable("");
       setTimeNeeded("");
       Navigate("/userProfile");
-    } catch (error) {}
+      setSavingProfileEdit(false);
+    } catch (error) {
+      console.log(error);
+      setSavingProfileEdit(false);
+    }
   };
 
   return (
     <Wrapper>
       <HomeNav />
       <section className="edit-profile-main form">
+        {savingProfileEdit && (
+          <BeatLoader color="lightBlue" size={35} className="beat-loader" />
+        )}
         <div className="edit-profile-center">
           <h1 className="form-row edit-profile-heading">Edit Profile</h1>
 

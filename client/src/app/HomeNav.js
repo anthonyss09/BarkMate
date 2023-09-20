@@ -15,6 +15,8 @@ import {
 import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
+import Alert from "../features/alerts/Alert";
+import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -22,10 +24,7 @@ export default function NavBar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showFriends, setShowFriends] = useState(false);
 
-  // let showNotifications;
-  // let setShowNotifications;
-  // let showFriends = false;
-  // let setShowFriends = () => {};
+  const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -87,6 +86,7 @@ export default function NavBar() {
 
   return (
     <Wrapper>
+      {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
       {showNotifications && (
         <NotificationsView
           notifications={notifications}

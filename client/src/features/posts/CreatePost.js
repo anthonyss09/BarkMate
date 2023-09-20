@@ -1,7 +1,7 @@
 import Wrapper from "../../assets/wrappers/CreatePostW";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../auth/authSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser, selectCurrentUser } from "../auth/authSlice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import { useState, memo } from "react";
@@ -10,6 +10,11 @@ import { useCreatePostMutation } from "../api/apiSlice";
 // import { useNavigate } from "react-router-dom";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+// import { selectAlertsInfo } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default memo(function CreatePost({ handleClick, showCreatePost }) {
   const [postImage, setPostImage] = useState("");
@@ -23,11 +28,12 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
   const [uploadPic] = useUploadPicMutation();
 
   const currentUser = useSelector(selectCurrentUser);
+  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
-  // const Navigate = useNavigate();
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let user = useSelector(selectCurrentUser);
-  // const urlPre = "../../data/uploads/";
 
   const handleImageChange = (e) => {
     console.log(e.target.files);
@@ -49,7 +55,6 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
   };
 
   const handleFocus = (e) => {
-    // console.log(e.target.files);
     setIsFocused(true);
   };
 
@@ -59,15 +64,6 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-    // formData.append("postImageName", postImageName);
-    // formData.append("postImage", postImage);
-    // formData.append("text", postText);
-    // formData.append("authorId", currentUser._id);
-    // formData.append("coordinates", currentUser.location.coordinates);
-    // formData.append("authorImageName", user.profileImageName);
-    // formData.append("authorName", user.firstName);
-    // formData.append("authorDogName", user.dogName);
 
     const post = {
       text: postText,
@@ -83,24 +79,57 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
     cloudinaryFormData.append("file", postImage);
     cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
 
-    try {
-      if (postImage) {
-        const cloudinaryResult = await uploadPic(cloudinaryFormData);
+    if (postImage) {
+      // const cloudinaryResult = await uploadPic(cloudinaryFormData);
 
-        post.postImageUrl = cloudinaryResult.data.secure_url;
-      }
+      const cloudinaryResult = await axios.post(
+        "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
+        cloudinaryFormData
+      );
 
-      setSavingPost(true);
-      const newPost = await createPost(post);
-      setSavingPost(false);
-      setPostImage("");
-      setImageUrl("");
-      setPostImageName("");
-      setPostText("");
-      handleClick();
-    } catch (error) {
-      console.log(error);
+      post.postImageUrl = cloudinaryResult.data.secure_url;
     }
+
+    setSavingPost(true);
+    const newPost = await createPost(post);
+    console.log(newPost);
+    if (newPost.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newPost.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log("the error is", newPost.error.data.message);
+    } else if (newPost.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newPost.data.message,
+          alertType: "success",
+        })
+      );
+      console.log("the data is", newPost.data.message);
+    }
+
+    setSavingPost(false);
+    setPostImage("");
+    setImageUrl("");
+    setPostImageName("");
+    setPostText("");
+    handleClick();
+    setTimeout(() => {
+      if (
+        newPost.error &&
+        newPost.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   return (
@@ -109,6 +138,7 @@ export default memo(function CreatePost({ handleClick, showCreatePost }) {
       {savingPost && (
         <BeatLoader color="lightBlue" size={35} className="beat-loader" />
       )}
+      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
       <form
         encType="multipart/form-data"
         className={`create-post-main ${isFocused ? "no-scroll" : ""} ${

@@ -4,6 +4,11 @@ const Wrapper = styled.main`
   .add-friend {
     color: var(--test-red);
   }
+  .beat-loader {
+    position: fixed;
+    top: 30vh;
+    left: 40vw;
+  }
   .back-button {
     font-weight: bold;
     display: flex;

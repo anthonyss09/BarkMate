@@ -37,6 +37,7 @@ export default function DashHome() {
   let updatedUser;
 
   const [scrolled, setScrolled] = useState("");
+  const [creatingComment, setCreatingComment] = useState(false);
 
   const onScroll = () => {
     if (window.scrollY > 300) {
@@ -65,7 +66,6 @@ export default function DashHome() {
   if (!loadingPosts && isSuccess) {
     content = postsData ? (
       posts.map((post, index) => {
-        console.log(post);
         const imageTag = post.imageObject
           ? JSON.parse(post.imageObject).imageTag
           : "";
@@ -89,6 +89,8 @@ export default function DashHome() {
             currentUserProfileImageUrl={user.profileImageUrl}
             createdAt={post.createdAt}
             postImageUrl={post.postImageUrl}
+            setCreatingComment={setCreatingComment}
+            creatingComment={creatingComment}
           />
         );
       })
@@ -102,6 +104,9 @@ export default function DashHome() {
 
   return (
     <Wrapper>
+      {creatingComment && (
+        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+      )}
       <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
         <div className="dash-center">
           <div className={`create-post-container ${scrolled}`}>

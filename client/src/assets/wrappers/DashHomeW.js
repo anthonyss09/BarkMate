@@ -5,6 +5,12 @@ const Wrapper = styled.section`
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);
   }
+  .beat-loader {
+    position: fixed;
+    left: 40vw;
+    top: 30vh;
+    z-index: 20;
+  }
   .create-post-container {
     height: 3rem;
     width: 3rem;

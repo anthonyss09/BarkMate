@@ -120,6 +120,17 @@ input {
 select {
   outline: none;
 }
+.alert {
+  position: fixed;
+  top: 30vh;
+  left: 10vw;
+  background: white;
+  z-index: 20;
+  padding: 1rem 3rem;
+  border: 2px solid rgb(220, 220, 220);
+  border-radius: 1rem;
+  box-shadow: 5px 2px 5px rgb(80, 80, 80);
+}
 .beat-loader {
   align-self: center;
   justify-self: center;
@@ -135,6 +146,9 @@ select {
 }
 .btn:hover {
   cursor: pointer;
+}
+.danger {
+  color: var(--test-red);
 }
 .dash-page-name {
   height: 1.35rem;
@@ -366,4 +380,10 @@ select {
 
 select:required:invalid {
   color: rgb(160, 160, 160);
+}
+
+@media (max-width: 400px) {
+  .alert {
+    left: 10vw;
+  }
 }

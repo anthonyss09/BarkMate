@@ -2,14 +2,28 @@ import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Chat from "../models/chatsModel.js";
 import { StatusCodes } from "http-status-codes";
+import jwt from "jsonwebtoken";
 
 const createChat = async (req, res) => {
+  const authorization = req.headers.authorization;
+  const token = authorization.split(" ")[1];
+
   const { participants, message } = req.body;
   const participantIds = participants.map(
     (participant) => participant.participantId
   );
 
   try {
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
+      if (err) {
+        console.log(err);
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Invalid credentials." });
+        throw new BadRequestError({ message: "Invalid credentials." });
+      }
+    });
+
     const existingChat = await Chat.findOne({
       "participants.participantId": { $all: participantIds },
     });
@@ -21,7 +35,9 @@ const createChat = async (req, res) => {
         },
         { new: true }
       );
-      res.status(StatusCodes.OK).json({ updatedChat });
+      res
+        .status(StatusCodes.OK)
+        .json({ message: "Message sent successfully!" });
       return;
     }
     const newChat = await Chat.create({
@@ -29,10 +45,12 @@ const createChat = async (req, res) => {
       messages: [message],
     });
     console.log(newChat);
-    res.status(StatusCodes.CREATED).json({ newChat });
+    res
+      .status(StatusCodes.CREATED)
+      .json({ message: "Message sent successfully!" });
   } catch (error) {
     console.log(error);
-    res.status(StatusCodes.BAD_REQUEST).json({ error });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 
@@ -44,7 +62,7 @@ const getChats = async (req, res) => {
     res.status(StatusCodes.OK).json({ chats });
   } catch (error) {
     console.log(error);
-    res.status(StatusCodes.BAD_REQUEST).json({ error });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 export { createChat, getChats };

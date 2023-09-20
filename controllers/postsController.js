@@ -2,14 +2,12 @@ import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Post from "../models/postsModel.js";
-import {
-  cloudinaryUpload,
-  getAssetInfo,
-  createImageTag,
-} from "../utils/cloudinary_upload.js";
+import jwt from "jsonwebtoken";
 
 const createPost = async (req, res) => {
-  // console.log(req.file);
+  const authorization = req.headers.authorization;
+  const token = authorization.split(" ")[1];
+
   const {
     postImageName,
     text,
@@ -22,28 +20,27 @@ const createPost = async (req, res) => {
     authorImageUrl,
   } = req.body;
 
-  // const colors = await getAssetInfo(publicId);
-  // const imageTag = createImageTag({ publicId, ...colors });
-  // const imageObject = JSON.stringify({ imageTag });
-  // const imageUrl = imageTag.toString().split("'")[1];
-
-  // const coordsArray = coordinates.split(",");
-
-  // let newCoords = [];
-  // coordsArray.map((coord) => newCoords.push(Number(coord)));
-
   const location = { type: "Point", coordinates: coordinates };
 
-  if (!postImageName && !text) {
+  if (!postImageUrl && !text) {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Add text or pic to your post." });
     throw new BadRequestError("Add text or pic to your post.");
   }
 
   try {
-    // const result = await cloudinaryUpload(path);
-    // const publicId = result.public_id;
-    // const imageUrl = result.secure_url;
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
+      if (err) {
+        console.log(err);
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Invalid credentials." });
+        throw new BadRequestError({ message: "Invalid credentials." });
+      }
+    });
+
     const post = await Post.create({
-      postImageName,
       text,
       authorId,
       location,
@@ -54,9 +51,12 @@ const createPost = async (req, res) => {
       authorImageUrl,
     });
     console.log(post);
-    res.status(StatusCodes.CREATED).json({ post });
+    res
+      .status(StatusCodes.CREATED)
+      .json({ content: post, message: "Post successful!" });
   } catch (error) {
     console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 
@@ -84,23 +84,37 @@ const getPosts = async (req, res) => {
 
     res.status(StatusCodes.OK).json({ posts });
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
     console.log(error);
   }
 };
 
 const editPost = async (req, res) => {
+  const authorization = req.headers.authorization;
+  const token = authorization.split(" ")[1];
+
   const { postId, update, currentUserCoords } = req.body;
 
   try {
+    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
+      if (err) {
+        console.log(err);
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ message: "Invalid credentials." });
+        throw new BadRequestError({ message: "Invalid credentials." });
+      }
+    });
+
     const editedPost = await Post.findByIdAndUpdate(
       { _id: postId },
       { ...update },
       { new: true }
     );
-    res.status(StatusCodes.OK).json({ editedPost });
+    res.status(StatusCodes.OK).json({ message: "Successfully edited post!" });
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({ error });
+    console.log("there was an error", error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 

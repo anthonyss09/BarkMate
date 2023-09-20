@@ -9,18 +9,9 @@ const requestFriend = async (req, res) => {
   console.log("friend requesting");
 
   try {
-    // const friendRequestExists = await Friends.find({
-    //   $and: [{ requester, recipient }],
-    // });
-    // if (friendRequestExists) {
-    //   console.log("friend requested already");
-    //   throw new BadRequestError("friend requested already");
-    // }
     const friends = await Friends.create({
       ...request,
     });
-
-    // console.log("new friend", friends);
 
     const updatedUser = await User.findOneAndUpdate(
       { _id: request.requester },
@@ -34,9 +25,11 @@ const requestFriend = async (req, res) => {
 
     const response = { friends, updatedUser };
 
-    res.status(StatusCodes.CREATED).json(response);
+    res
+      .status(StatusCodes.CREATED)
+      .json({ content: response, message: "Friend request sent." });
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({ error });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 

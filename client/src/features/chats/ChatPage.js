@@ -16,6 +16,12 @@ import {
 } from "../api/apiSlice";
 import mongoose from "mongoose";
 import BeatLoader from "react-spinners/BeatLoader";
+import { useSeletor, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { selectAlertsInfo } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
+import { logoutUser } from "../auth/authSlice";
 
 export default function ChatPage() {
   const {
@@ -32,13 +38,18 @@ export default function ChatPage() {
   const [createChat] = useCreateChatMutation();
   const [createNotification] = useCreateNotificationMutation();
 
+  const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
+
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleInputChange = (e) => {
     const { value } = e.target;
     setMessage(value);
   };
 
-  const handleMessageSend = () => {
-    createChat({
+  const handleMessageSend = async () => {
+    const newChat = await createChat({
       participants: [
         {
           participantId: userId,
@@ -57,18 +68,51 @@ export default function ChatPage() {
         content: message,
       },
     });
-    createNotification({
-      _id: id,
-      chatId,
-      recipient: friend.participantId,
-      sender: userId,
-      senderProfileImageUrl: profileImageUrl,
-      senderProfileName: profileName,
-      notificationPath: "chats",
-      notificationType: "message",
-      is_read: false,
-      is_viewed: false,
-    });
+
+    if (newChat.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newChat.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newChat.error.data.message);
+    } else if (newChat.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newChat.data.message,
+          alertType: "success",
+        })
+      );
+      console.log(newChat.data.message);
+      createNotification({
+        _id: id,
+        chatId,
+        recipient: friend.participantId,
+        sender: userId,
+        senderProfileImageUrl: profileImageUrl,
+        senderProfileName: profileName,
+        notificationPath: "chats",
+        notificationType: "message",
+        is_read: false,
+        is_viewed: false,
+      });
+    }
+
+    setTimeout(() => {
+      if (
+        newChat.error &&
+        newChat.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
+
     setMessage("");
   };
 
@@ -95,7 +139,9 @@ export default function ChatPage() {
   let messages;
   let content;
   let thisChat;
-  let friend;
+  let friend = {
+    profileName: "",
+  };
   let user;
   if (isLoading) {
     content = (
@@ -134,6 +180,7 @@ export default function ChatPage() {
 
   return (
     <Wrapper>
+      {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
       <div className="chat-page-main">
         <div className="chat-page-header">
           <Link to="/dashboard/chats" className="link">

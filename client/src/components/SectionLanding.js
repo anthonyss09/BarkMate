@@ -30,7 +30,11 @@ export default function SectionLanding() {
             {/* <span className="bark">bark</span> */}
             <button className="btn btn-join">Join</button>
           </h1>
-          <img src={StacyLanding} className="section-landing-image-jm" />
+          <div className="blue-container-image-jm">
+            <div className="section-landing-image-jm-container">
+              <img src={StacyLanding} className="section-landing-image-jm" />
+            </div>
+          </div>
         </div>
         <div className="section-landing-center section-landing-chat-center">
           <div className="section-landing-chat">

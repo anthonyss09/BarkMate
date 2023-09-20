@@ -1,18 +1,20 @@
 import Wrapper from "../../assets/wrappers/ProfilePreviewW";
-import jennyMax from "../../assets/images/jennie&maxSmall.jpg";
 import { FaUserFriends } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FiMail } from "react-icons/fi";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+
 import { Link } from "react-router-dom";
 import QuickChat from "../chats/QuickChat";
-import { useState, useRef } from "react";
-import { useEffect } from "react";
+import { useState } from "react";
 import {
   useRequestFriendMutation,
   useCreateNotificationMutation,
 } from "../api/apiSlice";
 import mongoose from "mongoose";
+import { useDispatch } from "react-redux";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { logoutUser } from "../auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePreview({
   aboutUs,
@@ -20,16 +22,22 @@ export default function ProfilePreview({
   profileName,
   currentUser,
   profileImageUrl,
+  requesting,
+  setRequesting,
 }) {
   const [showQuickChat, setShowQuickChat] = useState(false);
+
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const [createNotification] = useCreateNotificationMutation();
   const [requestFriend] = useRequestFriendMutation();
   const friendRequestId = new mongoose.Types.ObjectId();
   const notificationId = new mongoose.Types.ObjectId();
 
-  const handleFriendRequest = () => {
-    requestFriend({
+  const handleFriendRequest = async () => {
+    setRequesting(true);
+    const newFriend = await requestFriend({
       _id: friendRequestId,
       requester: currentUser._id,
       participants: [
@@ -48,18 +56,50 @@ export default function ProfilePreview({
       requesterStatus: "pending",
       recipientStatus: "requested",
     });
-    createNotification({
-      _id: notificationId,
-      friendId: id,
-      recipient: id,
-      sender: currentUser._id,
-      senderProfileName: currentUser.profileName,
-      senderProfileImageUrl: currentUser.profileImageUrl,
-      notificationPath: "friendRequests",
-      notificationType: "friendRequest",
-      is_read: false,
-      is_viewed: false,
-    });
+    setRequesting(false);
+
+    if (newFriend.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newFriend.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newFriend.error.data.message);
+    } else if (newFriend.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newFriend.data.message,
+          alertType: "success",
+        })
+      );
+      createNotification({
+        _id: notificationId,
+        friendId: id,
+        recipient: id,
+        sender: currentUser._id,
+        senderProfileName: currentUser.profileName,
+        senderProfileImageUrl: currentUser.profileImageUrl,
+        notificationPath: "friendRequests",
+        notificationType: "friendRequest",
+        is_read: false,
+        is_viewed: false,
+      });
+    }
+
+    setTimeout(() => {
+      if (
+        newFriend.error &&
+        newFriend.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   const handleMessageClick = () => {
@@ -142,6 +182,8 @@ export default function ProfilePreview({
         recipientProfileName={profileName}
         showQuickChat={showQuickChat}
         recipientImageUrl={profileImageUrl}
+        requesting={requesting}
+        setRequesting={setRequesting}
       />
     </Wrapper>
   );

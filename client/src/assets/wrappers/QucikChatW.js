@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .beat-loader {
-    position: absolute;
+    position: fixed;
     z-index: 20;
     top: 0;
     left: 30vw;

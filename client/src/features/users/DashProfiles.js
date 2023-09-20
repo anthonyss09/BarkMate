@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
-import FormDropDown from "../auth/FormDropDown";
 import FiltersDropDown from "../../components/FiltersDropDown";
 import BeatLoader from "react-spinners/BeatLoader";
 
@@ -20,6 +19,7 @@ export default function DashProfiles() {
   });
 
   const [showFilters, setShowFilters] = useState(false);
+  const [requesting, setRequesting] = useState(false);
   console.log(data);
 
   const handleClick = () => {
@@ -58,6 +58,8 @@ export default function DashProfiles() {
           id={match._id}
           profileName={match.profileName}
           currentUser={currentUser}
+          requesting={requesting}
+          setRequesting={setRequesting}
         />
       );
     });
@@ -65,13 +67,12 @@ export default function DashProfiles() {
 
   return (
     <Wrapper>
+      {requesting && (
+        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+      )}
       <section className="dash-main">
         <div className="dash-header">
           <h1 className="dash-page-name">Profiles </h1>
-          {/* <p className="p-top">
-            Profiles within {distance}
-            <br /> mile{distance > 1 && "s"}...
-          </p> */}
           <div className="filter" onClick={handleClick}>
             <BiFilter size={20} />
             Filters

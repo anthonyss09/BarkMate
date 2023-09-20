@@ -17,7 +17,16 @@ export const apiSlice = createApi({
 
   baseQuery: fetchBaseQuery({
     baseUrl: "/api",
-    //prepare headers
+    prepareHeaders: (headers, { getState }) => {
+      const user = getState().auth.currentUser;
+      const token = getState().auth.token;
+      if (token) {
+        headers.set("authorization", `bearer ${token}`);
+      } else {
+        headers.set("authorization", "bearer invalidToken");
+      }
+      return headers;
+    },
   }),
 
   tagTypes: ["CurrentUser", "Posts", "Post"],
@@ -157,6 +166,7 @@ export const apiSlice = createApi({
           switch (data.type) {
             case "chat":
               {
+                console.log("got the chat from server");
                 const sender = data.content.message.sender;
                 const recipient = data.content.message.recipient;
                 // const existingChatId = data.content.chatId;
@@ -165,7 +175,6 @@ export const apiSlice = createApi({
                   let chatIndex;
                   const existingChatId = Object.values(draft).map(
                     (chat, index) => {
-                      chatIndex = index;
                       const draftParicipantIds = [];
                       draftParicipantIds.push(
                         chat.participants.user.participantId
@@ -173,10 +182,14 @@ export const apiSlice = createApi({
                       draftParicipantIds.push(
                         chat.participants.friend.participantId
                       );
+                      console.log(draftParicipantIds);
                       if (
                         draftParicipantIds.includes(sender) &&
                         draftParicipantIds.includes(recipient)
                       ) {
+                        console.log("exitsts");
+                        console.log(chat._id);
+                        chatIndex = index;
                         return chat._id;
                       }
                     }
@@ -393,7 +406,6 @@ export const apiSlice = createApi({
             case "editPost":
               {
                 updateCachedData((draft) => {
-                  console.log(draft);
                   const targetPost = draft[message.content.postId];
                   targetPost[Object.keys(message.content.update)[0]] =
                     Object.values(message.content.update)[0];

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+.beat-loader {
+  position: fixed;
+  left: 40vw;
+}
 p {
   color: var(--grey-180);
   font-size: 0.8rem;

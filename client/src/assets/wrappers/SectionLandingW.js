@@ -18,14 +18,15 @@ const Wrapper = styled.section`
     color: var(--federal-blue);
     text-align: center;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding: 0;
     max-width: 40vw;
     letter-spacing: 0.06rem;
     font-family: "Montserrat", sans-serif;
     z-index: 4;
     position: static;
-    margin-left: 1rem;
     color: rgb(80, 80, 80);
     background: white;
     background: none;
@@ -101,14 +102,22 @@ const Wrapper = styled.section`
     // width: 70vw;
     // border-radius: 1rem 1rem 0 0;
     border-radius: 0.5rem;
-    width: 50vw;
-    max-width: 250px;
+    // width: 50vw;
+    // max-width: 250px;
     // margin: 4rem 2rem;
     box-shadow: 10px 5px 10px rgb(40, 40, 40);
     transform: rotate(-10deg);
     z-index: 10;
     border: 1px solid rgb(220, 220, 220);
     margin-top: 1rem;
+    max-height: 300px;
+  }
+  .section-landing-image-jm-container {
+    // max-height: 100px;
+    transform: rotate(-10deg);
+    border: 4px solid pink;
+  }
+  .blue-container-image-jm {
   }
   .section-landing-image-post {
     border-radius: 0.5rem;
@@ -137,10 +146,13 @@ const Wrapper = styled.section`
     display: flex;
     align-items: center;
     max-width: 100%;
+    // max-height: 50vh;
+    height: 60vh;
   }
   .section-landing-center-column {
     flex-direction: column;
     background: var(--med-bright-blue);
+    height: 100vh;
   }
   .section-landing-heading {
     display: flex;
@@ -166,11 +178,18 @@ const Wrapper = styled.section`
     .section-landing-main {
     }
     .section-landing-image-jm {
-      width: 55vw;
+      // width: 55vw;
+      max-height: 250px;
     }
     .back-one {
       width: 100vw;
-      height: 55vh;
+      height: 65vh;
+    }
+    // .section-landing-center {
+    //   height: 55vh;
+    // }
+    .section-landing-center-column {
+      height: 85vh;
     }
     .section-landing-chat-center {
       padding: 0 0.4rem;
@@ -178,9 +197,12 @@ const Wrapper = styled.section`
     }
     h1 {
       // margin-bottom: 1rem;
-      margin-bottom: 2rem;
+      // margin-bottom: 2rem;
+      margin-left: 0rem;
       margin-right: 1rem;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      margin-bottom: -4rem;
+      // margin-bottom: 0.6rem;
     }
   }
 `;

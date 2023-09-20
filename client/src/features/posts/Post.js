@@ -1,17 +1,22 @@
 import Wrapper from "../../assets/wrappers/PostW";
 import { AiFillHeart, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState, memo } from "react";
+import { useState, memo, useRef, useEffect } from "react";
 // import { useEditPostMutation } from "./PostsSlice";
 import { useEditPostMutation } from "../api/apiSlice";
 import { useCreateNotificationMutation } from "../api/apiSlice";
 import Comment from "./Comment";
-import { useRef, useEffect } from "react";
 import mongoose from "mongoose";
 import moment from "moment";
 // import { AiOutlineCloseCircle } from "react-icons/ai";
 import CreateComment from "./CreateComment";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+// import { selectAlertsInfo } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
+import { logoutUser } from "../auth/authSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export default memo(function Post({
   authorId,
@@ -30,6 +35,8 @@ export default memo(function Post({
   currentUserProfileName,
   postImageUrl,
   currentUserProfileImageUrl,
+  setCreatingComment,
+  creatingComment,
 }) {
   const [showPostComment, setShowPostComment] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -42,6 +49,11 @@ export default memo(function Post({
     dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
   const urlPre = "../../data/uploads/";
   const id = new mongoose.Types.ObjectId();
+
+  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
+
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // const ref = useRef();
 
@@ -71,25 +83,60 @@ export default memo(function Post({
       dogName: currentUserDogName,
       text: comment,
     });
-    editPost({
+
+    setCreatingComment(true);
+    const newPost = await editPost({
       postId,
       update: { comments: commentsCopy },
       currentUserCoords,
     });
-    createNotification({
-      _id: id,
-      postId,
-      recipient: authorId,
-      sender: currentUserId,
-      senderProfileName: currentUserProfileName,
-      senderPorfileImageUrl: currentUserProfileImageUrl,
-      notificationPath: "posts",
-      notificationType: "comment",
-      is_read: false,
-      is_viewed: false,
-    });
+    setCreatingComment(false);
+
+    if (newPost.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newPost.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newPost);
+    } else if (newPost.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newPost.data.message,
+          alertType: "success",
+        })
+      );
+      createNotification({
+        _id: id,
+        postId,
+        recipient: authorId,
+        sender: currentUserId,
+        senderProfileName: currentUserProfileName,
+        senderPorfileImageUrl: currentUserProfileImageUrl,
+        notificationPath: "posts",
+        notificationType: "comment",
+        is_read: false,
+        is_viewed: false,
+      });
+      console.log("the data is", newPost.data.message);
+    }
     setShowPostComment(!showPostComment);
     setComment("");
+
+    setTimeout(() => {
+      if (
+        newPost.error &&
+        newPost.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   const userLikes = likes.map((like) => like.userId);
@@ -153,6 +200,7 @@ export default memo(function Post({
 
   return (
     <Wrapper>
+      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
       <aside className="post-main">
         <div className="post-center">
           <div className="post-heading">
@@ -218,6 +266,7 @@ export default memo(function Post({
               text={text}
               authorImageUrl={authorImageUrl}
               postImageUrl={postImageUrl}
+              creatingComment={creatingComment}
             />
           )}
         </div>

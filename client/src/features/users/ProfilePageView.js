@@ -9,7 +9,7 @@ import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
 import { useGetProfileByIdQuery } from "./UsersSlice";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import mongoose from "mongoose";
@@ -19,6 +19,10 @@ import {
 } from "../api/apiSlice";
 import QuickChat from "../chats/QuickChat";
 import { useState } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { logoutUser } from "../auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePageView() {
   const { profileId } = useParams();
@@ -36,6 +40,10 @@ export default function ProfilePageView() {
   const [createNotification] = useCreateNotificationMutation();
 
   const [showQuickChat, setShowQuickChat] = useState(false);
+  const [requesting, setRequesting] = useState(false);
+
+  const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const handleMessageClick = () => {
     setShowQuickChat(!showQuickChat);
@@ -67,32 +75,47 @@ export default function ProfilePageView() {
 
   const handleFriendRequest = async () => {
     console.log(currentUser);
-    try {
-      const response = await requestFriend({
-        _id: friendRequestId,
-        requester: currentUser._id,
-        participants: [
-          {
-            participantId: currentUser._id,
-            participantProfileName: currentUser.profileName,
-            participantProfileImageName: currentUser.profileImageName,
-            participantProfileImageUrl: currentUser.profileImageUrl,
-          },
-          {
-            participantId: userData.user._id,
-            participantProfileName: userData.user.profileName,
-            participantProfileImageName: userData.user.profileImageName,
-            participantProfileImageUrl: userData.user.profileImageUrl,
-          },
-        ],
-        // requesterProfileName: currentUser.user.profileName,
-        // requesterProfileImageName: currentUser.user.profileImageName,
-        recipient: userData.user._id,
-        // recipientProfileName: user.profileName,
-        // recipientProfileImageName: user.profileImageName,
-        requesterStatus: "pending",
-        recipientStatus: "requested",
-      });
+
+    setRequesting(true);
+    const newFriend = await requestFriend({
+      _id: friendRequestId,
+      requester: currentUser._id,
+      participants: [
+        {
+          participantId: currentUser._id,
+          participantProfileName: currentUser.profileName,
+          participantProfileImageName: currentUser.profileImageName,
+          participantProfileImageUrl: currentUser.profileImageUrl,
+        },
+        {
+          participantId: userData.user._id,
+          participantProfileName: userData.user.profileName,
+          participantProfileImageName: userData.user.profileImageName,
+          participantProfileImageUrl: userData.user.profileImageUrl,
+        },
+      ],
+      recipient: userData.user._id,
+      requesterStatus: "pending",
+      recipientStatus: "requested",
+    });
+    setRequesting(false);
+
+    if (newFriend.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newFriend.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newFriend.error.data.message);
+    } else if (newFriend.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newFriend.data.message,
+          alertType: "success",
+        })
+      );
+      console.log(newFriend.data.message);
       createNotification({
         _id: notificationId,
         friendId: profileId,
@@ -106,27 +129,34 @@ export default function ProfilePageView() {
         is_read: false,
         is_viewed: false,
       });
-    } catch (error) {
-      console.log(error);
     }
+
+    setTimeout(() => {
+      if (
+        newFriend.error &&
+        newFriend.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   return (
     <Wrapper>
       <HomeNav />
       <main className="profile-page-main">
+        {requesting && (
+          <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        )}
         <div className="profile-page-center">
           <div className="back-button"> </div>
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
-              {/* <div className="profile-preview-verification">
-                <div className="stars-container">
-                  {" "}
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiOutlineStar className="icon-star" size={10} />
-                </div>
-              </div> */}
               <h1 className="profile-preview-name">
                 {userData.user.firstName} & {userData.user.dogName}
               </h1>
@@ -216,6 +246,8 @@ export default function ProfilePageView() {
         handleMessageClick={handleMessageClick}
         recipientProfileName={userData.user.profileName}
         showQuickChat={showQuickChat}
+        requesting={requesting}
+        setRequesting={setRequesting}
       />
     </Wrapper>
   );

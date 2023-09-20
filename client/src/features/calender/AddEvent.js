@@ -9,8 +9,14 @@ import "react-clock/dist/Clock.css";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useCreateEventMutation } from "./CalenderSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { selectAlertInfo } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
+import { logoutUser } from "../auth/authSlice";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function AddEvent({ setShowAddEvent }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -18,6 +24,12 @@ export default function AddEvent({ setShowAddEvent }) {
   const [eventDate, setEventDate] = useState("");
   const [eventOccurrence, setEventOccurrence] = useState("");
   const [eventNote, setEventNote] = useState("");
+  const [addingEvent, setAddingEvent] = useState(false);
+
+  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertInfo);
+
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const [createEvent] = useCreateEventMutation();
@@ -71,21 +83,63 @@ export default function AddEvent({ setShowAddEvent }) {
     setEventNote(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    createEvent({ userId, eventDate, eventTime, eventOccurrence, eventNote });
-
-    setEventDate("");
-    setEventTime("");
-    setEventOccurrence("");
-    setEventNote("");
+    setAddingEvent(true);
+    const newEvent = await createEvent({
+      userId,
+      eventDate,
+      eventTime,
+      eventOccurrence,
+      eventNote,
+    });
+    setAddingEvent(false);
     setShowAddEvent(false);
+
+    if (newEvent.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newEvent.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newEvent);
+    } else if (newEvent.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newEvent.data.message,
+          alertType: "success",
+        })
+      );
+      console.log("the data is", newEvent.data.message);
+    }
+
+    setTimeout(() => {
+      if (
+        newEvent.error &&
+        newEvent.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      setEventDate("");
+      setEventTime("");
+      setEventOccurrence("");
+      setEventNote("");
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   return (
     <Wrapper>
       <form className="add-event-main" onSubmit={handleSubmit}>
+        {addingEvent && (
+          <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        )}
         <button
           className="btn btn-discard-event"
           onClick={() => {
@@ -149,7 +203,11 @@ export default function AddEvent({ setShowAddEvent }) {
         </div>
         {/* </div> */}
         <div className="add-event-buttons">
-          <button type="submit" className="btn btn-add-event">
+          <button
+            type="submit"
+            className="btn btn-add-event"
+            disabled={addingEvent}
+          >
             <IoIosAdd size={30} />
           </button>
         </div>

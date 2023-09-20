@@ -2,14 +2,16 @@ import Wrapper from "../../assets/wrappers/QucikChatW";
 import { AiOutlineCloseCircle, AiOutlineSend } from "react-icons/ai";
 import { useCreateChatMutation } from "../api/apiSlice";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import {
   useGetChatsQuery,
   useCreateNotificationMutation,
 } from "../api/apiSlice";
 import mongoose from "mongoose";
-import BeatLoader from "react-spinners/BeatLoader";
+import { useNavigate } from "react-router-dom";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { logoutUser } from "../auth/authSlice";
 
 export default function QuickChat({
   recipientId,
@@ -17,6 +19,8 @@ export default function QuickChat({
   recipientProfileName,
   showQuickChat,
   recipientImageUrl,
+  setRequesting,
+  requesting,
 }) {
   const {
     _id: currentUserId,
@@ -24,14 +28,15 @@ export default function QuickChat({
     profileImageUrl,
   } = useSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
-  const [sendingMessage, setSendingMessage] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [createChat] = useCreateChatMutation();
   const [createNotification] = useCreateNotificationMutation();
   const id = new mongoose.Types.ObjectId();
 
   const { data, error, isLoading } = useGetChatsQuery(currentUserId);
-  const urlPre = "../../data/uploads/";
+
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleMessageChange = (e) => {
     const { value } = e.target;
@@ -40,7 +45,7 @@ export default function QuickChat({
 
   const handleSendMessage = async () => {
     setMessage("");
-    setSendingMessage(true);
+    setRequesting(true);
     const newChat = await createChat({
       participants: [
         {
@@ -60,20 +65,55 @@ export default function QuickChat({
         content: message,
       },
     });
-    createNotification({
-      _id: id,
-      chatId: newChat._id,
-      recipient: recipientId,
-      sender: currentUserId,
-      senderProfileName: profileName,
-      senderProfileImageUrl: profileImageUrl,
-      notificationPath: "chats",
-      notificationType: "message",
-      is_read: false,
-      is_viewed: false,
-    });
-    setSendingMessage(false);
+
+    setRequesting(false);
+
+    if (newChat.error) {
+      dispatch(
+        displayAlert({
+          alertMessage: newChat.error.data.message,
+          alertType: "danger",
+        })
+      );
+      console.log(newChat.error.data.message);
+    } else if (newChat.data) {
+      dispatch(
+        displayAlert({
+          alertMessage: newChat.data.message,
+          alertType: "success",
+        })
+      );
+
+      createNotification({
+        _id: id,
+        chatId: newChat._id,
+        recipient: recipientId,
+        sender: currentUserId,
+        senderProfileName: profileName,
+        senderProfileImageUrl: profileImageUrl,
+        notificationPath: "chats",
+        notificationType: "message",
+        is_read: false,
+        is_viewed: false,
+      });
+      console.log(newChat.data.message);
+    }
+
     handleMessageClick();
+
+    setTimeout(() => {
+      if (
+        newChat.error &&
+        newChat.error.data.message === "Invalid credentials."
+      ) {
+        dispatch(logoutUser());
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        Navigate("/");
+        console.log("caught the credentials");
+      }
+      dispatch(clearAlert());
+    }, 2000);
   };
 
   return (
@@ -83,9 +123,6 @@ export default function QuickChat({
           isFocused ? "focused-height" : ""
         }`}
       >
-        {sendingMessage && (
-          <BeatLoader color="lightBlue" size={35} className="beat-loader" />
-        )}
         <div
           className={`quick-chat-center ${!showQuickChat ? "no-display" : ""}`}
         >
@@ -122,7 +159,7 @@ export default function QuickChat({
               type="button"
               className="btn quick-chat-btn"
               onClick={handleSendMessage}
-              disabled={sendingMessage}
+              disabled={requesting}
             >
               <AiOutlineSend size={35} />
             </button>
