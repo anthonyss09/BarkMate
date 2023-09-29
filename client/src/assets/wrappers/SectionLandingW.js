@@ -185,9 +185,9 @@ const Wrapper = styled.section`
       width: 100vw;
       height: 65vh;
     }
-    // .section-landing-center {
-    //   height: 55vh;
-    // }
+    .section-landing-center {
+      height: 50vh;
+    }
     .section-landing-center-column {
       height: 85vh;
     }

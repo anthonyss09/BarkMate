@@ -9,23 +9,23 @@ export default function EventsRow({ eventsTitle, events, isLoading }) {
   const eventList =
     !isLoading && events.length !== 0 ? (
       events.map((event, index) => {
-        const newDate = new Date(event.dateString + "T" + event.eventTime);
-        console.log(event.dateString);
-        console.log(newDate);
+        // const newDate = new Date(event.dateString + "T" + event.eventTime);
         return (
           <div key={index} className="event">
             <div className="event-date">
-              <span className="event-date-text"></span>{" "}
+              {/* <span className="event-date-text"></span>{" "}
               {newDate.getDate() +
                 "/" +
                 Number(newDate.getMonth() + 1).toString() +
                 "/" +
-                newDate.getFullYear()}
+                newDate.getFullYear()} */}
+              {event.dateString}
             </div>
             <div className="event-time">
-              <span className="event-time-text"></span>{" "}
+              {/* <span className="event-time-text"></span>{" "}
               {newDate.getHours() + ":" + newDate.getMinutes()}
-              {newDate.getMinutes().toString().length < 2 && "0"}
+              {newDate.getMinutes().toString().length < 2 && "0"} */}
+              {event.eventTime}
             </div>
             <div className="event-note">{event.eventNote}</div>
           </div>

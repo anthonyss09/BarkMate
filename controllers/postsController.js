@@ -25,8 +25,8 @@ const createPost = async (req, res) => {
   if (!postImageUrl && !text) {
     res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ message: "Add text or pic to your post." });
-    throw new BadRequestError("Add text or pic to your post.");
+      .json({ message: "Add text or pic to post." });
+    throw new BadRequestError("Add text or pic to post.");
   }
 
   try {
@@ -51,9 +51,7 @@ const createPost = async (req, res) => {
       authorImageUrl,
     });
     console.log(post);
-    res
-      .status(StatusCodes.CREATED)
-      .json({ content: post, message: "Post successful!" });
+    res.status(StatusCodes.CREATED).json({ content: post, message: "Posted!" });
   } catch (error) {
     console.log(error);
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
@@ -111,7 +109,7 @@ const editPost = async (req, res) => {
       { ...update },
       { new: true }
     );
-    res.status(StatusCodes.OK).json({ message: "Successfully edited post!" });
+    res.status(StatusCodes.OK).json({ message: "Comment posted!" });
   } catch (error) {
     console.log("there was an error", error);
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });

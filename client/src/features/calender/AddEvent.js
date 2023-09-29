@@ -48,10 +48,11 @@ export default function AddEvent({ setShowAddEvent }) {
       day = "0" + day;
     }
     let month = e.$M;
-    if (Number(month) < 10) {
+    if (Number(month) < 9) {
       month = "0" + (Number(month) + 1).toString();
     }
-    date.dateString = e.$y + "-" + month + "-" + day;
+    // date.dateString = e.$y + "-" + month + "-" + day;
+    date.dateString = month + "-" + day + "-" + e.$y;
     date.dayOfWeek = e.$W;
     setEventDate(date);
     console.log(date);

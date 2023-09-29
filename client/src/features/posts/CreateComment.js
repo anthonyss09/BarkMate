@@ -20,10 +20,36 @@ export default function CreateComment({
 }) {
   return (
     <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
-      <div className="comment-icon-close">
-        {" "}
-        <AiOutlineClose size={25} onClick={handleShowPostComment} />
+      <div className="post-comment-input-row">
+        <div className="comment-icon-close">
+          {" "}
+          <AiOutlineClose size={25} onClick={handleShowPostComment} />
+        </div>
+        <textarea
+          id="createComment"
+          name="Create comment"
+          rows="1"
+          placeholder="Type your comment..."
+          className={`post-textarea ${
+            isFocused ? "post-textarea-focused" : ""
+          }`}
+          onChange={handleCommentChange}
+          autoFocus={true}
+          value={comment}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+        <button className={`btn btn-send `} disabled={requesting}>
+          {" "}
+          <AiOutlineSend
+            size={30}
+            className="icon-send"
+            id="postComment"
+            onClick={handlePostComment}
+          />
+        </button>
       </div>
+
       <div className="post-comment-preview">
         {" "}
         <div className="post-comment-heading">
@@ -42,28 +68,6 @@ export default function CreateComment({
           />
         </div>
       </div>
-
-      <textarea
-        id="createComment"
-        name="Create comment"
-        rows="3"
-        placeholder="Type your comment..."
-        className={`post-textarea ${isFocused ? "post-textarea-focused" : ""}`}
-        onChange={handleCommentChange}
-        autoFocus={true}
-        value={comment}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      />
-      <button className={`btn btn-send `} disabled={requesting}>
-        {" "}
-        <AiOutlineSend
-          size={30}
-          className="icon-send"
-          id="postComment"
-          onClick={handlePostComment}
-        />
-      </button>
     </div>
   );
 }

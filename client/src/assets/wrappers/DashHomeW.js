@@ -9,7 +9,7 @@ const Wrapper = styled.section`
     position: fixed;
     left: 40vw;
     top: 30vh;
-    z-index: 20;
+    z-index: 30;
   }
   .create-post-container {
     height: 3rem;

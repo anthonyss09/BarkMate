@@ -16,7 +16,18 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Events"],
     }),
+    updateEvents: builder.mutation({
+      query: (eventsCopy) => ({
+        url: "/events/update-events",
+        method: "POST",
+        body: eventsCopy,
+      }),
+    }),
   }),
 });
 
-export const { useGetEventsQuery, useCreateEventMutation } = extendedApiSlice;
+export const {
+  useGetEventsQuery,
+  useCreateEventMutation,
+  useUpdateEventsMutation,
+} = extendedApiSlice;

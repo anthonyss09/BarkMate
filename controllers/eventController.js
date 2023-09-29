@@ -54,4 +54,31 @@ const createEvent = async (req, res) => {
   }
 };
 
-export { getEvents, createEvent };
+const updateEvents = async (req, res) => {
+  const { eventsCopy } = req.body;
+
+  eventsCopy.map(async (event, index) => {
+    if (event.isMutated) {
+      try {
+        if (event.deletEvent) {
+          const response = await Event.findOneAndDelete({
+            _id: event._id,
+          });
+          console.log("deleted", response);
+        } else {
+          const response = await Event.findOneAndReplace(
+            { _id: event._id },
+            { ...event }
+          );
+          console.log("replaced", response);
+        }
+      } catch (error) {
+        res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+      }
+    }
+  });
+
+  res.status(StatusCodes.OK).json({ message: "Events have been updated." });
+};
+
+export { getEvents, createEvent, updateEvents };

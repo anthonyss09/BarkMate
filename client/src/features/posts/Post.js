@@ -124,7 +124,7 @@ export default memo(function Post({
         console.log("caught the credentials");
       }
       dispatch(clearAlert());
-    }, 2000);
+    }, 1000);
   };
 
   const userLikes = likes.map((like) => like.userId);

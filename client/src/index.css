@@ -148,7 +148,7 @@ select {
   cursor: pointer;
 }
 .danger {
-  color: var(--test-red);
+  /* color: var(--test-red); */
 }
 .dash-page-name {
   height: 1.35rem;

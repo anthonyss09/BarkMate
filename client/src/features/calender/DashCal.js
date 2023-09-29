@@ -1,7 +1,4 @@
 import Wrapper from "../../assets/wrappers/DashCalW";
-import { IoIosArrowDown } from "react-icons/io";
-import { TbArrowBadgeDown } from "react-icons/tb";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
 import AddEvent from "./AddEvent";
@@ -9,8 +6,8 @@ import { useGetEventsQuery } from "./CalenderSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import EventsRow from "./EventsRow";
-// import { selectAlertsInfo } from "../alerts/alertsSlice";
-import Alert from "../alerts/Alert";
+import { adjustEvents } from "../../utils/helpers";
+import { useUpdateEventsMutation } from "./CalenderSlice";
 
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
@@ -18,8 +15,7 @@ export default function DashCal() {
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
-
-  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
+  const [updateEvents] = useUpdateEventsMutation();
 
   let todaysEvents;
   if (!isLoading) {
@@ -61,6 +57,18 @@ export default function DashCal() {
 
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log(data);
+      const { eventsCopy, eventsMutated } = adjustEvents(data.events);
+      if (eventsMutated) {
+        console.log("events are mutated");
+        console.log(eventsCopy);
+        updateEvents({ eventsCopy });
+      }
+    }
+  }, [data]);
   return (
     <Wrapper>
       {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}

@@ -1,4 +1,4 @@
-import { StatusCodes } from "http-status-codes";
+import { BAD_REQUEST, StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import User from "../models/userModel.js";
@@ -35,12 +35,17 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    throw new BadRequestError("Please provide all values.");
+    res.status(BAD_REQUEST).json({ message: "Please provide all values." });
+    throw new BadRequestError({ message: "Please provide all values." });
   }
   try {
     const user = await User.findOne({ email }).select("+password");
-    const passwordIsValid = user.comparePassword(password);
+    const passwordIsValid = await user.comparePassword(password);
+    console.log("validity", passwordIsValid);
     if (!passwordIsValid) {
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "Invalid credentials." });
       throw new UnauthenticatedError("Invalid credentials.");
     }
     user.password = undefined;
@@ -49,7 +54,7 @@ const loginUser = async (req, res) => {
     res.status(StatusCodes.OK).json({ user, token });
   } catch (error) {
     console.log(error);
-    res.status(StatusCodes.BAD_REQUEST).json({ error: error.message });
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
 

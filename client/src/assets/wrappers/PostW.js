@@ -4,7 +4,7 @@ const Wrapper = styled.aside`
   .btn-send {
     width: 100%;
     width: 94%;
-    margin: 0 auto;
+    // margin: 0 auto;
     // width: 4rem;
     // border-radius: 5rem;
     border-radius: 0.5rem;
@@ -13,18 +13,25 @@ const Wrapper = styled.aside`
     background: var(--med-bright-blue);
     color: white;
     display: block;
-    margin-top: 1rem;
+    // margin-top: 1rem;
     // box-shadow: 5px 2px 5px grey;
     // border: 1px solid rgb(230, 230, 230);
+
+    height: 3rem;
+    width: 3rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .comments-container {
     margin: 0 1rem;
   }
   .comment-icon-close {
-    margin-top: 0.4rem;
+    // margin-top: 0.4rem;
     // margin-bottom: 1rem;
-    margin-bottom: 0.4rem;
-    margin-left: 0.8rem;
+    // margin-bottom: 0.4rem;
+    // margin-left: 0.8rem;
   }
   .comment-icon-close:hover {
     cursor: pointer;
@@ -56,7 +63,8 @@ const Wrapper = styled.aside`
   .post-comment-body-pic {
     // width: 20vw;
     // width: 80vw;
-    max-height: 25vh;
+    // max-height: 25vh;
+    width: 85vw;
   }
   .post-comment-date {
     font-size: 0.2rem;
@@ -72,6 +80,14 @@ const Wrapper = styled.aside`
     display: flex;
     gap: 0.2rem;
     align-items: center;
+  }
+  .post-comment-input-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.8rem 0.4rem;
+    box-sizing: border-box;
   }
   .post-comment-heading-pic {
     height: 30px;
@@ -95,22 +111,28 @@ const Wrapper = styled.aside`
     // align-self: center;
   }
   .post-comment-row {
-    display: flex;
-    flex-direction: column;
-    // padding: 1rem;
-    box-sizing: border-box;
-    position: fixed;
-    // height: 100%;
-    height: min-content;
-    width: 94vw;
-    top: 0.6rem;
-    left: 0.6rem;
-    z-index: 8;
+    // display: flex;
+    // flex-direction: column;
+    // // padding: 1rem;
+    // box-sizing: border-box;
+    // position: fixed;
+    // // height: 100%;
+    // height: min-content;
+    // width: 94vw;
+    // top: 0.6rem;
+    // left: 0.6rem;
+    // z-index: 8;
     background: white;
-    padding-bottom: 1rem;
-    box-shadow: 5px 5px 8px rgb(80, 80, 80);
-    border: 1px solid rgb(230, 230, 230);
-    border-radius: 0.5rem;
+    // padding-bottom: 1rem;
+    // box-shadow: 5px 5px 8px rgb(80, 80, 80);
+    // border: 1px solid rgb(230, 230, 230);
+    // border-radius: 0.5rem;
+
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 20;
   }
   .post-comment-text {
     font-size: 0.3rem;
@@ -195,23 +217,30 @@ const Wrapper = styled.aside`
     resize: none;
     outline: none;
     font-size: 16px;
-    display: block;
-    margin-top: 1rem;
+    // display: block;
+    // margin-top: 1rem;
     // margin-top: 6rem;
     background: none;
     // margin-bottom: 100%;
-    box-sizing: border-box;
-    background: rgb(244, 244, 244);
-    background: white;
+    // box-sizing: border-box;
+    // background: rgb(244, 244, 244);
+    // background: white;
     // border-radius: 2.6rem;
-    box-sizing: border-box;
-    margin: 1rem 0.6rem 0 0.6rem;
-    margin: 1rem;
-    margin-bottom: 0;
+    // box-sizing: border-box;
+    // margin: 1rem 0.6rem 0 0.6rem;
+    // margin: 1rem;
+    // margin-bottom: 0;
     // padding: 1.6rem;
-    padding: 0.6rem;
-    height: 6.2rem;
+    // padding: 0.6rem;
+    // height: 6.2rem;
     // border: 2px solid rgb(230, 230, 230);
+
+    width: 70%;
+    background: rgb(244, 244, 244);
+    border-radius: 2rem;
+    padding: 0.8rem;
+    height: 2.8rem;
+    box-sizing: border-box;
   }
   .show-comments {
     text-align: center;
@@ -227,14 +256,36 @@ const Wrapper = styled.aside`
   }
 
   @media (max-width: 400px) {
-    // .focused {
-    //   width: 20vw;
-    // }
-    // .post-comment-body-pic {
-    //   width: 20vw;
-    // }
-    .post-textarea-focused {
-      // margin-top: 1rem;
+    .btn-send {
+      height: 3rem;
+      width: 3rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .post-comment-row {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      bottom: 0;
+      z-index: 20;
+    }
+    .post-comment-input-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0.8rem 0.4rem;
+      box-sizing: border-box;
+    }
+    .post-textarea {
+      width: 70%;
+      background: rgb(244, 244, 244);
+      border-radius: 2rem;
+      padding: 0.8rem;
+      height: 2.8rem;
+      box-sizing: border-box;
     }
   }
 `;

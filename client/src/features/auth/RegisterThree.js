@@ -54,18 +54,14 @@ export default function RegisterThree({
     // cloudinaryFormDataFull.append("file", profileImage);
     // cloudinaryFormDataFull.append("upload_preset", "bark_mate_standard_pics");
 
-    try {
-      const cloudinaryResult = await uploadPic(cloudinaryFormData);
-      // const cloudinaryResultFull = await uploadPic(cloudinaryFormDataFull);
-      copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
-      // copyOfUser.imageUrlFull = cloudinaryResultFull.data.secure_url;
-      const response = await registerUser(copyOfUser);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      localStorage.setItem("token", JSON.stringify(response.data.token));
-      Navigate("/dashboard/home");
-    } catch (error) {
-      console.log(error);
-    }
+    const cloudinaryResult = await uploadPic(cloudinaryFormData);
+    // const cloudinaryResultFull = await uploadPic(cloudinaryFormDataFull);
+    copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
+    // copyOfUser.imageUrlFull = cloudinaryResultFull.data.secure_url;
+    const response = await registerUser(copyOfUser);
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+    localStorage.setItem("token", JSON.stringify(response.data.token));
+    Navigate("/dashboard/home");
   };
 
   return (
