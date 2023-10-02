@@ -64,13 +64,13 @@ const updateEvents = async (req, res) => {
           const response = await Event.findOneAndDelete({
             _id: event._id,
           });
-          console.log("deleted", response);
+          // console.log("deleted", response);
         } else {
           const response = await Event.findOneAndReplace(
             { _id: event._id },
             { ...event }
           );
-          console.log("replaced", response);
+          // console.log("replaced", response);
         }
       } catch (error) {
         res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });

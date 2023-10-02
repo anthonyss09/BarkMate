@@ -8,12 +8,13 @@ export default function LoginForm({
   handleLogin,
   email,
   password,
+  requesting,
 }) {
   return (
     <Wrapper>
-      <section className="form-main" onSubmit={handleLogin}>
+      <section className="form-main">
         {" "}
-        <form className="form form-login">
+        <form className="form form-login" onSubmit={handleLogin}>
           <Link to="/" className=" link">
             <Logo />
           </Link>
@@ -44,7 +45,9 @@ export default function LoginForm({
             value={password}
             onChange={handleChange}
           />
-          <button className="btn btn-register">login</button>
+          <button className="btn btn-register" disabled={requesting}>
+            login
+          </button>
         </form>
       </section>
     </Wrapper>

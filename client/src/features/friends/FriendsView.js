@@ -61,7 +61,11 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                   const friendCopy = { ...friend };
                   friendCopy.recipientStatus = "friends";
                   friendCopy.requesterStatus = "friends";
-                  acceptFriend({ ...friendCopy, requestId: friend._id });
+                  acceptFriend({
+                    friendCopy,
+                    requestId: friend._id,
+                    userId: currentUser._id,
+                  });
                 }}
               >
                 accept?
@@ -146,12 +150,12 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
           <div className="div">
             {" "}
             <AiOutlineClose
-              size={30}
+              size={25}
               onClick={handleShowFriends}
               className="notifications-view-icon-close"
             />
           </div>
-          <h3>Friends</h3>
+          <h3 className="friends-title">Friends</h3>
         </div>
         {content}
       </div>

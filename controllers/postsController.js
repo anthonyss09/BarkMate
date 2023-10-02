@@ -3,6 +3,7 @@ import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Post from "../models/postsModel.js";
 import jwt from "jsonwebtoken";
+import User from "../models/userModel.js";
 
 const createPost = async (req, res) => {
   const authorization = req.headers.authorization;
@@ -61,8 +62,8 @@ const createPost = async (req, res) => {
 const getPosts = async (req, res) => {
   //get user coords
   console.log("getting posts");
-  const { coordinates } = req.query;
-  console.log(coordinates);
+  const { coordinates, friends } = req.query;
+  const parsedFriends = JSON.parse(friends);
   //posts within 5 miles
   const distanceInMeters = 8046.7;
 
@@ -71,14 +72,26 @@ const getPosts = async (req, res) => {
   coordinatesArray.map((coord) => newCoords.push(Number(coord)));
 
   try {
-    const posts = await Post.find({
+    const friendlyUsers = await User.find({
+      friends: { $in: parsedFriends },
+    });
+    const friendIds = friendlyUsers.map((user) => user._id);
+
+    const postsByFriends = await Post.find({ authorId: { $in: friendIds } });
+
+    const nearbyPosts = await Post.find({
       location: {
         $near: {
           $geometry: { type: "Point", coordinates: newCoords },
           $maxDistance: distanceInMeters,
         },
       },
-    }).sort({ createdAt: -1 });
+    });
+
+    const posts = postsByFriends.concat(nearbyPosts).sort((x, y) => {
+      return y.createdAt - x.createdAt;
+    });
+    console.log("sending", posts);
 
     res.status(StatusCodes.OK).json({ posts });
   } catch (error) {

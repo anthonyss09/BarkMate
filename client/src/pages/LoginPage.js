@@ -8,6 +8,7 @@ import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 import { useSelector } from "react-redux";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 import Alert from "../features/alerts/Alert";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function LoginPage() {
   const [login] = useLoginUserMutation();
@@ -16,6 +17,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [requesting, setRequesting] = useState(false);
 
   const { alertType, alertMessage, showAlert } = useSelector(selectAlertsInfo);
 
@@ -31,6 +33,7 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setRequesting(true);
       const response = await login({ email, password });
 
       if (response.error) {
@@ -50,7 +53,7 @@ export default function LoginPage() {
         Navigate("/dashboard/home");
         // window.location.reload(true);
       }
-
+      setRequesting(false);
       setPassword("");
 
       setTimeout(() => {
@@ -63,12 +66,16 @@ export default function LoginPage() {
   return (
     <section>
       {" "}
+      {requesting && (
+        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+      )}
       {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
       <LoginForm
         handleChange={handleChange}
         handleLogin={handleLogin}
         email={email}
         password={password}
+        requesting={requesting}
       />
     </section>
   );

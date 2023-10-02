@@ -20,11 +20,18 @@ export default function DashHome() {
     isLoading: loadingUser,
     isSuccess,
   } = useRefreshUserCredentialsQuery(userId);
+
+  console.log(currentUser);
+  console.log(coordinates.toString());
   const {
     data: postsData,
     isLoading: loadingPosts,
     refetch,
-  } = useGetPostsQuery(coordinates);
+  } = useGetPostsQuery({
+    friends: JSON.stringify(user.friends),
+    coordinates,
+  });
+  console.log(postsData);
 
   let posts;
   if (!loadingPosts) {

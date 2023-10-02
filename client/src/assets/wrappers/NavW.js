@@ -37,6 +37,7 @@ const Wrapper = styled.nav`
     color: var(--space-cadet);
     font-size: 1.7rem;
     letter-spacing: 0.08rem;
+    letter-spacing: 0.1rem;
   }
   .nav-icons-container {
     display: flex;

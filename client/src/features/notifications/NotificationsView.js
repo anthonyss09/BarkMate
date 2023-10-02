@@ -129,11 +129,11 @@ export default function NotificationsView({
             <div className="div">
               {" "}
               <AiOutlineClose
-                size={30}
+                size={25}
                 onClick={handleShowNotifications}
                 className="notifications-view-icon-close"
               />
-            </div>{" "}
+            </div>
             <h3> Notifications</h3>
           </div>
         </div>

@@ -80,6 +80,7 @@ export default memo(function CreatePost({
 
     if (postImage) {
       // const cloudinaryResult = await uploadPic(cloudinaryFormData);
+      setRequesting(true);
 
       const cloudinaryResult = await axios.post(
         "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
@@ -89,7 +90,6 @@ export default memo(function CreatePost({
       post.postImageUrl = cloudinaryResult.data.secure_url;
     }
 
-    setRequesting(true);
     const newPost = await createPost(post);
     console.log(newPost);
     if (newPost.error) {

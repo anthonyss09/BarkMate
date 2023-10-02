@@ -10,10 +10,10 @@ import {
 
 const uploadPic = async (req, res) => {
   //   console.log(req.file);
-  //   console.log("uploading pic controller");
+  console.log("uploading pic controller");
 
   try {
-    // const result = await cloudinaryUpload(imagePath);
+    const result = await cloudinaryUpload(imagePath);
     // const publicId = result.public_id;
     // const imageUrl = result.secure_url;
 

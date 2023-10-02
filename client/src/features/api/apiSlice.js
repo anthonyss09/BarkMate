@@ -388,8 +388,8 @@ export const apiSlice = createApi({
     }),
 
     getPosts: builder.query({
-      query: (coordinates) => ({
-        url: `/posts/get-posts?coordinates=${coordinates}`,
+      query: ({ friends, coordinates }) => ({
+        url: `/posts/get-posts?coordinates=${coordinates}&friends=${friends}`,
         method: "GET",
       }),
       providesTags: (result = [], error, arg) => [

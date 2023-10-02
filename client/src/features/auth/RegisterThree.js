@@ -10,6 +10,8 @@ import { selectNewUser } from "./authSlice";
 import { useRegisterUserMutation } from "../auth/authSlice";
 import ProfileImageInput from "../../components/ProfileImageInput";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
+import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function RegisterThree({
   handleInputChange,
@@ -19,6 +21,7 @@ export default function RegisterThree({
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [profileImageName, setProfileImageName] = useState();
+  const [requesting, setRequesting] = useState(false);
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const Navigate = useNavigate();
 
@@ -53,12 +56,18 @@ export default function RegisterThree({
     // const cloudinaryFormDataFull = new FormData();
     // cloudinaryFormDataFull.append("file", profileImage);
     // cloudinaryFormDataFull.append("upload_preset", "bark_mate_standard_pics");
+    setRequesting(true);
 
-    const cloudinaryResult = await uploadPic(cloudinaryFormData);
+    // const cloudinaryResult = await uploadPic(cloudinaryFormData);
+    const cloudinaryResult = await axios.post(
+      "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
+      cloudinaryFormData
+    );
     // const cloudinaryResultFull = await uploadPic(cloudinaryFormDataFull);
     copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
     // copyOfUser.imageUrlFull = cloudinaryResultFull.data.secure_url;
     const response = await registerUser(copyOfUser);
+    setRequesting(false);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     Navigate("/dashboard/home");
@@ -66,6 +75,9 @@ export default function RegisterThree({
 
   return (
     <Wrapper>
+      {requesting && (
+        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+      )}
       <section className="form-main">
         <form
           encType="multipart/form-data"
@@ -126,6 +138,7 @@ export default function RegisterThree({
           />
           <button
             className="btn btn-register"
+            disabled={requesting}
             onClick={() => {
               console.log("submitted");
             }}

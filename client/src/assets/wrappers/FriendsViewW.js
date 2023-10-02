@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .friends-title {
+    margin-left: 1rem;
+    font-size: 1.4rem;
+  }
   h3 {
     background: var(--test-blue);
     letter-spacing: 0.15rem;
     padding: 0.8rem 1.2rem;
-    height: min-content;
+    // height: min-content;
     border: 1px solid rgb(240, 240, 240);
   }
   .friend-accept {
@@ -65,6 +69,10 @@ const Wrapper = styled.aside`
   .friends-view-header {
     font-size: 1rem;
     background: white;
+    background: var(--test-blue);
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
   }
   .friends-view-main {
     width: 100%;
@@ -74,7 +82,6 @@ const Wrapper = styled.aside`
     bottom: 0;
     right: 0;
     z-index: 4;
-    overflow-y: scroll;
     background: white;
     display: flex;
     flex-direction: column;
@@ -82,6 +89,7 @@ const Wrapper = styled.aside`
     border-left: 1px solid rgb(220, 220, 220);
     box-shadow: -1px 2px 100vw grey;
     background: white;
+    overflow-y: scroll;
   }
   .friends-view-single {
     height: 3.6rem;
@@ -94,6 +102,7 @@ const Wrapper = styled.aside`
   }
   .notifications-view-icon-close {
     margin: 0.4rem;
+    margin-top: -1rem;
   }
   .notifications-view-icon-close:hover {
     cursor: pointer;

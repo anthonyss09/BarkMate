@@ -82,6 +82,9 @@ const UserSchema = new mongoose.Schema({
   friends: {
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Friends" }],
   },
+  friendIds: {
+    typ: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  },
 });
 
 UserSchema.pre("save", async function () {

@@ -135,7 +135,10 @@ select {
   align-self: center;
   justify-self: center;
   padding: auto;
-  margin-top: 20vh;
+  /* margin-top: 20vh; */
+  top: 30vh;
+  left: 40vw;
+  position: fixed;
 }
 .btn {
   border: none;
@@ -319,7 +322,8 @@ select {
   color: var(--charcoal);
   display: flex;
   align-items: center;
-  font-weight: bold;
+  font-weight: 400;
+  /* font-family: "Dosis", sans-serif; */
 }
 .no-content {
   background: white;
