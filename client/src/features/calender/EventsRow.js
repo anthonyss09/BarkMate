@@ -44,9 +44,10 @@ export default function EventsRow({ eventsTitle, events, isLoading }) {
             setShowEvents(!showEvents);
           }}
         >
-          <span className="number-circle">
-            {!isLoading && events.length != 0 && numEvents}
-          </span>
+          {!isLoading && events.length != 0 && (
+            <span className="number-circle">{numEvents}</span>
+          )}
+
           <p>{eventsTitle}</p>
           <div className="arrow-icon">
             {showEvents && <MdKeyboardArrowUp size={25} />}

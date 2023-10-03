@@ -66,8 +66,8 @@ const Wrapper = styled.div`
   }
   .number-circle {
     color: var(--test-red);
-    height: 1.6rem;
-    width: 1.6rem;
+    // height: 1.6rem;
+    // width: 1.6rem;
     display: grid;
     place-items: center;
     border-radius: 2rem;

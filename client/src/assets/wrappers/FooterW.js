@@ -17,8 +17,9 @@ const Wrapper = styled.footer`
   }
   .link {
     color: rgb(60, 60, 60);
+    color: var(--charcoal);
     letter-spacing: 0.03rem;
-    color: var(--med-font-blue);
+    // color: var(--med-font-blue);
     // color: var(--federal-blue);
   }
 `;

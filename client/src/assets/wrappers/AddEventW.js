@@ -102,74 +102,33 @@ const Wrapper = styled.aside`
     margin-top: -1rem;
   }
   .add-event-header {
-    font-size: 1.3rem;
-    font-size: 1.6rem;
-
-    // width: 90%;
-    width: 100%;
-    // margin-top: 3rem;
-    // margin-bottom: 1rem;
-    // height: 6.2rem;
-    height: 6rem;
-    // border-radius: 2rem 2rem 0 0;
-    color: var(--federal-blue);
-    color: black;
-    padding: 0.5rem 0.7rem;
-    box-sizing: border-box;
-    letter-spacing: 0.2rem;
-    color: rgb(60, 60, 60);
-    background: rgb(244, 244, 244);
-    background: var(--test-blue);
-    display: grid;
-    place-items: center;
-    // border-bottom: 3px solid black;
-    // border-bottom: 2px solid rgb(220, 220, 220);
-    // border-bottom: 2px solid rgb(244,244,244);
-    padding: 2rem;
-    background: var(--med-bright-blue);
-    background: white;
-    background: var(--test-blue);
-    // background: rgb(244,244,244);
-    color: var(--med-bright-blue);
-    // color: white;
-    color: black;
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-left: 4rem;
   }
   .add-event-main {
-    // height: 90vh;
-    // height: 80vh;
     height: min-content;
-    // height: 100vh;
-    // padding: 1rem;
-    // max-width: 360px;
-    // width: 85vw;
     width: 90vw;
-    // width: 80vw;
-    // height: 100vh;
     position: fixed;
     top: 2rem;
     right: 1.4rem;
-    // bottom: 2rem;
-    // left: 2rem;
-    // top: 2rem;
-    // right: 2rem;
-    // top: 0;
-    // right: 0;
     background: white;
     z-index: 4;
     display: flex;
     flex-direction: column;
-    // gap: 3rem;
     box-sizing: border-box;
     border: 1px solid rgb(215, 215, 215);
-    // border: 2px solid rgb(180,180,180);
     border-radius: 2rem;
-    // border-radius: 2rem;
     box-shadow: 5px 2px 5px grey;
     z-index: 8;
-     border-left: 1px solid rgb(220, 220, 220);
+    border-left: 1px solid rgb(220, 220, 220);
     box-shadow: -1px 2px 100vw grey;
+  }
+  .add-event-title {
+    display: flex;
+    background: var(--test-blue);
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    align-items: center;
+    border-radius: 2rem 2rem 0 0;
   }
   .btn {
     display: flex;
@@ -194,12 +153,6 @@ const Wrapper = styled.aside`
     margin-left: auto;
   }
   .btn-discard-event {
-    color: rgb(180, 180, 180);
-    color: black;
-    color: rgb(80, 80, 80);
-    // color: rgb(100, 100, 100);
-    // background: none;
-    background: rgb(244, 244, 244);
     margin-left: 1rem;
     width: 10rem;
     font-size: 0.9rem;
@@ -208,12 +161,10 @@ const Wrapper = styled.aside`
     margin: 1rem 0 0 1rem;
     width: 2rem;
     height: 2rem;
-    background: white;
-    // border: 1px solid black;
     margin-bottom: 1rem;
     font-size: 2rem;
     font-size: 1.4rem;
-    // font-weight: 400;
+    background: var(--test-blue)
   }
   .date-picker {
   }

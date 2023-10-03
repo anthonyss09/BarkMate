@@ -122,8 +122,8 @@ select {
 }
 .alert {
   position: fixed;
-  top: 30vh;
-  left: 10vw;
+  top: 40vh;
+  left: 20vw;
   background: white;
   z-index: 20;
   padding: 1rem 3rem;
@@ -136,7 +136,7 @@ select {
   justify-self: center;
   padding: auto;
   /* margin-top: 20vh; */
-  top: 30vh;
+  top: 40vh;
   left: 40vw;
   position: fixed;
 }

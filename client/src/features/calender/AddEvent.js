@@ -13,8 +13,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
-import { selectAlertInfo } from "../alerts/alertsSlice";
-import Alert from "../alerts/Alert";
 import { logoutUser } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 
@@ -141,15 +139,19 @@ export default function AddEvent({ setShowAddEvent }) {
         {addingEvent && (
           <BeatLoader size={35} color="lightBlue" className="beat-loader" />
         )}
-        <button
-          className="btn btn-discard-event"
-          onClick={() => {
-            setShowAddEvent(false);
-          }}
-        >
-          X
-        </button>
-        <h1 className="add-event-header">New Event</h1>
+
+        <div className="add-event-title">
+          {" "}
+          <button
+            className="btn btn-discard-event"
+            onClick={() => {
+              setShowAddEvent(false);
+            }}
+          >
+            X
+          </button>
+          <h1 className="add-event-header">New Event</h1>
+        </div>
 
         <div className="add-event-body">
           <div className="add-date-row">

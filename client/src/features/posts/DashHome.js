@@ -1,6 +1,6 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
 import Post from "./Post";
-import { useSelector } from "react-redux";
+import { useSelector, useRef } from "react-redux";
 import {
   selectCurrentUser,
   useRefreshUserCredentialsQuery,
@@ -12,6 +12,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { IoIosAdd } from "react-icons/io";
 
 export default function DashHome() {
+  const [pageNumber, setPageNumber] = useState(1);
   let user = useSelector(selectCurrentUser);
   const userId = user._id;
   const coordinates = user.location.coordinates;
@@ -30,6 +31,7 @@ export default function DashHome() {
   } = useGetPostsQuery({
     friends: JSON.stringify(user.friends),
     coordinates,
+    pageNumber,
   });
   console.log(postsData);
 
@@ -44,6 +46,10 @@ export default function DashHome() {
 
   const [scrolled, setScrolled] = useState("");
   const [requesting, setRequesting] = useState(false);
+
+  const incrementPageNumber = () => {
+    setPageNumber(pageNumber + 1);
+  };
 
   const onScroll = () => {
     if (window.scrollY > 300) {
@@ -132,6 +138,11 @@ export default function DashHome() {
             )}
           </div>
         </div>
+        {!loadingPosts && (
+          <button className="btn" onClick={incrementPageNumber}>
+            load more posts
+          </button>
+        )}
       </section>
       <CreatePost
         handleClick={handleClick}
