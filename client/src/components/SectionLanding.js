@@ -10,6 +10,7 @@ import ChatLineUser from "../features/chats/ChatLineUser";
 import ChatLineFriend from "../features/chats/ChatLineFriend";
 import deanBowie from "../assets/images/dean&bowieSmall.jpg";
 import stacyProfile from "../assets/images/stacyProfile.jpg";
+import { Link } from "react-router-dom";
 
 export default function SectionLanding() {
   return (
@@ -28,7 +29,12 @@ export default function SectionLanding() {
             <br />
             {/* <LucideDog size={75} className="icon-dog" /> */}
             {/* <span className="bark">bark</span> */}
-            <button className="btn btn-join">Join</button>
+            <div className="btn-join ">
+              {" "}
+              <Link to="/register" className="link">
+                Join
+              </Link>
+            </div>
           </h1>
           <div className="blue-container-image-jm">
             <div className="section-landing-image-jm-container">

@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   .icon-close:hover {
     transform: scale(1.1);
     cursor: pointer;
+    transition: all 0.3s ease;
   }
   .icon:hover {
     cursor: pointer;
@@ -34,6 +35,7 @@ const Wrapper = styled.div`
   }
   .quick-chat-btn:hover {
     transform: scale(1.1);
+    transition: all 0.3s ease;
   }
   .quick-chat-header {
     display: flex;

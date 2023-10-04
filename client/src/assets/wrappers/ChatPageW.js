@@ -19,6 +19,8 @@ const Wrapper = styled.main`
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
+
     // border-top: 1px solid rgb(244, 244, 244);
     // border-top: 1px solid rgb(230, 230, 230);
   }
@@ -40,9 +42,11 @@ const Wrapper = styled.main`
     width: 80%;
     padding: 0.4rem;
     border-radius: 2rem;
-    border: 2px solid rgb(220, 220, 220);
-    border: 2px solid var(--med-font-blue);
+    // border: 2px solid rgb(220, 220, 220);
+    // border: 2px solid var(--med-font-blue);
+    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
     text-align: center;
+    border: none;
     font-size: 16px;
   }
   .chat-page-name {

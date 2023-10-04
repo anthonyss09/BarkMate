@@ -69,6 +69,7 @@ export default function NavBar() {
     dispatch(logoutUser());
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     Navigate("/");
   };
 

@@ -17,6 +17,8 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import EditProfile from "./features/users/EditProfile";
+import PageNotFound from "./pages/PageNotFound";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
               <Route exact path="calender" element={<DashCal />} />
               <Route exact path="chats" element={<DashChats />} />
             </Route>
+            <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/userProfile" element={<UserProfileView />} />
             <Route
               exact
@@ -51,6 +54,7 @@ function App() {
             <Route exact path="/:profileId" element={<ProfilePageView />} />
             <Route exact path="/groupid" element={<GroupPage />} />
             <Route exact path="chats/:chatId" element={<ChatPage />} />
+            <Route exact path="*" element={<PageNotFound />} />
           </Routes>
         </div>
       </LocalizationProvider>

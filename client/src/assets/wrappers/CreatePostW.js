@@ -79,6 +79,8 @@ const Wrapper = styled.aside`
   }
   .icon-close:hover {
     cursor: pointer;
+    transition: var(--transition-main);
+    transform: var(--transform-main-scale);
   }
   .icon-container {
     display: flex;

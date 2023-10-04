@@ -25,12 +25,17 @@ import { logoutUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfilePageView() {
+  const Navigate = useNavigate();
+
   const { profileId } = useParams();
   const {
     data: userData,
     error,
     isLoading,
   } = useGetProfileByIdQuery(profileId);
+  if (!userData) {
+    Navigate("*");
+  }
   // const urlPre = "../../data/uploads/";
   const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();
@@ -43,7 +48,6 @@ export default function ProfilePageView() {
   const [requesting, setRequesting] = useState(false);
 
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
 
   const handleMessageClick = () => {
     setShowQuickChat(!showQuickChat);

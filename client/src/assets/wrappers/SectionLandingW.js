@@ -75,6 +75,17 @@ const Wrapper = styled.section`
     background: rgb(230, 230, 230);
     color: black;
     letter-spacing: 0.02rem;
+    text-decoration: none;
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .btn-join:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
   .icon-dog {
     color: var(--med-bright-blue);

@@ -6,9 +6,13 @@ export default function Footer() {
     <Wrapper>
       <section className="footer-main gradient">
         <div className="footer-center">
-          <Link className="link">Home</Link>
-          <Link className="link">FAQS</Link>
-          <Link className="link">About</Link>
+          <Link to="/dashboard/home" className="link">
+            Home
+          </Link>
+          <Link to="/about" className="link">
+            About
+          </Link>
+          <Link className="link">Tips</Link>
           <Link className="link">Contact</Link>
         </div>
       </section>

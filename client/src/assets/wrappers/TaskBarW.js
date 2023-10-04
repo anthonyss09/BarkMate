@@ -12,6 +12,7 @@ const Wrapper = styled.section`
   .task-bar-main {
     width: 94%;
     height: 3.6rem;
+    // height: 2.8rem;
     display: flex;
     align-items: center;
     // top: 4rem;
@@ -26,6 +27,7 @@ const Wrapper = styled.section`
     transition: all 0.2s ease-in;
     border: 1px solid var(--test-blue);
     margin-top: 4.6rem;
+    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .task-calendar {
     color: var(--test-red);
@@ -47,12 +49,16 @@ const Wrapper = styled.section`
     border-radius: 3rem;
     display: grid;
     place-items: center;
-    background: none;
+    background: rgb(252, 252, 252, 0.4);
+    // padding: 0.2rem 0.6rem;
+    // box-shadow: 5px 2px 5px rgb(80, 80, 80);
   }
   .task.active {
-    background: white;
     transform: scale(1.3);
-    background: none;
+  }
+  .task:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
   .dropped {
     position: fixed;
@@ -60,6 +66,7 @@ const Wrapper = styled.section`
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     border-radius: 3rem;
     margin-top: 0;
+    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .collapsed {
     position: fixed;

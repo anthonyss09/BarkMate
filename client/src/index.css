@@ -91,6 +91,16 @@ font-family: 'Ysabeau', sans-serif; */
   --grey-220: rgb(220, 220, 220);
   --grey-240: rgb(240, 240, 240);
   --grey-248: rgb(248, 248, 248);
+
+  /* fonts */
+   --font-main-rc:font-family: "Roboto Condensed", sans-serif;
+
+  /* box-shadows */
+  --shadow-main-ligh:  3px 0.5px 6px rgb(180, 180, 180);
+
+  /* transitions */
+  --transition-main:all 0.3s ease;
+  --transform-main-scale: scale(1.1);
 }
 
 * {
@@ -108,6 +118,7 @@ body {
   font-family: "Signika Negative", sans-serif;
   /* font-family: "Roboto", sans-serif; */
   position: relative;
+
 }
 
 code {
@@ -161,6 +172,7 @@ select {
   background: rgb(244, 244, 244);
   font-size: 1.2rem;
   letter-spacing: 0.2rem;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .dash-header {
   width: 100%;
@@ -323,6 +335,8 @@ select {
   display: flex;
   align-items: center;
   font-weight: 400;
+      /* font-family: "Roboto Condensed", sans-serif; */
+
   /* font-family: "Dosis", sans-serif; */
 }
 .no-content {

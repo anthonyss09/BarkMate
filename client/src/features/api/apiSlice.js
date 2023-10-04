@@ -250,7 +250,7 @@ export const apiSlice = createApi({
           });
           // chat.participants = normParticipants;
           chatCopy.participants = normParticipants;
-          normParticipants = {};
+          // normParticipants = {};
           newResponseData[chat._id] = chatCopy;
         });
 
@@ -351,7 +351,9 @@ export const apiSlice = createApi({
         body: request,
       }),
       async onQueryStarted(request, { queryFulfilled }) {
-        ws.send(JSON.stringify({ type: "friendRequest", content: request }));
+        ws.send(
+          JSON.stringify({ type: "friendRequest", content: request.friendCopy })
+        );
 
         try {
           await queryFulfilled;

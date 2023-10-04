@@ -2,6 +2,7 @@ import { BAD_REQUEST, StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 const registerUser = async (req, res) => {
   const { firstName, lastName, email, password, location } = req.body;
@@ -93,4 +94,22 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, updateUser };
+const getAuthorization = async (req, res) => {
+  const { token } = req.body;
+
+  let authorization;
+
+  try {
+    jwt.verify(token, process.env.JWT_SECRET, (err, pay) => {
+      if (err) {
+        authorization = false;
+      } else {
+        authorization = true;
+      }
+    });
+    console.log("authy", authorization);
+    res.status(StatusCodes.OK).json({ authorization });
+  } catch (error) {}
+};
+
+export { registerUser, loginUser, updateUser, getAuthorization };

@@ -34,6 +34,8 @@ const Wrapper = styled.aside`
     display: flex;
     height: 5rem;
     align-items: center;
+    border-bottom: 2px solid white;
+    font-family: "Roboto Condensed", sans-serif;
   }
   .notifications-view-icon-close {
     margin: 0.4rem;

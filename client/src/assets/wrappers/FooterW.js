@@ -3,6 +3,8 @@ import styled from "styled-components";
 const Wrapper = styled.footer`
   .footer-main {
     border-top: 8px solid rgb(220, 220, 220);
+    font-family: "Roboto Condensed", sans-serif;
+
     // border-top: 8px solid rgb(244, 244, 244);
   }
   .footer-center {

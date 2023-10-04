@@ -45,9 +45,9 @@ export default function LoginPage() {
         );
         console.log(response);
       } else if (response.data) {
-        dispatch(
-          displayAlert({ alertType: "success", alertMessage: "Welcome back!" })
-        );
+        // dispatch(
+        //   displayAlert({ alertType: "success", alertMessage: "Welcome back!" })
+        // );
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.token));
         Navigate("/dashboard/home");

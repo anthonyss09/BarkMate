@@ -38,6 +38,7 @@ const Wrapper = styled.div`
   }
   .shadow {
     box-shadow: 10px 5px 10px rgb(40, 40, 40);
+    // box-shadow: 3px 0.5px 6px rgb(80, 80, 80);
   }
   .white-background {
     background: white;

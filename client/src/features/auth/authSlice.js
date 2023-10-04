@@ -35,8 +35,8 @@ export const authSlice = createSlice({
       state.newUser[action.payload.id] = action.payload.value;
     },
     logoutUser(state, action) {
-      state.currentUser = initialState.currentUser;
-      state.token = initialState.token;
+      state.currentUser = "";
+      state.token = "";
     },
   },
   extraReducers: (builder) => {
@@ -102,11 +102,19 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["CurrentUser"],
     }),
+    getAuthorization: builder.mutation({
+      query: (token) => ({
+        url: "/auth/getAuthorization",
+        method: "POST",
+        body: { token },
+      }),
+    }),
   }),
 });
 
 export const selectNewUser = (state) => state.auth.newUser;
 export const selectCurrentUser = (state) => state.auth.currentUser;
+export const selectUserToken = (state) => state.auth.token;
 
 export const { updateNewUserProp, logoutUser } = authSlice.actions;
 
@@ -115,6 +123,7 @@ export const {
   useLoginUserMutation,
   useRefreshUserCredentialsQuery,
   useUpdateUserMutation,
+  useGetAuthorizationMutation,
 } = extendedApiSlice;
 
 export default authSlice.reducer;

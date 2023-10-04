@@ -57,6 +57,7 @@ const Wrapper = styled.aside`
     margin-bottom: 1rem;
     // box-shadow: 5px 2px 5px grey;
     background: white;
+    font-family: "Roboto Condensed", sans-serif;
   }
   .friends-view-body {
     display: flex;
@@ -73,6 +74,7 @@ const Wrapper = styled.aside`
     display: flex;
     align-items: center;
     padding: 1rem 0;
+    font-family: "Roboto Condensed", sans-serif;
   }
   .friends-view-main {
     width: 100%;

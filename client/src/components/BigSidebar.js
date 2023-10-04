@@ -5,6 +5,7 @@ import { BiCalendar, BiHome } from "react-icons/bi";
 import { HiOutlineChat, HiHome } from "react-icons/hi";
 import { GoCloudDownload } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
+import { FcDonate } from "react-icons/fc";
 
 export default function BigSidebar({ handleClick }) {
   return (
@@ -18,14 +19,10 @@ export default function BigSidebar({ handleClick }) {
         <div className="big-sidebar-center">
           <div className="links-container-big">
             {" "}
-            <Link className="link link-big link-download">
+            {/* <Link className="link link-big link-download">
               <GoCloudDownload className="icon-download" size={35} />
               Download App
-            </Link>
-            <Link className="link link-big link-story">
-              <MdOutlineMenuBook className="icon-book" size={25} />
-              Story
-            </Link>
+            </Link> */}
             <Link
               to="/dashboard/home"
               className="link link-big link-profiles"
@@ -57,6 +54,14 @@ export default function BigSidebar({ handleClick }) {
             >
               <HiOutlineChat className="icon-chat" size={25} />
               Chats
+            </Link>
+            <Link to="/about" className="link link-big link-story">
+              <MdOutlineMenuBook className="icon-book" size={25} />
+              About
+            </Link>
+            <Link className="link link-big link-tip">
+              <FcDonate size={35} className="icon-tip" />
+              Tip BarkMate
             </Link>
           </div>
           <div className="links-container-small"></div>

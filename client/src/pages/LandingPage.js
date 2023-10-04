@@ -26,6 +26,7 @@ export default function LandingPage() {
     return () => {
       window.removeEventListener("scroll", trackNav);
     };
+    window.scrollTo(0, 0);
   }, [lastScroll]);
   return (
     <Wrapper>

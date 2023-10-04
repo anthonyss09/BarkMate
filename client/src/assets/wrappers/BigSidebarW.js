@@ -21,6 +21,8 @@ const Wrapper = styled.aside`
   }
   .icon-book {
     color: var(--federal-blue);
+    color: var(--space-cadet);
+    // color: var(--test-red);
   }
   .icon-calender {
     color: var(--test-red);
@@ -33,6 +35,10 @@ const Wrapper = styled.aside`
     margin-bottom: 1rem;
     margin-bottom: 3rem;
     color: black;
+  }
+  .icon-close:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
   .icon-download {
     color: var(--test-red);
@@ -49,6 +55,7 @@ const Wrapper = styled.aside`
   .icon-star {
     color: var(--federal-blue);
   }
+
   .link {
     width: min-content;
     padding: 0.4rem 1.6rem;
@@ -63,6 +70,11 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     height: 2.8rem;
     letter-spacing: 0.06rem;
+    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
+  }
+  .link:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
   }
   .links-container-big {
     display: flex;
@@ -78,6 +90,7 @@ const Wrapper = styled.aside`
   }
   .link-big {
     height: 2.8rem;
+    background: white;
   }
   .link-download {
   }

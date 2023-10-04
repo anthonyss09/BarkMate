@@ -86,7 +86,7 @@ const getFriends = async (req, res) => {
     const friends = await Friends.find({
       $or: [{ requester: userId }, { recipient: userId }],
     });
-    console.log("first friends", friends);
+    // console.log("first friends", friends);
     res.status(StatusCodes.OK).json({ friends });
   } catch (error) {
     console.log(error);

@@ -149,6 +149,9 @@ export default function ChatPage() {
     );
   } else if (isSuccess) {
     thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
+    if (thisChat === undefined) {
+      Navigate("*");
+    }
     console.log("this chat", thisChat);
     friend = thisChat.participants.friend;
     user = thisChat.participants.user;
