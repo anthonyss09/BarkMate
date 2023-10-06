@@ -22,8 +22,8 @@ export default function DashHome() {
     isSuccess,
   } = useRefreshUserCredentialsQuery(userId);
 
-  console.log(currentUser);
-  console.log(coordinates.toString());
+  // console.log(currentUser);
+  // console.log(coordinates.toString());
   const {
     data: postsData,
     isLoading: loadingPosts,
@@ -33,7 +33,7 @@ export default function DashHome() {
     coordinates,
     pageNumber,
   });
-  console.log(postsData);
+  // console.log(postsData);
 
   let posts;
   if (!loadingPosts) {

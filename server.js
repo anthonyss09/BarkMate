@@ -43,7 +43,10 @@ const clients = {};
 wss.on("connection", (ws, req) => {
   const sessionId = uuidv4();
   ws.on("error", (error) => {
-    console.log(error);
+    console.log("web socket error is", error);
+  });
+  ws.on("close", () => {
+    console.log("web socket closed");
   });
 
   console.log("recieved new connection");

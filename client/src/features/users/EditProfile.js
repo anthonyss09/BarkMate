@@ -13,6 +13,7 @@ import { useUpdateUserMutation } from "../auth/authSlice";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import axios from "axios";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
@@ -103,7 +104,11 @@ export default function EditProfile() {
       cloudinaryFormData.append("file", profileImage);
       cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
       try {
-        const cloudinaryResult = await uploadPic(cloudinaryFormData);
+        // const cloudinaryResult = await uploadPic(cloudinaryFormData);
+        const cloudinaryResult = await axios.post(
+          "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
+          cloudinaryFormData
+        );
 
         update.profileImageUrl = cloudinaryResult.data.secure_url;
         setSavingProfileEdit(false);

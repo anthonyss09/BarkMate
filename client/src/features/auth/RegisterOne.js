@@ -12,6 +12,9 @@ import { useDispatch } from "react-redux";
 import { updateNewUserProp } from "./authSlice";
 import { places } from "../../utils/consts";
 import AddressInput from "../../components/AddressInput";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import Alert from "../alerts/Alert";
+import { selectAlertsInfo } from "../alerts/alertsSlice";
 
 export default function RegisterOne({
   handleRegisterOne,
@@ -22,6 +25,10 @@ export default function RegisterOne({
   const newUser = useSelector(selectNewUser);
   const dispatch = useDispatch();
   const inputRef = useRef();
+
+  const alertsInfo = useSelector(selectAlertsInfo);
+  console.log(alertsInfo);
+
   const handlePlaceChanged = async () => {
     try {
       const [place] = await inputRef.current.getPlaces();
@@ -41,6 +48,12 @@ export default function RegisterOne({
   return (
     <Wrapper>
       <section className="form-main ">
+        {alertsInfo.showAlert && (
+          <Alert
+            alertMessage={alertsInfo.alertMessage}
+            alertType={alertsInfo.alertType}
+          />
+        )}
         <form className="form">
           <Link to="/" className=" link">
             <Logo />
@@ -116,15 +129,43 @@ export default function RegisterOne({
                   newUser.lastName.length < 1 ||
                   newUser.password.length < 6
                 ) {
-                  alert("Please complete all fields.");
+                  {
+                    /* alert("Please complete all fields."); */
+                  }
+                  dispatch(
+                    displayAlert({
+                      alertType: "danger",
+                      alertMessage:
+                        "Please check all required fields. Password must be atleast 6 characters in length.",
+                    })
+                  );
+                  setTimeout(() => {
+                    dispatch(clearAlert());
+                  }, 3000);
                   return;
                 }
                 if (newUser.location.length < 2) {
-                  alert("Please enter valid address.");
+                  dispatch(
+                    displayAlert({
+                      alertType: "danger",
+                      alertMessage: "Please enter valid address.",
+                    })
+                  );
+                  setTimeout(() => {
+                    dispatch(clearAlert());
+                  }, 3000);
                   return;
                 }
                 if (!validator.isEmail(newUser.email)) {
-                  alert("Please enter valid email.");
+                  dispatch(
+                    displayAlert({
+                      alertType: "danger",
+                      alertMessage: "Please enter valid email.",
+                    })
+                  );
+                  setTimeout(() => {
+                    dispatch(clearAlert());
+                  }, 3000);
                   return;
                 }
                 handleRegisterOne();

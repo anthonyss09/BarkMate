@@ -34,6 +34,9 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log("password", password);
+  console.log(email);
+  let passwordIsValid;
 
   if (!email || !password) {
     res.status(BAD_REQUEST).json({ message: "Please provide all values." });
@@ -41,13 +44,16 @@ const loginUser = async (req, res) => {
   }
   try {
     const user = await User.findOne({ email }).select("+password");
-    const passwordIsValid = await user.comparePassword(password);
-    console.log("validity", passwordIsValid);
-    if (!passwordIsValid) {
-      res
-        .status(StatusCodes.UNAUTHORIZED)
-        .json({ message: "Invalid credentials." });
-      throw new UnauthenticatedError("Invalid credentials.");
+    if (user) {
+      passwordIsValid = await user.comparePassword(password);
+      console.log("validity", passwordIsValid);
+    }
+
+    if (!user || !passwordIsValid) {
+      res.status(StatusCodes.UNAUTHORIZED).json({
+        message: "We can't find that combination of email and password.",
+      });
+      // throw new UnauthenticatedError("Invalid credentials.");
     }
     user.password = undefined;
     const token = user.createJWT();
@@ -69,6 +75,8 @@ const updateUser = async (req, res) => {
     timeNeeded,
     timeAvailable,
   } = req.body;
+
+  console.log("authis ", req.headers.authorization);
 
   console.log(location);
 

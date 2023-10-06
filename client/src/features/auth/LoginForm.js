@@ -8,6 +8,7 @@ export default function LoginForm({
   handleLogin,
   email,
   password,
+  hiddenPassword,
   requesting,
 }) {
   return (
@@ -44,6 +45,7 @@ export default function LoginForm({
             placeholder="password"
             value={password}
             onChange={handleChange}
+            classNames="password"
           />
           <button className="btn btn-register" disabled={requesting}>
             login

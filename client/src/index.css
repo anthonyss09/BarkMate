@@ -96,7 +96,7 @@ font-family: 'Ysabeau', sans-serif; */
    --font-main-rc:font-family: "Roboto Condensed", sans-serif;
 
   /* box-shadows */
-  --shadow-main-ligh:  3px 0.5px 6px rgb(180, 180, 180);
+  --shadow-main-light:  3px 0.5px 6px rgb(180, 180, 180);
 
   /* transitions */
   --transition-main:all 0.3s ease;
@@ -141,6 +141,8 @@ select {
   border: 2px solid rgb(220, 220, 220);
   border-radius: 1rem;
   box-shadow: 5px 2px 5px rgb(80, 80, 80);
+  box-shadow: var(--shadow-main-light);
+  max-width: 250px;
 }
 .beat-loader {
   align-self: center;

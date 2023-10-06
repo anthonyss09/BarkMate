@@ -18,7 +18,6 @@ export default function NotificationsView({
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
 
   if (notifications.length) {
-    console.log(notifications);
     content = notifications.map((notification, index) => {
       switch (notification.notificationPath) {
         case "chats": {

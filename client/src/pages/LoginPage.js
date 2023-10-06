@@ -17,12 +17,14 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hiddenPassword, setHiddenPassword] = useState(" ");
   const [requesting, setRequesting] = useState(false);
 
   const { alertType, alertMessage, showAlert } = useSelector(selectAlertsInfo);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+    let hiddenPassword = "";
     if (id === "email") {
       setEmail(value);
     } else {
@@ -45,20 +47,16 @@ export default function LoginPage() {
         );
         console.log(response);
       } else if (response.data) {
-        // dispatch(
-        //   displayAlert({ alertType: "success", alertMessage: "Welcome back!" })
-        // );
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.token));
         Navigate("/dashboard/home");
-        // window.location.reload(true);
       }
       setRequesting(false);
       setPassword("");
 
       setTimeout(() => {
         dispatch(clearAlert());
-      }, 2000);
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +74,7 @@ export default function LoginPage() {
         email={email}
         password={password}
         requesting={requesting}
+        hiddenPassword={hiddenPassword}
       />
     </section>
   );

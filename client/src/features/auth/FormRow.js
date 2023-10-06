@@ -7,6 +7,7 @@ export default function FormRow({
   value,
   placeholder,
   onChange,
+  classNames,
 }) {
   return (
     <Wrapper>
@@ -15,12 +16,13 @@ export default function FormRow({
           {name}
         </label>
         <input
-          className="form-input"
+          className={`form-input ${classNames}`}
           type={type}
           id={id}
           name={name}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
         />
       </div>
     </Wrapper>

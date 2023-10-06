@@ -84,7 +84,7 @@ export default function ChatPage() {
           alertType: "success",
         })
       );
-      console.log(newChat.data.message);
+      // console.log(newChat.data.message);
       createNotification({
         _id: id,
         chatId,
@@ -152,7 +152,7 @@ export default function ChatPage() {
     if (thisChat === undefined) {
       Navigate("*");
     }
-    console.log("this chat", thisChat);
+    // console.log("this chat", thisChat);
     friend = thisChat.participants.friend;
     user = thisChat.participants.user;
     messages = thisChat.messages;

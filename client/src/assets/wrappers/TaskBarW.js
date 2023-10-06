@@ -28,6 +28,7 @@ const Wrapper = styled.section`
     border: 1px solid var(--test-blue);
     margin-top: 4.6rem;
     box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
+    box-shadow: var(--shadow-main-light);
   }
   .task-calendar {
     color: var(--test-red);

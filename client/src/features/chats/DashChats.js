@@ -27,7 +27,7 @@ export default function DashChats() {
       <div className="no-content">No chats to display. Hit someone up!</div>
     );
   } else {
-    console.log(data);
+    // console.log(data);
     chatPreviews = Object.values(data).map((chat, index) => {
       return (
         <ChatPreview

@@ -17,7 +17,9 @@ const Wrapper = styled.aside`
     width: 100%;
     margin-top: 0.8rem;
     box-shadow: 5px 2px 5px grey;
+    // box-shadow: var(--shadow-main-light);
   }
+
   .create-post-heading {
     display: flex;
     align-items: center;
@@ -38,6 +40,7 @@ const Wrapper = styled.aside`
     gap: 0.4rem;
     padding: 0.6rem;
     box-shadow: 5px 2px 5px grey;
+    // box-shadow: var(--shadow-main-light);
   }
   .create-post-label-image:hover {
     cursor: pointer;

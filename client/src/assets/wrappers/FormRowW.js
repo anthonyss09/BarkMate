@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  .password {
+    text-security: disc;
+    -webkit-text-security: disc;
+  }
   .form-input {
     height: 2rem;
     border: 2px solid var(--grey-240);
