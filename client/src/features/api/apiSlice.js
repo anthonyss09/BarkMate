@@ -6,6 +6,7 @@ const userId = user ? user._id : null;
 
 //if user login/register open web socket connection with server and send userId for session reference
 let ws = user && new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+// let ws = user && new WebSocket(`ws://lb:8080/${userId}`);
 console.log("ws is ", ws);
 
 export const notificationsRecieved = createAction(
@@ -167,7 +168,7 @@ export const apiSlice = createApi({
     markNotificationViewed: builder.mutation({
       query: ({ userId, notificationId }) => ({
         url: "notifications/mark-notification-viewed",
-        method: "Post",
+        method: "POST",
         body: { notificationId },
       }),
       invalidatesTags: ["Nofification"],
@@ -474,6 +475,22 @@ export const apiSlice = createApi({
       invalidatesTags: ["Post"],
     }),
 
+    getUserPosts: builder.query({
+      query: (userId) => ({
+        url: `/posts/get-user-posts?userId=e${userId}`,
+      }),
+      providesTags: (result = [], error, arg) =>
+        result
+          ? [
+              ...Object.values(result).map(({ _id }) => ({
+                type: "Post",
+                _id,
+              })),
+              "Post",
+            ]
+          : ["Post"],
+    }),
+
     getPosts: builder.query({
       query: ({ friends, coordinates, pageNumber }) => ({
         url: `/posts/get-posts?coordinates=${coordinates}&friends=${friends}&pageNumber=${pageNumber}`,
@@ -583,4 +600,5 @@ export const {
   useEditPostMutation,
   useAcceptFriendMutation,
   useDeclineFriendMutation,
+  useGetUserPostsQuery,
 } = apiSlice;

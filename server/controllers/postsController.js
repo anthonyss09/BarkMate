@@ -146,4 +146,16 @@ const editPost = async (req, res) => {
   }
 };
 
-export { createPost, getPosts, editPost };
+const getUserPosts = async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    const userPosts = await Post.find({ authorId: userId });
+    res.status(StatusCodes.OK).json({ userPosts });
+  } catch (error) {
+    console.log("there was an error", error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+export { createPost, getPosts, editPost, getUserPosts };

@@ -91,12 +91,15 @@ export default function UserProfileView() {
           <div className="profile-page-body">
             <div className="profile-page-views">
               {" "}
-              <div className="view-photos">
-                <p>Photos</p>
-                <div className="photo-option">
-                  <HiCamera size={20} className="icon-camera" />
+              <Link to="/userProfile/userPhotos" className="link">
+                <div className="view-photos">
+                  {" "}
+                  <p>Photos</p>
+                  <div className="photo-option">
+                    <HiCamera size={20} className="icon-camera" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="time-slots-container">
               <div className="time-slot-column">

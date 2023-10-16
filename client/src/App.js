@@ -19,6 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import EditProfile from "./features/users/EditProfile";
 import PageNotFound from "./pages/PageNotFound";
 import AboutPage from "./pages/AboutPage";
+import UserPhotos from "./features/posts/UserPhotos";
 
 function App() {
   return (
@@ -50,6 +51,11 @@ function App() {
               exact
               path="/userProfile/editProfile"
               element={<EditProfile />}
+            />
+            <Route
+              exact
+              path="/userProfile/userPhotos"
+              element={<UserPhotos />}
             />
             <Route exact path="/:profileId" element={<ProfilePageView />} />
             <Route exact path="/groupid" element={<GroupPage />} />

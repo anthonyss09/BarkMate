@@ -1,0 +1,54 @@
+services:
+  lb:
+    image: haproxy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy
+    # depends_on:
+    #   - nodebackend
+  ws1:
+    image: bark-mate-be
+    environment:
+      - APPID=1111
+      - APPPORT=8081
+  ws2:
+    image: bark-mate-be
+    environment:
+      - APPID=2222
+      - APPPORT=8082
+  ws3:
+    image: bark-mate-be
+    environment:
+      - APPID=3333
+      - APPPORT=8083
+  rds:
+    image: redis
+    ports:
+      - "6379:6379"
+  barkmatefrontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.reactUI
+    ports:
+      - "3000:3000"
+    command: npm start
+    depends_on:
+      - db
+  # nodebackend:
+  #   build:
+  #     context: ./server
+  #     dockerfile: Dockerfile.node
+  #   ports:
+  #     - "8080:8080"
+  #     - "4000:4000"
+  #   depends_on:
+  #     - db
+  db:
+    volumes:
+      - barkMate_db:/data/db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+volumes:
+  barkMate_db:
