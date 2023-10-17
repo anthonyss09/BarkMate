@@ -6,6 +6,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export default function UserPhotos() {
   const { _id: userId } = useSelector(selectCurrentUser);
@@ -17,8 +19,6 @@ export default function UserPhotos() {
   const handleClick = () => {
     setShowCarousel(!showCarousel);
   };
-
-  console.log(data);
 
   let content;
 
@@ -48,6 +48,13 @@ export default function UserPhotos() {
 
   return (
     <Wrapper>
+      {!showCarousel && (
+        <Link to="/userProfile" className="link">
+          {" "}
+          <RiArrowGoBackFill size={30} className="user-photos-icon-back" />
+        </Link>
+      )}
+
       <section
         className={`user-photos-main ${
           showCarousel ? "user-photos-main-carousel" : ""

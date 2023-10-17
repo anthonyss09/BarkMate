@@ -44,6 +44,8 @@ const acceptFriend = async (req, res) => {
     friendId = recipient;
   }
 
+  console.log("friendId", friendId);
+
   try {
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },

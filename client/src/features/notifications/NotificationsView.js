@@ -10,15 +10,19 @@ import { selectCurrentUser } from "../../features/auth/authSlice";
 export default function NotificationsView({
   notifications,
   handleShowNotifications,
+  incrementNotificationLimit,
 }) {
   const user = useSelector(selectCurrentUser);
   let content;
-  const urlPre = "../../data/uploads/";
-  const dispatch = useDispatch();
+  // const urlPre = "../../data/uploads/";
+  // const dispatch = useDispatch();
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
 
   if (notifications.length) {
     content = notifications.map((notification, index) => {
+      if (index === 10) {
+        return <h3 className="notifications-view-header">Older stuff</h3>;
+      }
       switch (notification.notificationPath) {
         case "chats": {
           return (
@@ -113,18 +117,21 @@ export default function NotificationsView({
           );
           break;
         }
+
         default:
           break;
       }
     });
   } else {
-    content = <div>no notifications</div>;
+    content = (
+      <div className="notifications-view-no-content">no notifications</div>
+    );
   }
   return (
     <Wrapper>
       <aside className="notifications-view-main">
         <div className="div">
-          <div className="notifications-view-header">
+          <div className="notifications-view-title">
             <div className="div">
               {" "}
               <AiOutlineClose
@@ -136,8 +143,16 @@ export default function NotificationsView({
             <h3> Notifications</h3>
           </div>
         </div>
-
+        <h3 className="notifications-view-header">Recent notifications</h3>
         {content}
+        {notifications.length % 10 === 0 && (
+          <button
+            className="btn btn-more-notifications"
+            onClick={incrementNotificationLimit}
+          >
+            Show even older stuff
+          </button>
+        )}
       </aside>
     </Wrapper>
   );

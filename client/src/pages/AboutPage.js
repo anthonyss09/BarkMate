@@ -26,6 +26,7 @@ export default function AboutPage() {
           <img className="img img-one" src={kelseyPetsTop} />
         </div>
         <div className="about-page-center">
+          <h3 className="about-page-header">About</h3>
           {/* <img className="img img-two" src={meSmile} /> */}
           <br />
           <div className="p-one">
@@ -46,12 +47,12 @@ export default function AboutPage() {
           walking shifts based around eachothers needs.
           <br />
           As a developer I also want users like you to enjoy the social media
-          experience of sharing photos and stories about our dogs and life.
+          experience of sharing photos and stories about our dogs and lives.
           <br /> I envision Bark mate as a place to create community and connect
           with fellow dog lovers.
           <br />I hope you enjoy, and if you do, consider leaving Bark mate a
-          tip. Currently Bark mate's only source of funding is through user
-          tips,
+          tip. Currently Bark mate's only source of funding is from myself and
+          user tips,
           <br /> it seems fitting as I've worked as a bartender for most of my
           career. <br />
           <br /> Thanks dog lovers and friends!{" "}

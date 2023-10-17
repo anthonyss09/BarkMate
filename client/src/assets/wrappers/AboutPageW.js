@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
+  .about-page-header {
+    margin-top: 2rem;
+    letter-spacing: 0.05rem;
+    // text-decoration: underline;
+    font-size: 1.2rem;
+    // padding-bottom: 0.6rem;
+    // border-bottom: 1px solid rgb(200, 200, 200);
+  }
   .about-page-main {
     width: 100vw;
     letter-spacing: 0.02rem;
@@ -15,6 +23,8 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     padding-bottom: 2rem;
+    // border: 8px solid var(--bark-pink);
+    box-sizing: border-box;
   }
   .about-page-center {
     width: 100vw;
@@ -24,8 +34,9 @@ const Wrapper = styled.section`
     box-sizing: border-box;
     border-radius: 2rem;
     // box-shadow: 5px 2px 5px rgb(80, 80, 80);
-    margin-top: 4rem;
+    // margin-top: 4rem;
     text-align: center;
+    margin-top: 1rem;
   }
   .btn {
     display: flex;
@@ -87,7 +98,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     background: var(--bark-pink);
-    height: 150px;
+    height: 200px;
     padding: 1rem 0;
   }
 `;

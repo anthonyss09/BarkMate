@@ -120,7 +120,7 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px grey;
     z-index: 8;
     border-left: 1px solid rgb(220, 220, 220);
-    box-shadow: var(--shadow-main-light);
+    // box-shadow: var(--shadow-main-light);
   }
   .add-event-title {
     display: flex;

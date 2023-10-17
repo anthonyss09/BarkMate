@@ -2,13 +2,15 @@ import styled from "styled-components";
 
 const Wrapper = styled.aside`
   .friends-title {
-    margin-left: 1rem;
+    // margin-left: 1rem;
     font-size: 1.4rem;
+    margin: 0 auto;
   }
   h3 {
     background: var(--test-blue);
     letter-spacing: 0.15rem;
     padding: 0.8rem 1.2rem;
+    box-sizing: border-box;
     // height: min-content;
     border: 1px solid rgb(240, 240, 240);
   }
@@ -76,6 +78,22 @@ const Wrapper = styled.aside`
     padding: 1rem 0;
     font-family: "Roboto Condensed", sans-serif;
   }
+  .friends-view-icon-close {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+  }
+  .friends-view-icon-close:hover {
+    cursor: pointer;
+  }
+  .friends-view-no-content {
+    font-weight: bold;
+    letter-spacing: 0.02rem;
+    text-align: center;
+    color: rgb(80, 80, 80);
+    // box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
   .friends-view-main {
     width: 100%;
     max-width: 300px;
@@ -92,6 +110,7 @@ const Wrapper = styled.aside`
     box-shadow: -1px 2px 100vw grey;
     background: white;
     overflow-y: scroll;
+    box-sizing: border-box;
   }
   .friends-view-single {
     height: 3.6rem;

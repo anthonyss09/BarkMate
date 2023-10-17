@@ -5,8 +5,9 @@ const Wrapper = styled.div`
     font-weight: bold;
   }
   .comment-body {
-    border: 1px solid var(--test-blue);
+    // border: 1px solid var(--test-blue);
     background: rgb(244, 244, 244);
+    background: rgb(248, 248, 248);
     padding: 0.6rem 2rem;
     padding-left: 0.8rem;
     border-radius: 2rem;

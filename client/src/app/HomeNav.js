@@ -17,18 +17,20 @@ import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
 import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
+import { ws } from "../features/api/apiSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
   const [showBigSidebar, setShowBigSidebar] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showFriends, setShowFriends] = useState(false);
+  const [notificationLimit, setNotificationLimit] = useState(20);
 
   const { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const urlPre = "../data/uploads/";
+  // const urlPre = "../data/uploads/";
 
   const currentUser = useSelector(selectCurrentUser);
   const {
@@ -36,7 +38,10 @@ export default function NavBar() {
     error,
     isLoading,
     refetch,
-  } = useGetNotificationsQuery(currentUser._id);
+  } = useGetNotificationsQuery({
+    userId: currentUser._id,
+    limit: notificationLimit,
+  });
   const [markAllNotificationsRead] = useMarkAllNotificationsReadMutation();
 
   const notifications = allNotifications ? Object.values(allNotifications) : [];
@@ -64,9 +69,13 @@ export default function NavBar() {
     setShowFriends(!showFriends);
     setSmallShowSidebar(false);
   };
+  const incrementNotificationLimit = () => {
+    setNotificationLimit(notificationLimit + 10);
+  };
 
   const handleClick = () => {
     dispatch(logoutUser());
+    ws.close();
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -79,10 +88,14 @@ export default function NavBar() {
     setInterval(function () {
       let currentTime = new Date().getTime();
       if (currentTime > lastTime + 2000 * 2) {
-        window.location.reload(true);
+        window.location.reload();
       }
       lastTime = currentTime;
     }, 2000);
+
+    if (!ws) {
+      window.location.reload();
+    }
   }, []);
 
   return (
@@ -92,6 +105,7 @@ export default function NavBar() {
         <NotificationsView
           notifications={notifications}
           handleShowNotifications={handleShowNotifications}
+          incrementNotificationLimit={incrementNotificationLimit}
         />
       )}
       {showFriends && (

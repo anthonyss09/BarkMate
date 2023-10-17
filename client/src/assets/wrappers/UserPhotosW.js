@@ -32,8 +32,8 @@ const Wrapper = styled.section`
   .user-photo-container {
     position: relative;
     margin-bottom: 0.6rem;
-    background: rgb(244, 244, 244);
-    background: rgb(220, 220, 220);
+    // background: rgb(244, 244, 244);
+    // background: rgb(220, 220, 220);
     max-height: 180px;
   }
   .user-photo {
@@ -59,6 +59,12 @@ const Wrapper = styled.section`
     transform: scale(1.02);
     box-shadow: var(--shadow-main-light);
   }
+  .user-photos-icon-back {
+    margin: 0.4rem;
+  }
+  .user-photos-icon-back:hover {
+    cursor: pointer;
+  }
   .user-photos-main {
     display: flex;
     flex-wrap: wrap;
@@ -67,6 +73,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     box-sizing: border-box;
     background: rgb(220, 220, 220);
+    background: white;
   }
   .user-photos-main-carousel {
     height: 100vh;

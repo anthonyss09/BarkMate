@@ -6,6 +6,14 @@ const Wrapper = styled.aside`
     padding: 0.8rem 1.2rem;
     border: 1px solid rgb(240, 240, 240);
     letter-spacing: 0.15rem;
+    margin: 0 auto;
+  }
+  .btn-more-notifications {
+    width: 80%;
+    margin: 1rem auto;
+    background: rgb(244, 244, 244);
+    background: white;
+    border: 2px solid rgb(80, 80, 80);
   }
   .notification-image {
     width: 30px;
@@ -22,7 +30,7 @@ const Wrapper = styled.aside`
     color: rgb(60, 60, 60);
     color: var(--med-font-blue);
   }
-  .notifications-view-header {
+  .notifications-view-title {
     font-size: 1.3rem;
     // height: 4.2rem;
     background: var(--test-blue);
@@ -34,16 +42,35 @@ const Wrapper = styled.aside`
     display: flex;
     height: 5rem;
     align-items: center;
-    border-bottom: 2px solid white;
+    // border-bottom: 2px solid white;
     font-family: "Roboto Condensed", sans-serif;
   }
+  .notifications-view-header {
+    margin-top: 2rem;
+    padding: 0;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    width: 100%;
+    font-family: "Roboto Condensed", sans-serif;
+    box-sizing: border-box;
+  }
   .notifications-view-icon-close {
-    margin: 0.4rem;
     color: black;
-    margin-top: -1rem;
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
   }
   .notifications-view-icon-close:hover {
     cursor: pointer;
+  }
+  .notifications-view-no-content {
+    font-weight: bold;
+    letter-spacing: 0.02rem;
+    text-align: center;
+    color: rgb(80, 80, 80);
+    // box-sizing: border-box;
+    margin: 1rem;
   }
   .notifications-view-main {
     width: 100%;
@@ -76,6 +103,7 @@ const Wrapper = styled.aside`
     // background: rgb(252, 252, 252);
     // background: rgb(225, 225, 225, 0.8);
     background: rgb(244, 244, 244);
+    background: rgb(248, 248, 248);
     margin: 0;
     padding-left: 0.8rem;
   }

@@ -5,7 +5,18 @@ const user = JSON.parse(localStorage.getItem("user"));
 const userId = user ? user._id : null;
 
 //if user login/register open web socket connection with server and send userId for session reference
-let ws = user && new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+export let ws = user && new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+if (ws) {
+  ws.addEventListener("close", () => {
+    // ws.connect();
+    // alert("force reload");
+    // ws = user && new WebSocket(`ws://192.168.1.153:8080/${userId}`);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  });
+}
+
 // let ws = user && new WebSocket(`ws://lb:8080/${userId}`);
 console.log("ws is ", ws);
 
@@ -34,8 +45,8 @@ export const apiSlice = createApi({
   tagTypes: ["CurrentUser", "Posts", "Post", "Friend", "Chat", "Notification"],
   endpoints: (builder) => ({
     getNotifications: builder.query({
-      query: (userId) => ({
-        url: `/notifications/get-notifications?userId=${userId}`,
+      query: ({ userId, limit }) => ({
+        url: `/notifications/get-notifications?userId=${userId}&limit=${limit}`,
         method: "GET",
       }),
       invalidatesTags: (result, error, arg) =>

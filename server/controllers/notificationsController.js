@@ -5,9 +5,13 @@ import Notifications from "../models/notificationModel.js";
 import { wss } from "../server.js";
 
 const getNotifications = async (req, res) => {
-  const { userId } = req.query;
+  const { userId, limit } = req.query;
   try {
-    const notifications = await Notifications.find({ recipient: userId });
+    const notifications = await Notifications.find({ recipient: userId })
+      .sort({
+        createdAt: -1,
+      })
+      .limit(limit);
     res.status(StatusCodes.OK).json({ notifications });
   } catch (error) {
     console.log(error);
