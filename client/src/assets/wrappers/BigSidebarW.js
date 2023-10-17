@@ -70,7 +70,7 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     height: 2.8rem;
     letter-spacing: 0.06rem;
-    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
+    // box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .link:hover {
     transform: scale(1.1);

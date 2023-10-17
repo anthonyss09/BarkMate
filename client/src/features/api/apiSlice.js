@@ -477,7 +477,7 @@ export const apiSlice = createApi({
 
     getUserPosts: builder.query({
       query: (userId) => ({
-        url: `/posts/get-user-posts?userId=e${userId}`,
+        url: `/posts/get-user-posts?userId=${userId}`,
       }),
       providesTags: (result = [], error, arg) =>
         result

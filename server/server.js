@@ -44,21 +44,21 @@ const clients = {};
 
 // console.log("wss is ", wss);
 
-const subscriber = redis.createClient({
-  socket: {
-    port: 6379,
-    host: "rds",
-  },
-});
-const publisher = redis.createClient({
-  socket: {
-    port: 6379,
-    host: "rds",
-  },
-});
+// const subscriber = redis.createClient({
+//   socket: {
+//     port: 6379,
+//     host: "rds",
+//   },
+// });
+// const publisher = redis.createClient({
+//   socket: {
+//     port: 6379,
+//     host: "rds",
+//   },
+// });
 
-// const subscriber = redis.createClient();
-// const publisher = redis.createClient();
+const subscriber = redis.createClient();
+const publisher = redis.createClient();
 
 // (async () => {
 //   try {
