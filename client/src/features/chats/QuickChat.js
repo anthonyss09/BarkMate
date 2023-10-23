@@ -1,13 +1,11 @@
 import Wrapper from "../../assets/wrappers/QucikChatW";
 import { AiOutlineCloseCircle, AiOutlineSend } from "react-icons/ai";
-import { useCreateChatMutation } from "../api/apiSlice";
+import { useCreateChatMutation } from "../chats/ChatsSlice";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
-import {
-  useGetChatsQuery,
-  useCreateNotificationMutation,
-} from "../api/apiSlice";
+import { useGetChatsQuery } from "../chats/ChatsSlice";
+import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";

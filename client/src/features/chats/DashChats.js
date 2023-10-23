@@ -1,7 +1,7 @@
 import Wrapper from "../../assets/wrappers/DashChatsW";
 import ChatPreview from "./ChatPreview";
 import { useEffect } from "react";
-import { useGetChatsQuery } from "../api/apiSlice";
+import { useGetChatsQuery } from "../chats/ChatsSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";

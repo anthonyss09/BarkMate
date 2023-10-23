@@ -43,7 +43,7 @@ export default function FormSteps({
           >
             3
           </div>
-          <div className="step-3">finish up</div>
+          <div className="step-3">Finish up</div>
         </div>
       </div>
     </Wrapper>

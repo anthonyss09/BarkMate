@@ -11,13 +11,13 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import {
   useGetNotificationsQuery,
   useMarkAllNotificationsReadMutation,
-} from "../features/api/apiSlice";
+} from "../features/notifications/NotificationsSlice";
 import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
 import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-import { ws } from "../features/api/apiSlice";
+// import { ws } from "../features/api/apiSlice";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -75,7 +75,7 @@ export default function NavBar() {
 
   const handleClick = () => {
     dispatch(logoutUser());
-    ws.close();
+    // ws.close();
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -93,9 +93,9 @@ export default function NavBar() {
       lastTime = currentTime;
     }, 2000);
 
-    if (!ws) {
-      window.location.reload();
-    }
+    // if (!ws) {
+    //   window.location.reload();
+    // }
   }, []);
 
   return (
@@ -119,7 +119,7 @@ export default function NavBar() {
           <HiBars3 size={25} onClick={handleBigSidebar} />
           {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
         </div>
-        <Logo />
+        <Logo logoClass="logo-nav" iconClass="logo-icon-nav" />
         <span className="nav-icons-container">
           <span
             className="notification-count"

@@ -266,6 +266,7 @@ select {
 }
 .form-input-address {
   width: 94%;
+  border: 2px solid var(--test-blue);
 }
 .form-input-image {
   display: none;
@@ -298,7 +299,7 @@ select {
   position: relative;
 }
 .form-row-address {
-  width: 76.5%;
+  /* width: 76.5%; */
 }
 .form-input::placeholder {
   color: rgb(180, 180, 180);
@@ -336,7 +337,7 @@ select {
   color: var(--charcoal);
   display: flex;
   align-items: center;
-  font-weight: 400;
+  color: var(--federal-blue);
       /* font-family: "Roboto Condensed", sans-serif; */
 
   /* font-family: "Dosis", sans-serif; */

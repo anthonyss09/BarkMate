@@ -2,7 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Notifications from "../models/notificationModel.js";
-import { wss } from "../server.js";
+// import { wss } from "../server.js";
 
 const getNotifications = async (req, res) => {
   const { userId, limit } = req.query;

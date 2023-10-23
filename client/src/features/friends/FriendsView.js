@@ -4,7 +4,7 @@ import {
   useGetFriendsQuery,
   useAcceptFriendMutation,
   useDeclineFriendMutation,
-} from "../api/apiSlice";
+} from "../friends/FriendsSlice";
 import { Link } from "react-router-dom";
 
 export default function FriendsView({ handleShowFriends, currentUser }) {

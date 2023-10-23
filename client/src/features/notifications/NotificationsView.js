@@ -2,7 +2,7 @@ import Wrapper from "../../assets/wrappers/NotificationsViewW";
 import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import SingleNotification from "./SingleNotification";
-import { useMarkNotificationViewedMutation } from "../api/apiSlice";
+import { useMarkNotificationViewedMutation } from "../notifications/NotificationsSlice";
 // import { markStateNotificationViewed } from "./NotificationsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../features/auth/authSlice";

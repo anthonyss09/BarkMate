@@ -6,10 +6,8 @@ import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import QuickChat from "../chats/QuickChat";
 import { useState } from "react";
-import {
-  useRequestFriendMutation,
-  useCreateNotificationMutation,
-} from "../api/apiSlice";
+import { useRequestFriendMutation } from "../friends/FriendsSlice";
+import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import { useDispatch } from "react-redux";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";

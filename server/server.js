@@ -17,6 +17,7 @@ import chatsRouter from "./routes/chatsRoutes.js";
 import eventRouter from "./routes/eventRoutes.js";
 import { v4 as uuidv4 } from "uuid";
 import redis from "redis";
+import { Server } from "socket.io";
 
 app.use(express.json());
 
@@ -39,10 +40,38 @@ const port = process.env.port || 8080;
 const APPID = process.env.APPID;
 
 //open web socket upon server spin up
-export const wss = new WebSocket.WebSocketServer({ server });
+// export const wss = new WebSocket.WebSocketServer({ server });
 const clients = {};
 
-// console.log("wss is ", wss);
+//migrate to socket.io instance
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+  allowEIO3: true,
+});
+
+// io.listen(4000);
+io.listen(4000);
+
+io.on("connection", (socket) => {
+  console.log("socket is open", socket.handshake.query.userId);
+  const userId = socket.handshake.query.userId;
+  clients[userId] = socket;
+
+  socket.on("error", (e) => {
+    console.log("a socket error occured: ", e);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("socket disconnected");
+  });
+
+  socket.on("message", (msg) => {
+    console.log("server socketr caught a message", msg);
+    publisher.publish("commCenter", JSON.stringify(msg));
+  });
+});
 
 // const subscriber = redis.createClient({
 //   socket: {
@@ -60,93 +89,95 @@ const clients = {};
 const subscriber = redis.createClient();
 const publisher = redis.createClient();
 
-// (async () => {
-//   try {
 await publisher.connect();
 await subscriber.connect();
 console.log("connected to redis client");
 
-// subscriber.on("message", (channel, message) => {
-//   console.log("subscriber listener hit");
-//   try {
-//     console.log(
-//       `server ${APPID} recieved message in channel ${channel} msg: ${message}`
-//     );
-//     Object.values(clients).forEach((c) => c.send(APPID + ":" + message));
-//   } catch (error) {
-//     console.log("can of corn", error);
-//   }
-// });
-
-//   } catch (error) {
-//     console.log("i caught this error", error);
-//   }
-// })();
-
-// subscriber.on("connect", () => {
-//   console.log(`connected to ${process.env.APPID}`);
-// });
-
 subscriber.subscribe("commCenter", (data, channel) => {
   console.log("got the ", data, "from", channel);
-
   const parsedData = JSON.parse(data);
+
   switch (parsedData.type) {
-    case "data":
+    case "test":
       {
-        console.log(parsedData);
+        // io.emit("message", data);
+        // io.to(clients[parsedData.content.recipient], data);
+        io.to(clients[parsedData.content.userId].id).emit(
+          "message",
+          parsedData
+        );
       }
       break;
     case "notification":
       {
-        console.log(parsedData);
-        //if notification type friend request, send data to both sender and recipient
-        // if (parsedData.content.notificationType === "friendRequest") {
-        //   clients[parsedData.content.sender].send(data);
-        // }
-        clients[parsedData.content.recipient] &&
-          clients[parsedData.content.recipient].send(data);
-        console.log("sent to client");
+        // recipient && recipient.send(data);
+        io.to(clients[parsedData.content.recipient].id).emit(
+          "message",
+          parsedData
+        );
+        // io.to(user).emit("message", parsedData);
+        // console.log("sent to client");
       }
       break;
     case "markNotificationsRead":
       //mark recipient of notification as read
       {
-        clients[parsedData.content.recipient].send(data);
+        // recipient && recipient.send(data);
+
+        io.to(clients[parsedData.content.recipient].id).emit(
+          "message",
+          parsedData
+        );
+        console.log("sent to client");
       }
       break;
     case "markNotificationViewed":
       {
-        clients[parsedData.content.userId].send(data);
+        // user.send(data);
+        io.to(clients[parsedData.content.userId].id).emit(
+          "message",
+          parsedData
+        );
       }
       break;
     case "chat":
       {
-        clients[parsedData.content.message.recipient] &&
-          clients[parsedData.content.message.recipient].send(data);
-        clients[parsedData.content.message.sender] &&
-          clients[parsedData.content.message.sender].send(data);
+        const messageSender = clients[parsedData.content.message.sender].id;
+        const messageRecipient =
+          clients[parsedData.content.message.recipient].id;
+
+        // messageRecipient && messageRecipient.send(data);
+        // messageSender && messageSender.send(data);
+
+        messageRecipient && io.to(messageRecipient).emit("message", parsedData);
+        messageSender && io.to(messageSender).emit("message", parsedData);
       }
       break;
     case "friendRequest":
       //send both requester and recipient of request data
       {
-        console.log(parsedData);
-        console.log(parsedData.content.requester);
+        // requester && requester.send(data);
+        // recipient && recipient.send(data);
 
-        clients[parsedData.content.requester] &&
-          clients[parsedData.content.requester].send(data);
-        clients[parsedData.content.recipient] &&
-          clients[parsedData.content.recipient].send(data);
+        io.to(clients[parsedData.content.requester].id).emit(
+          "message",
+          parsedData
+        );
+        io.to(clients[parsedData.content.recipient].id).emit(
+          "message",
+          parsedData
+        );
       }
       break;
     case "editPost":
       {
-        console.log("editing post in server socket");
-        console.log(parsedData);
-        Object.values(clients).map((client) => {
-          client.send(data);
-        });
+        // console.log("editing post in server socket");
+        // console.log(parsedData);
+        // Object.values(clients).map((client) => {
+        //   client.send(data);
+        // });
+
+        io.emit("message", parsedData);
       }
       break;
     default: {
@@ -155,101 +186,33 @@ subscriber.subscribe("commCenter", (data, channel) => {
   }
 });
 
-publisher.publish(
-  "commCenter",
-  JSON.stringify({ type: "type", content: "content" })
-);
+// wss.on("connection", (ws, req) => {
+//   const sessionId = uuidv4();
+//   ws.on("error", (error) => {
+//     console.log("web socket error is", error);
+//   });
+//   ws.on("close", () => {
+//     console.log("web socket closed");
+//   });
 
-wss.on("connection", (ws, req) => {
-  const sessionId = uuidv4();
-  ws.on("error", (error) => {
-    console.log("web socket error is", error);
-  });
-  ws.on("close", () => {
-    console.log("web socket closed");
-  });
+//   console.log("recieved new connection");
+//   const userId = req.url.slice(1);
+//   console.log(userId);
 
-  console.log("recieved new connection");
-  const userId = req.url.slice(1);
-  console.log(userId);
+//   //create user session reference in clients object with property of userId;
+//   clients[userId] = ws;
+//   console.log(`${userId} connected`);
+//   clients[userId].send(
+//     JSON.stringify({ type: "data", content: { message: "welcome" } })
+//   );
 
-  //create user session reference in clients object with property of userId;
-  clients[userId] = ws;
-  console.log(`${userId} connected`);
-  clients[userId].send(
-    JSON.stringify({ type: "data", content: { message: "welcome" } })
-  );
-
-  //web socket listening for message events from client
-  ws.on("message", (data) => {
-    console.log("message is");
-    data = data.toString();
-    publisher.publish("commCenter", data);
-    // const parsedData = JSON.parse(data);
-    // switch (parsedData.type) {
-    //   case "data":
-    //     {
-    //       console.log(parsedData);
-    //     }
-    //     break;
-    //   case "notification":
-    //     {
-    //       console.log(parsedData);
-    //       //if notification type friend request, send data to both sender and recipient
-    //       // if (parsedData.content.notificationType === "friendRequest") {
-    //       //   clients[parsedData.content.sender].send(data);
-    //       // }
-    //       clients[parsedData.content.recipient] &&
-    //         clients[parsedData.content.recipient].send(data);
-    //       console.log("sent to client");
-    //     }
-    //     break;
-    //   case "markNotificationsRead":
-    //     //mark recipient of notification as read
-    //     {
-    //       clients[parsedData.content.recipient].send(data);
-    //     }
-    //     break;
-    //   case "markNotificationViewed":
-    //     {
-    //       clients[parsedData.content.userId].send(data);
-    //     }
-    //     break;
-    //   case "chat":
-    //     {
-    //       clients[parsedData.content.message.recipient] &&
-    //         clients[parsedData.content.message.recipient].send(data);
-    //       clients[parsedData.content.message.sender] &&
-    //         clients[parsedData.content.message.sender].send(data);
-    //     }
-    //     break;
-    //   case "friendRequest":
-    //     //send both requester and recipient of request data
-    //     {
-    //       console.log(parsedData);
-    //       console.log(parsedData.content.requester);
-
-    //       clients[parsedData.content.requester] &&
-    //         clients[parsedData.content.requester].send(data);
-    //       clients[parsedData.content.recipient] &&
-    //         clients[parsedData.content.recipient].send(data);
-    //     }
-    //     break;
-    //   case "editPost":
-    //     {
-    //       console.log("editing post in server socket");
-    //       console.log(parsedData);
-    //       Object.values(clients).map((client) => {
-    //         client.send(data);
-    //       });
-    //     }
-    //     break;
-    //   default: {
-    //     break;
-    //   }
-    // }
-  });
-});
+//   //web socket listening for message events from client
+//   ws.on("message", (data) => {
+//     console.log("message is");
+//     data = data.toString();
+//     publisher.publish("commCenter", data);
+//   });
+// });
 
 const start = async () => {
   try {

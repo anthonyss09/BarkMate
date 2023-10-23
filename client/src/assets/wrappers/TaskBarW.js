@@ -67,7 +67,7 @@ const Wrapper = styled.section`
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     border-radius: 3rem;
     margin-top: 0;
-    box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
+    // box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .collapsed {
     position: fixed;

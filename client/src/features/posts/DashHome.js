@@ -7,7 +7,7 @@ import {
 } from "../auth/authSlice";
 import { useEffect, useState, useLayoutEffect } from "react";
 import CreatePost from "./CreatePost";
-import { useGetPostsQuery } from "../api/apiSlice";
+import { useGetPostsQuery } from "../posts/PostsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { IoIosAdd } from "react-icons/io";
 

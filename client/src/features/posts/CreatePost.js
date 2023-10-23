@@ -5,7 +5,7 @@ import { logoutUser, selectCurrentUser } from "../auth/authSlice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import { useState, memo } from "react";
-import { useCreatePostMutation } from "../api/apiSlice";
+import { useCreatePostMutation } from "../posts/PostsSlice";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";

@@ -62,7 +62,11 @@ const Wrapper = styled.section`
     align-items: center;
   }
 
-  @media (min-width: 500px) {
+  @media (max-width: 500px) {
+    .steps-container {
+      padding: 0 1rem;
+      background: blue;
+    }
   }
 `;
 

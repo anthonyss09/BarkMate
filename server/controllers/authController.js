@@ -34,8 +34,7 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log("password", password);
-  console.log(email);
+
   let passwordIsValid;
 
   if (!email || !password) {
@@ -57,7 +56,7 @@ const loginUser = async (req, res) => {
     }
     user.password = undefined;
     const token = user.createJWT();
-    console.log({ user, token });
+    // console.log({ user, token });
     res.status(StatusCodes.OK).json({ user, token });
   } catch (error) {
     console.log(error);

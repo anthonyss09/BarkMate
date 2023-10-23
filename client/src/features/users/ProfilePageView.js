@@ -13,10 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import mongoose from "mongoose";
-import {
-  useCreateNotificationMutation,
-  useRequestFriendMutation,
-} from "../api/apiSlice";
+import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
+import { useRequestFriendMutation } from "../friends/FriendsSlice";
 import QuickChat from "../chats/QuickChat";
 import { useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";

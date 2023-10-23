@@ -56,13 +56,16 @@ export default function RegisterOne({
         )}
         <form className="form">
           <Link to="/" className=" link">
-            <Logo />
+            <Logo logoClass="logo-register" />
           </Link>
           <FormSteps showRegisterOne={showRegisterOne} />
           <h1 className="form-header">
             Create Profile{" "}
             <p className="p-bottom">
-              Alreday a member? <span className="span-login">login</span>
+              Alreday a member?{" "}
+              <Link to="/login" className="span-login link">
+                login
+              </Link>
             </p>
           </h1>
 

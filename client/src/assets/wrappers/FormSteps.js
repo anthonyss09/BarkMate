@@ -16,9 +16,13 @@ const Wrapper = styled.div`
     color: var(--grey-60);
   }
   .steps-container {
+    width: 100vw;
     display: flex;
     gap: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    // padding: 0 0.4rem;
+    justify-content: center;
   }
   .step-active {
     color: black;
@@ -35,15 +39,29 @@ const Wrapper = styled.div`
   }
   .step-circle-one {
     background: var(--med-bright-blue);
+    background: var(--test-blue);
+    color: var(--federal-blue);
   }
   .step-circle-two {
     background: var(--test-red);
   }
   .step-circle-three {
     background: var(--med-green);
+    background: var(--federal-blue);
   }
   .step-circle-active {
     box-shadow: 5px 2px 5px grey;
+    margin-right: 0.4rem;
+  }
+  @media (max-width: 400px) {
+    .step-circle {
+      font-size: 1rem;
+      height: 1.8rem;
+      width: 2rem;
+    }
+    .steps-container {
+      padding: 0 1rem;
+    }
   }
 `;
 

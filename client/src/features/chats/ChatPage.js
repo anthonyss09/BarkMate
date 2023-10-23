@@ -3,17 +3,14 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { useEffect } from "react";
 import { BsSend } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useGetChatsQuery } from "../api/apiSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useParams } from "react-router-dom";
 import ChatLineFriend from "./ChatLineFriend";
 import ChatLineUser from "./ChatLineUser";
 import { useState } from "react";
-import {
-  useCreateChatMutation,
-  useCreateNotificationMutation,
-} from "../api/apiSlice";
+import { useCreateChatMutation, useGetChatsQuery } from "../chats/ChatsSlice";
+import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useSeletor, useDispatch } from "react-redux";
