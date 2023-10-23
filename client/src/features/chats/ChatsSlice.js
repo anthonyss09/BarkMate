@@ -145,11 +145,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       invalidatesTags: (result, error, arg) => [{ type: "Chat", _id: arg._id }],
       async onQueryStarted(newChat, { dispatch, queryFulfilled }) {
         socket.emit("message", { type: "chat", content: newChat });
-        // if (ws && ws.readyState === 1) {
-        //   ws.send(JSON.stringify({ type: "chat", content: newChat }));
-        // } else {
-        //   console.log("ws down, invalidation chats");
-        // }
+
         try {
           await queryFulfilled;
         } catch (error) {

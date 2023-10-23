@@ -2,29 +2,40 @@ import { selectCurrentUser, selectUserToken } from "../features/auth/authSlice";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useGetAuthorizationMutation } from "../features/auth/authSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function ProtectedRoute({ children }) {
   const user = useSelector(selectCurrentUser);
   const token = useSelector(selectUserToken);
 
-  // const [getAuth] = useGetAuthorizationMutation();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // let isAuthorized = true;
+  const [getAuth] = useGetAuthorizationMutation();
 
-  // useEffect(() => {
-  //   const token = JSON.parse(localStorage.getItem("token")) || "token";
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token")) || "token";
+    console.log("the token is", token);
 
-  //   const fetchAuth = async (token) => {
-  //     const response = await getAuth(token);
+    const fetchAuth = async (token) => {
+      try {
+        const response = await getAuth(token);
+        console.log(response.data.authorization);
+        setIsAuthorized(response.data.authorization);
+        setIsLoading(false);
+      } catch (error) {}
+    };
 
-  //     isAuthorized = response.data.authorization;
-  //   };
-  //   fetchAuth(token);
-  // }, []);
+    fetchAuth(token);
+  }, []);
 
-  if (!token) {
-    return <Navigate to="/" />;
+  if (isLoading) {
+    return <BeatLoader size={35} color="lightBlue" className="beat-loader" />;
+  } else if (!isAuthorized) {
+    return <Navigate to="/" replace />;
+  } else if (isAuthorized) {
+    return children;
   }
-  return children;
 }

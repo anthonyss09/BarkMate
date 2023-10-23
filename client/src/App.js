@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -20,8 +20,16 @@ import EditProfile from "./features/users/EditProfile";
 import PageNotFound from "./pages/PageNotFound";
 import AboutPage from "./pages/AboutPage";
 import UserPhotos from "./features/posts/UserPhotos";
+import { useGetAuthorizationMutation } from "./features/auth/authSlice";
 
 function App() {
+  const [getAuth] = useGetAuthorizationMutation();
+  let isAuthorized;
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    isAuthorized = getAuth(token);
+  }, []);
+
   return (
     <Router>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -34,7 +42,7 @@ function App() {
               exact
               path="dashboard"
               element={
-                <ProtectedRoute>
+                <ProtectedRoute isAuthorized={isAuthorized}>
                   <DashboardPage />
                 </ProtectedRoute>
               }
@@ -45,6 +53,7 @@ function App() {
               <Route exact path="calender" element={<DashCal />} />
               <Route exact path="chats" element={<DashChats />} />
             </Route>
+
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/userProfile" element={<UserProfileView />} />
             <Route
@@ -60,6 +69,7 @@ function App() {
             <Route exact path="/:profileId" element={<ProfilePageView />} />
             <Route exact path="/groupid" element={<GroupPage />} />
             <Route exact path="chats/:chatId" element={<ChatPage />} />
+
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>
         </div>

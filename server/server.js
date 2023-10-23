@@ -111,10 +111,10 @@ subscriber.subscribe("commCenter", (data, channel) => {
     case "notification":
       {
         // recipient && recipient.send(data);
-        io.to(clients[parsedData.content.recipient].id).emit(
-          "message",
-          parsedData
-        );
+        clients[parsedData.content.recipient].id &&
+          io
+            .to(clients[parsedData.content.recipient].id)
+            .emit("message", parsedData);
         // io.to(user).emit("message", parsedData);
         // console.log("sent to client");
       }
@@ -123,21 +123,20 @@ subscriber.subscribe("commCenter", (data, channel) => {
       //mark recipient of notification as read
       {
         // recipient && recipient.send(data);
-
-        io.to(clients[parsedData.content.recipient].id).emit(
-          "message",
-          parsedData
-        );
+        clients[parsedData.content.recipient].id &&
+          io
+            .to(clients[parsedData.content.recipient].id)
+            .emit("message", parsedData);
         console.log("sent to client");
       }
       break;
     case "markNotificationViewed":
       {
         // user.send(data);
-        io.to(clients[parsedData.content.userId].id).emit(
-          "message",
-          parsedData
-        );
+        clients[parsedData.content.userId].id &&
+          io
+            .to(clients[parsedData.content.userId].id)
+            .emit("message", parsedData);
       }
       break;
     case "chat":
@@ -158,15 +157,14 @@ subscriber.subscribe("commCenter", (data, channel) => {
       {
         // requester && requester.send(data);
         // recipient && recipient.send(data);
-
-        io.to(clients[parsedData.content.requester].id).emit(
-          "message",
-          parsedData
-        );
-        io.to(clients[parsedData.content.recipient].id).emit(
-          "message",
-          parsedData
-        );
+        clients[parsedData.content.requester].id &&
+          io
+            .to(clients[parsedData.content.requester].id)
+            .emit("message", parsedData);
+        clients[parsedData.content.recipient].id &&
+          io
+            .to(clients[parsedData.content.recipient].id)
+            .emit("message", parsedData);
       }
       break;
     case "editPost":
