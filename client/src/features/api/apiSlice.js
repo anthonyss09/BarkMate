@@ -4,8 +4,8 @@ import { socket } from "../../sockets/socketIo";
 
 // import { io } from "socket.io-client";
 // import { response } from "express";
-const user = JSON.parse(localStorage.getItem("user"));
-const userId = user ? user._id : null;
+export const user = JSON.parse(localStorage.getItem("user"));
+export const userId = user ? user._id : null;
 
 //if user login/register open web socket connection with server and send userId for session reference
 

@@ -52,7 +52,9 @@ const createPost = async (req, res) => {
       authorImageUrl,
     });
     console.log(post);
-    res.status(StatusCodes.CREATED).json({ content: post, message: "Posted!" });
+    res
+      .status(StatusCodes.CREATED)
+      .json({ content: post, message: "Posted successfully!" });
   } catch (error) {
     console.log(error);
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });

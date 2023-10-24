@@ -12,6 +12,7 @@ import ProfileImageInput from "../../components/ProfileImageInput";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 
 export default function RegisterThree({
   handleInputChange,
@@ -76,7 +77,10 @@ export default function RegisterThree({
   return (
     <Wrapper>
       {requesting && (
-        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        <div className="alert-container">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
       )}
       <section className="form-main">
         <form

@@ -2,8 +2,9 @@ import { apiSlice } from "../api/apiSlice";
 import { createSlice } from "@reduxjs/toolkit";
 // import { updateWebSocketReadyState } from "../api/apiSlice";
 import { socket } from "../../sockets/socketIo";
-const user = JSON.parse(localStorage.getItem("user"));
-const userId = user ? user._id : null;
+// const user = JSON.parse(localStorage.getItem("user"));
+// const userId = user ? user._id : null;
+let currentUserId;
 
 const initialState = {
   webSocketReadyState: undefined,
@@ -36,6 +37,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         userId,
         { dispatch, updateCachedData, cacheDataLoaded, cacheEntryRemoved }
       ) {
+        currentUserId = JSON.parse(localStorage.getItem("user"))._id;
         socket.on("message", (data) => {
           switch (data.type) {
             case "chat":
@@ -86,7 +88,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                     let newContent = { ...data.content };
                     let newParticipants = {};
                     newContent.participants.map((p) => {
-                      if (p.participantId === userId) {
+                      if (p.participantId === currentUserId) {
                         newParticipants.user = { ...p };
                       } else {
                         newParticipants.friend = { ...p };
@@ -113,19 +115,24 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       transformResponse: (responseData) => {
         let normParticipants = {};
         let newResponseData = {};
-        console.log("userid", userId);
+        // console.log("userid", userId);
+        console.log(
+          "local id is",
+          JSON.parse(localStorage.getItem("user"))._id
+        );
 
         responseData.chats.map((chat) => {
           let chatCopy = { ...chat };
+          console.log("the chat is", chat);
           chat.participants.map((p) => {
-            if (p.participantId == userId) {
+            if (p.participantId == currentUserId) {
               normParticipants.user = { ...p };
             } else {
               normParticipants.friend = { ...p };
             }
           });
           // chat.participants = normParticipants;
-          chatCopy.participants = normParticipants;
+          chatCopy.participants = { ...normParticipants };
           normParticipants = {};
           newResponseData[chat._id] = chatCopy;
         });

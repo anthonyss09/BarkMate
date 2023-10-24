@@ -5,12 +5,6 @@ const Wrapper = styled.section`
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);
   }
-  .beat-loader {
-    // position: fixed;
-    // left: 40vw;
-    // top: 30vh;
-    // z-index: 30;
-  }
   .btn {
     margin-top: 1rem;
     background: var(--med-bright-blue);

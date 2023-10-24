@@ -7,6 +7,7 @@ import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FiltersDropDown from "../../components/FiltersDropDown";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 
 export default function DashProfiles() {
   const currentUser = useSelector(selectCurrentUser);
@@ -39,7 +40,9 @@ export default function DashProfiles() {
   let content;
   if (isLoading) {
     content = (
-      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
+      <div className="alert-conatiner">
+        <DotLoader color="lightBlue" size={85} className="beat-loader" />
+      </div>
     );
   } else if (data.filteredMatches.length < 1) {
     content = (
@@ -68,7 +71,10 @@ export default function DashProfiles() {
   return (
     <Wrapper>
       {requesting && (
-        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        <div className="alert-container">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
       )}
       <section className="dash-main">
         <div className="dash-header">

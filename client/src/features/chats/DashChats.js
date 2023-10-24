@@ -5,6 +5,7 @@ import { useGetChatsQuery } from "../chats/ChatsSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 
 export default function DashChats() {
   const {
@@ -20,7 +21,9 @@ export default function DashChats() {
   let chatPreviews;
   if (isLoading) {
     chatPreviews = (
-      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
+      <div className="alert-container">
+        <DotLoader color="lightBlue" size={85} className="beat-loader" />
+      </div>
     );
   } else if (!Object.keys(data).length) {
     chatPreviews = (
@@ -28,7 +31,13 @@ export default function DashChats() {
     );
   } else {
     // console.log(data);
-    chatPreviews = Object.values(data).map((chat, index) => {
+    const sortedChats = Object.values(data).sort((a, b) => {
+      const aDate = new Date(a.updatedAt);
+      const bDate = new Date(b.updatedAt);
+      return bDate - aDate;
+    });
+    console.log(Object.values(data));
+    chatPreviews = sortedChats.map((chat, index) => {
       return (
         <ChatPreview
           profileImageUrl={chat.participants.friend.participantProfileImageUrl}

@@ -13,6 +13,7 @@ import { useUpdateUserMutation } from "../auth/authSlice";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/BeatLoader";
 import axios from "axios";
 
 export default function EditProfile() {
@@ -141,7 +142,10 @@ export default function EditProfile() {
       <HomeNav />
       <section className="edit-profile-main form">
         {savingProfileEdit && (
-          <BeatLoader color="lightBlue" size={35} className="beat-loader" />
+          <div className="alert-container">
+            {" "}
+            <DotLoader color="lightBlue" size={85} className="beat-loader" />
+          </div>
         )}
         <div className="edit-profile-center">
           <h1 className="form-row edit-profile-heading">Edit Profile</h1>

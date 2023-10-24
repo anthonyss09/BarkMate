@@ -13,6 +13,7 @@ import { useCreateChatMutation, useGetChatsQuery } from "../chats/ChatsSlice";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 import { useSeletor, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
@@ -75,12 +76,12 @@ export default function ChatPage() {
       );
       console.log(newChat.error.data.message);
     } else if (newChat.data) {
-      dispatch(
-        displayAlert({
-          alertMessage: newChat.data.message,
-          alertType: "success",
-        })
-      );
+      // dispatch(
+      //   displayAlert({
+      //     alertMessage: newChat.data.message,
+      //     alertType: "success",
+      //   })
+      // );
       // console.log(newChat.data.message);
       createNotification({
         _id: id,
@@ -142,12 +143,14 @@ export default function ChatPage() {
   let user;
   if (isLoading) {
     content = (
-      <BeatLoader color="lightBlue" size={25} className="beat-loader" />
+      <div className="alert-container">
+        <DotLoader color="lightBlue" size={85} className="beat-loader" />
+      </div>
     );
   } else if (isSuccess) {
     thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
     if (thisChat === undefined) {
-      Navigate("*");
+      Navigate("/");
     }
     // console.log("this chat", thisChat);
     friend = thisChat.participants.friend;
@@ -180,7 +183,11 @@ export default function ChatPage() {
 
   return (
     <Wrapper>
-      {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
+      {showAlert && (
+        <div className="alert-container">
+          <Alert alertMessage={alertMessage} alertType={alertType} />
+        </div>
+      )}
       <div className="chat-page-main">
         <div className="chat-page-header">
           <Link to="/dashboard/chats" className="link">

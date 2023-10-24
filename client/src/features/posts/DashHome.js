@@ -9,6 +9,7 @@ import { useEffect, useState, useLayoutEffect } from "react";
 import CreatePost from "./CreatePost";
 import { useGetPostsQuery } from "../posts/PostsSlice";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 import { IoIosAdd } from "react-icons/io";
 
 export default function DashHome() {
@@ -117,7 +118,10 @@ export default function DashHome() {
   return (
     <Wrapper>
       {requesting && (
-        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        <div className="alert-container">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
       )}
       <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
         <div className="dash-center">
@@ -132,7 +136,14 @@ export default function DashHome() {
             }`}
           >
             {loadingPosts ? (
-              <BeatLoader color="lightBlue" size={35} className="beat-loader" />
+              <div className="alert-container">
+                {" "}
+                <DotLoader
+                  color="lightBlue"
+                  size={85}
+                  className="beat-loader"
+                />
+              </div>
             ) : (
               content
             )}

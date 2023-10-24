@@ -58,7 +58,9 @@ const getChats = async (req, res) => {
   const { userId } = req.query;
 
   try {
-    const chats = await Chat.find({ "participants.participantId": userId });
+    const chats = await Chat.find({
+      "participants.participantId": userId,
+    });
     res.status(StatusCodes.OK).json({ chats });
   } catch (error) {
     console.log(error);

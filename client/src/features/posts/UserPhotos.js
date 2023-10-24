@@ -1,5 +1,5 @@
 import Wrapper from "../../assets/wrappers/UserPhotosW";
-import { useGetUserPostsQuery } from "../api/apiSlice";
+import { useGetUserPostsQuery } from "../posts/PostsSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

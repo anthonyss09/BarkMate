@@ -48,7 +48,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         userId,
         { updateCachedData, cacheDataLoaded, cacheEntryRemoved, dispatch }
       ) {
-        socket.connect();
+        socket.connect({ test: "some data" });
 
         socket.on("message", (message) => {
           console.log("the message is", message);

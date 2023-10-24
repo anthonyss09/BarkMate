@@ -27,7 +27,7 @@ const requestFriend = async (req, res) => {
 
     res
       .status(StatusCodes.CREATED)
-      .json({ content: response, message: "Friend request sent." });
+      .json({ content: response, message: "Friend request sent!" });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }

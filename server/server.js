@@ -111,7 +111,7 @@ subscriber.subscribe("commCenter", (data, channel) => {
     case "notification":
       {
         // recipient && recipient.send(data);
-        clients[parsedData.content.recipient].id &&
+        clients[parsedData.content.recipient] &&
           io
             .to(clients[parsedData.content.recipient].id)
             .emit("message", parsedData);
@@ -123,7 +123,7 @@ subscriber.subscribe("commCenter", (data, channel) => {
       //mark recipient of notification as read
       {
         // recipient && recipient.send(data);
-        clients[parsedData.content.recipient].id &&
+        clients[parsedData.content.recipient] &&
           io
             .to(clients[parsedData.content.recipient].id)
             .emit("message", parsedData);
@@ -133,7 +133,7 @@ subscriber.subscribe("commCenter", (data, channel) => {
     case "markNotificationViewed":
       {
         // user.send(data);
-        clients[parsedData.content.userId].id &&
+        clients[parsedData.content.userId] &&
           io
             .to(clients[parsedData.content.userId].id)
             .emit("message", parsedData);
@@ -141,15 +141,15 @@ subscriber.subscribe("commCenter", (data, channel) => {
       break;
     case "chat":
       {
-        const messageSender = clients[parsedData.content.message.sender].id;
-        const messageRecipient =
-          clients[parsedData.content.message.recipient].id;
+        const messageSender = clients[parsedData.content.message.sender];
+        const messageRecipient = clients[parsedData.content.message.recipient];
 
         // messageRecipient && messageRecipient.send(data);
         // messageSender && messageSender.send(data);
 
-        messageRecipient && io.to(messageRecipient).emit("message", parsedData);
-        messageSender && io.to(messageSender).emit("message", parsedData);
+        messageRecipient &&
+          io.to(messageRecipient.id).emit("message", parsedData);
+        messageSender && io.to(messageSender.id).emit("message", parsedData);
       }
       break;
     case "friendRequest":

@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 import Alert from "../features/alerts/Alert";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
+import { socket } from "../sockets/socketIo";
 
 export default function LoginPage() {
   const [login] = useLoginUserMutation();
@@ -50,6 +52,7 @@ export default function LoginPage() {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         localStorage.setItem("token", JSON.stringify(response.data.token));
         Navigate("/dashboard/home");
+        window.location.reload();
       }
       setRequesting(false);
       setPassword("");
@@ -65,9 +68,16 @@ export default function LoginPage() {
     <section>
       {" "}
       {requesting && (
-        <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+        <div className="alert-container">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
       )}
-      {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
+      {showAlert && (
+        <div className="alert-container">
+          <Alert alertMessage={alertMessage} alertType={alertType} />
+        </div>
+      )}
       <LoginForm
         handleChange={handleChange}
         handleLogin={handleLogin}

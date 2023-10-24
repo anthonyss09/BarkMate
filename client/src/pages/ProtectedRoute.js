@@ -5,6 +5,7 @@ import { useGetAuthorizationMutation } from "../features/auth/authSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 
 export default function ProtectedRoute({ children }) {
   const user = useSelector(selectCurrentUser);
@@ -32,7 +33,11 @@ export default function ProtectedRoute({ children }) {
   }, []);
 
   if (isLoading) {
-    return <BeatLoader size={35} color="lightBlue" className="beat-loader" />;
+    return (
+      <div className="alert-container">
+        <DotLoader size={85} color="lightBlue" className="beat-loader" />
+      </div>
+    );
   } else if (!isAuthorized) {
     return <Navigate to="/" replace />;
   } else if (isAuthorized) {

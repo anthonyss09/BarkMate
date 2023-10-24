@@ -113,5 +113,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreatePostMutation, useGetPostsQuery, useEditPostMutation } =
-  extendedApiSlice;
+export const {
+  useCreatePostMutation,
+  useGetPostsQuery,
+  useEditPostMutation,
+  useGetUserPostsQuery,
+} = extendedApiSlice;
