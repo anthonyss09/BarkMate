@@ -11,18 +11,20 @@ import ChatLineFriend from "../features/chats/ChatLineFriend";
 import deanBowie from "../assets/images/dean&bowieSmall.jpg";
 import stacyProfile from "../assets/images/stacyProfile.jpg";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 export default function SectionLanding() {
   return (
     <Wrapper>
-      {/* <div className="back back-two"></div> */}
-      {/* <div className="blue"></div> */}
       <section className="section-landing-main">
-        {/* <div className="back back-one"></div> */}
-
-        <div className="section-landing-center">
+        {/* <Logo logoClass="logo-payment" iconClass="icon-payment" size={45} /> */}
+        <div className="section-landing-center section-landing-header">
           <h1>
-            <span className="span-connect"> Connect, meet,</span>
+            <span className="span-connect">
+              {" "}
+              Connect, <br />
+              meet,
+            </span>
             {/* <br /> <span className="span-share">& </span> <br /> */}
             <br />
             <span className="span-responsibilities"> share the leash.</span>
@@ -36,10 +38,8 @@ export default function SectionLanding() {
               </Link>
             </div>
           </h1>
-          <div className="blue-container-image-jm">
-            <div className="section-landing-image-jm-container">
-              <img src={StacyLanding} className="section-landing-image-jm" />
-            </div>
+          <div className="section-landing-image-jm-container">
+            <img src={StacyLanding} className="section-landing-image-jm" />
           </div>
         </div>
         <div className="section-landing-center section-landing-chat-center">

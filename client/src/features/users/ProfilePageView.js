@@ -26,14 +26,13 @@ export default function ProfilePageView() {
   const Navigate = useNavigate();
 
   const { profileId } = useParams();
+  console.log(profileId);
   const {
     data: userData,
     error,
     isLoading,
   } = useGetProfileByIdQuery(profileId);
-  if (!userData) {
-    Navigate("*");
-  }
+
   // const urlPre = "../../data/uploads/";
   const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();

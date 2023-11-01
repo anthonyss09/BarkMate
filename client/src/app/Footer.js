@@ -12,7 +12,9 @@ export default function Footer() {
           <Link to="/about" className="link">
             About
           </Link>
-          <Link className="link">Tips</Link>
+          <Link to="/payment" className="link">
+            Tips
+          </Link>
           <Link className="link">Contact</Link>
         </div>
       </section>

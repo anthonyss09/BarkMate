@@ -79,6 +79,8 @@ const Wrapper = styled.aside`
     outline: none;
     font-size: 16px;
     background: none;
+    font-family: "Signika Negative", sans-serif;
+    letter-spacing: 0.02rem;
   }
   .icon-close:hover {
     cursor: pointer;

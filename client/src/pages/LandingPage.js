@@ -7,6 +7,7 @@ import SectionLandingTwo from "../components/SectionLandingTwo";
 import { useState, useEffect } from "react";
 import SectionLandingThree from "../components/SectionLandingThree";
 import SectionLandingFour from "../components/SectionLandingFour";
+import Logo from "../components/Logo";
 
 export default function LandingPage() {
   const [hideNav, setHideNav] = useState(false);

@@ -1,6 +1,55 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .text-cadet {
+    // color: var(--space-cadet);
+    font-weight: bold;
+  }
+  .text-center {
+    margin-bottom: 1rem;
+    font-weight: 400;
+    border-bottom: 1px solid gray;
+    width: 100%;
+    height: 0.5rem;
+  }
+  .p-center {
+    background: white;
+    width: min-content;
+    margin: 0 auto;
+    padding: 0 0.4rem;
+    color: var(--space-cadet);
+    font-weight: bold;
+  }
+  .text-pink {
+    color: var(--test-red);
+  }
+  .btn-payment {
+    margin: 1rem 0;
+    width: 100%;
+    height: 48px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+    background: var(--federal-blue);
+    // background: var(--med-bright-blue);
+    background: var(--charcoal);
+    background: var(--space-cadet);
+    color: white;
+    padding: 0;
+    background: black;
+  }
+  .btn-venmo {
+    border: none;
+    height: min-content;
+    width: min-content;
+    padding: 0;
+    max-width: 335px;
+    border-radius: 4rem;
+  }
+  .btn-venmo-container {
+    // width: 100%;
+    margin: 1rem 0;
+  }
   .beat-loader {
     position: fixed;
     left: 40vw;
@@ -116,6 +165,32 @@ const Wrapper = styled.aside`
     padding: 0.6rem 1rem;
     box-sizing: border-box;
   }
+  .payment-header {
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+    padding: 0;
+    // font-weight: 400;
+    color: white;
+    // background: var(--med-bright-blue);
+    box-sizing: border-box;
+    width: 375px;
+    width: 100%;
+    margin-bottom: 1rem;
+    // background: rgb(244, 244, 244);
+    color: var(--med-bright-blue);
+    color: var(--med-font-blue);
+    // color: var(--space-cadet);
+    // color: var(--federal-blue);
+
+    // color: white;
+  }
+
+  .form-input {
+    width: 100%;
+    border: 2px solid var(--test-blue);
+  }
   .form-textarea {
     border-radius: 1.5rem;
     border: 2px solid var(--grey-240);
@@ -134,12 +209,26 @@ const Wrapper = styled.aside`
     min-height: 100vh;
     box-sizing: border-box;
   }
+  .form-payment {
+    gap: 0.4rem;
+    margin-top: 2rem;
+    // padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .form-payment-input {
+    text-align: center;
+    width: 300px;
+  }
   .form-select {
     width: 90%;
     border: none;
   }
   .form-select:focus {
     outline: none;
+  }
+  .link-register {
+    margin: 1rem 0;
   }
   .p-bottom {
     color: var(--grey-80);

@@ -21,6 +21,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AboutPage from "./pages/AboutPage";
 import UserPhotos from "./features/posts/UserPhotos";
 import { useGetAuthorizationMutation } from "./features/auth/authSlice";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   const [getAuth] = useGetAuthorizationMutation();
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/" element={<LandingPage />} />
             <Route exact path="register" element={<RegisterPage />} />
             <Route exact path="login" element={<LoginPage />} />
+            <Route exact path="/payment" element={<PaymentPage />} />
             <Route
               exact
               path="dashboard"

@@ -43,10 +43,15 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 0.4rem;
     // background: black;
-    background: var(--med-bright-blue);
-    color: white;
+    // background: var(--med-bright-blue);
+    // color: white;
+    background: white;
+    border: 1px solid var(--test-blue);
+    // background: var(--test-blue);
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     letter-spacing: 0.02rem;
+    padding: 1rem 2rem;
+    margin-top: 0.6rem;
   }
   .btn-login {
     margin-right: 1rem;
@@ -65,6 +70,9 @@ const Wrapper = styled.section`
     // left: 40vw;
     // color: white;
     color: var(--bark-pink);
+  }
+  .icon-venmo {
+    color: var(--med-bright-blue);
   }
   .img {
     width: 260px;

@@ -19,8 +19,9 @@ const Wrapper = styled.section`
     text-align: center;
     flex-direction: column;
     margin-bottom: 0;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    // margin-left: 1rem;
+    // margin-right: 1rem;
+    margin: 0;
     padding: 0;
     max-width: 40vw;
     letter-spacing: 0.06rem;
@@ -127,6 +128,7 @@ const Wrapper = styled.section`
     // max-height: 100px;
     transform: rotate(-10deg);
     border: 4px solid pink;
+    // margin-right: 4rem;
   }
   .blue-container-image-jm {
   }
@@ -150,20 +152,28 @@ const Wrapper = styled.section`
   .section-landing-chat-center {
     width: 100vw;
     background: var(--bark-pink);
-    border-top: 8px solid rgb(230, 230, 230);
-    border-bottom: 8px solid rgb(230, 230, 230);
+    // border-top: 8px solid rgb(230, 230, 230);
+    // border-bottom: 8px solid rgb(230, 230, 230);
   }
   .section-landing-center {
     display: flex;
     align-items: center;
     max-width: 100%;
     // max-height: 50vh;
-    height: 60vh;
+    // height: 60vh;
   }
   .section-landing-center-column {
     flex-direction: column;
     background: var(--med-bright-blue);
     height: 100vh;
+  }
+  .section-landing-header {
+    display: flex;
+    gap: 2rem;
+    height: min-content;
+    width: 80vw;
+    justify-content: center;
+    height: 60vh;
   }
   .section-landing-heading {
     display: flex;
@@ -174,6 +184,8 @@ const Wrapper = styled.section`
     padding-top: 4.4rem;
     overflow-x: hidden;
     position: relative;
+    display: grid;
+    place-items: center;
   }
   .section-landing-heading {
     width: 100%;
@@ -197,7 +209,7 @@ const Wrapper = styled.section`
       height: 65vh;
     }
     .section-landing-center {
-      height: 50vh;
+      // height: 50vh;
     }
     .section-landing-center-column {
       height: 85vh;
@@ -206,14 +218,20 @@ const Wrapper = styled.section`
       padding: 0 0.4rem;
       box-sizing: border-box;
     }
+    .section-landing-header {
+      height: 50vh;
+    }
+
     h1 {
       // margin-bottom: 1rem;
       // margin-bottom: 2rem;
-      margin-left: 0rem;
-      margin-right: 1rem;
-      font-size: 1.6rem;
-      margin-bottom: -4rem;
+      // margin-left: 1rem;
+      // margin-right: 1rem;
+      font-size: 1.2rem;
+      // margin-bottom: -4rem;
       // margin-bottom: 0.6rem;
+      margin-top: -1rem;
+      margin-left: -1rem;
     }
   }
 `;

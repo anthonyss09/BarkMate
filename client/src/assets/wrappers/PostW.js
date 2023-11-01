@@ -217,30 +217,15 @@ const Wrapper = styled.aside`
     resize: none;
     outline: none;
     font-size: 16px;
-    // display: block;
-    // margin-top: 1rem;
-    // margin-top: 6rem;
     background: none;
-    // margin-bottom: 100%;
-    // box-sizing: border-box;
-    // background: rgb(244, 244, 244);
-    // background: white;
-    // border-radius: 2.6rem;
-    // box-sizing: border-box;
-    // margin: 1rem 0.6rem 0 0.6rem;
-    // margin: 1rem;
-    // margin-bottom: 0;
-    // padding: 1.6rem;
-    // padding: 0.6rem;
-    // height: 6.2rem;
-    // border: 2px solid rgb(230, 230, 230);
-
     width: 70%;
     background: rgb(244, 244, 244);
     border-radius: 2rem;
     padding: 0.8rem;
     height: 2.8rem;
     box-sizing: border-box;
+    font-family: "Signika Negative", sans-serif;
+    letter-spacing: 0.02rem;
   }
   .show-comments {
     text-align: center;

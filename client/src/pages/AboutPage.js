@@ -10,6 +10,8 @@ import { FcDonate } from "react-icons/fc";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "../features/auth/authSlice";
+import { IoLogoVenmo } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function AboutPage() {
   const token = useSelector(selectUserToken);
@@ -57,11 +59,10 @@ export default function AboutPage() {
           career. <br />
           <br /> Thanks dog lovers and friends!{" "}
         </div>
-        <button className="btn">
-          Tip
-          <br /> BarkMate
-          <FcDonate size={25} />
-        </button>
+        <Link to="/payment" className="link btn">
+          <IoLogoVenmo size={25} className="icon-venmo" />
+          Tip Bark Mate
+        </Link>
       </section>
       <Footer />
     </Wrapper>

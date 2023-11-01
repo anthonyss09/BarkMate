@@ -17,7 +17,7 @@ export default function LoginForm({
         {" "}
         <form className="form form-login" onSubmit={handleLogin}>
           <Link to="/" className=" link">
-            <Logo logoClass="logo-login" />
+            <Logo logoClass="logo-payment" iconClass="icon-payment" />
           </Link>
           <h1 className="form-header">
             Login{" "}

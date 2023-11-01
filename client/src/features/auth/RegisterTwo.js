@@ -18,8 +18,8 @@ export default function RegisterTwo({
     <Wrapper>
       <section className="form-main ">
         <form className="form">
-          <Link to="/" className=" link">
-            <Logo />
+          <Link to="/" className=" link link-register">
+            <Logo logoClass="logo-nav" iconClass="icon-payment" />
           </Link>
           <FormSteps showRegisterTwo={showRegisterTwo} />
           <h1 className="form-header">About pup</h1>

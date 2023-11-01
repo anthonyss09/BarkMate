@@ -88,8 +88,8 @@ export default function RegisterThree({
           className="form"
           onSubmit={handleSubmit}
         >
-          <Link to="/" className=" link">
-            <Logo />
+          <Link to="/" className=" link link-register">
+            <Logo logoClass="logo-nav" iconClass="icon-payment" />
           </Link>
           <FormSteps showRegisterThree={showRegisterThree} />
           <h1 className="form-header">Finish profile</h1>

@@ -55,8 +55,8 @@ export default function RegisterOne({
           />
         )}
         <form className="form">
-          <Link to="/" className=" link">
-            <Logo logoClass="logo-register" />
+          <Link to="/" className=" link link-register">
+            <Logo logoClass="logo-nav" iconClass="icon-payment" />
           </Link>
           <FormSteps showRegisterOne={showRegisterOne} />
           <h1 className="form-header">

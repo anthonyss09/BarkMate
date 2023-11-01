@@ -117,7 +117,7 @@ export default function NavBar() {
           <HiBars3 size={25} onClick={handleBigSidebar} />
           {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
         </div>
-        <Logo logoClass="logo-nav" iconClass="logo-icon-nav" />
+        <Logo logoClass="logo-nav" iconClass="icon-payment" size={25} />
         <span className="nav-icons-container">
           <span
             className="notification-count"

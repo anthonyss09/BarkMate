@@ -17,7 +17,7 @@ export default function LandingNav({ hideNav }) {
           {" "}
           <HiBars3 size={25} />
         </div>
-        <Logo />
+        <Logo logoClass="logo-nav" iconClass="icon-payment" />
         <Link to="/login" className="link btn btn-login">
           login
         </Link>

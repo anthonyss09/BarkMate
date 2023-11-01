@@ -115,7 +115,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Signika Negative", sans-serif;
+  /* font-family: "Signika Negative", sans-serif; */
   /* font-family: "Roboto", sans-serif; */
   position: relative;
 
@@ -146,7 +146,9 @@ select {
   /* box-shadow: var(--shadow-main-light); */
   max-width: 250px;
   color: rgb(80, 80, 80);
-  color: var(--federal-blue)
+  color: var(--federal-blue);
+  color: var(--med-bright-blue);
+  font-weight: bold;
   
 }
 .alert-container {
@@ -158,10 +160,12 @@ select {
   display: grid;
   place-items: center;
   z-index: 20;
+  box-sizing: border-box;
   
 }
 .beat-loader {
   width: min-content;
+
   /* align-self: center;
   justify-self: center;
   padding: auto; */
@@ -346,6 +350,9 @@ select {
 /* .landing-body {
   padding-top: 4rem;
 } */
+.icon-venmo {
+  color: var(--med-bright-blue);
+}
 .link {
   text-decoration: none;
   color: black;

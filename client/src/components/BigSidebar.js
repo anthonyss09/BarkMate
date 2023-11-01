@@ -6,6 +6,7 @@ import { HiOutlineChat, HiHome } from "react-icons/hi";
 import { GoCloudDownload } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import { FcDonate } from "react-icons/fc";
+import { IoLogoVenmo } from "react-icons/io5";
 
 export default function BigSidebar({ handleClick }) {
   return (
@@ -59,8 +60,8 @@ export default function BigSidebar({ handleClick }) {
               <MdOutlineMenuBook className="icon-book" size={25} />
               About
             </Link>
-            <Link className="link link-big link-tip">
-              <FcDonate size={35} className="icon-tip" />
+            <Link to="/payment" className="link link-big link-tip">
+              <IoLogoVenmo size={35} className="icon-venmo" />
               Tip BarkMate
             </Link>
           </div>
