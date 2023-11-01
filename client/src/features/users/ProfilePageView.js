@@ -18,6 +18,7 @@ import { useRequestFriendMutation } from "../friends/FriendsSlice";
 import QuickChat from "../chats/QuickChat";
 import { useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -152,7 +153,10 @@ export default function ProfilePageView() {
       <HomeNav />
       <main className="profile-page-main">
         {requesting && (
-          <BeatLoader size={35} color="lightBlue" className="beat-loader" />
+          <div className="alert-container">
+            {" "}
+            <DotLoader color="lightBlue" size={85} className="beat-loader" />
+          </div>
         )}
         <div className="profile-page-center">
           <div className="back-button"> </div>

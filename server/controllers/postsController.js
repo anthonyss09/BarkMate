@@ -160,4 +160,21 @@ const getUserPosts = async (req, res) => {
   }
 };
 
-export { createPost, getPosts, editPost, getUserPosts };
+const editAllPostsByUser = async (req, res) => {
+  const { userId, update } = req.body;
+
+  console.log(update.profileImageUrl);
+  try {
+    const userPosts = await Post.updateMany(
+      { authorId: userId },
+      { authorImageUrl: update.profileImageUrl }
+    );
+    console.log(userPosts);
+    res.status(StatusCodes.OK).json({ message: "posts by user updated" });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+export { createPost, getPosts, editPost, getUserPosts, editAllPostsByUser };

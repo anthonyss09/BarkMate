@@ -13,8 +13,9 @@ import { useUpdateUserMutation } from "../auth/authSlice";
 import { useUploadPicMutation } from "../uploads/UploadsSlice";
 import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
-import DotLoader from "react-spinners/BeatLoader";
+import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
+import { useEditAllPostsByUserMutation } from "../posts/PostsSlice";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
@@ -25,6 +26,7 @@ export default function EditProfile() {
   // const urlPre = "../../data/uploads/";
   const [updateUser] = useUpdateUserMutation();
   const [uploadPic] = useUploadPicMutation();
+  const [editAllPostsByUser] = useEditAllPostsByUserMutation();
 
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState(user.profileImageUrl);
@@ -121,6 +123,11 @@ export default function EditProfile() {
 
     try {
       const updatedUser = await updateUser(update);
+      const updatedUserPosts = await editAllPostsByUser({
+        userId: user._id,
+        update,
+      });
+      console.log(updatedUserPosts);
       console.log(updatedUser);
       setAboutUs("");
       setAddress("");

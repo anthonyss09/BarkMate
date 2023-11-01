@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
     timeAvailable,
   } = req.body;
 
-  console.log("authis ", req.headers.authorization);
+  // console.log("authis ", req.headers.authorization);
 
   console.log(location);
 
@@ -94,7 +94,7 @@ const updateUser = async (req, res) => {
       },
       { returnOriginal: false }
     );
-    console.log("updated user is", updatedUser);
+    // console.log("updated user is", updatedUser);
     res.status(StatusCodes.OK).json({ updatedUser });
   } catch (error) {
     console.log(error);

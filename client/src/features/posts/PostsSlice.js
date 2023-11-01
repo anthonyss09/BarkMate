@@ -110,6 +110,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    editAllPostsByUser: builder.mutation({
+      query: ({ userId, update }) => ({
+        url: "/posts/edit-all-posts-by-user",
+        method: "POST",
+        body: { userId, update },
+      }),
+    }),
   }),
 });
 
@@ -118,4 +126,5 @@ export const {
   useGetPostsQuery,
   useEditPostMutation,
   useGetUserPostsQuery,
+  useEditAllPostsByUserMutation,
 } = extendedApiSlice;
