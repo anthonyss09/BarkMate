@@ -150,6 +150,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         });
       },
     }),
+
+    editAllNotificationsByUser: builder.mutation({
+      query: ({ userId, update }) => ({
+        url: "/notifications/edit-all-notifications-by-user",
+        method: "POST",
+        body: { userId, update },
+      }),
+    }),
   }),
 });
 
@@ -165,6 +173,7 @@ export const {
   useMarkNotificationViewedMutation,
   useGetNotificationsQuery,
   useCreateNotificationMutation,
+  useEditAllNotificationsByUserMutation,
 } = extendedApiSlice;
 
 export default notificationsSlice.reducer;

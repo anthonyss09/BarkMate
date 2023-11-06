@@ -16,6 +16,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
 import { useEditAllPostsByUserMutation } from "../posts/PostsSlice";
+import { useEditAllChatsByUserMutation } from "../chats/ChatsSlice";
+import { useEditAllNotificationsByUserMutation } from "../notifications/NotificationsSlice";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
@@ -27,6 +29,8 @@ export default function EditProfile() {
   const [updateUser] = useUpdateUserMutation();
   const [uploadPic] = useUploadPicMutation();
   const [editAllPostsByUser] = useEditAllPostsByUserMutation();
+  const [editAllChatsByUser] = useEditAllChatsByUserMutation();
+  const [editAllNotificationsByUser] = useEditAllNotificationsByUserMutation();
 
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState(user.profileImageUrl);
@@ -98,6 +102,7 @@ export default function EditProfile() {
       timeNeeded,
       timeAvailable,
       userId: user._id,
+      profileName: user.profileName,
     };
 
     setSavingProfileEdit(true);
@@ -124,6 +129,14 @@ export default function EditProfile() {
     try {
       const updatedUser = await updateUser(update);
       const updatedUserPosts = await editAllPostsByUser({
+        userId: user._id,
+        update,
+      });
+      const updatedUserChats = await editAllChatsByUser({
+        userId: user._id,
+        update,
+      });
+      const updatedNotifications = await editAllNotificationsByUser({
         userId: user._id,
         update,
       });

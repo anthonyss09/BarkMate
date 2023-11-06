@@ -23,6 +23,7 @@ import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
 
 export default function ProfilePageView() {
   const Navigate = useNavigate();
@@ -172,6 +173,12 @@ export default function ProfilePageView() {
                 <span className="location">Williamsburg</span>
               </div>
             </div>
+            {currentUser._id === profileId && (
+              <Link to="/userProfile/editProfile" className="link">
+                {" "}
+                <HiOutlinePencilSquare size={35} />
+              </Link>
+            )}
           </div>
           <img
             src={userData.user.profileImageUrl}

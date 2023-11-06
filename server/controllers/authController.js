@@ -3,6 +3,7 @@ import "express-async-errors";
 import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
+import Chat from "../models/chatsModel.js";
 
 const registerUser = async (req, res) => {
   const { firstName, lastName, email, password, location } = req.body;
@@ -75,9 +76,43 @@ const updateUser = async (req, res) => {
     timeAvailable,
   } = req.body;
 
-  // console.log("authis ", req.headers.authorization);
+  console.log("authis ", req.headers.authorization);
+  const token = req.headers.authorization.split(" ")[1];
 
-  console.log(location);
+  jwt.verify(token, process.env.JWT_SECRET, (err, pay) => {
+    if (err) {
+      res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "Unauthorized request." });
+    }
+  });
+
+  // console.log(location);
+
+  // if (profileImageUrl) {
+  //   try {
+  //     const updatedChat = await Chat.findOne({
+  //       participants: { $elemMatch: { participantId: userId } },
+  //     });
+  //     const participantsCopy = updatedChat.participants.slice();
+  //     const targetIndex = participantsCopy.findIndex(
+  //       (part) => part.participantId == userId
+  //     );
+  //     const targetParticipant = participantsCopy[targetIndex];
+  //     targetParticipant.participantProfileImageUrl = profileImageUrl;
+  //     participantsCopy.splice(targetIndex, 1, targetParticipant);
+
+  //     const chatIsUpdated = await Chat.findOneAndUpdate(
+  //       {
+  //         participants: { $elemMatch: { participantId: userId } },
+  //       },
+  //       { participants: participantsCopy }
+  //     );
+  //     console.log("the new participant is ", chatIsUpdated);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   try {
     const updatedUser = await User.findOneAndUpdate(

@@ -160,11 +160,23 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    editAllChatsByUser: builder.mutation({
+      query: ({ userId, update }) => ({
+        url: "/chats/edit-all-chats-by-user",
+        method: "POST",
+        body: { userId, update },
+      }),
+    }),
   }),
 });
 
 export const selectWebSocketReadyState = (state) =>
   state.chats.webSocketReadyState;
 
-export const { useGetChatsQuery, useCreateChatMutation } = extendedApiSlice;
+export const {
+  useGetChatsQuery,
+  useCreateChatMutation,
+  useEditAllChatsByUserMutation,
+} = extendedApiSlice;
 export default chatsSlice.reducer;

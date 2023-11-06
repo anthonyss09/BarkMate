@@ -67,4 +67,41 @@ const getChats = async (req, res) => {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
 };
-export { createChat, getChats };
+
+const editAllChatsByUser = async (req, res) => {
+  console.log("edidting all chats");
+
+  const { userId, update } = req.body;
+  const { profileImageUrl } = update;
+
+  try {
+    const updatedChats = await Chat.find({
+      participants: { $elemMatch: { participantId: userId } },
+    });
+
+    updatedChats.map(async (chat, index) => {
+      const participantsCopy = chat.participants.slice();
+      const targetIndex = participantsCopy.findIndex(
+        (part) => part.participantId == userId
+      );
+      const targetParticipant = participantsCopy[targetIndex];
+      targetParticipant.participantProfileImageUrl = profileImageUrl;
+      participantsCopy.splice(targetIndex, 1, targetParticipant);
+
+      await Chat.findOneAndUpdate(
+        { _id: chat._id },
+        { participants: participantsCopy }
+      );
+    });
+
+    console.log("chats updated");
+    res.status(StatusCodes.OK).json({
+      message: "Chat images updated succesfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+export { createChat, getChats, editAllChatsByUser };

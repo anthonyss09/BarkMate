@@ -16,18 +16,14 @@ const requestFriend = async (req, res) => {
       requester: request.recipient,
       recipient: request.requester,
     });
+
     if (fFriendExists || sFriendExists) {
       res
         .status(StatusCodes.BAD_REQUEST)
         .json({ message: "Friend already exists" });
-    } else {
-      console.log("the friend doesnt exist");
+      return;
     }
-  } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
-  }
 
-  try {
     const friends = await Friends.create({
       ...request,
     });

@@ -64,9 +64,29 @@ const markNotificationViewed = async (req, res) => {
   }
 };
 
+const editAllNotificationsByUser = async (req, res) => {
+  console.log("eidting notifications");
+  const { userId, update } = req.body;
+
+  try {
+    const updatedNotifications = await Notifications.updateMany(
+      { sender: userId },
+      { senderProfileImageUrl: update.profileImageUrl }
+    );
+
+    res.status(StatusCodes.OK).json({
+      content: updatedNotifications,
+      message: "Updated all notifications by user.",
+    });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
 export {
   createNotification,
   getNotifications,
   markAllNotificationsRead,
   markNotificationViewed,
+  editAllNotificationsByUser,
 };
