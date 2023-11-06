@@ -111,4 +111,40 @@ const getFriends = async (req, res) => {
   }
 };
 
-export { requestFriend, acceptFriend, declineFriend, getFriends };
+const editAllFriendsByUser = async (req, res) => {
+  console.log("upadating friends");
+  const { userId, update } = req.body;
+
+  try {
+    const userFriends = await Friends.find({
+      participants: { $elemMatch: { participantId: userId } },
+    });
+    userFriends.map(async (friend, index) => {
+      const targetIndex = friend.participants.findIndex(
+        (friend) => friend.participantId == userId
+      );
+      const participantsCopy = friend.participants.slice();
+      const participantCopy = participantsCopy[targetIndex];
+      console.log("the one is", participantCopy);
+      participantCopy.participantProfileImageUrl = update.profileImageUrl;
+      participantsCopy.splice(targetIndex, 1, participantCopy);
+      await Friends.findOneAndUpdate(
+        { _id: friend._id },
+        { participants: participantsCopy }
+      );
+    });
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Succesfully updated friends!" });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+export {
+  requestFriend,
+  acceptFriend,
+  declineFriend,
+  getFriends,
+  editAllFriendsByUser,
+};

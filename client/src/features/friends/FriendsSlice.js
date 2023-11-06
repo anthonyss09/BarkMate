@@ -124,6 +124,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    editAllFriendsByUser: builder.mutation({
+      query: ({ userId, update }) => ({
+        url: "/friends/edit-all-friends-by-user",
+        method: "POST",
+        body: { userId, update },
+      }),
+    }),
   }),
 });
 
@@ -132,6 +140,7 @@ export const {
   useGetFriendsQuery,
   useAcceptFriendMutation,
   useDeclineFriendMutation,
+  useEditAllFriendsByUserMutation,
 } = extendedApiSlice;
 
 export const {} = friendsSlice.actions;

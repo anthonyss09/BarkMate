@@ -18,6 +18,7 @@ import axios from "axios";
 import { useEditAllPostsByUserMutation } from "../posts/PostsSlice";
 import { useEditAllChatsByUserMutation } from "../chats/ChatsSlice";
 import { useEditAllNotificationsByUserMutation } from "../notifications/NotificationsSlice";
+import { useEditAllFriendsByUserMutation } from "../friends/FriendsSlice";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
@@ -31,6 +32,7 @@ export default function EditProfile() {
   const [editAllPostsByUser] = useEditAllPostsByUserMutation();
   const [editAllChatsByUser] = useEditAllChatsByUserMutation();
   const [editAllNotificationsByUser] = useEditAllNotificationsByUserMutation();
+  const [editAllFriendsByUser] = useEditAllFriendsByUserMutation();
 
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState(user.profileImageUrl);
@@ -137,6 +139,10 @@ export default function EditProfile() {
         update,
       });
       const updatedNotifications = await editAllNotificationsByUser({
+        userId: user._id,
+        update,
+      });
+      const updatedFriends = await editAllFriendsByUser({
         userId: user._id,
         update,
       });
