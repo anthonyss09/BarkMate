@@ -7,6 +7,25 @@ import Friends from "../models/friendsModel.js";
 const requestFriend = async (req, res) => {
   const request = req.body;
   console.log("friend requesting");
+  try {
+    const fFriendExists = await Friends.findOne({
+      requester: request.requester,
+      recipient: request.recipient,
+    });
+    const sFriendExists = await Friends.findOne({
+      requester: request.recipient,
+      recipient: request.requester,
+    });
+    if (fFriendExists || sFriendExists) {
+      res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Friend already exists" });
+    } else {
+      console.log("the friend doesnt exist");
+    }
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
 
   try {
     const friends = await Friends.create({

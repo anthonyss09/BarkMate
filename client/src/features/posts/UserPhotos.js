@@ -7,10 +7,11 @@ import { Carousel } from "react-responsive-carousel";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function UserPhotos() {
-  const { _id: userId } = useSelector(selectCurrentUser);
+  // const { _id: userId } = useSelector(selectCurrentUser);
+  const { userId } = useParams();
 
   const [showCarousel, setShowCarousel] = useState(false);
   const [selectedItem, setSelectedItem] = useState(0);
@@ -49,7 +50,7 @@ export default function UserPhotos() {
   return (
     <Wrapper>
       {!showCarousel && (
-        <Link to="/userProfile" className="link">
+        <Link to={`/${userId}`} className="link">
           {" "}
           <RiArrowGoBackFill size={30} className="user-photos-icon-back" />
         </Link>

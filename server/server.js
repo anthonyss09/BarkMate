@@ -159,11 +159,11 @@ subscriber.subscribe("commCenter", (data, channel) => {
       {
         // requester && requester.send(data);
         // recipient && recipient.send(data);
-        clients[parsedData.content.requester].id &&
+        clients[parsedData.content.requester] &&
           io
             .to(clients[parsedData.content.requester].id)
             .emit("message", parsedData);
-        clients[parsedData.content.recipient].id &&
+        clients[parsedData.content.recipient] &&
           io
             .to(clients[parsedData.content.recipient].id)
             .emit("message", parsedData);

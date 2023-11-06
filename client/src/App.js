@@ -65,7 +65,7 @@ function App() {
             />
             <Route
               exact
-              path="/userProfile/userPhotos"
+              path="/userProfile/userPhotos/:userId"
               element={<UserPhotos />}
             />
             <Route exact path="/:profileId" element={<ProfilePageView />} />

@@ -181,8 +181,9 @@ const Wrapper = styled.aside`
     // background: rgb(244, 244, 244);
     color: var(--med-bright-blue);
     color: var(--med-font-blue);
-    // color: var(--space-cadet);
+    color: var(--space-cadet);
     // color: var(--federal-blue);
+    font-weight: 400;
 
     // color: white;
   }

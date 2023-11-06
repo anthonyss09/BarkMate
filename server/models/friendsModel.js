@@ -36,6 +36,7 @@ const FriendsSchema = new mongoose.Schema(
     //   type: String,
     // },
     participants: [participantSchema],
+    participantIds: [{ type: mongoose.Schema.Types.ObjectId }],
     requesterStatus: {
       type: String,
       enum: ["pending", "requested", "friends"],

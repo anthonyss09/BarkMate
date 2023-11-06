@@ -4,8 +4,10 @@ const Wrapper = styled.div`
   .icon-payment {
     color: var(--test-red);
     // color: var(--bark-pink);
+    color: var(--federal-blue);
     // margin-bottom: -3rem;
     margin: 0 -0.05rem;
+    // color: rgb(80, 80, 80);
   }
   .logo {
     display: flex;
@@ -26,6 +28,7 @@ const Wrapper = styled.div`
     position: static;
     color: rgb(80, 80, 80);
     color: var(--federal-blue);
+
     font-weight: 500;
   }
   .logo-login {

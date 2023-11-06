@@ -6,12 +6,20 @@ export const adjustEvents = (events) => {
   let eventsMutated = false;
 
   events.map((event, index) => {
+    console.log(event.dateString);
     const eventDate = new Date(event.dateString);
     const eventEpochDays = eventDate.getTime() / (60 * 60 * 24 * 1000);
     let adjustedEventEpoch;
     let adjustedEventDate;
     let adjustedEventDateString;
     eventsCopy[trueIndex].isMutated = false;
+    console.log(index);
+    console.log(
+      "today days",
+      Math.floor(todayEpochDays),
+      "event ds",
+      Math.floor(eventEpochDays)
+    );
 
     if (Math.floor(todayEpochDays) > Math.floor(eventEpochDays)) {
       eventsCopy[trueIndex].isMutated = true;
@@ -26,7 +34,7 @@ export const adjustEvents = (events) => {
           break;
 
         case "daily":
-          adjustedEventEpoch = (eventEpochDays + 1) * (60 * 60 * 24 * 1000);
+          adjustedEventEpoch = todayEpochDays * (60 * 60 * 24 * 1000);
           adjustedEventDate = new Date(adjustedEventEpoch);
           adjustedEventDateString = createDateString(adjustedEventDate);
 
@@ -71,6 +79,7 @@ export const adjustEvents = (events) => {
           break;
       }
     }
+
     trueIndex++;
   });
   return { eventsCopy, eventsMutated };

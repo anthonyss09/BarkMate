@@ -48,6 +48,8 @@ export default function AddEvent({ setShowAddEvent }) {
     let month = e.$M;
     if (Number(month) < 9) {
       month = "0" + (Number(month) + 1).toString();
+    } else {
+      month = (Number(month) + 1).toString();
     }
     // date.dateString = e.$y + "-" + month + "-" + day;
     date.dateString = month + "-" + day + "-" + e.$y;

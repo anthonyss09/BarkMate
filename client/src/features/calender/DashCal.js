@@ -12,6 +12,7 @@ import { useUpdateEventsMutation } from "./CalenderSlice";
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [todayString, setTodayString] = useState("");
+  console.log("today is ", todayString);
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
@@ -47,13 +48,15 @@ export default function DashCal() {
     let month = today.getMonth().toString();
     if (month.length < 2) {
       month = "0" + (Number(month) + 1).toString();
+    } else {
+      month = (Number(month) + 1).toString();
     }
     let date = today.getDate().toString();
     if (date.length < 2) {
       date = "0" + date;
     }
 
-    setTodayString(today.getFullYear().toString() + "-" + month + "-" + date);
+    setTodayString(month + "-" + date + "-" + today.getFullYear().toString());
 
     window.scrollTo(0, 0);
   }, []);

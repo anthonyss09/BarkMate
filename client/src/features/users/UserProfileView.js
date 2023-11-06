@@ -91,7 +91,7 @@ export default function UserProfileView() {
           <div className="profile-page-body">
             <div className="profile-page-views">
               {" "}
-              <Link to="/userProfile/userPhotos" className="link">
+              <Link to={`/userProfile/userPhotos/${_id}`} className="link">
                 <div className="view-photos">
                   {" "}
                   <p>Photos</p>

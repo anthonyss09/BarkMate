@@ -149,6 +149,7 @@ export default function NavBar() {
           handleClick={handleClick}
           handleShowFriends={handleShowFriends}
           handleSmallSidebar={handleSmallSidebar}
+          userId={currentUser._id}
         />
       )}
     </Wrapper>

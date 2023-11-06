@@ -50,6 +50,7 @@ export default function ProfilePreview({
           participantProfileImageUrl: profileImageUrl,
         },
       ],
+      participantIds: [currentUser._id, id],
       recipient: id,
       requesterStatus: "pending",
       recipientStatus: "requested",

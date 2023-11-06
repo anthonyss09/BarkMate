@@ -30,7 +30,7 @@ export default function BraintreeDropIn(props) {
 
     braintree.client.create(
       {
-        authorization: "sandbox_x66yk2jx_r6jznn8rv5gsv3rp",
+        authorization: process.env.BRAIN_TREE_AUTH,
         venmo: {},
       },
       (err, clientInstance) => {

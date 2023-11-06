@@ -22,6 +22,7 @@ import DotLoader from "react-spinners/DotLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ProfilePageView() {
   const Navigate = useNavigate();
@@ -96,6 +97,7 @@ export default function ProfilePageView() {
           participantProfileImageUrl: userData.user.profileImageUrl,
         },
       ],
+      participantIds: [currentUser._id, userData.user._id],
       recipient: userData.user._id,
       requesterStatus: "pending",
       recipientStatus: "requested",
@@ -175,25 +177,32 @@ export default function ProfilePageView() {
             src={userData.user.profileImageUrl}
             className="profile-page-image"
           />
+          {currentUser._id != profileId && (
+            <div className="profile-page-options">
+              <div className="add-friend option" onClick={handleFriendRequest}>
+                + <FaUserFriends size={45} />
+              </div>
 
-          <div className="profile-page-options">
-            <div className="add-friend option" onClick={handleFriendRequest}>
-              + <FaUserFriends size={45} />
+              <div className="message option" onClick={handleMessageClick}>
+                <FiMail size={45} className="message-friend" />
+              </div>
             </div>
+          )}
 
-            <div className="message option" onClick={handleMessageClick}>
-              <FiMail size={45} className="message-friend" />
-            </div>
-          </div>
           <div className="profile-page-body">
             <div className="profile-page-views">
               {" "}
-              <div className="view-photos">
-                <p>Photos</p>
-                <div className="photo-option">
-                  <HiCamera size={20} className="icon-camera" />
+              <Link
+                to={`/userProfile/userPhotos/${profileId}`}
+                className="link"
+              >
+                <div className="view-photos">
+                  <p>Photos</p>
+                  <div className="photo-option">
+                    <HiCamera size={20} className="icon-camera" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
             <div className="time-slots-container">
               <div className="time-slot-column">

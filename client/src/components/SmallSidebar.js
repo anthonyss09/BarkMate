@@ -8,6 +8,7 @@ export default function SmallSidebar({
   handleClick,
   handleShowFriends,
   handleSmallSidebar,
+  userId,
 }) {
   return (
     <Wrapper>
@@ -17,7 +18,7 @@ export default function SmallSidebar({
           <AiOutlineClose size={25} />
         </div>
         <div className="small-sidebar-center">
-          <Link className="link" to="/userProfile">
+          <Link className="link" to={`/${userId}`}>
             <FaUserCircle size={25} className="icon-user-circle" />
             Profile
           </Link>
