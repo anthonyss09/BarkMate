@@ -180,6 +180,11 @@ subscriber.subscribe("commCenter", (data, channel) => {
         io.emit("message", parsedData);
       }
       break;
+    case "createComment":
+      {
+        io.emit("message", parsedData);
+      }
+      break;
     default: {
       break;
     }

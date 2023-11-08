@@ -2,7 +2,11 @@ import Wrapper from "../../assets/wrappers/PostW";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
 import { useState, memo } from "react";
-import { useEditPostMutation } from "../posts/PostsSlice";
+import {
+  useEditPostMutation,
+  useCreateCommentMutation,
+  useGetCommentsQuery,
+} from "../posts/PostsSlice";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import Comment from "./Comment";
 import mongoose from "mongoose";
@@ -20,7 +24,7 @@ export default memo(function Post({
   authorDogName,
   text,
   authorImageUrl,
-  comments,
+
   likes,
   postId,
   createdAt,
@@ -50,6 +54,8 @@ export default memo(function Post({
 
   const [editPost] = useEditPostMutation();
   const [createNotification] = useCreateNotificationMutation();
+  const [createComment] = useCreateCommentMutation();
+  const { data: comments, isSuccess } = useGetCommentsQuery(postId);
 
   const handleCommentChange = (e) => {
     const val = e.target.value;
@@ -62,36 +68,42 @@ export default memo(function Post({
   };
 
   const handlePostComment = async () => {
-    let commentsCopy = comments.slice();
+    // let commentsCopy = comments.slice();
 
-    commentsCopy.push({
-      userId: currentUserId,
-      userProfileImageUrl: currentUserProfileImageUrl,
-      firstName: currentUserFirstName,
-      dogName: currentUserDogName,
-      text: comment,
-    });
+    // commentsCopy.push({
+    //   userId: currentUserId,
+    //   userProfileImageUrl: currentUserProfileImageUrl,
+    //   firstName: currentUserFirstName,
+    //   dogName: currentUserDogName,
+    //   text: comment,
+    // });
 
     setRequesting(true);
-    const newPost = await editPost({
+    // const newPost = await editPost({
+    //   postId,
+    //   update: { comments: commentsCopy },
+    //   currentUserCoords,
+    // });
+    const newComment = await createComment({
       postId,
-      update: { comments: commentsCopy },
-      currentUserCoords,
+      authorId: currentUserId,
+      authorImageUrl: currentUserProfileImageUrl,
+      authorName: currentUserProfileName,
+      text: comment,
     });
     setRequesting(false);
 
-    if (newPost.error) {
+    if (newComment.error) {
       dispatch(
         displayAlert({
-          alertMessage: newPost.error.data.message,
+          alertMessage: newComment.error.data.message,
           alertType: "danger",
         })
       );
-      console.log(newPost);
-    } else if (newPost.data) {
+    } else if (newComment.data) {
       dispatch(
         displayAlert({
-          alertMessage: newPost.data.message,
+          alertMessage: newComment.data.message,
           alertType: "success",
         })
       );
@@ -107,15 +119,15 @@ export default memo(function Post({
         is_read: false,
         is_viewed: false,
       });
-      console.log("the data is", newPost.data.message);
+      console.log("the data is", newComment.data.message);
     }
     setShowPostComment(!showPostComment);
     setComment("");
 
     setTimeout(() => {
       if (
-        newPost.error &&
-        newPost.error.data.message === "Invalid credentials."
+        newComment.error &&
+        newComment.error.data.message === "Invalid credentials."
       ) {
         dispatch(logoutUser());
         localStorage.removeItem("user");
@@ -169,22 +181,27 @@ export default memo(function Post({
   };
 
   let commentCount = 0;
-  const content = comments.map((comment, index) => {
-    commentCount++;
-    if (commentCount > 1 && !showAllComments) {
-      return;
-    }
+  let content = undefined;
+  if (isSuccess) {
+    content = comments.content.map((comment, index) => {
+      commentCount++;
+      if (commentCount > 1 && !showAllComments) {
+        return;
+      }
 
-    return (
-      <Comment
-        key={index}
-        commentUserProfileImageUrl={comment.userProfileImageUrl}
-        commentText={comment.text}
-        commentFirstName={comment.firstName}
-        commentDogName={comment.dogName}
-      />
-    );
-  });
+      return (
+        <Comment
+          key={index}
+          commentUserProfileImageUrl={comment.userProfileImageUrl}
+          commentText={comment.text}
+          commentFirstName={comment.firstName}
+          commentDogName={comment.dogName}
+          commentAuthorName={comment.authorName}
+          commentAuthorImageUrl={comment.authorImageUrl}
+        />
+      );
+    });
+  }
 
   return (
     <Wrapper>
@@ -226,8 +243,8 @@ export default memo(function Post({
               <FaRegCommentDots size={25} onClick={handleShowPostComment} />
             </div>
           </div>
-          <div className="comments-container"> {content}</div>
-          {!showAllComments && comments.length > 1 && (
+          {isSuccess && <div className="comments-container"> {content}</div>}
+          {!showAllComments && isSuccess && comments.content.length > 1 && (
             <div className="show-comments" onClick={handleShowAllComments}>
               show all comments
             </div>

@@ -4,6 +4,7 @@ import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
 import Post from "../models/postsModel.js";
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
+import Comment from "../models/commentModel.js";
 
 const createPost = async (req, res) => {
   const authorization = req.headers.authorization;
@@ -177,4 +178,49 @@ const editAllPostsByUser = async (req, res) => {
   }
 };
 
-export { createPost, getPosts, editPost, getUserPosts, editAllPostsByUser };
+const createComment = async (req, res) => {
+  const { postId, authorId, text, authorImageUrl, authorName } = req.body;
+
+  try {
+    const newComment = await Comment.create({
+      postId,
+      authorId,
+      text,
+      authorImageUrl,
+      authorName,
+    });
+    console.log("success", newComment);
+    res
+      .status(StatusCodes.CREATED)
+      .json({ content: newComment, message: "Successfully commented!" });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+const getComments = async (req, res) => {
+  const { postId } = req.query;
+  console.log("fetching comments");
+
+  try {
+    const comments = await Comment.find({ postId: postId });
+    console.log("successfully found comments", comments);
+    res
+      .status(StatusCodes.OK)
+      .json({ content: comments, message: "Successfully retrieved comments!" });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
+export {
+  createPost,
+  getPosts,
+  editPost,
+  getUserPosts,
+  editAllPostsByUser,
+  createComment,
+  getComments,
+};

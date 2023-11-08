@@ -82,22 +82,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         { postId, update, currentUserCoords },
         { dispatch, queryFulfilled }
       ) {
-        // const patchResult = dispatch(
-        //   apiSlice.util.updateQueryData(
-        //     "getPosts",
-        //     currentUserCoords,
-        //     (draft) => {
-        //       const post = Object.values(draft).find(
-        //         (post) => post._id === postId
-        //       );
-        //       if (post) {
-        //         post[Object.keys(update)[0]] = Object.values(update)[0];
-        //       }
-        //       return draft;
-        //     }
-        //   )
-        // );
-
         socket.emit("message", {
           type: "editPost",
           content: { postId, update },
@@ -108,6 +92,63 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           // patchResult.undo();
           console.log(error);
         }
+      },
+    }),
+
+    createComment: builder.mutation({
+      query: (comment) => ({
+        url: "/posts/create-comment",
+        method: "POST",
+        body: comment,
+      }),
+      async onQueryStarted(comment, { dispatch, queryFulfilled }) {
+        socket.emit("message", {
+          type: "createComment",
+          content: { ...comment },
+        });
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          // patchResult.undo();
+          console.log(error);
+        }
+      },
+    }),
+
+    getComments: builder.query({
+      query: (postId) => ({
+        url: `/posts/get-comments?postId=${postId}`,
+        method: "GET",
+      }),
+      async onCacheEntryAdded(
+        postId,
+        { updateCachedData, updateQueryData, dispatch }
+      ) {
+        socket.on("message", (message) => {
+          switch (message.type) {
+            case "createComment":
+              {
+                // updateCachedData((draft) => {
+                //   draft.content.push(message.content);
+                // });
+                if (postId === message.content.postId) {
+                  dispatch(
+                    extendedApiSlice.util.updateQueryData(
+                      "getComments",
+                      (postId = message.content.postId),
+                      (draft) => {
+                        console.log("the draft id is ", postId);
+                        draft.content.push(message.content);
+                      }
+                    )
+                  );
+                }
+              }
+              break;
+            default:
+              break;
+          }
+        });
       },
     }),
 
@@ -127,4 +168,6 @@ export const {
   useEditPostMutation,
   useGetUserPostsQuery,
   useEditAllPostsByUserMutation,
+  useCreateCommentMutation,
+  useGetCommentsQuery,
 } = extendedApiSlice;

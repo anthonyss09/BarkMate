@@ -7,15 +7,18 @@ export default function Comment({
   commentDogName,
   border,
   commentUserProfileImageUrl,
+  commentAuthorName,
+  commentAuthorImageUrl,
 }) {
   return (
     <Wrapper>
       <div className={"comment-row"}>
-        <img src={commentUserProfileImageUrl} className="comment-image" />
+        <img src={commentAuthorImageUrl} className="comment-image" />
         <div className="comment-body">
           <div className="comment-author">
             {" "}
-            {commentFirstName} & {commentDogName}
+            {/* {commentFirstName} & {commentDogName} */}
+            {commentAuthorName}
           </div>
           <div className="comment-text"> {commentText}</div>
         </div>

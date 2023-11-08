@@ -45,10 +45,11 @@ const Wrapper = styled.nav`
     cursor: pointer;
   }
   .logo {
-    color: var(--space-cadet);
-    font-size: 1.7rem;
-    letter-spacing: 0.08rem;
-    letter-spacing: 0.1rem;
+    // color: var(--space-cadet);
+    // font-size: 1.7rem;
+    // letter-spacing: 0.08rem;
+    // letter-spacing: 0.1rem;
+    margin-left: 2rem;
   }
   .nav-icons-container {
     display: flex;
