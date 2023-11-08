@@ -152,6 +152,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
+    editAllCommentsByUser: builder.mutation({
+      query: ({ userId, update }) => ({
+        url: "/posts/edit-all-comments-by-user",
+        method: "POST",
+        body: { userId, update },
+      }),
+    }),
+
     editAllPostsByUser: builder.mutation({
       query: ({ userId, update }) => ({
         url: "/posts/edit-all-posts-by-user",
@@ -170,4 +178,5 @@ export const {
   useEditAllPostsByUserMutation,
   useCreateCommentMutation,
   useGetCommentsQuery,
+  useEditAllCommentsByUserMutation,
 } = extendedApiSlice;

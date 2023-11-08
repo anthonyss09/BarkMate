@@ -8,6 +8,7 @@ import {
   editAllPostsByUser,
   createComment,
   getComments,
+  editAllCommentsByUser,
 } from "../controllers/postsController.js";
 
 router.route("/create-post").post(createPost);
@@ -17,5 +18,6 @@ router.route("/get-user-posts").get(getUserPosts);
 router.route("/edit-all-posts-by-user").post(editAllPostsByUser);
 router.route("/create-comment").post(createComment);
 router.route("/get-comments").get(getComments);
+router.route("/edit-all-comments-by-user").post(editAllCommentsByUser);
 
 export default router;

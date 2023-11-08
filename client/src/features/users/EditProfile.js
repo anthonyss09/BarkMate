@@ -15,7 +15,10 @@ import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
-import { useEditAllPostsByUserMutation } from "../posts/PostsSlice";
+import {
+  useEditAllPostsByUserMutation,
+  useEditAllCommentsByUserMutation,
+} from "../posts/PostsSlice";
 import { useEditAllChatsByUserMutation } from "../chats/ChatsSlice";
 import { useEditAllNotificationsByUserMutation } from "../notifications/NotificationsSlice";
 import { useEditAllFriendsByUserMutation } from "../friends/FriendsSlice";
@@ -33,6 +36,7 @@ export default function EditProfile() {
   const [editAllChatsByUser] = useEditAllChatsByUserMutation();
   const [editAllNotificationsByUser] = useEditAllNotificationsByUserMutation();
   const [editAllFriendsByUser] = useEditAllFriendsByUserMutation();
+  const [editAllCommentsByUser] = useEditAllCommentsByUserMutation();
 
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState(user.profileImageUrl);
@@ -143,6 +147,10 @@ export default function EditProfile() {
         update,
       });
       const updatedFriends = await editAllFriendsByUser({
+        userId: user._id,
+        update,
+      });
+      const updatedComments = await editAllCommentsByUser({
         userId: user._id,
         update,
       });

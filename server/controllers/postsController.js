@@ -215,6 +215,25 @@ const getComments = async (req, res) => {
   }
 };
 
+const editAllCommentsByUser = async (req, res) => {
+  console.log("editing all comments by user");
+  const { userId, update } = req.body;
+
+  try {
+    const editedComments = await Comment.updateMany(
+      { authorId: userId },
+      { authorImageUrl: update.profileImageUrl }
+    );
+    console.log("succ3ssfully updated comments");
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Successfully updated comments!" });
+  } catch (error) {
+    console.log(error);
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
 export {
   createPost,
   getPosts,
@@ -223,4 +242,5 @@ export {
   editAllPostsByUser,
   createComment,
   getComments,
+  editAllCommentsByUser,
 };
