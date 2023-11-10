@@ -63,6 +63,7 @@ const Wrapper = styled.aside`
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
+    gap: 8rem;
   }
   .edit-profile-heading {
     // width: min-content;
@@ -84,6 +85,9 @@ const Wrapper = styled.aside`
     font-family: "Roboto Condensed", sans-serif;
     color: rgb(80, 80, 80);
     margin-bottom: 0.8rem;
+  }
+  .edit-profile-main {
+    padding: 1rem;
   }
   .p-top {
     margin-bottom: 1rem;
@@ -128,14 +132,6 @@ const Wrapper = styled.aside`
     box-sizing: border-box;
     display: grid;
     place-items: center;
-  }
-  .form-login {
-    // min-height: min-content;
-    // margin: auto 0;
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
   .form-checkbox-container {
@@ -231,10 +227,7 @@ const Wrapper = styled.aside`
   .link-register {
     margin: 1rem 0;
   }
-  .p-bottom {
-    color: var(--grey-80);
-    margin-bottom: 1rem;
-  }
+
   .profile-image {
     height: 250px;
   }

@@ -1,4 +1,4 @@
-import Wrapper from "../../assets/wrappers/FormW";
+import Wrapper from "../../assets/wrappers/FormRegisterW";
 import Logo from "../../components/Logo";
 import FormSteps from "./FormSteps";
 import { Link, useNavigate } from "react-router-dom";

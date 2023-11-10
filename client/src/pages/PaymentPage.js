@@ -1,10 +1,10 @@
 import Wrapper from "../assets/wrappers/PaymentPageW";
-import BraintreeDropIn from "../components/BraintreeDropIn";
+import BrainTreeForm from "../components/BrianTreeForm";
 
 export default function PaymentPage() {
   return (
     <section className="payment-page-main">
-      <BraintreeDropIn />
+      <BrainTreeForm />
     </section>
   );
 }

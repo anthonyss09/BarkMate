@@ -54,12 +54,21 @@ export default function ProfilePageView() {
   };
 
   if (isLoading) {
-    return <div>profile loading</div>;
+    return (
+      <div className="alert-container">
+        {" "}
+        <DotLoader color="lightBlue" size={85} className="beat-loader" />
+      </div>
+    );
   }
 
   let availability;
   let needed;
   if (!isLoading) {
+    if (userData === undefined) {
+      Navigate("*");
+      return;
+    }
     availability = userData.user.timeAvailable.map((time, index) => {
       return (
         <div key={index} className="time-slot time-slot-available">

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import dropin from "braintree-web-drop-in";
 import braintree from "braintree-web";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Wrapper from "../assets/wrappers/FormW";
+import { useNavigate, Link } from "react-router-dom";
+import Wrapper from "../assets/wrappers/BrainTreeFormW";
 import Logo from "./Logo";
 import venmoButtonSmall from "../assets/images/blue_venmo_button_320x48.svg";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
@@ -30,7 +30,7 @@ export default function BraintreeDropIn(props) {
 
     braintree.client.create(
       {
-        authorization: process.env.BRAIN_TREE_AUTH,
+        authorization: process.env.REACT_APP_BRAIN_TREE_AUTH,
         venmo: {},
       },
       (err, clientInstance) => {
@@ -230,14 +230,22 @@ export default function BraintreeDropIn(props) {
 
   return (
     <Wrapper>
+      {isLoading && (
+        <div className="alert-container-second">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
+      )}
       {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
       <form id="form-payment" className="form-main">
         {" "}
         <div className="bt-drop-in-main form form-payment">
           {/* <div className="bt-drop-in-checkout-message"></div>
       <div id="dropin-container" className="bt-drop-in-container"></div> */}
-          <Logo logoClass="logo-payment" iconClass="icon-payment" />
-          <div className="text-cadet form-heade payment-header">
+          <Link to="/" className=" link">
+            <Logo logoClass="logo-payment" iconClass="icon-payment" />
+          </Link>
+          <div className="text-cadet form-header payment-header">
             Enter tip amount then choose method.
             <br />
             Thank you!

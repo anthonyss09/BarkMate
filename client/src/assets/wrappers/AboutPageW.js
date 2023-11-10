@@ -64,6 +64,17 @@ const Wrapper = styled.section`
     box-shadow: none;
     // font-family: "Roboto Condensed", sans-serif;
   }
+  .btn-tip {
+    margin-bottom: 2rem;
+    width: 200px;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    display: flex;
+    font-size: 1rem;
+    box-shadow: var(--shadow-main-light);
+    display: flex;
+    justify-content: center;
+  }
   .icon-dog {
     // position: absolute;
     // top: 40vh;

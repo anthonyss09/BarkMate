@@ -59,7 +59,7 @@ export default function AboutPage() {
           career. <br />
           <br /> Thanks dog lovers and friends!{" "}
         </div>
-        <Link to="/payment" className="link btn">
+        <Link to="/payment" className="link btn btn-tip">
           <IoLogoVenmo size={25} className="icon-venmo" />
           Tip Bark Mate
         </Link>

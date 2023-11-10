@@ -157,11 +157,26 @@ select {
   left: 0;
   height: 100vh;
   width: 100vw;
-  display: grid;
-  place-items: center;
+  /* display: grid;
+  place-items: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 20;
   box-sizing: border-box;
   
+}
+.alert-container-second {
+    position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  z-index: 20;
+  box-sizing: border-box;
 }
 .beat-loader {
   width: min-content;
@@ -184,6 +199,17 @@ select {
 }
 .btn:hover {
   cursor: pointer;
+}
+.btn-tip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: white;
+    border: 1px solid var(--test-blue);
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    letter-spacing: 0.02rem;
+    padding: 1rem 2rem;
+    margin-top: 0.6rem;
 }
 .danger {
   /* color: var(--test-red); */
@@ -276,6 +302,38 @@ select {
   background: white;
   color: rgb(80, 80, 80);
 }
+  .form {
+    background: white;
+    font-family: "Roboto", sans-serif;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+  }
+   .form-checkbox-container {
+    margin-bottom: 1rem;
+  }
+  .form-checkbox-label {
+    font-size: 0.8rem;
+    color: rgb(120, 120, 120);
+  }
+  .form-checkbox-row {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0.3rem 0;
+  }
+  .form-header {
+    width: 100%;
+    max-width: 420px;
+    margin: 0.4rem 0;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: black;
+    font-weight: bold;
+    background: rgb(248, 248, 248);
+    padding: 0.6rem 1rem;
+    box-sizing: border-box;
+  }
 .form-input {
   border-radius: 1.5rem;
   height: 2rem;
@@ -312,6 +370,14 @@ select {
 .form-label-image:hover {
   cursor: pointer;
 }
+.form-main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
 .form-row {
   width: 20rem;
   display: flex;
@@ -329,11 +395,22 @@ select {
 .form-textarea {
   border-radius: 1.5rem;
   border: 2px solid var(--grey-240);
+  border: 2px solid var(--test-blue);
   padding-left: 0.8rem;
   padding-top: 0.6rem;
   background: none;
   resize: none;
+    font-size: 16px;
+
+
+
 }
+.form-textarea::placeholder {
+    color: rgb(180, 180, 180);
+        font-family: "Roboto", sans-serif;
+
+}
+
 .full-page {
   height: 100vh;
   width: 100vw;

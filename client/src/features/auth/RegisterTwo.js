@@ -1,4 +1,4 @@
-import Wrapper from "../../assets/wrappers/FormW";
+import Wrapper from "../../assets/wrappers/FormRegisterW";
 import FormRow from "./FormRow";
 import FormSteps from "./FormSteps";
 import Logo from "../../components/Logo";

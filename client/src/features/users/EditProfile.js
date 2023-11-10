@@ -1,4 +1,4 @@
-import Wrapper from "../../assets/wrappers/FormW";
+import Wrapper from "../../assets/wrappers/FormEditProfileW";
 import HomeNav from "../../app/HomeNav";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
@@ -174,13 +174,12 @@ export default function EditProfile() {
   return (
     <Wrapper>
       <HomeNav />
+      {savingProfileEdit && (
+        <div className="alert-container-second">
+          <DotLoader color="lightBlue" size={85} className="beat-loader" />
+        </div>
+      )}
       <section className="edit-profile-main form">
-        {savingProfileEdit && (
-          <div className="alert-container">
-            {" "}
-            <DotLoader color="lightBlue" size={85} className="beat-loader" />
-          </div>
-        )}
         <div className="edit-profile-center">
           <h1 className="form-row edit-profile-heading">Edit Profile</h1>
 

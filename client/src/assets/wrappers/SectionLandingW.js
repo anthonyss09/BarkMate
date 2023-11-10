@@ -11,6 +11,26 @@ const Wrapper = styled.section`
     transform: rotate(-30deg);
     background: var(--med-bright-blue);
   }
+  .btn-learn {
+    margin-top: 1rem;
+    border-radius: 0;
+    width: 200px;
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+  }
+  .btn-tip {
+    margin-bottom: 2rem;
+    width: 200px;
+    margin: 2rem auto;
+    // margin-bottom: 1rem;
+    border-radius: 0;
+    display: flex;
+    font-size: 1rem;
+    box-shadow: var(--shadow-main-light);
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+  }
   h1 {
     font-size: 1.8rem;
     color: var(--test-blue);
@@ -161,11 +181,16 @@ const Wrapper = styled.section`
     max-width: 100%;
     // max-height: 50vh;
     // height: 60vh;
+    display: flex;
   }
   .section-landing-center-column {
     flex-direction: column;
+  }
+  .section-landing-post {
+    width: 100vw;
     background: var(--med-bright-blue);
-    height: 100vh;
+    align-items: center;
+    justify-content: center;
   }
   .section-landing-header {
     display: flex;
@@ -211,9 +236,9 @@ const Wrapper = styled.section`
     .section-landing-center {
       // height: 50vh;
     }
-    .section-landing-center-column {
-      height: 85vh;
-    }
+    // .section-landing-center-column {
+    //   height: 85vh;
+    // }
     .section-landing-chat-center {
       padding: 0 0.4rem;
       box-sizing: border-box;
