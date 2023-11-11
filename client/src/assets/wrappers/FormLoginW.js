@@ -14,6 +14,8 @@ const Wrapper = styled.section`
     color: white;
     background: var(--grey-60);
     background: var(--med-bright-blue);
+    width: 100%;
+    font-size: 1rem;
   }
   .form-login {
     margin-top: 6rem;

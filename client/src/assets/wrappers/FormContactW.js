@@ -10,6 +10,7 @@ const Wrapper = styled.section`
     background: var(--med-bright-blue);
     color: white;
     width: 100%;
+    height: 4rem;
     // height: 50px;
     font-size: 1rem;
   }
@@ -19,6 +20,7 @@ const Wrapper = styled.section`
   .form-header {
     padding: 1rem;
     margin-bottom: 1rem;
+    margin-top: 1rem;
   }
   .p-bottom {
     color: var(--grey-80);

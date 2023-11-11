@@ -15,7 +15,9 @@ export default function Footer() {
           <Link to="/payment" className="link">
             Tips
           </Link>
-          <Link className="link">Contact</Link>
+          <Link to="/contact" className="link">
+            Contact
+          </Link>
         </div>
       </section>
     </Wrapper>

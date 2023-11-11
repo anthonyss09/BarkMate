@@ -16,6 +16,7 @@ import notificationsRouter from "./routes/notificationRoutes.js";
 import chatsRouter from "./routes/chatsRoutes.js";
 import eventRouter from "./routes/eventRoutes.js";
 import paymentRouter from "./routes/paymentRoutes.js";
+import transportsRoutes from "./routes/transportsRoutes.js";
 import { v4 as uuidv4 } from "uuid";
 import redis from "redis";
 import { Server } from "socket.io";
@@ -31,6 +32,7 @@ app.use("/api/notifications", notificationsRouter);
 app.use("/api/chats", chatsRouter);
 app.use("/api/events", eventRouter);
 app.use("/api/payments", paymentRouter);
+app.use("/api/transports", transportsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Bark Mate!");

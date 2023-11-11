@@ -93,22 +93,6 @@ export default function RegisterThree({
           </Link>
           <FormSteps showRegisterThree={showRegisterThree} />
           <h1 className="form-header">Finish profile</h1>
-          {/* <div className="form-row">
-            {profileImage && (
-              <div className="profile-image-container">
-                <img src={imageUrl} className="profile-image" />
-              </div>
-            )}
-            <label htmlFor="image" className="form-label form-label-image">
-              <p>Add profile image </p> <FiCamera size={20} />
-              <input
-                id="image"
-                type="file"
-                className="form-input form-input-image"
-                onChange={handleImageChange}
-              />
-            </label>
-          </div> */}
 
           <ProfileImageInput
             profileImage={profileImage}

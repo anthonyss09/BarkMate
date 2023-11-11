@@ -3,9 +3,11 @@ import FormRow from "../features/auth/FormRow.js";
 import { useState } from "react";
 import Logo from "../components/Logo.js";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function ConctactForm() {
   const [email, setEmail] = useState("");
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     if (id === "email") {
@@ -13,6 +15,11 @@ export default function ConctactForm() {
     } else {
     }
   };
+
+  const handleSendEmail = async (e) => {
+    const response = axios.post("/api/transports/forward-email");
+  };
+
   return (
     <Wrapper>
       <section className="form-main">
@@ -58,7 +65,9 @@ export default function ConctactForm() {
               className="form-textarea"
             />
           </div>
-          <button className="btn btn-contact">Send email</button>
+          <button className="btn btn-contact" onClick={handleSendEmail}>
+            Send email
+          </button>
         </div>
       </section>
     </Wrapper>

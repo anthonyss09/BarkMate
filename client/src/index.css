@@ -340,6 +340,7 @@ select {
   border: 2px solid var(--grey-240);
   padding-left: 0.8rem;
   background: none;
+  background-color: none;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -400,10 +401,8 @@ select {
   padding-top: 0.6rem;
   background: none;
   resize: none;
-    font-size: 16px;
-
-
-
+  outline: none;
+  font-size: 16px;
 }
 .form-textarea::placeholder {
     color: rgb(180, 180, 180);

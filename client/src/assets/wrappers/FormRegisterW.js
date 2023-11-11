@@ -14,6 +14,8 @@ const Wrapper = styled.section`
     color: white;
     background: var(--grey-60);
     background: var(--med-bright-blue);
+    width: 82%;
+    max-width: 320px;
   }
   .link-register {
     margin: 1rem 0;
