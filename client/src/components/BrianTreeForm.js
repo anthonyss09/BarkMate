@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Alert from "../features/alerts/Alert";
 import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 import DotLoader from "react-spinners/DotLoader";
+import FormRow from "../features/auth/FormRow";
 
 export default function BraintreeDropIn(props) {
   const Navigate = useNavigate();
@@ -231,7 +232,7 @@ export default function BraintreeDropIn(props) {
   return (
     <Wrapper>
       {isLoading && (
-        <div className="alert-container-second">
+        <div className="alert-container">
           {" "}
           <DotLoader size={85} color="lightBlue" className="beat-loader" />
         </div>
@@ -240,24 +241,24 @@ export default function BraintreeDropIn(props) {
       <form id="form-payment" className="form-main">
         {" "}
         <div className="bt-drop-in-main form form-payment">
-          {/* <div className="bt-drop-in-checkout-message"></div>
-      <div id="dropin-container" className="bt-drop-in-container"></div> */}
           <Link to="/" className=" link">
             <Logo logoClass="logo-payment" iconClass="icon-payment" />
           </Link>
-          <div className="text-cadet form-header payment-header">
-            Enter tip amount then choose method.
-            <br />
-            Thank you!
-          </div>
-          <label htmlFor="tip-amount" className="form-label">
-            Tip amount
-          </label>
-          <input
+          <h1 className="form-header payment-header">
+            <p className="p-pink"> Thank you!</p>
+            <p className="p-bottom">
+              {" "}
+              Enter tip amount then choose method.
+              <br />
+            </p>
+          </h1>
+
+          <FormRow
             id="tip-amount"
-            className="card-number form-input form-payment-input"
-            placeholder="5.00"
-          ></input>
+            name="Tip amount"
+            type="text"
+            placeholder="$5.00"
+          />
 
           <div type="button" className="venmo-button btn-venmo-container">
             <img src={venmoButtonSmall} className="btn btn-venmo" />
@@ -265,30 +266,22 @@ export default function BraintreeDropIn(props) {
           <div className="text-cadet text-center">
             <p className="p-center">Or</p>
           </div>
-          <label htmlFor="card-number" className="form-label">
-            Card Number
-          </label>
-          <input
+          <FormRow
             id="card-number"
-            className="card-number form-input form-payment-input"
+            name="Card number"
+            type="text"
             placeholder="4111 1111 1111 1111"
-          ></input>
-          <label htmlFor="cvv" className="form-label">
-            CVV
-          </label>
-          <input
-            id="cvv"
-            className="form-input form-payment-input"
-            placeholder="123"
-          ></input>
-          <label htmlFor="expiration-date" className="form-label">
-            Expiration Dinput
-          </label>
-          <input
+          />
+
+          <FormRow id="cvv" name="cvv" type="text" placeholder="123" />
+
+          <FormRow
             id="expiration-date"
-            className="form-input form-payment-input"
-            placeholder="09/2023"
-          ></input>
+            name="Expiration date"
+            type="text"
+            placeholder="09/23"
+          />
+
           <button
             className="bt-drop-in-submit-button btn btn-payment"
             type="submit"
@@ -296,7 +289,6 @@ export default function BraintreeDropIn(props) {
           >
             Submit Card
           </button>
-          {/* <div className="text-cadet">Thanks for contributing!</div> */}
         </div>
       </form>
     </Wrapper>

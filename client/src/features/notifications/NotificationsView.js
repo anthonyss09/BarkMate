@@ -17,10 +17,11 @@ export default function NotificationsView({
   // const urlPre = "../../data/uploads/";
   // const dispatch = useDispatch();
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
+  console.log(notifications);
 
   if (notifications.length) {
     content = notifications.map((notification, index) => {
-      if (index === 10) {
+      if (index === 5) {
         return <h3 className="notifications-view-header">Older stuff</h3>;
       }
       switch (notification.notificationPath) {
@@ -145,7 +146,7 @@ export default function NotificationsView({
         </div>
         <h3 className="notifications-view-header">Recent notifications</h3>
         {content}
-        {notifications.length % 10 === 0 && (
+        {notifications.length % 5 === 0 && (
           <button
             className="btn btn-more-notifications"
             onClick={incrementNotificationLimit}

@@ -37,7 +37,7 @@ const forwardEmail = async (req, res) => {
   try {
     const info = await transporter.sendMail({
       from: process.env.email,
-      to: "anthonyss@msn.com",
+      to: "atoffetti.dev@gmail.com",
       subject: "test email",
       text: "how did this test email find you?",
     });

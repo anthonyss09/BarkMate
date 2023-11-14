@@ -8,6 +8,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
+import DotLoader from "react-spinners/DotLoader";
 
 export default function UserPhotos() {
   // const { _id: userId } = useSelector(selectCurrentUser);
@@ -44,7 +45,12 @@ export default function UserPhotos() {
   } else if (isSuccess && data.userPosts.length === 0) {
     content = <div> no posts</div>;
   } else {
-    content = <div>beat loader</div>;
+    content = (
+      <div className="alert-container">
+        {" "}
+        <DotLoader size={85} color="lightBlue" className="beat-loader" />
+      </div>
+    );
   }
 
   return (

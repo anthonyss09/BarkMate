@@ -113,7 +113,7 @@ export default memo(function Post({
         recipient: authorId,
         sender: currentUserId,
         senderProfileName: currentUserProfileName,
-        senderPorfileImageUrl: currentUserProfileImageUrl,
+        senderProfileImageUrl: currentUserProfileImageUrl,
         notificationPath: "posts",
         notificationType: "comment",
         is_read: false,

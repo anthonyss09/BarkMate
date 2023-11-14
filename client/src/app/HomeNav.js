@@ -25,7 +25,7 @@ export default function NavBar() {
   const [showBigSidebar, setShowBigSidebar] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showFriends, setShowFriends] = useState(false);
-  const [notificationLimit, setNotificationLimit] = useState(20);
+  const [notificationLimit, setNotificationLimit] = useState(10);
 
   let { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
@@ -136,12 +136,6 @@ export default function NavBar() {
             className="nav-profile-pic icon-user"
             onClick={handleSmallSidebar}
           />
-
-          {/* <FaUserCircle
-            size={35}
-            onClick={handleSmallSidebar}
-            className="icon icon-user"
-          /> */}
         </span>
       </nav>
       {showSmallSidebar && (
