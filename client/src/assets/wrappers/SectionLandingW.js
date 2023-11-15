@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import meshGradientTwo from "../images/mesh-gradient-3.png";
 
 const Wrapper = styled.section`
   .blue {
@@ -22,7 +21,6 @@ const Wrapper = styled.section`
     margin-bottom: 2rem;
     width: 200px;
     margin: 2rem auto;
-    // margin-bottom: 1rem;
     border-radius: 0;
     display: flex;
     font-size: 1rem;
@@ -33,14 +31,10 @@ const Wrapper = styled.section`
   }
   h1 {
     font-size: 1.8rem;
-    color: var(--test-blue);
     font-weight: 400;
-    color: var(--federal-blue);
     text-align: center;
     flex-direction: column;
     margin-bottom: 0;
-    // margin-left: 1rem;
-    // margin-right: 1rem;
     margin: 0;
     padding: 0;
     max-width: 40vw;
@@ -49,9 +43,7 @@ const Wrapper = styled.section`
     z-index: 4;
     position: static;
     color: rgb(80, 80, 80);
-    background: white;
     background: none;
-    // color: white;
   }
   .second-heading {
     margin-bottom: 4rem;
@@ -83,12 +75,9 @@ const Wrapper = styled.section`
   }
   .btn-join {
     margin-left: 5rem;
-    height: 60px;
-    width: 60px;
     height: 80px;
     width: 80px;
     margin: 0 auto;
-    background: var(--med-bright-blue);
     color: white;
     margin-top: 0.6rem;
     font-size: 1rem;
@@ -103,7 +92,6 @@ const Wrapper = styled.section`
     font-weight: bold;
   }
   .btn-join:hover {
-    transform: scale(1.1);
     cursor: pointer;
     transform: scale(1.1);
     transition: all 0.3s ease;
@@ -121,22 +109,14 @@ const Wrapper = styled.section`
     box-sizing: border-box;
     text-align: center;
     line-height: 1.3rem;
-    // border-bottom: 8px solid rgb(230, 230, 230);
   }
   .span-share {
     letter-spacing: 0.1rem;
     color: var(--med-bright-blue);
     font-size: 2.2rem;
   }
-  .span-responsibilities {
-  }
   .section-landing-image-jm {
-    // width: 70vw;
-    // border-radius: 1rem 1rem 0 0;
     border-radius: 0.5rem;
-    // width: 50vw;
-    // max-width: 250px;
-    // margin: 4rem 2rem;
     box-shadow: 10px 5px 10px rgb(40, 40, 40);
     transform: rotate(-10deg);
     z-index: 10;
@@ -145,18 +125,13 @@ const Wrapper = styled.section`
     max-height: 300px;
   }
   .section-landing-image-jm-container {
-    // max-height: 100px;
     transform: rotate(-10deg);
     border: 4px solid pink;
-    // margin-right: 4rem;
-  }
-  .blue-container-image-jm {
   }
   .section-landing-image-post {
-    border-radius: 0.5rem;
-    width: 250px;
     width: 65vw;
     max-width: 300px;
+    border-radius: 0.5rem;
     border: 1px solid rgb(220, 220, 220);
     box-shadow: 10px 5px 10px rgb(40, 40, 40);
     margin: 4rem 0;
@@ -172,15 +147,11 @@ const Wrapper = styled.section`
   .section-landing-chat-center {
     width: 100vw;
     background: var(--bark-pink);
-    // border-top: 8px solid rgb(230, 230, 230);
-    // border-bottom: 8px solid rgb(230, 230, 230);
   }
   .section-landing-center {
     display: flex;
     align-items: center;
     max-width: 100%;
-    // max-height: 50vh;
-    // height: 60vh;
     display: flex;
   }
   .section-landing-center-column {
@@ -217,7 +188,6 @@ const Wrapper = styled.section`
     background: white;
     text-align: center;
     font-family: "Montserrat", sans-serif;
-    // padding: 2.2rem 0;
     color: black;
     padding-top: 1rem;
     letter-spacing: 0.02rem;
@@ -233,12 +203,6 @@ const Wrapper = styled.section`
       width: 100vw;
       height: 65vh;
     }
-    .section-landing-center {
-      // height: 50vh;
-    }
-    // .section-landing-center-column {
-    //   height: 85vh;
-    // }
     .section-landing-chat-center {
       padding: 0 0.4rem;
       box-sizing: border-box;
@@ -248,13 +212,7 @@ const Wrapper = styled.section`
     }
 
     h1 {
-      // margin-bottom: 1rem;
-      // margin-bottom: 2rem;
-      // margin-left: 1rem;
-      // margin-right: 1rem;
       font-size: 1.2rem;
-      // margin-bottom: -4rem;
-      // margin-bottom: 0.6rem;
       margin-top: -1rem;
       margin-left: -1rem;
     }

@@ -9,7 +9,6 @@ const Wrapper = styled.main`
     border-top: 1px solid rgb(244, 244, 244);
   }
   .dash-chats-main {
-    // min-height: 70vh;
     padding-bottom: 2rem;
   }
 `;

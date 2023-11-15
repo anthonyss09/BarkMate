@@ -5,13 +5,12 @@ const Wrapper = styled.aside`
     height: min-content;
     padding: 0.8rem 1.2rem;
     border: 1px solid rgb(240, 240, 240);
-    letter-spacing: 0.15rem;
+    letter-spacing: 0.02rem;
     margin: 0 auto;
   }
   .btn-more-notifications {
     width: 80%;
     margin: 1rem auto;
-    background: rgb(244, 244, 244);
     background: white;
     border: 2px solid rgb(80, 80, 80);
   }
@@ -27,23 +26,16 @@ const Wrapper = styled.aside`
   }
   .notification-text {
     margin-right: 0.8rem;
-    color: rgb(60, 60, 60);
     color: var(--med-font-blue);
   }
   .notifications-view-title {
     font-size: 1.3rem;
-    // height: 4.2rem;
-    background: var(--test-blue);
-    letter-spacing: 0.15rem;
-    // padding-bottom: 3rem;
     margin: 0;
-    background: white;
     background: var(--test-blue);
     display: flex;
     height: 5rem;
     align-items: center;
-    // border-bottom: 2px solid white;
-    font-family: "Roboto Condensed", sans-serif;
+    color: rgb(30, 30, 30);
   }
   .notifications-view-header {
     margin-top: 2rem;
@@ -52,8 +44,8 @@ const Wrapper = styled.aside`
     margin-bottom: 1rem;
     border: none;
     width: 100%;
-    font-family: "Roboto Condensed", sans-serif;
     box-sizing: border-box;
+    color: rgb(80, 80, 80);
   }
   .notifications-view-icon-close {
     color: black;
@@ -69,12 +61,10 @@ const Wrapper = styled.aside`
     letter-spacing: 0.02rem;
     text-align: center;
     color: rgb(80, 80, 80);
-    // box-sizing: border-box;
     margin: 1rem;
   }
   .notifications-view-main {
     width: 100%;
-    max-width: 320px;
     max-width: 300px;
     position: fixed;
     top: 0;
@@ -88,27 +78,19 @@ const Wrapper = styled.aside`
     font-size: 0.8rem;
     border-left: 1px solid rgb(220, 220, 220);
     border-top: 1px solid rgb(220, 220, 220);
-    // background: rgb(252, 252, 252, 0.9);
     box-shadow: -1px 2px 100vw grey;
   }
   .notification-view-single {
     height: 4.2rem;
-    height: 5rem;
-    height: 4.2rem;
     display: flex;
     align-items: center;
-    // justify-content: space-between;
     flex-wrap: no-wrap;
     gap: 0.2rem;
-    // background: rgb(252, 252, 252);
-    // background: rgb(225, 225, 225, 0.8);
-    background: rgb(244, 244, 244);
     background: rgb(248, 248, 248);
     margin: 0;
     padding-left: 0.8rem;
   }
   .notification-viewed {
-    // background: rgb(252, 252, 252, 0.8);
     background: white;
   }
 `;

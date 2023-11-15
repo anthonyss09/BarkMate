@@ -7,22 +7,17 @@ const Wrapper = styled.aside`
     height: 3.4rem;
     border: 1px solid rgb(195, 195, 195);
     border-radius: 0.3rem;
-    // margin-left: auto;
     box-sizing: border-box;
     max-width: 14.4rem;
   }
   label {
     color: rgb(80, 80, 80);
-    // color: rgb(100, 100, 100);
     font-weight: 600;
     width: 25vw;
     min-width: 5rem;
     width: 17vw;
     font-size: 0.9rem;
     margin-right: auto;
-  //   border-bottom: 2px solid rgb(120, 120, 120);
-  //  border-bottom: 2px solid rgb(220, 220, 220);
-
   }
   .beat-loader {
     position: fixed;
@@ -30,21 +25,13 @@ const Wrapper = styled.aside`
   .label-note {
     width: min-content;
     padding-bottom: 0.2rem;
-    // border-bottom: 2px solid rgb(120, 120, 120);
-    // border-bottom: 2px solid rgb(220, 220, 220);
   }
   .add-date-row {
     width: 100%;
     display: flex;
-    // flex-direction: column;
     gap: 0.6rem;
     align-items: center;
-    // box-shadow: 5px 2px 5px grey;
-    // border: 1px solid rgb(220, 220, 220);
     border-radius: 2rem;
-    // padding: 0.6rem 0.8rem;
-    // background: rgb(244, 244, 244);
-    // width: min-content;
     font-size: 0.8rem;
   }
   .add-description-row {
@@ -78,27 +65,18 @@ const Wrapper = styled.aside`
     align-items: flex-start;
     gap: 1rem;
     gap: 0.4rem;
-    // gap: 1rem;
-    // padding: 0 3rem;
-    // border-bottom: 2px solid rgb(220, 220, 220);
-    // border-bottom: 3px solid black;
     padding-bottom: 0.8rem;
-    // border-bottom: 2px solid rgb(180,180,180);
     padding: 0 1rem;
   }
   .add-event-buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    // flex-direction: column;
-    // gap: 1rem;
     padding: 0 2rem;
     padding: 1rem;
     padding-right: 0;
     box-sizing: border-box;
-    // border-bottom: 10px solid rgb(244, 244, 244);
     border-top: 10px solid rgb(244, 244, 244);
-    // margin-top: -2rem;
     margin-top: -1rem;
   }
   .add-event-header {
@@ -120,7 +98,6 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px grey;
     z-index: 8;
     border-left: 1px solid rgb(220, 220, 220);
-    // box-shadow: var(--shadow-main-light);
   }
   .add-event-title {
     display: flex;
@@ -134,9 +111,7 @@ const Wrapper = styled.aside`
     display: flex;
     align-items: center;
     justify-content: center;
-    // width: 45%;
     width: min-content;
-    // box-shadow: 5px 2px 5px grey;
     height: 4rem;
     font-size: 1rem;
     padding-right: 1rem;
@@ -146,9 +121,6 @@ const Wrapper = styled.aside`
     background: var(--med-bright-blue);
     background: var(--test-red);
     align-self: flex-end;
-    // height: 3rem;
-    // margin-right: 1rem;
-    // margin: 0 1rem;
     margin-right: 1rem;
     margin-left: auto;
   }
@@ -174,13 +146,6 @@ const Wrapper = styled.aside`
   @media (max-width: 400px) {    
       select {
         width: 10.5rem;
-      }
-      .add-description-textarea {
-            // margin-top: -2rem;
-
-      }
-      .add-event-buttons {
-        // margin-top: -4rem;
       }
       .add-event-main {
         top: 2rem;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.aside`
   .friends-title {
-    // margin-left: 1rem;
     font-size: 1.4rem;
     margin: 0 auto;
   }
@@ -11,7 +10,6 @@ const Wrapper = styled.aside`
     letter-spacing: 0.15rem;
     padding: 0.8rem 1.2rem;
     box-sizing: border-box;
-    // height: min-content;
     border: 1px solid rgb(240, 240, 240);
   }
   .friend-accept {
@@ -22,7 +20,6 @@ const Wrapper = styled.aside`
     cursor: pointer;
   }
   .friend-ignore {
-    color: rgb(120, 120, 120);
     color: var(--med-font-blue);
     margin-right: 0.4rem;
   }
@@ -37,12 +34,9 @@ const Wrapper = styled.aside`
   .friend-name {
     font-weight: bold;
     margin-left: 0.4rem;
-    margin-right: 10vw;
     margin-right: auto;
   }
   .friend-pending {
-    color: rgb(80, 80, 80);
-    color: rgb(120, 120, 120);
     color: var(--med-font-blue);
     font-style: italic;
     margin-right: 0.4rem;
@@ -57,7 +51,6 @@ const Wrapper = styled.aside`
     letter-spacing: 0.05rem;
     color: rgb(60, 60, 60);
     margin-bottom: 1rem;
-    // box-shadow: 5px 2px 5px grey;
     background: white;
     font-family: "Roboto Condensed", sans-serif;
   }
@@ -71,7 +64,6 @@ const Wrapper = styled.aside`
   }
   .friends-view-header {
     font-size: 1rem;
-    background: white;
     background: var(--test-blue);
     display: flex;
     align-items: center;
@@ -91,7 +83,6 @@ const Wrapper = styled.aside`
     letter-spacing: 0.02rem;
     text-align: center;
     color: rgb(80, 80, 80);
-    // box-sizing: border-box;
     margin-bottom: 1rem;
   }
   .friends-view-main {

@@ -1,44 +1,13 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
-  .btn-send {
-    width: 100%;
-    width: 94%;
-    // margin: 0 auto;
-    // width: 4rem;
-    // border-radius: 5rem;
-    border-radius: 0.5rem;
-    height: 4rem;
-    background: var(--test-blue);
-    background: var(--med-bright-blue);
-    color: white;
-    display: block;
-    // margin-top: 1rem;
-    // box-shadow: 5px 2px 5px grey;
-    // border: 1px solid rgb(230, 230, 230);
-
-    height: 3rem;
-    width: 3rem;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .comments-container {
     margin: 0 1rem;
-  }
-  .comment-icon-close {
-    // margin-top: 0.4rem;
-    // margin-bottom: 1rem;
-    // margin-bottom: 0.4rem;
-    // margin-left: 0.8rem;
   }
   .comment-icon-close:hover {
     cursor: pointer;
   }
-
   .icon {
-    color: rgb(80, 80, 80);
     color: var(--med-font-blue);
   }
   .icon:hover {
@@ -51,92 +20,6 @@ const Wrapper = styled.aside`
     display: flex;
     align-items: center;
     gap: 0.2rem;
-  }
-  .icon-send {
-    // color: white;
-  }
-  .post-comment-body {
-    // width: 20vw;
-    border-top: 1px solid rgb(240, 240, 240);
-    border-bottom: 1px solid rgb(240, 240, 240);
-  }
-  .post-comment-body-pic {
-    // width: 20vw;
-    // width: 80vw;
-    // max-height: 25vh;
-    width: 85vw;
-  }
-  .post-comment-date {
-    font-size: 0.2rem;
-    color: rgb(100, 100, 100);
-    background: rgb(240, 240, 240);
-    padding: 0.1rem 0.3rem;
-    border-radius: 1rem;
-  }
-  .post-comment-heading {
-    // width: 30vw;
-    // margin-left: 1rem;
-    padding-bottom: 0.3rem;
-    display: flex;
-    gap: 0.2rem;
-    align-items: center;
-  }
-  .post-comment-input-row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0.8rem 0.4rem;
-    box-sizing: border-box;
-  }
-  .post-comment-heading-pic {
-    height: 30px;
-    width: 30px;
-    border-radius: 2rem;
-  }
-  .post-comment-name {
-    font-weight: bold;
-    font-size: 0.3rem;
-    line-height: 0.6rem;
-  }
-  .post-comment-preview {
-    width: min-content;
-    // max-height: 250px;
-    // overflow: hidden;
-    margin-left: 1rem;
-    margin-left: 1.2rem;
-    // padding: 0.6rem 0.6rem;
-    // border: 1px solid rgb(240, 240, 240);
-    // border: 2px solid rgb(220, 220, 220);
-    // align-self: center;
-  }
-  .post-comment-row {
-    // display: flex;
-    // flex-direction: column;
-    // // padding: 1rem;
-    // box-sizing: border-box;
-    // position: fixed;
-    // // height: 100%;
-    // height: min-content;
-    // width: 94vw;
-    // top: 0.6rem;
-    // left: 0.6rem;
-    // z-index: 8;
-    background: white;
-    // padding-bottom: 1rem;
-    // box-shadow: 5px 5px 8px rgb(80, 80, 80);
-    // border: 1px solid rgb(230, 230, 230);
-    // border-radius: 0.5rem;
-
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    bottom: 0;
-    z-index: 20;
-  }
-  .post-comment-text {
-    font-size: 0.3rem;
-    padding: 0.2rem 0;
   }
   .post-body-pic {
     width: 100%;
@@ -157,7 +40,6 @@ const Wrapper = styled.aside`
     gap: 0.4rem;
     padding: 1rem 0.6rem;
     padding-bottom: 0.4rem;
-    // border-bottom: 1px solid rgb(244, 244, 244);
   }
   .post-heading-pic {
     height: 40px;
@@ -184,7 +66,6 @@ const Wrapper = styled.aside`
     background: white;
     color: rgb(60, 60, 60);
     width: 100vw;
-    // padding: 1.2rem;
     padding-top: 0.4rem;
     box-sizing: border-box;
   }
@@ -207,13 +88,10 @@ const Wrapper = styled.aside`
     padding: 1rem;
     letter-spacing: 0.02rem;
     margin-left: 1rem;
-    // padding: 2rem 0;
   }
   .post-textarea {
-    // width: 100%;
     border: none;
     padding: 0 1rem;
-    // padding: 0;
     resize: none;
     outline: none;
     font-size: 16px;
@@ -239,39 +117,6 @@ const Wrapper = styled.aside`
   .hidden {
     display: none;
   }
-
-  @media (max-width: 400px) {
-    .btn-send {
-      height: 3rem;
-      width: 3rem;
-      border-radius: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .post-comment-row {
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      bottom: 0;
-      z-index: 20;
-    }
-    .post-comment-input-row {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0.8rem 0.4rem;
-      box-sizing: border-box;
-    }
-    .post-textarea {
-      width: 70%;
-      background: rgb(244, 244, 244);
-      border-radius: 2rem;
-      padding: 0.8rem;
-      height: 2.8rem;
-      box-sizing: border-box;
-    }
   }
 `;
 

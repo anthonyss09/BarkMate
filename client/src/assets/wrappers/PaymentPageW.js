@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
-  // .payment-page-main {
-  //   color: blue;
-  // }
-`;
+const Wrapper = styled.section``;
 
 export default Wrapper;

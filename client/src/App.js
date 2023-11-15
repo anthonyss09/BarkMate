@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -20,18 +20,10 @@ import EditProfile from "./features/users/EditProfile";
 import PageNotFound from "./pages/PageNotFound";
 import AboutPage from "./pages/AboutPage";
 import UserPhotos from "./features/posts/UserPhotos";
-import { useGetAuthorizationMutation } from "./features/auth/authSlice";
 import PaymentPage from "./pages/PaymentPage";
 import ContactForm from "./components/ContactForm";
 
 function App() {
-  const [getAuth] = useGetAuthorizationMutation();
-  let isAuthorized;
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("token"));
-    isAuthorized = getAuth(token);
-  }, []);
-
   return (
     <Router>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -46,7 +38,7 @@ function App() {
               exact
               path="dashboard"
               element={
-                <ProtectedRoute isAuthorized={isAuthorized}>
+                <ProtectedRoute>
                   <DashboardPage />
                 </ProtectedRoute>
               }

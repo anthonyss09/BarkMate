@@ -8,7 +8,7 @@ const Wrapper = styled.aside`
   .big-sidebar-main {
     width: 100vw;
     height: 100vh;
-    background: rgb(252, 252, 252, 0.8);
+    background: rgb(252, 252, 252, 0.95);
     position: absolute;
     top: 0;
     left: 0;
@@ -20,9 +20,7 @@ const Wrapper = styled.aside`
     overflow: hidden;
   }
   .icon-book {
-    color: var(--federal-blue);
     color: var(--space-cadet);
-    // color: var(--test-red);
   }
   .icon-calender {
     color: var(--test-red);
@@ -33,7 +31,7 @@ const Wrapper = styled.aside`
   .icon-close {
     margin: 0.6rem;
     margin-bottom: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: black;
   }
   .icon-close:hover {
@@ -70,7 +68,6 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     height: 2.8rem;
     letter-spacing: 0.06rem;
-    // box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .link:hover {
     transform: scale(1.1);

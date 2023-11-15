@@ -21,7 +21,6 @@ const Wrapper = styled.div`
     gap: 2rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
-    // padding: 0 0.4rem;
     justify-content: center;
   }
   .step-active {
@@ -38,7 +37,6 @@ const Wrapper = styled.div`
     place-items: center;
   }
   .step-circle-one {
-    background: var(--med-bright-blue);
     background: var(--test-blue);
     color: var(--federal-blue);
   }
@@ -46,7 +44,6 @@ const Wrapper = styled.div`
     background: var(--test-red);
   }
   .step-circle-three {
-    background: var(--med-green);
     background: var(--federal-blue);
   }
   .step-circle-active {

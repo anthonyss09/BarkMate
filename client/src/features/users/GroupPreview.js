@@ -27,7 +27,11 @@ export default function GroupPreview({ image }) {
             {" "}
             <Link to="/groupid" className="link">
               {" "}
-              <img src={goodBoys} className="group-preview-image" />
+              <img
+                src={goodBoys}
+                className="group-preview-image"
+                alt="the group"
+              />
             </Link>
           </div>
           <div className="group-preview-options">

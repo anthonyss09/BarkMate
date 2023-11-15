@@ -1,9 +1,7 @@
 import Wrapper from "../../assets/wrappers/AddEventW";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
-// import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -17,14 +15,11 @@ import { logoutUser } from "../auth/authSlice";
 import BeatLoader from "react-spinners/BeatLoader";
 
 export default function AddEvent({ setShowAddEvent }) {
-  const [startDate, setStartDate] = useState(new Date());
   const [eventTime, setEventTime] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventOccurrence, setEventOccurrence] = useState("");
   const [eventNote, setEventNote] = useState("");
   const [addingEvent, setAddingEvent] = useState(false);
-
-  // const { showAlert, alertMessage, alertType } = useSelector(selectAlertInfo);
 
   const Navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,9 +28,6 @@ export default function AddEvent({ setShowAddEvent }) {
   const [createEvent] = useCreateEventMutation();
 
   const handleDateChange = (e) => {
-    // date.day = e.$D;
-    // date.month = e.$M;
-    // date.year = e.$y;
     if (!e) {
       return;
     }
@@ -51,7 +43,6 @@ export default function AddEvent({ setShowAddEvent }) {
     } else {
       month = (Number(month) + 1).toString();
     }
-    // date.dateString = e.$y + "-" + month + "-" + day;
     date.dateString = month + "-" + day + "-" + e.$y;
     date.dayOfWeek = e.$W;
     setEventDate(date);
@@ -60,9 +51,6 @@ export default function AddEvent({ setShowAddEvent }) {
   };
 
   const handleTimeChange = (e) => {
-    // const time = {};
-    // time.hour = e.$H;
-    // time.minute = e.$m;
     let hour = e.$H;
     let minute = e.$m;
     if (Number(hour) < 10) {
@@ -71,6 +59,7 @@ export default function AddEvent({ setShowAddEvent }) {
     if (Number(minute) < 10) {
       minute = "0" + minute;
     }
+    // eslint-disable-next-line
     const time = hour + ":" + minute + ":" + "00";
     setEventTime(time);
     console.log(eventTime);
@@ -194,10 +183,6 @@ export default function AddEvent({ setShowAddEvent }) {
               <option>monthly</option>
             </select>
           </div>
-          {/* <div className="add-description-row"> */}
-          {/* <label htmlFor="note" className="label-note">
-            Note:
-          </label> */}
           <textarea
             id="note"
             rows={3}
@@ -206,7 +191,6 @@ export default function AddEvent({ setShowAddEvent }) {
             onChange={handleEventNoteChange}
           />
         </div>
-        {/* </div> */}
         <div className="add-event-buttons">
           <button
             type="submit"

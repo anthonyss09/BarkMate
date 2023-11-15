@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   .drop-menu-landing-main {
     width: 100vw;
-    // height: 70vh;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -12,8 +11,6 @@ const Wrapper = styled.div`
     background: rgb(252, 252, 252, 0.95);
     display: flex;
     flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
     padding: 2rem;
     padding-top: 4rem;
     gap: 2rem;
@@ -22,15 +19,11 @@ const Wrapper = styled.div`
   }
 
   .link {
-    letter-spacing: 0.03rem;
     letter-spacing: 0.08rem;
     font-family: "Roboto Condensed", sans-serif;
     font-weight: bold;
-    color: var(--med-bright-blue);
-    color: var(--federal-blue);
     font-size: 1.1rem;
     color: var(--charcoal);
-    // color: black;
   }
 
   .link:hover {

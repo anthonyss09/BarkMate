@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default memo(function Post({
   authorId,
@@ -24,13 +24,10 @@ export default memo(function Post({
   authorDogName,
   text,
   authorImageUrl,
-
   likes,
   postId,
   createdAt,
   currentUserId,
-  currentUserFirstName,
-  currentUserDogName,
   currentUserCoords,
   currentUserProfileName,
   postImageUrl,
@@ -44,9 +41,9 @@ export default memo(function Post({
   const [showAllComments, setShowAllComments] = useState(false);
 
   const dateOfPost = moment(createdAt.toString()).startOf("minute").fromNow();
-  const dateCheck = moment(createdAt.toString()).format();
-  const dateShort =
-    dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
+  // const dateCheck = moment(createdAt.toString()).format();
+  // const dateShort =
+  //   dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
   const id = new mongoose.Types.ObjectId();
 
   const Navigate = useNavigate();
@@ -68,22 +65,7 @@ export default memo(function Post({
   };
 
   const handlePostComment = async () => {
-    // let commentsCopy = comments.slice();
-
-    // commentsCopy.push({
-    //   userId: currentUserId,
-    //   userProfileImageUrl: currentUserProfileImageUrl,
-    //   firstName: currentUserFirstName,
-    //   dogName: currentUserDogName,
-    //   text: comment,
-    // });
-
     setRequesting(true);
-    // const newPost = await editPost({
-    //   postId,
-    //   update: { comments: commentsCopy },
-    //   currentUserCoords,
-    // });
     const newComment = await createComment({
       postId,
       authorId: currentUserId,
@@ -186,7 +168,7 @@ export default memo(function Post({
     content = comments.content.map((comment, index) => {
       commentCount++;
       if (commentCount > 1 && !showAllComments) {
-        return;
+        return null;
       }
 
       return (
@@ -210,7 +192,11 @@ export default memo(function Post({
           <div className="post-heading">
             <Link to={"/" + authorId}>
               {" "}
-              <img src={authorImageUrl} className="post-heading-pic" />
+              <img
+                src={authorImageUrl}
+                className="post-heading-pic"
+                alt="author"
+              />
             </Link>
 
             <span className="post-name">
@@ -221,7 +207,11 @@ export default memo(function Post({
           <div className="post-text">{text}</div>
           <div className="post-image">
             {postImageUrl && (
-              <img src={postImageUrl} className="post-body-pic" />
+              <img
+                src={postImageUrl}
+                className="post-body-pic"
+                alt="the post"
+              />
             )}
           </div>
           <div className="post-info"></div>

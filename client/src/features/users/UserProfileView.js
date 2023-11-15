@@ -1,19 +1,13 @@
 import Wrapper from "../../assets/wrappers/ProfilePageW";
 import HomeNav from "../../app/HomeNav";
-import { FaUserFriends } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
 import Footer from "../../app/Footer";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { HiCamera } from "react-icons/hi";
 import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useSelector } from "react-redux";
-import { HiOutlinePencilAlt } from "react-icons/hi";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 
 export default function UserProfileView() {
   const {
@@ -28,9 +22,6 @@ export default function UserProfileView() {
     profileImageUrl,
     _id,
   } = useSelector(selectCurrentUser);
-
-  // const urlPre = "../../data/uploads/";
-  const { data } = useRefreshUserCredentialsQuery(_id);
 
   const availabity = timeAvailable.map((time, index) => {
     return (
@@ -56,14 +47,7 @@ export default function UserProfileView() {
           <div className="back-button"> </div>
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
-              <div className="profile-preview-verification">
-                {/* <div className="stars-container">
-                  {" "}
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiFillStar className="icon-star" size={10} />
-                  <AiOutlineStar className="icon-star" size={10} />
-                </div> */}
-              </div>
+              <div className="profile-preview-verification"></div>
               <h1 className="profile-preview-name">
                 {firstName} & {dogName}
               </h1>
@@ -77,17 +61,11 @@ export default function UserProfileView() {
               <HiOutlinePencilSquare size={35} />
             </Link>
           </div>
-          <img src={profileImageUrl} className="profile-page-image" />
-
-          {/* <div className="profile-page-options">
-            <div className="add-friend option">
-              + <FaUserFriends size={30} />
-            </div>
-
-            <div className="message option">
-              <FiMail size={30} className="message-friend" />
-            </div>
-          </div> */}
+          <img
+            src={profileImageUrl}
+            className="profile-page-image"
+            alt="user profile"
+          />
           <div className="profile-page-body">
             <div className="profile-page-views">
               {" "}
@@ -133,7 +111,7 @@ export default function UserProfileView() {
               <div className="groups-container">
                 <div className="group-single">
                   {" "}
-                  <img className="group-image" src={goodBoys} />
+                  <img className="group-image" src={goodBoys} alt="the group" />
                   <p className="group-name">The Local GoodBoys</p>
                 </div>
               </div>

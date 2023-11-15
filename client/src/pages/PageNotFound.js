@@ -1,5 +1,4 @@
 import Wrapper from "../assets/wrappers/PageNotFoundW";
-import confusedPug from "../assets/images/confusedPug.jpg";
 
 export default function PageNotFound() {
   return (

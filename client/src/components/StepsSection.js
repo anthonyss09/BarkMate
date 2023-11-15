@@ -1,6 +1,5 @@
 import Wrapper from "../assets/wrappers/StepsW";
 import { FaPaw, FaHandshake } from "react-icons/fa";
-import { TbPaw } from "react-icons/tb";
 import { TbDog } from "react-icons/tb";
 import { HiOutlineChat } from "react-icons/hi";
 import { BsEmojiSunglasses } from "react-icons/bs";

@@ -1,5 +1,4 @@
 import Wrapper from "../../assets/wrappers/ChatLineW";
-import deanBowie from "../../assets/images/dean&bowieSmall.jpg";
 import { Link } from "react-router-dom";
 
 export default function ChatLineFriend({
@@ -12,7 +11,11 @@ export default function ChatLineFriend({
     <Wrapper>
       <div className="chat-line-friend-main main">
         <Link to={"/" + participantId}>
-          <img src={profileImageUrl} className={`${shadow ? "" : ""}`} />
+          <img
+            src={profileImageUrl}
+            alt="user profile"
+            className={`${shadow ? "" : ""}`}
+          />
         </Link>
 
         <p

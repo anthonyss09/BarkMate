@@ -2,11 +2,9 @@ import Wrapper from "../assets/wrappers/BigSidebarW";
 import { Link } from "react-router-dom";
 import { MdOutlinePeople, MdOutlineMenuBook } from "react-icons/md";
 import { BiCalendar, BiHome } from "react-icons/bi";
-import { HiOutlineChat, HiHome } from "react-icons/hi";
-import { GoCloudDownload } from "react-icons/go";
+import { HiOutlineChat } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import { FcDonate } from "react-icons/fc";
-import { IoLogoVenmo } from "react-icons/io5";
+import { MdMailOutline } from "react-icons/md";
 
 export default function BigSidebar({ handleClick }) {
   return (
@@ -20,10 +18,6 @@ export default function BigSidebar({ handleClick }) {
         <div className="big-sidebar-center">
           <div className="links-container-big">
             {" "}
-            {/* <Link className="link link-big link-download">
-              <GoCloudDownload className="icon-download" size={35} />
-              Download App
-            </Link> */}
             <Link
               to="/dashboard/home"
               className="link link-big link-profiles"
@@ -60,9 +54,13 @@ export default function BigSidebar({ handleClick }) {
               <MdOutlineMenuBook className="icon-book" size={25} />
               About
             </Link>
-            <Link to="/payment" className="link link-big link-tip">
-              <IoLogoVenmo size={35} className="icon-venmo" />
-              Tip BarkMate
+            <Link
+              to="/contact"
+              className="link link-big link-chats"
+              onClick={handleClick}
+            >
+              <MdMailOutline className="icon-chat" size={25} />
+              Contact
             </Link>
           </div>
           <div className="links-container-small"></div>

@@ -9,15 +9,11 @@ const Wrapper = styled.aside`
   }
   .btn-create-post {
     background: var(--med-bright-blue);
-    // background: var(--test-blue);
-    // background: var(--med-font-blue);
     color: white;
-    // color: rgb(60, 60, 60);
     font-size: 1rem;
     width: 100%;
     margin-top: 0.8rem;
     box-shadow: 5px 2px 5px grey;
-    // box-shadow: var(--shadow-main-light);
   }
 
   .create-post-heading {
@@ -40,7 +36,6 @@ const Wrapper = styled.aside`
     gap: 0.4rem;
     padding: 0.6rem;
     box-shadow: 5px 2px 5px grey;
-    // box-shadow: var(--shadow-main-light);
   }
   .create-post-label-image:hover {
     cursor: pointer;

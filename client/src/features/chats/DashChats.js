@@ -4,16 +4,11 @@ import { useEffect } from "react";
 import { useGetChatsQuery } from "../chats/ChatsSlice";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 
 export default function DashChats() {
-  const {
-    _id: userId,
-    profileImageName,
-    profileName: currentUserProfileName,
-  } = useSelector(selectCurrentUser);
-  const { data, error, isLoading } = useGetChatsQuery(userId);
+  const { _id: userId } = useSelector(selectCurrentUser);
+  const { data, isLoading } = useGetChatsQuery(userId);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -36,7 +31,7 @@ export default function DashChats() {
       const bDate = new Date(b.updatedAt);
       return bDate - aDate;
     });
-    console.log(Object.values(data));
+    // console.log(Object.values(data));
     chatPreviews = sortedChats.map((chat, index) => {
       return (
         <ChatPreview

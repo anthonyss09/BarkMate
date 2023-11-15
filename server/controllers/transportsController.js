@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 import { google } from "googleapis";
 const OAuth2 = google.auth.OAuth2;
 import * as dotenv from "dotenv";
+import { StatusCodes } from "http-status-codes";
 dotenv.config();
 
 const oauth2Client = new OAuth2(
@@ -16,6 +17,15 @@ oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 const accessToken = oauth2Client.getAccessToken();
 
 const forwardEmail = async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Make sure all fields are complete." });
+    return;
+  }
+
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     service: "gmail",
@@ -36,15 +46,19 @@ const forwardEmail = async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: process.env.email,
-      to: "atoffetti.dev@gmail.com",
-      subject: "test email",
-      text: "how did this test email find you?",
+      from: email,
+      to: process.env.EMAIL,
+      subject: "Bark mate user message.",
+      text: message,
     });
 
-    console.log("email on the way dear", info);
+    // console.log("email on the way dear");
+    res.status(StatusCodes.OK).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.log(error);
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Something went wrong, try to resend message." });
   }
 };
 

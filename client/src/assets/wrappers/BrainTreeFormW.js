@@ -7,14 +7,11 @@ const Wrapper = styled.aside`
     max-width: 60vw;
   }
   .btn-payment {
-    // margin: 1rem 0;
     width: 100%;
-    height: 48px;
     height: 52px;
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 0.05rem;
-    background: var(--test-blue);
     background: var(--space-cadet);
     color: white;
     padding: 0;
@@ -28,14 +25,10 @@ const Wrapper = styled.aside`
     border-radius: 4rem;
   }
   .btn-venmo-container {
-    // width: 100%;
-    // margin: 1rem 0;
   }
 
   .form-payment {
-    // gap: 0.4rem;
     margin-top: 4rem;
-    // padding: 1rem;
     box-sizing: border-box;
     position: relative;
   }
@@ -44,27 +37,13 @@ const Wrapper = styled.aside`
     width: 300px;
   }
   .payment-header {
-    // font-size: 1rem;
-    // text-align: center;
-    // padding: 0;
-    // padding: 1rem;
-    // color: white;
-    // box-sizing: border-box;
-    // width: 375px;
-    // width: 100%;
-    // color: var(--med-bright-blue);
-    // color: var(--med-font-blue);
-    // color: var(--space-cadet);
-
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
   .p-bottom {
-    color: var(--grey-80);
     color: var(--bark-pink);
-    // color: var(--med-bright-blue);
     margin: 0.4rem 0;
   }
   .p-center {
@@ -75,14 +54,10 @@ const Wrapper = styled.aside`
     width: 100%;
     padding: 0;
     margin: 0;
-    // color: var(--bark-pink);
-    color: var(--federal-blue);
-    color: var(--space-cadet);
     color: black;
     font-size: 1rem;
   }
   .text-cadet {
-    // color: var(--space-cadet);
     font-weight: bold;
   }
   @media (max-width: 400px) {

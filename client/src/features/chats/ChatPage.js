@@ -12,9 +12,8 @@ import { useState } from "react";
 import { useCreateChatMutation, useGetChatsQuery } from "../chats/ChatsSlice";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
-import { useSeletor, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { selectAlertsInfo } from "../alerts/alertsSlice";
@@ -27,8 +26,7 @@ export default function ChatPage() {
     profileName,
     profileImageUrl,
   } = useSelector(selectCurrentUser);
-  const { data, isLoading, isSuccess, error, refetch } =
-    useGetChatsQuery(userId);
+  const { data, isLoading, isSuccess, error } = useGetChatsQuery(userId);
   const { chatId } = useParams();
   const id = new mongoose.Types.ObjectId();
 
@@ -148,7 +146,7 @@ export default function ChatPage() {
       </div>
     );
   } else if (isSuccess) {
-    thisChat = Object.values(data).filter((chat) => chat._id == chatId)[0];
+    thisChat = Object.values(data).filter((chat) => chat._id === chatId)[0];
     if (thisChat === undefined) {
       Navigate("/");
     }
@@ -158,7 +156,7 @@ export default function ChatPage() {
     messages = thisChat.messages;
 
     content = messages.map((message, index) => {
-      if (message.sender == userId) {
+      if (message.sender === userId) {
         return (
           <ChatLineUser
             key={index}

@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   }
   .form-input {
     height: 2rem;
-    border: 2px solid var(--grey-240);
     border: 2px solid var(--test-blue);
     border-radius: 1.5rem;
     padding-left: 0.8rem;

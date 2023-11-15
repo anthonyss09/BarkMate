@@ -7,11 +7,10 @@ const Wrapper = styled.section`
     max-width: 60vw;
   }
   .btn-contact {
-    background: var(--med-bright-blue);
-    color: white;
     width: 100%;
     height: 4rem;
-    // height: 50px;
+    background: var(--med-bright-blue);
+    color: white;
     font-size: 1rem;
   }
   .form-main {

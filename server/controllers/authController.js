@@ -39,7 +39,9 @@ const loginUser = async (req, res) => {
   let passwordIsValid;
 
   if (!email || !password) {
-    res.status(BAD_REQUEST).json({ message: "Please provide all values." });
+    res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "Please provide all values." });
     throw new BadRequestError({ message: "Please provide all values." });
   }
   try {

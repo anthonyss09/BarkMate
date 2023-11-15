@@ -1,8 +1,7 @@
-import { apiSlice, notificationsRecieved } from "../api/apiSlice";
+import { apiSlice } from "../api/apiSlice";
 import {
   createSlice,
   createAction,
-  isAnyOf,
   createEntityAdapter,
 } from "@reduxjs/toolkit";
 import { socket } from "../../sockets/socketIo";
@@ -15,11 +14,6 @@ export const friendRequest = createAction("/friends/friendRequest");
 const notificationsAdapter = createEntityAdapter({
   selectId: (notification) => notification._id,
 });
-
-// const matchNotificationsRecieved = isAnyOf(
-//   apiSlice.endpoints.getNotifications.matchFulfilled,
-//   notificationsRecieved
-// );
 
 export const notificationsSlice = createSlice({
   name: "notifications",
@@ -40,7 +34,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                 type: "Notification",
                 _id,
               })),
-              ,
               "Notification",
             ]
           : ["Notification"],
@@ -51,7 +44,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         socket.connect({ test: "some data" });
 
         socket.on("message", (message) => {
-          console.log("the message is", message);
+          // console.log("the message is", message);
           switch (message.type) {
             case "notification": {
               updateCachedData((draft) => {
@@ -65,20 +58,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
               break;
             }
             case "markNotificationsRead":
-              {
-                updateCachedData((draft) => {
-                  Object.values(draft).map(
-                    (notification) => (notification.is_read = true)
-                  );
-                });
-              }
+              updateCachedData((draft) => {
+                Object.values(draft).map(
+                  (notification) => (notification.is_read = true)
+                );
+              });
+
               break;
             case "markNotificationViewed":
-              {
-                updateCachedData((draft) => {
-                  draft[message.content.notificationId].is_viewed = true;
-                });
-              }
+              updateCachedData((draft) => {
+                draft[message.content.notificationId].is_viewed = true;
+              });
               break;
             default:
               break;
@@ -125,7 +115,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
       invalidatesTags: ["Notification"],
-      async onQueryStarted(undefined, { dispatch, queryFulfilled }) {
+      async onQueryStarted({ dispatch, queryFulfilled }) {
         socket.emit("message", {
           type: "markNotificationsRead",
           content: { recipient: userId },
@@ -166,7 +156,7 @@ export const {
   selectById: selectNotificationById,
 } = notificationsAdapter.getSelectors((state) => state.notifications);
 
-export const {} = notificationsSlice.actions;
+// export const {} = notificationsSlice.actions;
 
 export const {
   useMarkAllNotificationsReadMutation,

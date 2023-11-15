@@ -1,9 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
 import { createSlice } from "@reduxjs/toolkit";
-// import { updateWebSocketReadyState } from "../api/apiSlice";
 import { socket } from "../../sockets/socketIo";
-// const user = JSON.parse(localStorage.getItem("user"));
-// const userId = user ? user._id : null;
 let currentUserId;
 
 const initialState = {
@@ -14,11 +11,7 @@ export const chatsSlice = createSlice({
   name: "chats",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    // builder.addCase(updateWebSocketReadyState, (state, action) => {
-    //   state.webSocketReadyState = action.payload;
-    // });
-  },
+  extraReducers: (builder) => {},
 });
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
@@ -42,7 +35,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           switch (data.type) {
             case "chat":
               {
-                console.log("got the chat from server");
+                // console.log("got the chat from server");
                 const sender = data.content.message.sender;
                 const recipient = data.content.message.recipient;
                 // const existingChatId = data.content.chatId;
@@ -58,23 +51,23 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                       draftParicipantIds.push(
                         chat.participants.friend.participantId
                       );
-                      console.log(draftParicipantIds);
                       if (
                         draftParicipantIds.includes(sender) &&
                         draftParicipantIds.includes(recipient)
                       ) {
-                        console.log("exitsts");
-                        console.log(chat._id);
+                        // console.log("exitsts");
+                        // console.log(chat._id);
                         chatIndex = index;
                         return chat._id;
                       }
+                      return chat;
                     }
                   )[chatIndex];
-                  console.log("existing id", existingChatId);
+                  // console.log("existing id", existingChatId);
 
                   if (existingChatId) {
                     //target existing chat and update data
-                    console.log("chat exists");
+                    // console.log("chat exists");
                     const chatIds = Object.values(draft).map(
                       (chat) => chat._id
                     );
@@ -83,7 +76,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                       data.content.message
                     );
                   } else {
-                    console.log("new chat");
+                    // console.log("new chat");
                     let newMessages = [];
                     let newContent = { ...data.content };
                     let newParticipants = {};
@@ -93,6 +86,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                       } else {
                         newParticipants.friend = { ...p };
                       }
+                      return newParticipants;
                     });
                     newMessages.push(data.content.message);
                     newContent.participants = newParticipants;
@@ -116,28 +110,25 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         let normParticipants = {};
         let newResponseData = {};
         // console.log("userid", userId);
-        console.log(
-          "local id is",
-          JSON.parse(localStorage.getItem("user"))._id
-        );
 
         responseData.chats.map((chat) => {
           let chatCopy = { ...chat };
-          console.log("the chat is", chat);
+          // console.log("the chat is", chat);
           chat.participants.map((p) => {
-            if (p.participantId == currentUserId) {
+            if (p.participantId === currentUserId) {
               normParticipants.user = { ...p };
             } else {
               normParticipants.friend = { ...p };
             }
+            return normParticipants;
           });
           // chat.participants = normParticipants;
           chatCopy.participants = { ...normParticipants };
           normParticipants = {};
           newResponseData[chat._id] = chatCopy;
+          return newResponseData;
         });
         // console.log("newResponse is ", newResponseData);
-
         // newResponseData.participants = normParticipants;
         return newResponseData;
       },

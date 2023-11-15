@@ -6,8 +6,6 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FiCamera } from "react-icons/fi";
 import { useState, memo } from "react";
 import { useCreatePostMutation } from "../posts/PostsSlice";
-import { useUploadPicMutation } from "../uploads/UploadsSlice";
-import BeatLoader from "react-spinners/BeatLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +23,6 @@ export default memo(function CreatePost({
   const [isFocused, setIsFocused] = useState(false);
 
   const [createPost] = useCreatePostMutation();
-  const [uploadPic] = useUploadPicMutation();
 
   const currentUser = useSelector(selectCurrentUser);
 
@@ -79,7 +76,6 @@ export default memo(function CreatePost({
     cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
 
     if (postImage) {
-      // const cloudinaryResult = await uploadPic(cloudinaryFormData);
       setRequesting(true);
 
       const cloudinaryResult = await axios.post(
@@ -134,9 +130,6 @@ export default memo(function CreatePost({
   return (
     <Wrapper>
       {" "}
-      {/* {savingPost && (
-        <BeatLoader color="lightBlue" size={35} className="beat-loader" />
-      )} */}
       <form
         encType="multipart/form-data"
         className={`create-post-main ${isFocused ? "no-scroll" : ""} ${
@@ -157,7 +150,11 @@ export default memo(function CreatePost({
         <div className="create-post-heading">
           <Link>
             {" "}
-            <img src={user.profileImageUrl} className="create-post-pic" />
+            <img
+              src={user.profileImageUrl}
+              className="create-post-pic"
+              alt="user profile"
+            />
           </Link>
           <span className="create-post-name">
             {currentUser.firstName} & {currentUser.dogName}
@@ -183,7 +180,7 @@ export default memo(function CreatePost({
         >
           {postImage && (
             <div className="create-post-image-container">
-              <img src={imageUrl} className="post-image" />
+              <img src={imageUrl} className="post-image" alt="the post" />
             </div>
           )}
           <label

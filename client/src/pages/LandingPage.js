@@ -1,13 +1,8 @@
 import Wrapper from "../assets/wrappers/LandingW";
 import Footer from "../app/Footer";
 import LandingNav from "../app/LandingNav";
-import HeaderLanding from "../components/HeaderLanding";
 import SectionLanding from "../components/SectionLanding";
-import SectionLandingTwo from "../components/SectionLandingTwo";
-import { useState, useEffect } from "react";
-import SectionLandingThree from "../components/SectionLandingThree";
-import SectionLandingFour from "../components/SectionLandingFour";
-import Logo from "../components/Logo";
+import { useState, useEffect, useRef } from "react";
 
 export default function LandingPage() {
   const [hideNav, setHideNav] = useState(false);
@@ -22,24 +17,30 @@ export default function LandingPage() {
     setLastScroll(window.scrollY);
   };
 
+  const trackNavRef = useRef(trackNav);
+
   useEffect(() => {
-    window.addEventListener("scroll", trackNav);
-    return () => {
-      window.removeEventListener("scroll", trackNav);
-    };
+    trackNavRef.current = trackNav;
+  });
+
+  useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", trackNavRef.current);
+    return () => {
+      window.removeEventListener("scroll", trackNavRef.current);
+    };
   }, [lastScroll]);
+
   return (
     <Wrapper>
       <main className="full-page">
         <LandingNav hideNav={hideNav} />
         <div className={`${!hideNav ? "landing-body" : ""}`}>
           {" "}
-          {/* <HeaderLanding /> */}
           <SectionLanding />
-          {/* <SectionLandingTwo /> */}
-          {/* <SectionLandingThree />
-          <SectionLandingFour /> */}
         </div>
         <Footer />
       </main>

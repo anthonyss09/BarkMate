@@ -1,21 +1,18 @@
 import Wrapper from "../../assets/wrappers/NotificationsViewW";
-import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import SingleNotification from "./SingleNotification";
 import { useMarkNotificationViewedMutation } from "../notifications/NotificationsSlice";
-// import { markStateNotificationViewed } from "./NotificationsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../features/auth/authSlice";
 
 export default function NotificationsView({
   notifications,
   handleShowNotifications,
   incrementNotificationLimit,
+  handleShowFriends,
 }) {
   const user = useSelector(selectCurrentUser);
   let content;
-  // const urlPre = "../../data/uploads/";
-  // const dispatch = useDispatch();
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
   console.log(notifications);
 
@@ -25,7 +22,7 @@ export default function NotificationsView({
         return <h3 className="notifications-view-header">Older stuff</h3>;
       }
       switch (notification.notificationPath) {
-        case "chats": {
+        case "chats":
           return (
             <Link key={index} to={"/dashboard/chats"} className="link">
               <div
@@ -33,18 +30,17 @@ export default function NotificationsView({
                   notification.is_viewed ? "notification-viewed" : ""
                 }`}
                 onClick={() => {
-                  {
-                    /* dispatch(markStateNotificationViewed(notification._id)); */
-                  }
                   markNotificationViewed({
                     userId: user._id,
                     notificationId: notification._id,
                   });
+                  handleShowNotifications();
                 }}
               >
                 <img
                   src={notification.senderProfileImageUrl}
                   className="notification-image"
+                  alt="the notification"
                 />
                 <span className="notification-sender">
                   {notification.senderProfileName}
@@ -53,9 +49,7 @@ export default function NotificationsView({
               </div>
             </Link>
           );
-          break;
-        }
-        case "posts": {
+        case "posts":
           return (
             <Link key={index} to={"#"} className="link">
               <div
@@ -63,9 +57,6 @@ export default function NotificationsView({
                   notification.is_viewed ? "notification-viewed" : ""
                 }`}
                 onClick={() => {
-                  {
-                    /* dispatch(markStateNotificationViewed(notification._id)); */
-                  }
                   markNotificationViewed({
                     userId: user._id,
                     notificationId: notification._id,
@@ -75,6 +66,7 @@ export default function NotificationsView({
                 <img
                   src={notification.senderProfileImageUrl}
                   className="notification-image"
+                  alt="user profile"
                 />
                 <span className="notification-sender">
                   {notification.senderProfileName}
@@ -86,9 +78,7 @@ export default function NotificationsView({
               </div>
             </Link>
           );
-          break;
-        }
-        case "friendRequests": {
+        case "friendRequests":
           return (
             <Link key={index} to={"#"} className="link">
               <div
@@ -96,18 +86,18 @@ export default function NotificationsView({
                   notification.is_viewed ? "notification-viewed" : ""
                 }`}
                 onClick={() => {
-                  {
-                    /* dispatch(markStateNotificationViewed(notification._id)); */
-                  }
                   markNotificationViewed({
                     userId: user._id,
                     notificationId: notification._id,
                   });
+                  handleShowNotifications();
+                  handleShowFriends();
                 }}
               >
                 <img
                   src={notification.senderProfileImageUrl}
                   className="notification-image"
+                  alt="user profile"
                 />
                 <span className="notification-sender">
                   {notification.senderProfileName}
@@ -116,11 +106,8 @@ export default function NotificationsView({
               </div>
             </Link>
           );
-          break;
-        }
-
         default:
-          break;
+          return null;
       }
     });
   } else {

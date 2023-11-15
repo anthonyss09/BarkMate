@@ -6,24 +6,19 @@ const Wrapper = styled.div`
     margin-left: -0.6rem;
   }
   .event {
-    // color: var(--test-red);
     color: var(--federal-blue);
     font-size: 0.8rem;
     margin-left: 1rem;
   }
   .event-date {
-    // color: rgb(100, 100, 100);
     font-weight: bold;
   }
   .event-list {
-    // border: 2px solid black;
     padding: 0 2rem;
     padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
     gap: 1rem;
-    // margin: 1rem 2rem;
   }
   .no-events {
     display: grid;
@@ -37,9 +32,6 @@ const Wrapper = styled.div`
   }
   .event-note {
     margin-left: 0.6rem;
-    // margin-left: 2rem;
-    color: rgb(60, 60, 60);
-    color: var(--bark-pink);
     color: var(--test-red);
     font-weight: bold;
     letter-spacing: 0.03rem;
@@ -66,8 +58,6 @@ const Wrapper = styled.div`
   }
   .number-circle {
     color: var(--test-red);
-    // height: 1.6rem;
-    // width: 1.6rem;
     display: grid;
     place-items: center;
     border-radius: 2rem;

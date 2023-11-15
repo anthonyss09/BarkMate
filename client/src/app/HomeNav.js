@@ -2,7 +2,7 @@ import Wrapper from "../assets/wrappers/NavW";
 import Logo from "../components/Logo";
 import { HiBars3 } from "react-icons/hi2";
 import SmallSidebar from "../components/SmallSidebar";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import BigSidebar from "../components/BigSidebar";
 import { logoutUser } from "../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,6 @@ import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
 import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-// import { ws } from "../features/api/apiSlice";
 import { socket } from "../sockets/socketIo";
 
 export default function NavBar() {
@@ -31,15 +30,9 @@ export default function NavBar() {
 
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  // const urlPre = "../data/uploads/";
 
   const currentUser = useSelector(selectCurrentUser);
-  const {
-    data: allNotifications,
-    error,
-    isLoading,
-    refetch,
-  } = useGetNotificationsQuery({
+  const { data: allNotifications } = useGetNotificationsQuery({
     userId: currentUser._id,
     limit: notificationLimit,
   });
@@ -104,6 +97,7 @@ export default function NavBar() {
           notifications={notifications}
           handleShowNotifications={handleShowNotifications}
           incrementNotificationLimit={incrementNotificationLimit}
+          handleShowFriends={handleShowFriends}
         />
       )}
       {showFriends && (
@@ -135,6 +129,7 @@ export default function NavBar() {
             src={currentUser.profileImageUrl}
             className="nav-profile-pic icon-user"
             onClick={handleSmallSidebar}
+            alt="User profile."
           />
         </span>
       </nav>

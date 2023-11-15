@@ -1,5 +1,4 @@
 import express from "express";
-import * as WebSocket from "ws";
 import * as http from "http";
 const app = express();
 const server = http.createServer(app);
@@ -17,7 +16,6 @@ import chatsRouter from "./routes/chatsRoutes.js";
 import eventRouter from "./routes/eventRoutes.js";
 import paymentRouter from "./routes/paymentRoutes.js";
 import transportsRoutes from "./routes/transportsRoutes.js";
-import { v4 as uuidv4 } from "uuid";
 import redis from "redis";
 import { Server } from "socket.io";
 
@@ -77,19 +75,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// const subscriber = redis.createClient({
-//   socket: {
-//     port: 6379,
-//     host: "rds",
-//   },
-// });
-// const publisher = redis.createClient({
-//   socket: {
-//     port: 6379,
-//     host: "rds",
-//   },
-// });
-
 const subscriber = redis.createClient();
 const publisher = redis.createClient();
 
@@ -104,8 +89,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
   switch (parsedData.type) {
     case "test":
       {
-        // io.emit("message", data);
-        // io.to(clients[parsedData.content.recipient], data);
         io.to(clients[parsedData.content.userId].id).emit(
           "message",
           parsedData
@@ -114,19 +97,15 @@ subscriber.subscribe("commCenter", (data, channel) => {
       break;
     case "notification":
       {
-        // recipient && recipient.send(data);
         clients[parsedData.content.recipient] &&
           io
             .to(clients[parsedData.content.recipient].id)
             .emit("message", parsedData);
-        // io.to(user).emit("message", parsedData);
-        // console.log("sent to client");
       }
       break;
     case "markNotificationsRead":
       //mark recipient of notification as read
       {
-        // recipient && recipient.send(data);
         clients[parsedData.content.recipient] &&
           io
             .to(clients[parsedData.content.recipient].id)
@@ -136,7 +115,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
       break;
     case "markNotificationViewed":
       {
-        // user.send(data);
         clients[parsedData.content.userId] &&
           io
             .to(clients[parsedData.content.userId].id)
@@ -148,9 +126,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
         const messageSender = clients[parsedData.content.message.sender];
         const messageRecipient = clients[parsedData.content.message.recipient];
 
-        // messageRecipient && messageRecipient.send(data);
-        // messageSender && messageSender.send(data);
-
         messageRecipient &&
           io.to(messageRecipient.id).emit("message", parsedData);
         messageSender && io.to(messageSender.id).emit("message", parsedData);
@@ -159,8 +134,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
     case "friendRequest":
       //send both requester and recipient of request data
       {
-        // requester && requester.send(data);
-        // recipient && recipient.send(data);
         clients[parsedData.content.requester] &&
           io
             .to(clients[parsedData.content.requester].id)
@@ -173,12 +146,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
       break;
     case "editPost":
       {
-        // console.log("editing post in server socket");
-        // console.log(parsedData);
-        // Object.values(clients).map((client) => {
-        //   client.send(data);
-        // });
-
         io.emit("message", parsedData);
       }
       break;
@@ -192,34 +159,6 @@ subscriber.subscribe("commCenter", (data, channel) => {
     }
   }
 });
-
-// wss.on("connection", (ws, req) => {
-//   const sessionId = uuidv4();
-//   ws.on("error", (error) => {
-//     console.log("web socket error is", error);
-//   });
-//   ws.on("close", () => {
-//     console.log("web socket closed");
-//   });
-
-//   console.log("recieved new connection");
-//   const userId = req.url.slice(1);
-//   console.log(userId);
-
-//   //create user session reference in clients object with property of userId;
-//   clients[userId] = ws;
-//   console.log(`${userId} connected`);
-//   clients[userId].send(
-//     JSON.stringify({ type: "data", content: { message: "welcome" } })
-//   );
-
-//   //web socket listening for message events from client
-//   ws.on("message", (data) => {
-//     console.log("message is");
-//     data = data.toString();
-//     publisher.publish("commCenter", data);
-//   });
-// });
 
 const start = async () => {
   try {

@@ -12,7 +12,7 @@ import { useUpdateEventsMutation } from "./CalenderSlice";
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [todayString, setTodayString] = useState("");
-  console.log("today is ", todayString);
+  // console.log("today is ", todayString);
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
@@ -21,7 +21,7 @@ export default function DashCal() {
   let todaysEvents;
   if (!isLoading) {
     todaysEvents = data.events.filter(
-      (event) => event.dateString == todayString
+      (event) => event.dateString === todayString
     );
   }
 
@@ -63,19 +63,17 @@ export default function DashCal() {
 
   useEffect(() => {
     if (!isLoading) {
-      console.log(data);
+      // console.log(data);
       const { eventsCopy, eventsMutated } = adjustEvents(data.events);
       if (eventsMutated) {
-        console.log("events are mutated");
-        console.log(eventsCopy);
+        // console.log("events are mutated");
+        // console.log(eventsCopy);
         updateEvents({ eventsCopy });
       }
     }
-  }, [data]);
+  }, [data, isLoading, updateEvents]);
   return (
     <Wrapper>
-      {/* {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />} */}
-
       <main className="dash-main">
         <div className="dash-header">
           <h1 className="dash-page-name">Calender</h1>

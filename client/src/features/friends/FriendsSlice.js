@@ -38,7 +38,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                 console.log("update friends");
                 console.log(message);
                 const friend = message.content.participants.filter(
-                  (participant) => participant.participantId != userId
+                  (participant) => participant.participantId !== userId
                 )[0];
                 updateCachedData((draft) => {
                   draft[message.content._id] = { ...message.content, friend };
@@ -54,12 +54,13 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         const newResponseData = {};
         responseData.friends.map((res) => {
           const friend = res.participants.filter(
-            (participant) => participant.participantId != userId
+            (participant) => participant.participantId !== userId
           )[0];
           const user = res.participants.filter(
-            (participant) => participant.participantId == userId
+            (participant) => participant.participantId === userId
           )[0];
           newResponseData[res._id] = { ...res, friend, user };
+          return { friend, user };
         });
         return newResponseData;
       },
@@ -143,6 +144,6 @@ export const {
   useEditAllFriendsByUserMutation,
 } = extendedApiSlice;
 
-export const {} = friendsSlice.actions;
+// export const {} = friendsSlice.actions;
 
 export default friendsSlice.reducer;

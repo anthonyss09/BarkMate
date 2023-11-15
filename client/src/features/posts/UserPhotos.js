@@ -1,7 +1,5 @@
 import Wrapper from "../../assets/wrappers/UserPhotosW";
 import { useGetUserPostsQuery } from "../posts/PostsSlice";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../auth/authSlice";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useState } from "react";
@@ -11,12 +9,11 @@ import { Link, useParams } from "react-router-dom";
 import DotLoader from "react-spinners/DotLoader";
 
 export default function UserPhotos() {
-  // const { _id: userId } = useSelector(selectCurrentUser);
   const { userId } = useParams();
 
   const [showCarousel, setShowCarousel] = useState(false);
   const [selectedItem, setSelectedItem] = useState(0);
-  const { data, isLoading, isSuccess, isError } = useGetUserPostsQuery(userId);
+  const { data, isSuccess } = useGetUserPostsQuery(userId);
 
   const handleClick = () => {
     setShowCarousel(!showCarousel);
@@ -34,6 +31,7 @@ export default function UserPhotos() {
               handleClick();
               setSelectedItem(index);
             }}
+            alt="the post"
             src={post.postImageUrl}
             className={`user-photo ${
               showCarousel ? "user-photo-carousel" : ""

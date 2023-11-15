@@ -1,5 +1,4 @@
 import Wrapper from "../../assets/wrappers/ChatLineW";
-import jennieMax from "../../assets/images/jennie&maxSmall.jpg";
 
 export default function ChatLineUser({ profileImageUrl, text, shadow }) {
   return (
@@ -12,7 +11,11 @@ export default function ChatLineUser({ profileImageUrl, text, shadow }) {
         >
           {text}
         </p>
-        <img src={profileImageUrl} className={`${shadow ? "" : ""}`} />
+        <img
+          src={profileImageUrl}
+          alt="user profile"
+          className={`${shadow ? "" : ""}`}
+        />
       </div>
     </Wrapper>
   );

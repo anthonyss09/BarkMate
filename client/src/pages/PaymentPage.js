@@ -1,4 +1,3 @@
-import Wrapper from "../assets/wrappers/PaymentPageW";
 import BrainTreeForm from "../components/BrianTreeForm";
 
 export default function PaymentPage() {

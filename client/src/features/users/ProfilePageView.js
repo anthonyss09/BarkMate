@@ -3,7 +3,6 @@ import HomeNav from "../../app/HomeNav";
 import { FaUserFriends } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import Footer from "../../app/Footer";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { HiCamera } from "react-icons/hi";
 import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
@@ -11,35 +10,28 @@ import { useGetProfileByIdQuery } from "./UsersSlice";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
-import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
 import mongoose from "mongoose";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import { useRequestFriendMutation } from "../friends/FriendsSlice";
 import QuickChat from "../chats/QuickChat";
 import { useState } from "react";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function ProfilePageView() {
   const Navigate = useNavigate();
 
   const { profileId } = useParams();
   console.log(profileId);
-  const {
-    data: userData,
-    error,
-    isLoading,
-  } = useGetProfileByIdQuery(profileId);
+  const { data: userData, isLoading } = useGetProfileByIdQuery(profileId);
 
-  // const urlPre = "../../data/uploads/";
   const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();
-  // const { data: currentUser } = useRefreshUserCredentialsQuery(localUser._id);
   const friendRequestId = new mongoose.Types.ObjectId();
   const [requestFriend] = useRequestFriendMutation();
   const [createNotification] = useCreateNotificationMutation();
@@ -192,8 +184,9 @@ export default function ProfilePageView() {
           <img
             src={userData.user.profileImageUrl}
             className="profile-page-image"
+            alt="user profile"
           />
-          {currentUser._id != profileId && (
+          {currentUser._id !== profileId && (
             <div className="profile-page-options">
               <div className="add-friend option" onClick={handleFriendRequest}>
                 + <FaUserFriends size={45} />
@@ -252,18 +245,60 @@ export default function ProfilePageView() {
             </div>
 
             <div className="profile-page-groups">
+              <div className="construction">
+                <div className="construction-center">
+                  {" "}
+                  <h1 className="construction-header">Feature unavailable</h1>
+                  <p className="construction-p">
+                    If you would like to see new features such as groups{" "}
+                    <Link to="/contact" className="link construction-link">
+                      Contact us
+                    </Link>{" "}
+                    with your thoughts.
+                  </p>
+                </div>
+              </div>
               <h3 className="section-header">Our Groups</h3>
+
               <div className="groups-container">
                 <div className="group-single">
                   {" "}
-                  <img className="group-image" src={goodBoys} />
+                  <img className="group-image" src={goodBoys} alt="the group" />
                   <p className="group-name">The Local GoodBoys</p>
                 </div>
               </div>
             </div>
             <div className="profile-page-social-links">
+              <div className="construction">
+                <div className="construction-center">
+                  {" "}
+                  <h1 className="construction-header">Feature unavailable</h1>
+                  <p className="construction-p">
+                    If you would like to see new features such as links to
+                    social media
+                    <br />{" "}
+                    <Link to="/contact" className="link construction-link">
+                      Contact us
+                    </Link>{" "}
+                    with your thoughts.
+                  </p>
+                </div>
+              </div>
               <h3 className="section-header">Social links</h3>
-              these are links to our social media
+              <div className="social-links-container">
+                <div className="social-link-single icon-facebook">
+                  {" "}
+                  <FaFacebookSquare size={45} />
+                </div>
+                <div className="social-link-single icon-instagram">
+                  {" "}
+                  <FaInstagram size={45} />
+                </div>
+                <div className="social-link-single icon-twitter">
+                  {" "}
+                  <FaTwitter size={45} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -4,7 +4,6 @@ import { useCreateChatMutation } from "../chats/ChatsSlice";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
-import { useGetChatsQuery } from "../chats/ChatsSlice";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import { useNavigate } from "react-router-dom";
@@ -30,8 +29,6 @@ export default function QuickChat({
   const [createChat] = useCreateChatMutation();
   const [createNotification] = useCreateNotificationMutation();
   const id = new mongoose.Types.ObjectId();
-
-  const { data, error, isLoading } = useGetChatsQuery(currentUserId);
 
   const Navigate = useNavigate();
   const dispatch = useDispatch();
@@ -130,7 +127,11 @@ export default function QuickChat({
             onClick={handleMessageClick}
           />
           <div className="quick-chat-header">
-            <img src={recipientImageUrl} className="quick-chat-image" />
+            <img
+              src={recipientImageUrl}
+              alt="the recipient"
+              className="quick-chat-image"
+            />
             <div className="header-text">
               {" "}
               <span className="quick-chat-recipient">

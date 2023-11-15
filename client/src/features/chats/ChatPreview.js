@@ -16,7 +16,11 @@ export default memo(function ChatPreview({
         <aside className="chat-preview-main">
           {" "}
           <div to="/profileid">
-            <img src={profileImageUrl} className="chat-preview-image" />
+            <img
+              src={profileImageUrl}
+              className="chat-preview-image"
+              alt="user profile"
+            />
           </div>
           <div className="chat-preview-body">
             <div className="chat-name">{profileName}</div>

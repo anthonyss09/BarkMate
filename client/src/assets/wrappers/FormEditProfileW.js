@@ -20,7 +20,6 @@ const Wrapper = styled.section`
     letter-spacing: 0.06rem;
   }
   .edit-profile-name {
-    // text-align: center;
     font-size: 1.6rem;
     font-weight: 400;
     border-radius: 3rem;

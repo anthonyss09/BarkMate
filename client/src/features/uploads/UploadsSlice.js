@@ -1,5 +1,4 @@
 import { apiSlice } from "../api/apiSlice";
-import { createSlice } from "@reduxjs/toolkit";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

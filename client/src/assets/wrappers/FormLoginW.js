@@ -7,9 +7,9 @@ const Wrapper = styled.section`
     max-width: 60vw;
   }
   .btn-register {
-    margin-bottom: 1rem;
     width: 10rem;
     height: 4rem;
+    margin-bottom: 1rem;
     border-radius: 3rem;
     color: white;
     background: var(--grey-60);

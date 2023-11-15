@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import meshGradient from "../images/mesh-gradient.png";
 
 const Wrapper = styled.nav`
   .bars {
@@ -16,20 +15,14 @@ const Wrapper = styled.nav`
     margin-right: 1rem;
     padding: 0.4rem 1rem;
     border: none;
-    // color: var(--federal-blue);
     color: var(--charcoal);
     font-weight: 600;
     background: rgb(248, 248, 248, 0.8);
     box-shadow: 3px 0.5px 6px rgb(180, 180, 180);
   }
   .btn-login:hover {
-    // background: var(--space-cadet);
-    // background: var(--med-bright-blue);
-    // color: white;
-    // background: var(--bark-pink);
     transition: all 0.3s ease;
     transform: scale(1.1);
-    // border: 1px solid rgb(230, 230, 230);
   }
   .icon-user {
     color: var(--space-cadet);
@@ -45,10 +38,6 @@ const Wrapper = styled.nav`
     cursor: pointer;
   }
   .logo {
-    // color: var(--space-cadet);
-    // font-size: 1.7rem;
-    // letter-spacing: 0.08rem;
-    // letter-spacing: 0.1rem;
     margin-left: 2rem;
   }
   .nav-icons-container {
@@ -65,12 +54,10 @@ const Wrapper = styled.nav`
     background: white;
     z-index: 7;
     border-bottom: 1px solid rgb(244, 244, 244);
-    // margin-bottom: 0.4rem;
   }
   .nav-main-landing {
     border: none;
     z-index: 20;
-    // opacity: 0.95;
     border-bottom: 2px solid rgb(240, 240, 240);
   }
   .nav-profile-pic {

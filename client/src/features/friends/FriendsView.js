@@ -15,7 +15,6 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
   let friendRequestedContent;
   let userRequestedContent;
   let userFriendsContent;
-  const urlPre = "../../data/uploads/";
   const { data: friends, isLoading } = useGetFriendsQuery(currentUser._id);
   const [acceptFriend] = useAcceptFriendMutation();
   const [declineFriend] = useDeclineFriendMutation();
@@ -29,7 +28,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
     friendRequested = Object.values(friends)
       .filter((friend) => friend.recipient === currentUser._id)
       .filter((friend) => friend.recipientStatus !== "friends")
-      .filter((friend) => friend.recipientStatus != "declined");
+      .filter((friend) => friend.recipientStatus !== "declined");
 
     userRequested = Object.values(friends)
       .filter((friend) => friend.recipient !== currentUser._id)
@@ -49,6 +48,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                   <img
                     src={friend.friend.participantProfileImageUrl}
                     className="friend-image"
+                    alt="the friend"
                   />
                 </Link>
 
@@ -105,6 +105,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                   <img
                     src={friend.friend.participantProfileImageUrl}
                     className="friend-image"
+                    alt="the friend"
                   />
                 </Link>
                 <span className="friend-name">
@@ -134,6 +135,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                   <img
                     src={friend.friend.participantProfileImageUrl}
                     className="friend-image"
+                    alt="the friend"
                   />
                 </Link>
                 <span className="friend-name">

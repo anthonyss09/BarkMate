@@ -1,24 +1,17 @@
 import Wrapper from "../assets/wrappers/SectionLandingW";
-import profilePreviewJM from "../assets/images/profilePreview2.jpg";
 import StacyLanding from "../assets/images/stacyLanding.jpeg";
-import { FaDog } from "react-icons/fa";
-import { LucideDog } from "lucide-react";
 import postLanding from "../assets/images/postLanding.jpeg";
-import { FiCamera } from "react-icons/fi";
-import chatExample from "../assets/images/chatExample.jpeg";
 import ChatLineUser from "../features/chats/ChatLineUser";
 import ChatLineFriend from "../features/chats/ChatLineFriend";
 import deanBowie from "../assets/images/dean&bowieSmall.jpg";
 import stacyProfile from "../assets/images/stacyProfile.jpg";
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
 import { IoLogoVenmo } from "react-icons/io5";
 
 export default function SectionLanding() {
   return (
     <Wrapper>
       <section className="section-landing-main">
-        {/* <Logo logoClass="logo-payment" iconClass="icon-payment" size={45} /> */}
         <div className="section-landing-center section-landing-header">
           <h1>
             <span className="span-connect">
@@ -26,12 +19,9 @@ export default function SectionLanding() {
               Connect, <br />
               meet,
             </span>
-            {/* <br /> <span className="span-share">& </span> <br /> */}
             <br />
             <span className="span-responsibilities"> share the leash.</span>
             <br />
-            {/* <LucideDog size={75} className="icon-dog" /> */}
-            {/* <span className="bark">bark</span> */}
             <div className="btn-join ">
               {" "}
               <Link to="/register" className="link">
@@ -40,7 +30,11 @@ export default function SectionLanding() {
             </div>
           </h1>
           <div className="section-landing-image-jm-container">
-            <img src={StacyLanding} className="section-landing-image-jm" />
+            <img
+              src={StacyLanding}
+              alt="stacy"
+              className="section-landing-image-jm"
+            />
           </div>
         </div>
         <div className="section-landing-center section-landing-chat-center">
@@ -77,13 +71,15 @@ export default function SectionLanding() {
             <Link to="/about" className="link btn">
               <button className="btn btn-learn">learn more</button>
             </Link>
-            {/* <FiCamera size={55} className="icon-dog" />
-            <span className="bark">bark</span> */}
           </h1>
         </div>
         <div className="section-landing-center section-landing-center-column section-landing-post">
           {" "}
-          <img src={postLanding} className="section-landing-image-post" />
+          <img
+            src={postLanding}
+            alt="post"
+            className="section-landing-image-post"
+          />
         </div>
         <div className="section-landing-center section-landing-center-column">
           {" "}
@@ -91,8 +87,6 @@ export default function SectionLanding() {
             Bark Mate is funded by user tips. If you enjoy the project and would
             like see new features please consider contributing a tip.
             <br />
-            {/* <FiCamera size={55} className="icon-dog" />
-            <span className="bark">bark</span> */}
             <Link to="/payment" className="link btn btn-tip">
               <IoLogoVenmo size={25} className="icon-venmo" />
               Tip Bark Mate

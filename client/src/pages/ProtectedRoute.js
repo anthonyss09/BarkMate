@@ -1,15 +1,13 @@
-import { selectCurrentUser, selectUserToken } from "../features/auth/authSlice";
-import { useSelector } from "react-redux";
+// import { selectCurrentUser, selectUserToken } from "../features/auth/authSlice";
+// import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useGetAuthorizationMutation } from "../features/auth/authSlice";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 
 export default function ProtectedRoute({ children }) {
-  const user = useSelector(selectCurrentUser);
-  const token = useSelector(selectUserToken);
+  // const user = useSelector(selectCurrentUser);
+  // const token = useSelector(selectUserToken);
 
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,19 +16,18 @@ export default function ProtectedRoute({ children }) {
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token")) || "token";
-    console.log("the token is", token);
 
     const fetchAuth = async (token) => {
       try {
         const response = await getAuth(token);
-        console.log(response.data.authorization);
+        // console.log(response.data.authorization);
         setIsAuthorized(response.data.authorization);
         setIsLoading(false);
       } catch (error) {}
     };
 
     fetchAuth(token);
-  }, []);
+  }, [getAuth]);
 
   if (isLoading) {
     return (

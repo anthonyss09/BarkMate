@@ -2,15 +2,12 @@ import LoginForm from "../features/auth/LoginForm";
 import { useState } from "react";
 import { useLoginUserMutation } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { useGetProfileByIdQuery } from "../features/users/UsersSlice";
 import { useDispatch } from "react-redux";
 import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 import { useSelector } from "react-redux";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 import Alert from "../features/alerts/Alert";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
-import { socket } from "../sockets/socketIo";
 
 export default function LoginPage() {
   const [login] = useLoginUserMutation();
@@ -19,14 +16,12 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [hiddenPassword, setHiddenPassword] = useState(" ");
   const [requesting, setRequesting] = useState(false);
 
   const { alertType, alertMessage, showAlert } = useSelector(selectAlertsInfo);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    let hiddenPassword = "";
     if (id === "email") {
       setEmail(value);
     } else {
@@ -84,7 +79,6 @@ export default function LoginPage() {
         email={email}
         password={password}
         requesting={requesting}
-        hiddenPassword={hiddenPassword}
       />
     </section>
   );

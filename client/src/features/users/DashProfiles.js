@@ -6,14 +6,13 @@ import { selectCurrentUser } from "../auth/authSlice";
 import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FiltersDropDown from "../../components/FiltersDropDown";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 
 export default function DashProfiles() {
   const currentUser = useSelector(selectCurrentUser);
   const { filters } = useSelector(selectUsersData);
   const distance = filters.distance;
-  const { data, error, isLoading, refetch } = useGetProfilesQuery({
+  const { data, isLoading } = useGetProfilesQuery({
     distance,
     coordinates: currentUser.location.coordinates,
     currentUserName: currentUser.firstName,

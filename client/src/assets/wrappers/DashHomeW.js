@@ -17,9 +17,7 @@ const Wrapper = styled.section`
     justify-content: center;
     background: white;
     position: absolute;
-    top: 9.4rem;
     top: 5rem;
-    right: 1rem;
     right: 1.6rem;
     overflow: hidden;
     border-radius: 5rem;
@@ -52,7 +50,8 @@ const Wrapper = styled.section`
     display: flex;
   }
   .icon-add {
-    color: var(--med-bright-blue);
+    // color: var(--med-bright-blue);
+    color: var(--federal-blue);
   }
   .p-top {
     color: rgb(170, 170, 167);
@@ -74,10 +73,8 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     border-top: 8px solid rgb(220, 220, 220);
-    // border-top: 8px solid rgb(244, 244, 244);
     gap: 8px;
     background: rgb(220, 220, 220);
-    // background: rgb(244, 244, 244);
   }
   .profiles-container {
     width: 100vw;
@@ -86,9 +83,7 @@ const Wrapper = styled.section`
     align-items: center;
     gap: 8px;
     background: rgb(220, 220, 220);
-    // background: rgb(244, 244, 244);
     border-top: 8px solid rgb(244, 244, 244);
-    // border-top: 8px solid rgb(220, 220, 220);
   }
   .background-white {
     background: white;

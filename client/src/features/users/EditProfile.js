@@ -10,9 +10,6 @@ import FormCheckbox from "../auth/FormCheckbox";
 import Footer from "../../app/Footer";
 import { useNavigate } from "react-router-dom";
 import { useUpdateUserMutation } from "../auth/authSlice";
-import { useUploadPicMutation } from "../uploads/UploadsSlice";
-import { useRefreshUserCredentialsQuery } from "../auth/authSlice";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
 import {
@@ -29,9 +26,7 @@ export default function EditProfile() {
 
   const Navigate = useNavigate();
 
-  // const urlPre = "../../data/uploads/";
   const [updateUser] = useUpdateUserMutation();
-  const [uploadPic] = useUploadPicMutation();
   const [editAllPostsByUser] = useEditAllPostsByUserMutation();
   const [editAllChatsByUser] = useEditAllChatsByUserMutation();
   const [editAllNotificationsByUser] = useEditAllNotificationsByUserMutation();
@@ -118,7 +113,6 @@ export default function EditProfile() {
       cloudinaryFormData.append("file", profileImage);
       cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
       try {
-        // const cloudinaryResult = await uploadPic(cloudinaryFormData);
         const cloudinaryResult = await axios.post(
           "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
           cloudinaryFormData
@@ -138,19 +132,19 @@ export default function EditProfile() {
         userId: user._id,
         update,
       });
-      const updatedUserChats = await editAllChatsByUser({
+      await editAllChatsByUser({
         userId: user._id,
         update,
       });
-      const updatedNotifications = await editAllNotificationsByUser({
+      await editAllNotificationsByUser({
         userId: user._id,
         update,
       });
-      const updatedFriends = await editAllFriendsByUser({
+      await editAllFriendsByUser({
         userId: user._id,
         update,
       });
-      const updatedComments = await editAllCommentsByUser({
+      await editAllCommentsByUser({
         userId: user._id,
         update,
       });
@@ -175,7 +169,7 @@ export default function EditProfile() {
     <Wrapper>
       <HomeNav />
       {savingProfileEdit && (
-        <div className="alert-container-second">
+        <div className="alert-container">
           <DotLoader color="lightBlue" size={85} className="beat-loader" />
         </div>
       )}
@@ -188,7 +182,11 @@ export default function EditProfile() {
           </h1>
 
           {!profileImage && (
-            <img src={user.profileImageUrl} className="profile-input-image" />
+            <img
+              src={user.profileImageUrl}
+              className="profile-input-image"
+              alt="user profile"
+            />
           )}
           <ProfileImageInput
             handleImageChange={handleImageChange}

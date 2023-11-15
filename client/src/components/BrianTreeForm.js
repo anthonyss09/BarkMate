@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import dropin from "braintree-web-drop-in";
 import braintree from "braintree-web";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -20,7 +19,6 @@ export default function BraintreeDropIn(props) {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // const [deviceData, setDeviceData] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,10 +64,22 @@ export default function BraintreeDropIn(props) {
               "submit",
               (event) => {
                 event.preventDefault();
+                setIsLoading(true);
 
                 hostedFieldInstance.tokenize((tokenizeErr, payload) => {
                   if (tokenizeErr) {
                     console.log(tokenizeErr);
+                    setIsLoading(false);
+                    dispatch(
+                      displayAlert({
+                        alertMessage: "Check all fields.",
+                        alertType: "danger",
+                      })
+                    );
+                    setTimeout(() => {
+                      dispatch(clearAlert());
+                      Navigate("/payment");
+                    }, 3000);
                     return;
                   }
                   //send nonce to server payload.nonce
@@ -82,10 +92,31 @@ export default function BraintreeDropIn(props) {
                     .then((result) => {
                       if (result.data.content.success) {
                         console.log("success");
-                        Navigate("/dashboard/home");
+                        setIsLoading(false);
+                        dispatch(
+                          displayAlert({
+                            alertMessage: "Success! Thank you for the Tip!",
+                            alertType: "success",
+                          })
+                        );
+                        setTimeout(() => {
+                          dispatch(clearAlert());
+                          Navigate("/dashboard/home");
+                        }, 3000);
                       } else {
                         console.log(result);
-                        console.log("error error error");
+                        setIsLoading(false);
+                        dispatch(
+                          displayAlert({
+                            alertMessage:
+                              "Something went wrong. Payment not processed.",
+                            alertType: "danger",
+                          })
+                        );
+                        setTimeout(() => {
+                          dispatch(clearAlert());
+                          Navigate("/payment");
+                        }, 3000);
                       }
                     });
                 });
@@ -175,7 +206,7 @@ export default function BraintreeDropIn(props) {
             setTimeout(() => {
               setIsLoading(false);
               dispatch(clearAlert());
-              Navigate("/payment");
+              Navigate("/dashboard/home");
             }, 3000);
           } else {
             console.log(result);
@@ -227,7 +258,7 @@ export default function BraintreeDropIn(props) {
         console.error("An error occurred:", err.message);
       }
     }
-  }, []);
+  }, [Navigate, dispatch]);
 
   return (
     <Wrapper>
@@ -241,7 +272,7 @@ export default function BraintreeDropIn(props) {
       <form id="form-payment" className="form-main">
         {" "}
         <div className="bt-drop-in-main form form-payment">
-          <Link to="/" className=" link">
+          <Link to="/dashboard/home" className=" link">
             <Logo logoClass="logo-payment" iconClass="icon-payment" />
           </Link>
           <h1 className="form-header payment-header">
@@ -261,26 +292,46 @@ export default function BraintreeDropIn(props) {
           />
 
           <div type="button" className="venmo-button btn-venmo-container">
-            <img src={venmoButtonSmall} className="btn btn-venmo" />
+            <img
+              src={venmoButtonSmall}
+              className="btn btn-venmo"
+              alt="venmo button"
+            />
           </div>
           <div className="text-cadet text-center">
             <p className="p-center">Or</p>
           </div>
-          <FormRow
-            id="card-number"
-            name="Card number"
-            type="text"
-            placeholder="4111 1111 1111 1111"
-          />
 
-          <FormRow id="cvv" name="cvv" type="text" placeholder="123" />
+          <div className="form-row">
+            <label className="form-label" htmlFor="card-number">
+              Card Number
+            </label>
+            <div
+              className="form-input"
+              type="text"
+              id="card-number"
+              name="Card number"
+            />
+          </div>
 
-          <FormRow
-            id="expiration-date"
-            name="Expiration date"
-            type="text"
-            placeholder="09/23"
-          />
+          <div className="form-row">
+            <label className="form-label" htmlFor="cvv">
+              Cvv
+            </label>
+            <div className="form-input" type="text" id="cvv" name="Cvv" />
+          </div>
+
+          <div className="form-row">
+            <label className="form-label" htmlFor="expiration-date">
+              Expiration
+            </label>
+            <div
+              className="form-input"
+              type="text"
+              id="expiration-date"
+              name="Expiration"
+            />
+          </div>
 
           <button
             className="bt-drop-in-submit-button btn btn-payment"

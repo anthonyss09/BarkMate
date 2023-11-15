@@ -1,11 +1,8 @@
 import Wrapper from "../../assets/wrappers/ProfilePageW";
 import HomeNav from "../../app/HomeNav";
-import { TbArrowBackUp } from "react-icons/tb";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaUserFriends } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import Footer from "../../app/Footer";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { HiCamera } from "react-icons/hi";
 import goodBoys from "../../assets/images/goodBoysSmall.jpg";
 import { MdLocationOn } from "react-icons/md";
@@ -28,7 +25,7 @@ export default function ProfilePage() {
             </div>
             <span className="members">23 members</span>
           </div>
-          <img src={goodBoys} className="profile-page-image" />
+          <img src={goodBoys} className="profile-page-image" alt="the group" />
 
           <div className="profile-page-options">
             <div className="add-friend option">

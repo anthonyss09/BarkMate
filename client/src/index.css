@@ -5,10 +5,13 @@ font-family: 'Dosis', sans-serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Noto Sans SC', sans-serif;
 font-family: 'Patrick Hand', cursive;
-font-family: 'Roboto Condensed', sans-serif;
 font-family: 'Shantell Sans', cursive;
-font-family: 'Ubuntu', sans-serif;
 font-family: 'Ysabeau', sans-serif; */
+
+/* font-family: 'Ubuntu', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+ */
+
 
 /* color variables */
 :root {
@@ -71,19 +74,6 @@ font-family: 'Ysabeau', sans-serif; */
   --test-light-green: #eefef4;
   --test-light-pink: rgb(252, 221, 239);
 
-  /* --test-blue: #f2f6fe; */
-
-  /* --light-bright-blue: #fbfdfd;
-  --light-bright-blue: #ebf0f0;
-  --med-bright-blue: #ecf1f8;
-  --med-bright-blue: #f0f6fd;
-  --med-bright-blue: #fcfdfe;
-
-  --fun-purple: #eee3f7;
-  background: #fd72b1; */
-
-  /* font greys */
-
   --grey-60: rgb(60, 60, 60);
   --grey-80: rgb(80, 80, 80);
   --grey-100: rgb(100, 100, 100);
@@ -116,7 +106,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* font-family: "Signika Negative", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
+  font-family: "Roboto", sans-serif;
   position: relative;
 
 }
@@ -132,24 +122,17 @@ select {
   outline: none;
 }
 .alert {
-  /* position: fixed; */
-  /* top: 40vh;
-  left: 20vw; */
   background: white;
   z-index: 20;
   padding: 1rem 3rem;
   padding: 2rem 3rem;
-  /* border: 2px solid rgb(220, 220, 220); */
   border-radius: 1rem;
-  /* border-radius: 0.5rem; */
   box-shadow: 5px 2px 5px rgb(80, 80, 80);
-  /* box-shadow: var(--shadow-main-light); */
   max-width: 250px;
   color: rgb(80, 80, 80);
   color: var(--federal-blue);
-  /* color: var(--med-bright-blue); */
+  color: var(--space-cadet);
   font-weight: bold;
-  
 }
 .alert-container {
   position: fixed;
@@ -157,8 +140,6 @@ select {
   left: 0;
   height: 100vh;
   width: 100vw;
-  /* display: grid;
-  place-items: center; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,20 +155,11 @@ select {
   width: 100vw;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   z-index: 20;
   box-sizing: border-box;
 }
 .beat-loader {
   width: min-content;
-
-  /* align-self: center;
-  justify-self: center;
-  padding: auto; */
-  /* margin-top: 20vh; */
-  /* top: 40vh;
-  left: 40vw; */
-  /* position: fixed; */
 }
 
 .btn {
@@ -211,9 +183,9 @@ select {
     padding: 1rem 2rem;
     margin-top: 0.6rem;
 }
-.danger {
-  /* color: var(--test-red); */
-}
+/* .danger {
+  color: var(--test-red);
+} */
 .dash-page-name {
   height: 1.35rem;
   width: min-content;
@@ -221,8 +193,7 @@ select {
   padding: 1rem 6vw;
   background: rgb(244, 244, 244);
   font-size: 1.2rem;
-  letter-spacing: 0.2rem;
-  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0.1rem;
 }
 .dash-header {
   width: 100%;
@@ -242,7 +213,8 @@ select {
   font-size: 0.8rem;
   border-radius: 0.4rem;
   border-radius: 2rem;
-  border: 1px solid rgb(230, 230, 230);
+  border: 2px solid rgb(230, 230, 230);
+  /* border: 2px solid var(--test-blue); */
   background: white;
   display: flex;
   align-items: center;
@@ -404,6 +376,8 @@ select {
   resize: none;
   outline: none;
   font-size: 16px;
+  font-family: "Signika Negative", sans-serif;
+
 }
 .form-textarea::placeholder {
     color: rgb(180, 180, 180);
@@ -424,9 +398,6 @@ select {
 .icon-paw {
   margin: 0 0.4rem;
 }
-/* .landing-body {
-  padding-top: 4rem;
-} */
 .icon-venmo {
   color: var(--med-bright-blue);
 }
@@ -434,17 +405,12 @@ select {
   text-decoration: none;
   color: black;
 }
-.logo {
-  font-family: "Patrick Hand", cursive;
+/* .logo {
   color: var(--charcoal);
   display: flex;
   align-items: center;
   color: var(--federal-blue);
-      /* font-family: "Roboto Condensed", sans-serif; */
-
-  /* font-family: "Dosis", sans-serif; */
-
-}
+} */
 .no-content {
   background: white;
   width: 100vw;

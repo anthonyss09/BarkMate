@@ -23,6 +23,42 @@ const Wrapper = styled.main`
     border: 2px solid var(--test-blue);
     padding: 1rem 0;
   }
+  .construction {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(60, 60, 60, 0.6);
+    z-index: 20;
+    color: white;
+    display: grid;
+    place-items: center;
+  }
+  .construction-center {
+    text-align: center;
+    padding: 0 2rem;
+  }
+  .construction-header {
+    letter-spacing: 0.05rem;
+    color: var(--test-blue);
+    font-size: 1.5rem;
+  }
+  .construction-link {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--test-blue);
+    letter-spacing: 0.05rem;
+  }
+  .construction-link:hover {
+    cursor: pointer;
+  }
+  .construction-p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    color: white;
+  }
   .dog-detail {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
@@ -32,11 +68,9 @@ const Wrapper = styled.main`
     font-family: "Roboto Condensed", sans-serif;
   }
   .dog-detail-weight {
-    border: 2px solid var(--med-bright-green);
     border: 2px solid var(--med-font-blue);
   }
   .dog-detail-energy {
-    border: 2px solid var(--med-bright-blue);
     border: 2px solid var(--med-bright-blue);
   }
   .dog-detail-breed {
@@ -61,16 +95,27 @@ const Wrapper = styled.main`
   }
   .group-single {
     width: 120px;
+    width: min-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.4rem;
   }
   .groups-container {
-    padding: 0.8rem 0.2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  .icon-instagram {
+    color: rgb(225, 48, 108);
+  }
+  .icon-facebook {
+    color: rgb(66, 103, 178);
   }
   .icon-star {
     color: var(--federal-blue);
+  }
+  .icon-twitter {
+    color: rgb(29, 161, 242);
   }
   .location-container {
     padding: 0.2rem 0;
@@ -78,12 +123,10 @@ const Wrapper = styled.main`
   }
   .location {
     font-size: 0.6rem;
-    color: rgb(100, 100, 100);
     color: var(--med-font-blue);
     font-weight: bold;
   }
   .message-friend {
-    color: var(--med-bright-green);
     color: var(--med-font-blue);
   }
   .members {
@@ -98,7 +141,6 @@ const Wrapper = styled.main`
     margin-bottom: 0.4rem;
   }
   .option {
-    // border: 2px solid rgb(240, 240, 240);
     padding: 0.4rem 0.8rem;
     border-radius: 1rem;
   }
@@ -116,7 +158,9 @@ const Wrapper = styled.main`
     margin-bottom: 1.6rem;
   }
   .profile-page-groups {
+    padding: 0.8rem 0.2rem;
     margin-bottom: 1.6rem;
+    position: relative;
   }
   .profile-page-header {
     display: flex;
@@ -129,7 +173,6 @@ const Wrapper = styled.main`
     margin-bottom: 0.6rem;
   }
   .profile-page-main {
-    // padding-top: 3rem;
     padding-bottom: 2rem;
     margin-top: -1.4rem;
   }
@@ -159,10 +202,12 @@ const Wrapper = styled.main`
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(244, 244, 244);
-    // margin-top: -5rem;
   }
   .profile-page-social-links {
+    min-height: 120px;
+    position: relative;
     margin-top: 1rem;
+    padding: 0.8rem 0.2rem;
   }
   .profile-page-views {
     display: flex;
@@ -179,6 +224,10 @@ const Wrapper = styled.main`
     font-size: 1rem;
     margin-bottom: 0.4rem;
     font-family: "Roboto Condensed", sans-serif;
+  }
+  .social-links-container {
+    display: flex;
+    gap: 1rem;
   }
   .time-slot {
     padding: 0.4rem 0.8rem;

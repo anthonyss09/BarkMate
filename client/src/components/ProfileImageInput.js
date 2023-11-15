@@ -9,7 +9,11 @@ export default function ProfileImageInput({
     <div className="form-row">
       {profileImage && (
         <div className="profile-image-container">
-          <img src={imageUrl} className="profile-image profile-input-image" />
+          <img
+            src={imageUrl}
+            alt="pofile"
+            className="profile-image profile-input-image"
+          />
         </div>
       )}
       <label htmlFor="image" className="form-label form-label-image">

@@ -1,40 +1,31 @@
 import Wrapper from "../../assets/wrappers/DashHomeW";
 import Post from "./Post";
-import { useSelector, useRef } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectCurrentUser,
   useRefreshUserCredentialsQuery,
 } from "../auth/authSlice";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import CreatePost from "./CreatePost";
 import { useGetPostsQuery } from "../posts/PostsSlice";
-import BeatLoader from "react-spinners/BeatLoader";
 import DotLoader from "react-spinners/DotLoader";
 import { IoIosAdd } from "react-icons/io";
 
 export default function DashHome() {
   const [pageNumber, setPageNumber] = useState(1);
   let user = useSelector(selectCurrentUser);
-  const userId = user._id;
+  const updatedUserRef = useRef(null);
+  const userRef = useRef(user);
+  const userId = userRef.current._id;
   const coordinates = user.location.coordinates;
-  const {
-    data: currentUser,
-    isLoading: loadingUser,
-    isSuccess,
-  } = useRefreshUserCredentialsQuery(userId);
+  const { data: currentUser, isSuccess } =
+    useRefreshUserCredentialsQuery(userId);
 
-  // console.log(currentUser);
-  // console.log(coordinates.toString());
-  const {
-    data: postsData,
-    isLoading: loadingPosts,
-    refetch,
-  } = useGetPostsQuery({
+  const { data: postsData, isLoading: loadingPosts } = useGetPostsQuery({
     friends: JSON.stringify(user.friends),
     coordinates,
     pageNumber,
   });
-  // console.log(postsData);
 
   let posts;
   if (!loadingPosts) {
@@ -43,7 +34,7 @@ export default function DashHome() {
 
   const [showCreatePost, setShowCreatePost] = useState(false);
 
-  let updatedUser;
+  // let updatedUser;
 
   const [scrolled, setScrolled] = useState("");
   const [requesting, setRequesting] = useState(false);
@@ -65,11 +56,11 @@ export default function DashHome() {
   });
 
   useEffect(() => {
-    updatedUser = currentUser ? currentUser.user : user;
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-    user = updatedUser;
+    updatedUserRef.current = currentUser ? currentUser.user : user;
+    localStorage.setItem("user", JSON.stringify(updatedUserRef.current));
+    userRef.current = updatedUserRef.current;
     window.scrollTo(0, 0);
-  }, [currentUser]);
+  }, [currentUser, user]);
 
   const handleClick = () => {
     setShowCreatePost(!showCreatePost);
@@ -79,9 +70,6 @@ export default function DashHome() {
   if (!loadingPosts && isSuccess) {
     content = postsData ? (
       posts.map((post, index) => {
-        const imageTag = post.imageObject
-          ? JSON.parse(post.imageObject).imageTag
-          : "";
         return (
           <Post
             authorId={post.authorId}

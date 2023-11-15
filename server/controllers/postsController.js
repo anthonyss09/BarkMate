@@ -52,7 +52,7 @@ const createPost = async (req, res) => {
       postImageUrl,
       authorImageUrl,
     });
-    console.log(post);
+    // console.log(post);
     res
       .status(StatusCodes.CREATED)
       .json({ content: post, message: "Posted successfully!" });
@@ -64,9 +64,8 @@ const createPost = async (req, res) => {
 
 const getPosts = async (req, res) => {
   //get user coords
-  console.log("getting posts");
+  // console.log("getting posts");
   const { coordinates, friends, pageNumber } = req.query;
-  console.log(pageNumber);
   const parsedFriends = JSON.parse(friends);
   //posts within 5 miles
   const distanceInMeters = 8046.7;
@@ -80,19 +79,6 @@ const getPosts = async (req, res) => {
       friends: { $in: parsedFriends },
     });
     const friendIds = friendlyUsers.map((user) => user._id);
-
-    // const postsByFriends = await Post.find({
-    //   authorId: { $in: friendIds },
-    // }).limit(pageNumber * 2);
-
-    // const nearbyPosts = await Post.find({
-    //   location: {
-    //     $near: {
-    //       $geometry: { type: "Point", coordinates: newCoords },
-    //       $maxDistance: distanceInMeters,
-    //     },
-    //   },
-    // }).limit(pageNumber * 2);
 
     const posts = await Post.find({
       $or: [
@@ -108,10 +94,6 @@ const getPosts = async (req, res) => {
     })
       .sort({ createdAt: -1 })
       .limit(5 * pageNumber);
-
-    // const posts = postsByFriends.concat(nearbyPosts).sort((x, y) => {
-    //   return y.createdAt - x.createdAt;
-    // });
 
     res.status(StatusCodes.OK).json({ posts });
   } catch (error) {
@@ -164,7 +146,6 @@ const getUserPosts = async (req, res) => {
 const editAllPostsByUser = async (req, res) => {
   const { userId, update } = req.body;
 
-  console.log(update.profileImageUrl);
   try {
     const userPosts = await Post.updateMany(
       { authorId: userId },
@@ -201,11 +182,11 @@ const createComment = async (req, res) => {
 
 const getComments = async (req, res) => {
   const { postId } = req.query;
-  console.log("fetching comments");
+  // console.log("fetching comments");
 
   try {
     const comments = await Comment.find({ postId: postId });
-    console.log("successfully found comments", comments);
+    // console.log("successfully found comments", comments);
     res
       .status(StatusCodes.OK)
       .json({ content: comments, message: "Successfully retrieved comments!" });
@@ -216,7 +197,7 @@ const getComments = async (req, res) => {
 };
 
 const editAllCommentsByUser = async (req, res) => {
-  console.log("editing all comments by user");
+  // console.log("editing all comments by user");
   const { userId, update } = req.body;
 
   try {

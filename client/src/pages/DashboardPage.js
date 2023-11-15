@@ -10,7 +10,6 @@ export default function DashboardPage() {
         {" "}
         <NavBar />
       </div>
-      {/* <TaskBar /> */}
       <div className="outlet-container">
         <TaskBar />
         <Outlet />

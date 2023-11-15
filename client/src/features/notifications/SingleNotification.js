@@ -1,7 +1,7 @@
 import Wrapper from "../../assets/wrappers/SingleNotification";
 import { Link } from "react-router-dom";
 
-export default function SingleNotification({ index, path, notification }) {
+export default function SingleNotification({ index, path }) {
   return (
     <Wrapper>
       {" "}

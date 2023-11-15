@@ -1,6 +1,5 @@
 import { socket } from "../../sockets/socketIo";
 import { apiSlice } from "../api/apiSlice";
-import { createSlice } from "@reduxjs/toolkit";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -48,14 +47,12 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         socket.on("message", (message) => {
           switch (message.type) {
             case "editPost":
-              {
-                updateCachedData((draft) => {
-                  const targetPost = draft[message.content.postId];
-                  targetPost[Object.keys(message.content.update)[0]] =
-                    Object.values(message.content.update)[0];
-                  draft[message.content.postId] = targetPost;
-                });
-              }
+              updateCachedData((draft) => {
+                const targetPost = draft[message.content.postId];
+                targetPost[Object.keys(message.content.update)[0]] =
+                  Object.values(message.content.update)[0];
+                draft[message.content.postId] = targetPost;
+              });
               break;
             default:
               break;
@@ -66,6 +63,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         const newResponseData = {};
         responseData.posts.map((post) => {
           newResponseData[post._id] = post;
+          return newResponseData[post._id];
         });
         return newResponseData;
       },
@@ -127,22 +125,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         socket.on("message", (message) => {
           switch (message.type) {
             case "createComment":
-              {
-                // updateCachedData((draft) => {
-                //   draft.content.push(message.content);
-                // });
-                if (postId === message.content.postId) {
-                  dispatch(
-                    extendedApiSlice.util.updateQueryData(
-                      "getComments",
-                      (postId = message.content.postId),
-                      (draft) => {
-                        console.log("the draft id is ", postId);
-                        draft.content.push(message.content);
-                      }
-                    )
-                  );
-                }
+              if (postId === message.content.postId) {
+                dispatch(
+                  extendedApiSlice.util.updateQueryData(
+                    "getComments",
+                    (postId = message.content.postId),
+                    (draft) => {
+                      console.log("the draft id is ", postId);
+                      draft.content.push(message.content);
+                    }
+                  )
+                );
               }
               break;
             default:

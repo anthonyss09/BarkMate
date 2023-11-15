@@ -8,7 +8,6 @@ export default function LoginForm({
   handleLogin,
   email,
   password,
-  hiddenPassword,
   requesting,
 }) {
   return (

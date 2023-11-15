@@ -1,12 +1,8 @@
 import Wrapper from "../assets/wrappers/AboutPageW";
 import NavBar from "../app/HomeNav";
 import LandingNav from "../app/LandingNav";
-// import { PiDogBold } from "react-icons/pi";
-import { TbDog } from "react-icons/tb";
 import kelseyPetsTop from "../assets/images/kelseyPetsTop.JPG";
-import meSmile from "../assets/images/meSmile.jpeg";
 import Footer from "../app/Footer";
-import { FcDonate } from "react-icons/fc";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "../features/auth/authSlice";
@@ -25,11 +21,10 @@ export default function AboutPage() {
 
       <section className="about-page-main">
         <div className="row-one">
-          <img className="img img-one" src={kelseyPetsTop} />
+          <img className="img img-one" src={kelseyPetsTop} alt="dog" />
         </div>
         <div className="about-page-center">
           <h3 className="about-page-header">About</h3>
-          {/* <img className="img img-two" src={meSmile} /> */}
           <br />
           <div className="p-one">
             Hi! Welcome to Bark mate! <br />
