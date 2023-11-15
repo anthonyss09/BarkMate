@@ -57,6 +57,7 @@ export default function RegisterOne({
             <Logo logoClass="logo-nav" iconClass="icon-payment" />
           </Link>
           <FormSteps showRegisterOne={showRegisterOne} />
+
           <h1 className="form-header">
             Create Profile{" "}
             <p className="p-bottom">

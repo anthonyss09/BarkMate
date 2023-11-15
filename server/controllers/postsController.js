@@ -102,6 +102,19 @@ const getPosts = async (req, res) => {
   }
 };
 
+const getPost = async (req, res) => {
+  const { postId } = req.query;
+
+  try {
+    const targetPost = await Post.find({ _id: postId });
+    res
+      .status(StatusCodes.OK)
+      .json({ content: targetPost, message: "Found this post." });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
+  }
+};
+
 const editPost = async (req, res) => {
   const authorization = req.headers.authorization;
   const token = authorization.split(" ")[1];
@@ -218,6 +231,7 @@ const editAllCommentsByUser = async (req, res) => {
 export {
   createPost,
   getPosts,
+  getPost,
   editPost,
   getUserPosts,
   editAllPostsByUser,

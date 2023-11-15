@@ -8,7 +8,7 @@ const Wrapper = styled.aside`
   .big-sidebar-main {
     width: 100vw;
     height: 100vh;
-    background: rgb(252, 252, 252, 0.95);
+    background: rgb(252, 252, 252, 0.96);
     position: absolute;
     top: 0;
     left: 0;
@@ -62,10 +62,11 @@ const Wrapper = styled.aside`
     justify-content: center;
     gap: 0.6rem;
     font-weight: 500;
-    border: 1px solid rgb(220, 220, 220);
-    background: rgb(252, 252, 252, 0.8);
+    // border: 1px solid rgb(220, 220, 220);
+    // background: rgb(252, 252, 252, 0.8);
+    background: none;
     border-radius: 2rem;
-    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    // box-shadow: 5px 2px 5px rgb(80, 80, 80);
     height: 2.8rem;
     letter-spacing: 0.06rem;
   }
@@ -79,6 +80,7 @@ const Wrapper = styled.aside`
     align-items: center;
     height: 100vh;
     gap: 4vh;
+    gap: 1rem;
   }
   .links-container-small {
     display: flex;
@@ -87,7 +89,7 @@ const Wrapper = styled.aside`
   }
   .link-big {
     height: 2.8rem;
-    background: white;
+    // background: white;
   }
   .link-download {
   }

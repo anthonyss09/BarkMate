@@ -68,7 +68,7 @@ export default function RegisterThree({
       <section className="form-main">
         <form
           encType="multipart/form-data"
-          className="form"
+          className="form form-three"
           onSubmit={handleSubmit}
         >
           <Link to="/" className=" link link-register">

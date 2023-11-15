@@ -51,7 +51,11 @@ export default function NotificationsView({
           );
         case "posts":
           return (
-            <Link key={index} to={"#"} className="link">
+            <Link
+              key={index}
+              to={`/posts/${notification.postId}`}
+              className="link"
+            >
               <div
                 className={`notification-view-single ${
                   notification.is_viewed ? "notification-viewed" : ""

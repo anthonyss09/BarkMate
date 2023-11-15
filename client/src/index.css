@@ -366,6 +366,13 @@ select {
 .form-input::placeholder {
   color: rgb(180, 180, 180);
 }
+.form-select {
+    width: 90%;
+     border: none;
+  }
+.form-select:focus {
+   outline: none;
+  }
 .form-textarea {
   border-radius: 1.5rem;
   border: 2px solid var(--grey-240);
@@ -430,6 +437,10 @@ select {
   min-height: 90vh;
   min-height: 70vh;
   padding-bottom: 2rem;
+}
+.post-single-icon-back {
+  margin: 1rem;
+  margin-bottom: 0;
 }
 .profile-input-image {
   max-width: 200px;

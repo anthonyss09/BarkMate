@@ -22,6 +22,7 @@ import AboutPage from "./pages/AboutPage";
 import UserPhotos from "./features/posts/UserPhotos";
 import PaymentPage from "./pages/PaymentPage";
 import ContactForm from "./components/ContactForm";
+import PostSinglePage from "./features/posts/PostSinglePage";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
               <Route exact path="chats" element={<DashChats />} />
             </Route>
 
+            <Route exact path="/posts/:postId" element={<PostSinglePage />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/userProfile" element={<UserProfileView />} />
             <Route

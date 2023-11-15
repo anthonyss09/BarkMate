@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     color: var(--grey-60);
   }
   .steps-container {
-    width: 100vw;
+    width: 100%;
     display: flex;
     gap: 2rem;
     margin-bottom: 1rem;
@@ -45,6 +45,7 @@ const Wrapper = styled.div`
   }
   .step-circle-three {
     background: var(--federal-blue);
+    // background: var(--med-bright-blue);
   }
   .step-circle-active {
     box-shadow: 5px 2px 5px grey;

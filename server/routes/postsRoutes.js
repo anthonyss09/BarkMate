@@ -3,6 +3,7 @@ const router = express.Router();
 import {
   createPost,
   getPosts,
+  getPost,
   editPost,
   getUserPosts,
   editAllPostsByUser,
@@ -19,5 +20,6 @@ router.route("/edit-all-posts-by-user").post(editAllPostsByUser);
 router.route("/create-comment").post(createComment);
 router.route("/get-comments").get(getComments);
 router.route("/edit-all-comments-by-user").post(editAllCommentsByUser);
+router.route("/get-post").get(getPost);
 
 export default router;

@@ -69,6 +69,13 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
+    getPost: builder.query({
+      query: (postId) => ({
+        url: `/posts/get-post?postId=${postId}`,
+        method: "GET",
+      }),
+    }),
+
     editPost: builder.mutation({
       query: ({ postId, update, currentUserCoords }) => ({
         url: "/posts/edit-post",
@@ -166,6 +173,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 export const {
   useCreatePostMutation,
   useGetPostsQuery,
+  useGetPostQuery,
   useEditPostMutation,
   useGetUserPostsQuery,
   useEditAllPostsByUserMutation,

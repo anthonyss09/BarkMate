@@ -12,13 +12,15 @@ const Wrapper = styled.div`
   }
   .event-date {
     font-weight: bold;
+    color: black;
+    font-size: 0.9rem;
   }
   .event-list {
     padding: 0 2rem;
     padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.6rem;
   }
   .no-events {
     display: grid;
@@ -33,8 +35,12 @@ const Wrapper = styled.div`
   .event-note {
     margin-left: 0.6rem;
     color: var(--test-red);
+    color: var(--charcoal);
     font-weight: bold;
     letter-spacing: 0.03rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 2rem;
   }
   .events-row-header {
     min-height: 15vw;
@@ -55,6 +61,8 @@ const Wrapper = styled.div`
   }
   .event-time {
     font-weight: bold;
+    color: rgb(140, 140, 140);
+    margin-bottom: 0.2rem;
   }
   .number-circle {
     color: var(--test-red);

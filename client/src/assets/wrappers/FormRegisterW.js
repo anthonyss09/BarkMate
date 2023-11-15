@@ -19,12 +19,26 @@ const Wrapper = styled.section`
   .link-register {
     margin: 1rem 0;
   }
+  .form-three {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-header {
+    max-width: 76%;
+    min-height: 4rem;
+  }
   .p-bottom {
     color: var(--grey-80);
     margin-bottom: 1rem;
   }
   .span-login {
     color: var(--bark-pink);
+  }
+
+  @media (max-width: 400px) {
+    .form-header {
+      max-width: 86%;
+    }
   }
 `;
 

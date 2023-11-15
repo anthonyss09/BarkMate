@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
-
   select {
     width: 70%;
     height: 3.4rem;
@@ -79,33 +78,35 @@ const Wrapper = styled.aside`
     border-top: 10px solid rgb(244, 244, 244);
     margin-top: -1rem;
   }
+  .add-event-center {
+    // max-width: 300px;
+    justify-self: center;
+  }
   .add-event-header {
-    margin-left: 4rem;
   }
   .add-event-main {
     height: min-content;
-    width: 90vw;
     position: fixed;
-    top: 2rem;
-    right: 1.4rem;
+    top: 0;
+    left: 0;
+    width: 100vw;
     background: white;
     z-index: 4;
     display: flex;
     flex-direction: column;
+    align-items: center;
     box-sizing: border-box;
     border: 1px solid rgb(215, 215, 215);
-    border-radius: 2rem;
     box-shadow: 5px 2px 5px grey;
     z-index: 8;
     border-left: 1px solid rgb(220, 220, 220);
   }
   .add-event-title {
-    display: flex;
-    background: var(--test-blue);
+    text-align: center;
     margin-bottom: 1rem;
     padding: 1rem 0;
-    align-items: center;
-    border-radius: 2rem 2rem 0 0;
+    letter-spacing: 0.05rem;
+     margin: 1rem;
   }
   .btn {
     display: flex;
@@ -125,18 +126,11 @@ const Wrapper = styled.aside`
     margin-left: auto;
   }
   .btn-discard-event {
-    margin-left: 1rem;
-    width: 10rem;
-    font-size: 0.9rem;
-    color: black;
-    margin: 0;
-    margin: 1rem 0 0 1rem;
-    width: 2rem;
-    height: 2rem;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-size: 1.4rem;
-    background: var(--test-blue)
+    width: 4rem;
+    border: 2px solid black;
+    border: 2px solid var(--test-blue);
+    background: white;
+  
   }
   .date-picker {
   }
@@ -146,10 +140,6 @@ const Wrapper = styled.aside`
   @media (max-width: 400px) {    
       select {
         width: 10.5rem;
-      }
-      .add-event-main {
-        top: 2rem;
-        right: 1.2rem;
       }
     }
   }

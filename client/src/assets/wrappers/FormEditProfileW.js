@@ -2,10 +2,14 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .btn-discard {
-    background: var(--test-blue);
-    color: var(--space-cadet);
+    width: 100px;
+    margin: 1rem auto;
+    background: white;
+    border: 2px solid rgb(80, 80, 80);
   }
   .btn-save {
+    width: 100px;
+    margin: 1rem auto;
     background: var(--med-bright-blue);
     color: white;
   }

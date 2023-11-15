@@ -130,75 +130,76 @@ export default function AddEvent({ setShowAddEvent }) {
         {addingEvent && (
           <BeatLoader size={35} color="lightBlue" className="beat-loader" />
         )}
-
-        <div className="add-event-title">
-          {" "}
-          <button
-            className="btn btn-discard-event"
-            onClick={() => {
-              setShowAddEvent(false);
-            }}
-          >
-            X
-          </button>
-          <h1 className="add-event-header">New Event</h1>
-        </div>
-
-        <div className="add-event-body">
-          <div className="add-date-row">
-            <label className="add-date-label" htmlFor="selectDate">
-              Select date:
-            </label>
-            <DatePicker id="selectDate" onChange={handleDateChange} />
+        <div className="add-event-center">
+          <div className="add-event-title">
+            {" "}
+            <h1 className="add-event-header">New Event</h1>
           </div>
-          <div className="add-date-row">
-            <label className="add-date-label" htmlFor="selectDate">
-              Select time:
-            </label>
-            <TimePicker
-              id="selectDate"
-              className="time-picker"
-              onChange={handleTimeChange}
+
+          <div className="add-event-body">
+            <div className="add-date-row">
+              <label className="add-date-label" htmlFor="selectDate">
+                Select date:
+              </label>
+              <DatePicker id="selectDate" onChange={handleDateChange} />
+            </div>
+            <div className="add-date-row">
+              <label className="add-date-label" htmlFor="selectDate">
+                Select time:
+              </label>
+              <TimePicker
+                id="selectDate"
+                className="time-picker"
+                onChange={handleTimeChange}
+              />
+            </div>
+            <div className="add-date-row">
+              {" "}
+              <label className="add-date-label" htmlFor="selectDate">
+                Occurence:
+              </label>
+              <select
+                name="filters"
+                id="distance"
+                className="date-picker"
+                required
+                defaultValue="select occurence"
+                onChange={handleEventOccurrenceChange}
+              >
+                <option value="" aria-disabled>
+                  select occurence
+                </option>
+                <option>one time</option>
+                <option>daily</option>
+                <option>weekly</option>
+                <option>monthly</option>
+              </select>
+            </div>
+            <textarea
+              id="note"
+              rows={3}
+              placeholder="add note..."
+              className="add-description-textarea"
+              onChange={handleEventNoteChange}
             />
           </div>
-          <div className="add-date-row">
-            {" "}
-            <label className="add-date-label" htmlFor="selectDate">
-              Occurence:
-            </label>
-            <select
-              name="filters"
-              id="distance"
-              className="date-picker"
-              required
-              defaultValue="select occurence"
-              onChange={handleEventOccurrenceChange}
+          <div className="add-event-buttons">
+            <button
+              className="btn btn-discard-event"
+              onClick={() => {
+                setShowAddEvent(false);
+              }}
             >
-              <option value="" aria-disabled>
-                select occurence
-              </option>
-              <option>one time</option>
-              <option>daily</option>
-              <option>weekly</option>
-              <option>monthly</option>
-            </select>
+              X
+            </button>
+            <button
+              type="submit"
+              className="btn btn-add-event"
+              disabled={addingEvent}
+            >
+              <IoIosAdd size={30} />
+            </button>
           </div>
-          <textarea
-            id="note"
-            rows={3}
-            placeholder="add note..."
-            className="add-description-textarea"
-            onChange={handleEventNoteChange}
-          />
-        </div>
-        <div className="add-event-buttons">
-          <button
-            type="submit"
-            className="btn btn-add-event"
-            disabled={addingEvent}
-          >
-            <IoIosAdd size={30} />
-          </button>
         </div>
       </form>
     </Wrapper>
