@@ -77,16 +77,16 @@ io.on("connection", (socket) => {
 });
 
 //during development
-// const subscriber = redis.createClient();
-// const publisher = redis.createClient();
+const subscriber = redis.createClient();
+const publisher = redis.createClient();
 
-const subscriber = redis.createClient({
-  url: "redis://rds:6379",
-});
+// const subscriber = redis.createClient({
+//   url: "redis://rds:6379",
+// });
 
-const publisher = redis.createClient({
-  url: "redis://rds:6379",
-});
+// const publisher = redis.createClient({
+//   url: "redis://rds:6379",
+// });
 
 await publisher.connect();
 await subscriber.connect();

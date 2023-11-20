@@ -31,7 +31,16 @@ const Wrapper = styled.main`
     left: 0;
     background: rgb(60, 60, 60, 0.6);
     z-index: 20;
-    color: white;
+    // color: white;
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: rgb(250, 250, 250, 0.4);
+    background: rgb(252, 252, 252, 0.4);
     display: grid;
     place-items: center;
   }
@@ -41,13 +50,15 @@ const Wrapper = styled.main`
   }
   .construction-header {
     letter-spacing: 0.05rem;
-    color: var(--test-blue);
+    // color: var(--test-blue);
+    color: var(--med-font-blue);
     font-size: 1.5rem;
   }
   .construction-link {
     font-size: 1.1rem;
     font-weight: bold;
     color: var(--test-blue);
+    color: var(--med-bright-blue);
     letter-spacing: 0.05rem;
   }
   .construction-link:hover {
@@ -58,6 +69,10 @@ const Wrapper = styled.main`
     font-weight: bold;
     margin-bottom: 0.4rem;
     color: white;
+
+    // font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+    color: black;
   }
   .dog-detail {
     padding: 0.4rem 0.8rem;

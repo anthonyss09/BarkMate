@@ -36,6 +36,9 @@ const Wrapper = styled.aside`
     text-align: center;
     width: 300px;
   }
+  .link-home {
+    z-index: 6;
+  }
   .payment-header {
     margin-bottom: 1rem;
     display: flex;
@@ -59,6 +62,21 @@ const Wrapper = styled.aside`
   }
   .text-cadet {
     font-weight: bold;
+  }
+  .unavailable {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: rgb(250, 250, 250, 0.4);
+    background: rgb(252, 252, 252, 0.4);
+    color: black;
+    display: grid;
+    place-items: center;
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
   }
   @media (max-width: 400px) {
     .form-payment {

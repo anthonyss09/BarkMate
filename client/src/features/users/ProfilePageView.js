@@ -247,7 +247,7 @@ export default function ProfilePageView() {
               <div className="construction">
                 <div className="construction-center">
                   {" "}
-                  <h1 className="construction-header">Feature unavailable</h1>
+                  <h1 className="construction-header"></h1>
                   <p className="construction-p">
                     If you would like to see new features such as groups{" "}
                     <Link to="/contact" className="link construction-link">
@@ -271,7 +271,7 @@ export default function ProfilePageView() {
               <div className="construction">
                 <div className="construction-center">
                   {" "}
-                  <h1 className="construction-header">Feature unavailable</h1>
+                  <h1 className="construction-header"></h1>
                   <p className="construction-p">
                     If you would like to see new features such as links to
                     social media
