@@ -10,14 +10,13 @@ export default function BigSidebar({ handleClick }) {
   return (
     <Wrapper>
       <aside className="big-sidebar-main">
-        <AiOutlineClose
-          size={35}
-          className="icon-close"
-          onClick={handleClick}
-        />
         <div className="big-sidebar-center">
           <div className="links-container-big">
-            {" "}
+            <AiOutlineClose
+              size={25}
+              className="icon-close"
+              onClick={handleClick}
+            />{" "}
             <Link
               to="/dashboard/home"
               className="link link-big link-profiles"

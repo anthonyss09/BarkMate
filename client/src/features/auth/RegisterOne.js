@@ -25,11 +25,11 @@ export default function RegisterOne({
   const inputRef = useRef();
 
   const alertsInfo = useSelector(selectAlertsInfo);
-  console.log(alertsInfo);
 
   const handlePlaceChanged = async () => {
     try {
       const [place] = await inputRef.current.getPlaces();
+      const city = place.address_components[2].long_name;
       if (place) {
         const long = place.geometry.location.lng();
         const lat = place.geometry.location.lat();
@@ -37,6 +37,7 @@ export default function RegisterOne({
         const address = place.formatted_address;
         dispatch(updateNewUserProp({ id: "address", value: address }));
         dispatch(updateNewUserProp({ id: "location", value: [long, lat] }));
+        dispatch(updateNewUserProp({ id: "city", value: city }));
       }
     } catch (error) {
       console.log(error);

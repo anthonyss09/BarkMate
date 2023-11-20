@@ -12,6 +12,7 @@ const initialState = {
     firstName: "",
     lastName: "",
     address: "",
+    city: "",
     email: "",
     password: "",
     location: [],

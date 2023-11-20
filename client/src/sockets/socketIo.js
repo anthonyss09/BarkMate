@@ -2,10 +2,11 @@ import { io } from "socket.io-client";
 const user = JSON.parse(localStorage.getItem("user"));
 // let userId = user ? user._id : null;
 
-export let socket = io("ws://192.168.1.153:4000", {
+export let socket = io("ws://192.168.1.153:8080", {
   auth: { token: "token" },
   query: { userId: user ? JSON.parse(localStorage.getItem("user"))._id : "" },
   autoConnect: false,
+  transports: ["websocket"],
 });
 
 socket.onAnyOutgoing((e, m) => {

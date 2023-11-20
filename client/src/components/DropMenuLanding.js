@@ -6,7 +6,11 @@ export default function DropMenuLanding({ handleShowMenu }) {
   return (
     <Wrapper>
       <aside className="drop-menu-landing-main">
-        <AiOutlineClose size={25} onClick={handleShowMenu} />
+        <AiOutlineClose
+          size={25}
+          onClick={handleShowMenu}
+          className="icon-close"
+        />
         <Link to="/" className="link" onClick={handleShowMenu}>
           Home
         </Link>

@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide adress."],
   },
+  city: { type: String },
   location: {
     type: PointSchema,
     required: true,

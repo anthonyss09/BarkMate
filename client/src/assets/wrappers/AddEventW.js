@@ -75,7 +75,7 @@ const Wrapper = styled.aside`
     padding: 1rem;
     padding-right: 0;
     box-sizing: border-box;
-    border-top: 10px solid rgb(244, 244, 244);
+    // border-top: 10px solid rgb(244, 244, 244);
     margin-top: -1rem;
   }
   .add-event-center {
@@ -85,11 +85,13 @@ const Wrapper = styled.aside`
   .add-event-header {
   }
   .add-event-main {
+    // width: 100vw;
+    width: 75vw;
     height: min-content;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
+    top: 2rem;
+    right: 2rem;
+    border-radius: 1rem;
     background: white;
     z-index: 4;
     display: flex;
@@ -107,6 +109,7 @@ const Wrapper = styled.aside`
     padding: 1rem 0;
     letter-spacing: 0.05rem;
      margin: 1rem;
+     background: rgb(244,244,244);
   }
   .btn {
     display: flex;

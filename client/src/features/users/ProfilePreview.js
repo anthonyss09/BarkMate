@@ -161,7 +161,7 @@ export default function ProfilePreview({
                 About Us
                 <div className="location-container">
                   <MdLocationOn size={15} />
-                  <span className="location">Williamsburg</span>
+                  <span className="location">{currentUser.city}</span>
                 </div>
               </h1>
 

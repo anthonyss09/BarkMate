@@ -27,7 +27,6 @@ export default function ProfilePageView() {
   const Navigate = useNavigate();
 
   const { profileId } = useParams();
-  console.log(profileId);
   const { data: userData, isLoading } = useGetProfileByIdQuery(profileId);
 
   const currentUser = useSelector(selectCurrentUser);
@@ -171,7 +170,7 @@ export default function ProfilePageView() {
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
-                <span className="location">Williamsburg</span>
+                <span className="location">{userData.user.city}</span>
               </div>
             </div>
             {currentUser._id === profileId && (

@@ -51,10 +51,11 @@ const io = new Server(server, {
     origin: "*",
   },
   allowEIO3: true,
+  transports: ["websocket"],
 });
 
 // io.listen(4000);
-io.listen(4000);
+// io.listen(8080);
 
 io.on("connection", (socket) => {
   console.log("socket is open", socket.handshake.query.userId);
@@ -75,8 +76,17 @@ io.on("connection", (socket) => {
   });
 });
 
-const subscriber = redis.createClient();
-const publisher = redis.createClient();
+//during development
+// const subscriber = redis.createClient();
+// const publisher = redis.createClient();
+
+const subscriber = redis.createClient({
+  url: "redis://rds:6379",
+});
+
+const publisher = redis.createClient({
+  url: "redis://rds:6379",
+});
 
 await publisher.connect();
 await subscriber.connect();
@@ -89,10 +99,10 @@ subscriber.subscribe("commCenter", (data, channel) => {
   switch (parsedData.type) {
     case "test":
       {
-        io.to(clients[parsedData.content.userId].id).emit(
-          "message",
-          parsedData
-        );
+        clients[parsedData.content.userId] &&
+          io
+            .to(clients[parsedData.content.userId].id)
+            .emit("message", parsedData);
       }
       break;
     case "notification":

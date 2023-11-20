@@ -37,6 +37,7 @@ export default function EditProfile() {
   const [imageUrl, setImageUrl] = useState(user.profileImageUrl);
   const [location, setLocation] = useState(user.location.coordinates);
   const [address, setAddress] = useState(user.address);
+  const [city, setCity] = useState(user.city);
   const [timeAvailable, setTimeAvailable] = useState(user.timeAvailable);
   const [timeNeeded, setTimeNeeded] = useState(user.timeNeeded);
   const [aboutUs, setAboutUs] = useState(user.aboutUs);
@@ -48,12 +49,13 @@ export default function EditProfile() {
       if (place) {
         const long = place.geometry.location.lng();
         const lat = place.geometry.location.lat();
-
+        const city = place.address_components[2].long_name;
         const address = place.formatted_address;
 
-        console.log(lat, long);
+        // console.log(lat, long);
         setLocation([long, lat]);
         setAddress(address);
+        setCity(city);
       }
     } catch (error) {
       console.log(error);
@@ -98,6 +100,7 @@ export default function EditProfile() {
     const update = {
       profileImageUrl: imageUrl,
       address,
+      city,
       location: { type: "Point", coordinates: location },
       aboutUs,
       timeNeeded,

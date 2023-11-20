@@ -1,6 +1,6 @@
 import Wrapper from "../assets/wrappers/NavW";
 import Logo from "../components/Logo";
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { HiBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useState } from "react";
