@@ -1,49 +1,54 @@
 services:
-  lb:
-    image: haproxy
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./haproxy:/usr/local/etc/haproxy
-    # depends_on:
-    #   - nodebackend
+  # lb:
+  #   image: haproxy
+  #   ports:
+  #     - "4000:8080"
+  #   volumes:
+  #     - ./haproxy:/usr/local/etc/haproxy
+  #   networks:
+  #     - loadbalancing
   ws1:
     image: bark-mate-be
     environment:
       - APPID=1111
       - APPPORT=8081
+    networks:
+      - loadbalancing
+    ports:
+      - "8081:8080"
   ws2:
     image: bark-mate-be
     environment:
       - APPID=2222
       - APPPORT=8082
+    ports:
+      - "8082:8080"
+    networks:
+      - loadbalancing
   ws3:
     image: bark-mate-be
     environment:
       - APPID=3333
       - APPPORT=8083
-  rds:
-    image: redis
     ports:
-      - "6379:6379"
+      - "8083:8080"
+    networks:
+      - loadbalancing
+  # rds:
+  #   image: redis
+  #   ports:
+  #     - "6379:6379"
   barkmatefrontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: bark-mate-fe
     ports:
-      - "3000:3000"
-    command: npm start
+      - "3000:80"
+    networks:
+      - loadbalancing
     depends_on:
       - db
-  # nodebackend:
-  #   build:
-  #     context: ./server
-  #     dockerfile: Dockerfile.node
-  #   ports:
-  #     - "8080:8080"
-  #     - "4000:4000"
-  #   depends_on:
-  #     - db
+      - ws1
+      - ws2
+      - ws3
   db:
     volumes:
       - barkMate_db:/data/db
@@ -52,3 +57,5 @@ services:
       - "27017:27017"
 volumes:
   barkMate_db:
+networks:
+  loadbalancing:

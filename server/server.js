@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
   res.send(imageTag);
 });
 
-const port = process.env.port || 8080;
+const port = process.env.APPPORT || 8080;
 
 const APPID = process.env.APPID;
 
@@ -52,10 +52,8 @@ const io = new Server(server, {
   },
   allowEIO3: true,
   transports: ["websocket"],
+  credentials: true,
 });
-
-// io.listen(4000);
-// io.listen(8080);
 
 io.on("connection", (socket) => {
   console.log("socket is open", socket.handshake.query.userId);
@@ -76,10 +74,11 @@ io.on("connection", (socket) => {
   });
 });
 
-//during development
-const subscriber = redis.createClient();
-const publisher = redis.createClient();
+//during development hit local redis server
+// const subscriber = redis.createClient();
+// const publisher = redis.createClient();
 
+//docker compose image
 // const subscriber = redis.createClient({
 //   url: "redis://rds:6379",
 // });
@@ -87,6 +86,22 @@ const publisher = redis.createClient();
 // const publisher = redis.createClient({
 //   url: "redis://rds:6379",
 // });
+
+//connect to redis cloud db
+const subscriber = redis.createClient({
+  password: process.env.REDIS_CLIENT_PASSWORD,
+  socket: {
+    host: "redis-18174.c1.us-east1-2.gce.cloud.redislabs.com",
+    port: 18174,
+  },
+});
+const publisher = redis.createClient({
+  password: process.env.REDIS_CLIENT_PASSWORD,
+  socket: {
+    host: "redis-18174.c1.us-east1-2.gce.cloud.redislabs.com",
+    port: 18174,
+  },
+});
 
 await publisher.connect();
 await subscriber.connect();
