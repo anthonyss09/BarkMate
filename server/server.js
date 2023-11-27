@@ -91,14 +91,14 @@ io.on("connection", (socket) => {
 const subscriber = redis.createClient({
   password: process.env.REDIS_CLIENT_PASSWORD,
   socket: {
-    host: "redis-18174.c1.us-east1-2.gce.cloud.redislabs.com",
+    host: process.env.REDIS_HOST,
     port: 18174,
   },
 });
 const publisher = redis.createClient({
   password: process.env.REDIS_CLIENT_PASSWORD,
   socket: {
-    host: "redis-18174.c1.us-east1-2.gce.cloud.redislabs.com",
+    host: process.env.REDIS_HOST,
     port: 18174,
   },
 });
