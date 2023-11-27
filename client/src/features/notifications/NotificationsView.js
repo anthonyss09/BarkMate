@@ -19,7 +19,11 @@ export default function NotificationsView({
   if (notifications.length) {
     content = notifications.map((notification, index) => {
       if (index === 5) {
-        return <h3 className="notifications-view-header">Older stuff</h3>;
+        return (
+          <h3 key={index} className="notifications-view-header">
+            Older stuff
+          </h3>
+        );
       }
       switch (notification.notificationPath) {
         case "chats":

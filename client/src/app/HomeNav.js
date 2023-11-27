@@ -45,7 +45,7 @@ export default function NavBar() {
   );
 
   const notificationNumber =
-    unreadNotifications.length > 9 ? "10+" : unreadNotifications.length;
+    unreadNotifications.length > 50 ? "50+" : unreadNotifications.length;
 
   const handleSmallSidebar = () => {
     setSmallShowSidebar(!showSmallSidebar);
