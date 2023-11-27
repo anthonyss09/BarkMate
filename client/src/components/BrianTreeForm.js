@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import braintree from "braintree-web";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+// import braintree from "braintree-web";
+// import axios from "axios";
+import { Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/BrainTreeFormW";
 import Logo from "./Logo";
 import venmoButtonSmall from "../assets/images/blue_venmo_button_320x48.svg";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Alert from "../features/alerts/Alert";
-import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
+// import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 import DotLoader from "react-spinners/DotLoader";
 import FormRow from "../features/auth/FormRow";
 
 export default function BraintreeDropIn(props) {
-  const Navigate = useNavigate();
+  // const Navigate = useNavigate();
 
   let { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   let deviceData;

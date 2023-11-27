@@ -1,7 +1,7 @@
 import Wrapper from "../assets/wrappers/AboutPageW";
 import NavBar from "../app/HomeNav";
 import LandingNav from "../app/LandingNav";
-import kelseyPetsTop from "../assets/images/kelseyPetsTop.JPG";
+import kelseyPetsTop from "../assets/images/kelseyFront.jpeg";
 import Footer from "../app/Footer";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -22,9 +22,9 @@ export default function AboutPage() {
       <section className="about-page-main">
         <div className="row-one">
           <img className="img img-one" src={kelseyPetsTop} alt="dog" />
+          <h3 className="about-page-header">About</h3>
         </div>
         <div className="about-page-center">
-          <h3 className="about-page-header">About</h3>
           <br />
           <div className="p-one">
             Hi! Welcome to Bark mate! <br />

@@ -1,4 +1,7 @@
 import Wrapper from "../assets/wrappers/PageNotFoundW";
+import { GiDogHouse } from "react-icons/gi";
+import { FaDog } from "react-icons/fa6";
+import { TbBone } from "react-icons/tb";
 
 export default function PageNotFound() {
   return (
@@ -10,6 +13,9 @@ export default function PageNotFound() {
           <div className="plain-text">
             Sorry I can't remember where I<br /> burried that page.
           </div>
+          <TbBone size={55} className="icon-bone" />
+          <GiDogHouse size={85} className="icon-dog-house" />
+          <FaDog size={85} className="icon-dog" />
         </div>
       </section>
     </Wrapper>

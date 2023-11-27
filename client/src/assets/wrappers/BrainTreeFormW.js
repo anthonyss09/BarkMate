@@ -77,6 +77,7 @@ const Wrapper = styled.aside`
     place-items: center;
     font-size: 1.8rem;
     letter-spacing: 0.1rem;
+    text-align: center;
   }
   @media (max-width: 400px) {
     .form-payment {

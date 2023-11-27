@@ -1,26 +1,32 @@
 import styled from "styled-components";
-import confusedPug from "../images/confusedPug.jpg";
 
 const Wrapper = styled.section`
   .error-code {
     font-size: 3rem;
   }
+  .icon-bone {
+    margin-left: -8rem;
+    color: var(--bark-pink);
+  }
+  .icon-dog {
+    margin-top: -2rem;
+    margin-right: -6rem;
+  }
+  .icon-dog-house {
+    margin-top: -3rem;
+    margin-left: -6rem;
+    color: var(--federal-blue);
+  }
   .page-not-found-main {
-    background-image: url(${confusedPug});
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    padding: 8rem 2rem;
   }
   .page-not-found-center {
-    width: 100vw;
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
-    color: white;
-    position: absolute;
-    top: 4rem;
+    font-weight: bold;
     letter-spacing: 0.04rem;
   }
 `;

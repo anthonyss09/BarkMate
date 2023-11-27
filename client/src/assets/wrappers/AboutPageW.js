@@ -2,14 +2,19 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .about-page-header {
-    margin-top: 2rem;
-    letter-spacing: 0.05rem;
-    font-size: 1.2rem;
+    position: absolute;
+    margin-top: -5rem;
+    text-align: center;
+    width: 100vw;
+    color: white;
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
   }
   .about-page-main {
     width: 100vw;
     letter-spacing: 0.02rem;
-    font-family: "Roboto Condensed", sans-serif;
+    // font-family: "Roboto Condensed", sans-serif;
     line-height: 1.4rem;
     display: flex;
     flex-direction: column;
@@ -18,12 +23,14 @@ const Wrapper = styled.section`
     box-sizing: border-box;
   }
   .about-page-center {
-    width: 100vw;
+    width: 100%;
     padding: 1rem 3rem;
     box-sizing: border-box;
     border-radius: 2rem;
     text-align: center;
-    margin-top: 1rem;
+    padding-top: 0;
+    font-weight: 500;
+    line-height: 1.8rem;
   }
   .btn {
     display: flex;
@@ -62,12 +69,8 @@ const Wrapper = styled.section`
   .icon-venmo {
     color: var(--med-bright-blue);
   }
-  .img {
-    width: 260px;
-    height: 260px;
-    border-radius: 20rem;
-  }
   .img-one {
+    width: 100%;
     margin: 0 auto;
   }
   .nav-main {
@@ -83,12 +86,12 @@ const Wrapper = styled.section`
   }
   .row-one {
     width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--bark-pink);
-    height: 200px;
-    padding: 1rem 0;
+  }
+
+  @media (max-width: 400px) {
+    .about-page-header {
+      margin-top: -3.6rem;
+    }
   }
 `;
 
