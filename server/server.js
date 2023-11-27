@@ -51,7 +51,7 @@ const io = new Server(server, {
     origin: "*",
   },
   allowEIO3: true,
-  transports: ["websocket"],
+  transports: ["websocket", "polling"],
   credentials: true,
 });
 

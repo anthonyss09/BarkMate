@@ -45,17 +45,17 @@ services:
     networks:
       - loadbalancing
     depends_on:
-      - db
+      # - db
       - ws1
       - ws2
       - ws3
-  db:
-    volumes:
-      - barkMate_db:/data/db
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-volumes:
-  barkMate_db:
+  # db:
+  #   volumes:
+  #     - barkMate_db:/data/db
+  #   image: mongo:latest
+  #   ports:
+  #     - "27017:27017"
+# volumes:
+#   barkMate_db:
 networks:
   loadbalancing:
