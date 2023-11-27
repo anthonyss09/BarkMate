@@ -3,7 +3,7 @@ import NavBar from "../app/HomeNav";
 import LandingNav from "../app/LandingNav";
 import kelseyPetsTop from "../assets/images/kelseyFront.jpeg";
 import Footer from "../app/Footer";
-import { useEffect } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserToken } from "../features/auth/authSlice";
 import { IoLogoVenmo } from "react-icons/io5";
@@ -11,6 +11,20 @@ import { Link } from "react-router-dom";
 
 export default function AboutPage() {
   const token = useSelector(selectUserToken);
+
+  const [scrolled, setScrolled] = useState(false);
+
+  const onScroll = () => {
+    if (window.scrollY > 300) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,12 +36,20 @@ export default function AboutPage() {
       <section className="about-page-main">
         <div className="row-one">
           <img className="img img-one" src={kelseyPetsTop} alt="dog" />
-          <h3 className="about-page-header">About</h3>
+          <div className={`${scrolled ? "about-page-header-container" : ""}`}>
+            <h3
+              className={`about-page-header ${
+                scrolled ? "about-page-header-scrolled" : ""
+              }`}
+            >
+              About
+            </h3>
+          </div>
         </div>
         <div className="about-page-center">
           <br />
           <div className="p-one">
-            Hi! Welcome to Bark mate! <br />
+            <p className="first-line">Hi! Welcome to Bark mate!</p>
             Bark mate is a passion project of mine on two fronts, dogs and web
             development. My family and I have been blessed by two of the most
             special dogs ever, both of whom I miss very much, Kelsey & Nala.
@@ -40,9 +62,11 @@ export default function AboutPage() {
           the field. Until then i've come up with the idea of Bark Mate.
           <br />
           <br />
-          Bark mate is meant to connect local dog owners who could barter
-          walking shifts based around eachothers needs.
-          <br />
+          <p className="first-line">
+            {" "}
+            Bark mate is meant to connect local dog owners who could barter
+            walking shifts based around eachothers needs.
+          </p>
           As a developer I also want users like you to enjoy the social media
           experience of sharing photos and stories about our dogs and lives.
           <br /> I envision Bark mate as a place to create community and connect
@@ -52,7 +76,9 @@ export default function AboutPage() {
           user tips,
           <br /> it seems fitting as I've worked as a bartender for most of my
           career. <br />
-          <br /> Thanks dog lovers and friends!{" "}
+          <br /> <p className="first-line">
+            Thanks dog lovers and friends!
+          </p>{" "}
         </div>
         <Link to="/payment" className="link btn btn-tip">
           <IoLogoVenmo size={25} className="icon-venmo" />

@@ -1,6 +1,6 @@
 import Wrapper from "../assets/wrappers/FormContactW.js";
 import FormRow from "../features/auth/FormRow.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../components/Logo.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -66,6 +66,10 @@ export default function ConctactForm() {
     setEmail("");
     setMessage("");
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Wrapper>

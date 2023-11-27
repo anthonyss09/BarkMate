@@ -10,6 +10,21 @@ const Wrapper = styled.section`
     font-size: 4rem;
     font-weight: 300;
     letter-spacing: 0.2rem;
+    transition: var(--transition-main);
+  }
+  .about-page-header-scrolled {
+    color: var(--test-blue);
+    font-size: 6rem;
+  }
+  .about-page-header-container {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: none;
+    display: grid;
+    place-items: center;
   }
   .about-page-main {
     width: 100vw;
@@ -31,6 +46,7 @@ const Wrapper = styled.section`
     padding-top: 0;
     font-weight: 500;
     line-height: 1.8rem;
+    z-index: 2;
   }
   .btn {
     display: flex;
@@ -42,6 +58,7 @@ const Wrapper = styled.section`
     letter-spacing: 0.02rem;
     padding: 1rem 2rem;
     margin-top: 0.6rem;
+    justify-content: center;
   }
   .btn-login {
     margin-right: 1rem;
@@ -62,6 +79,13 @@ const Wrapper = styled.section`
     box-shadow: var(--shadow-main-light);
     display: flex;
     justify-content: center;
+    z-index: 2;
+  }
+  .first-line {
+    color: var(--med-font-blue);
+    font-size: 1.4rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.05rem;
   }
   .icon-dog {
     color: var(--bark-pink);
@@ -72,6 +96,9 @@ const Wrapper = styled.section`
   .img-one {
     width: 100%;
     margin: 0 auto;
+  }
+  .link {
+    z-index: 2;
   }
   .nav-main {
     margin: 0;

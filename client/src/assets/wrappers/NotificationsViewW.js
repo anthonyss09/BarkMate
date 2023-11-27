@@ -13,6 +13,11 @@ const Wrapper = styled.aside`
     margin: 1rem auto;
     background: white;
     border: 2px solid rgb(80, 80, 80);
+    background: white;
+    border: 1px solid var(--test-blue);
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    letter-spacing: 0.02rem;
+    padding: 1rem 2rem;
   }
   .notification-image {
     width: 30px;
