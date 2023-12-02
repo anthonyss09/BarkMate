@@ -7,6 +7,7 @@ import FormCheckbox from "./FormCheckbox";
 import { useSelector } from "react-redux";
 import { selectNewUser } from "./authSlice";
 import { useRegisterUserMutation } from "../auth/authSlice";
+import { useCreatePostMutation } from "../posts/PostsSlice";
 import ProfileImageInput from "../../components/ProfileImageInput";
 import axios from "axios";
 import DotLoader from "react-spinners/DotLoader";
@@ -21,6 +22,7 @@ export default function RegisterThree({
   // const [profileImageName, setProfileImageName] = useState();
   const [requesting, setRequesting] = useState(false);
   const [registerUser] = useRegisterUserMutation();
+  const [createPost] = useCreatePostMutation();
   const Navigate = useNavigate();
 
   const newUser = useSelector(selectNewUser);
@@ -51,7 +53,18 @@ export default function RegisterThree({
     copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
 
     const response = await registerUser(copyOfUser);
+    console.log(response);
     setRequesting(false);
+    const post = {
+      text: "Our first post",
+      authorId: response.data.user._id,
+      coordinates: response.data.user.location.coordinates,
+      authorImageUrl: response.data.user.profileImageUrl,
+      authorName: response.data.user.firstName,
+      authorDogName: response.data.user.dogName,
+      postImageUrl: response.data.user.profileImageUrl,
+    };
+    const newPost = await createPost(post);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     Navigate("/dashboard/home");

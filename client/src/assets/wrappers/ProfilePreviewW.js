@@ -95,7 +95,7 @@ const Wrapper = styled.aside`
     color: black;
   }
   .profile-preview-pic {
-    width: 100vw;
+    width: 100%;
     max-height: 420px;
     z-index: 5;
   }

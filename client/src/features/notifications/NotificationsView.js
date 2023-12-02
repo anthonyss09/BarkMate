@@ -141,7 +141,7 @@ export default function NotificationsView({
         </div>
         <h3 className="notifications-view-header">Recent notifications</h3>
         {content}
-        {notifications.length % 5 === 0 && (
+        {notifications.length > 0 && notifications.length % 5 === 0 && (
           <button
             className="btn btn-more-notifications"
             onClick={incrementNotificationLimit}

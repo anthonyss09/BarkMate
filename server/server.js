@@ -33,8 +33,7 @@ app.use("/api/payments", paymentRouter);
 app.use("/api/transports", transportsRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Bark Mate!");
-  res.send(imageTag);
+  res.send("Welcome to the latest Bark Mate!");
 });
 
 const port = process.env.APPPORT || 8080;

@@ -1,6 +1,6 @@
 import Wrapper from "../assets/wrappers/PageNotFoundW";
 import { GiDogHouse } from "react-icons/gi";
-import { FaDog } from "react-icons/fa6";
+import { FaDog } from "react-icons/fa";
 import { TbBone } from "react-icons/tb";
 
 export default function PageNotFound() {

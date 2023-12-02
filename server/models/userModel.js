@@ -86,6 +86,10 @@ const UserSchema = new mongoose.Schema({
   friendIds: {
     typ: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
+  sample: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 UserSchema.pre("save", async function () {

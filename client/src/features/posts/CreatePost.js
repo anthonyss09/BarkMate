@@ -87,7 +87,6 @@ export default memo(function CreatePost({
     }
 
     const newPost = await createPost(post);
-    console.log(newPost);
     if (newPost.error) {
       dispatch(
         displayAlert({
