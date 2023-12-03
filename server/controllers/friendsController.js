@@ -62,15 +62,15 @@ const acceptFriend = async (req, res) => {
   console.log("friendId", friendId);
 
   try {
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: userId },
-      { $push: { friendIds: friendId } }
-    );
+    // const updatedUser = await User.findOneAndUpdate(
+    //   { _id: userId },
+    //   { $push: { friendIds: friendId } }
+    // );
     const response = await Friends.findOneAndUpdate(
       { _id: requestId },
       { requesterStatus: "friends", recipientStatus: "friends" }
     );
-    console.log("updated user", updatedUser);
+    // console.log("updated user", updatedUser);
     console.log(response);
     console.log("we are friends");
     res.status(StatusCodes.OK).json({ response });

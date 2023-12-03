@@ -60,7 +60,7 @@ export default function LoginPage() {
     }
   };
   return (
-    <section>
+    <section className="form-page-blue">
       {" "}
       {requesting && (
         <div className="alert-container">

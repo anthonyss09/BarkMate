@@ -10,6 +10,17 @@ const Wrapper = styled.section`
     transform: rotate(-30deg);
     background: var(--med-bright-blue);
   }
+  .btn-demo {
+    width: min-content;
+    border: 2px solid black;
+    border: 2px solid var(--med-font-blue);
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+    padding: 0.6rem;
+    color: var(--federal-blue;);
+    margin-top: 2rem;
+  }
   .btn-learn {
     margin-top: 1rem;
     border-radius: 0;
@@ -44,6 +55,10 @@ const Wrapper = styled.section`
     position: static;
     color: rgb(80, 80, 80);
     background: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .second-heading {
     margin-bottom: 4rem;
@@ -79,7 +94,7 @@ const Wrapper = styled.section`
     width: 80px;
     margin: 0 auto;
     color: white;
-    margin-top: 0.6rem;
+    // margin-top: 0.6rem;
     font-size: 1rem;
     border-radius: 40px;
     background: rgb(230, 230, 230);
@@ -132,9 +147,11 @@ const Wrapper = styled.section`
     width: 65vw;
     max-width: 300px;
     border-radius: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
     border: 1px solid rgb(220, 220, 220);
     box-shadow: 10px 5px 10px rgb(40, 40, 40);
-    margin: 4rem 0;
+    // margin: 4rem 0;
+    margin-top: 1rem;
   }
   .section-landing-chat {
     margin: 4rem auto;
@@ -147,6 +164,16 @@ const Wrapper = styled.section`
   .section-landing-chat-center {
     width: 100vw;
     background: var(--bark-pink);
+    padding-right: 0.2rem;
+    box-sizing: border-box;
+  }
+  .section-landing-chat-header {
+    color: white;
+    margin-top: -4rem;
+    margin-right: -2rem;
+    margin-left: 1rem;
+    border: 2px solid white;
+    padding: 0.4rem;
   }
   .section-landing-center {
     display: flex;
@@ -170,6 +197,7 @@ const Wrapper = styled.section`
     width: 80vw;
     justify-content: center;
     height: 60vh;
+    height: 70vh;
   }
   .section-landing-heading {
     display: flex;
@@ -192,6 +220,14 @@ const Wrapper = styled.section`
     padding-top: 1rem;
     letter-spacing: 0.02rem;
   }
+  .section-landing-post-header {
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 0.05rem;
+    border: 2px solid white;
+    padding: 0.4rem;
+  }
+
   @media (max-width: 400px) {
     .section-landing-main {
     }
@@ -209,11 +245,16 @@ const Wrapper = styled.section`
     }
     .section-landing-header {
       height: 50vh;
+      height: 55vh;
+    }
+    .section-landing-post-header {
+      font-size: 1.6rem;
     }
 
     h1 {
       font-size: 1.2rem;
-      margin-top: -1rem;
+      font-size: 1.4rem;
+      // margin-top: -1rem;
       margin-left: -1rem;
     }
   }

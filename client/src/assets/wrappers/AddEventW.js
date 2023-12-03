@@ -76,22 +76,25 @@ const Wrapper = styled.aside`
     padding-right: 0;
     box-sizing: border-box;
     // border-top: 10px solid rgb(244, 244, 244);
+    // border-top: 10px solid var(--test-blue);
     margin-top: -1rem;
   }
   .add-event-center {
     // max-width: 300px;
+    width: 100%;
     justify-self: center;
   }
   .add-event-header {
+    // color: var(--federal-blue);
   }
   .add-event-main {
-    // width: 100vw;
-    width: 75vw;
+    width: 100vw;
+    width: 85vw;
     height: min-content;
     position: fixed;
-    top: 2rem;
+    top: 4rem;
     right: 2rem;
-    border-radius: 1rem;
+    border-radius: 3rem;
     background: white;
     z-index: 4;
     display: flex;
@@ -99,17 +102,17 @@ const Wrapper = styled.aside`
     align-items: center;
     box-sizing: border-box;
     border: 1px solid rgb(215, 215, 215);
-    box-shadow: 5px 2px 5px grey;
+    // box-shadow: 5px 2px 5px grey;
     z-index: 8;
     border-left: 1px solid rgb(220, 220, 220);
+    border: 4px solid rgb(100,100,100);
   }
   .add-event-title {
     text-align: center;
     margin-bottom: 1rem;
     padding: 1rem 0;
     letter-spacing: 0.05rem;
-     margin: 1rem;
-     background: rgb(244,244,244);
+     border-radius: 2rem;
   }
   .btn {
     display: flex;

@@ -1,6 +1,6 @@
 import Wrapper from "../assets/wrappers/SectionLandingW";
 import StacyLanding from "../assets/images/stacyLanding.jpeg";
-import postLanding from "../assets/images/postLanding.jpeg";
+import postLanding from "../assets/images/goodBoy.jpg";
 import ChatLineUser from "../features/chats/ChatLineUser";
 import ChatLineFriend from "../features/chats/ChatLineFriend";
 import deanBowie from "../assets/images/dean&bowieSmall.jpg";
@@ -19,7 +19,7 @@ export default function SectionLanding() {
               Connect, <br />
               meet,
             </span>
-            <br />
+            {/* <br /> */}
             <span className="span-responsibilities"> share the leash.</span>
             <br />
             <div className="btn-join ">
@@ -28,6 +28,7 @@ export default function SectionLanding() {
                 Join
               </Link>
             </div>
+            <div className="btn btn-demo">Demo</div>
           </h1>
           <div className="section-landing-image-jm-container">
             <img
@@ -38,6 +39,11 @@ export default function SectionLanding() {
           </div>
         </div>
         <div className="section-landing-center section-landing-chat-center">
+          <h1 className="section-landing-chat-header">
+            Chat <br />
+            someone <br />
+            up <br />
+          </h1>
           <div className="section-landing-chat">
             <ChatLineFriend
               text="have you and Bowie been to shady tree park?"
@@ -75,6 +81,9 @@ export default function SectionLanding() {
         </div>
         <div className="section-landing-center section-landing-center-column section-landing-post">
           {" "}
+          <h1 className="section-landing-post-header">
+            Share your favorite pics
+          </h1>
           <img
             src={postLanding}
             alt="post"
