@@ -53,6 +53,10 @@ const Wrapper = styled.section`
     // color: var(--med-bright-blue);
     color: var(--federal-blue);
   }
+  .no-matches {
+    padding: 2rem;
+    letter-spacing: 0.05rem;
+  }
   .p-top {
     color: rgb(170, 170, 167);
     font-size: 0.8rem;

@@ -19,7 +19,7 @@ const Wrapper = styled.section`
     font-size: 1.4rem;
     padding: 0.6rem;
     color: var(--federal-blue;);
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   .btn-learn {
     margin-top: 1rem;
@@ -60,6 +60,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
   }
+
   .second-heading {
     margin-bottom: 4rem;
   }
@@ -174,6 +175,7 @@ const Wrapper = styled.section`
     margin-left: 1rem;
     border: 2px solid white;
     padding: 0.4rem;
+    z-index: 4;
   }
   .section-landing-center {
     display: flex;
@@ -206,10 +208,13 @@ const Wrapper = styled.section`
   }
   .section-landing-main {
     padding-top: 4.4rem;
-    overflow-x: hidden;
     position: relative;
     display: grid;
     place-items: center;
+  }
+  .overflow-hidden {
+    overflow-x: hidden;
+    position: fixed;
   }
   .section-landing-heading {
     width: 100%;
@@ -229,6 +234,9 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: 400px) {
+    .btn-demo {
+      font-size: 1.2rem;
+    }
     .section-landing-main {
     }
     .section-landing-image-jm {

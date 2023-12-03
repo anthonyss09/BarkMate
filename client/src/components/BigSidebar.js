@@ -49,7 +49,11 @@ export default function BigSidebar({ handleClick }) {
               <HiOutlineChat className="icon-chat" size={25} />
               Chats
             </Link>
-            <Link to="/about" className="link link-big link-story">
+            <Link
+              to="/about"
+              className="link link-big link-story"
+              onClick={handleClick}
+            >
               <MdOutlineMenuBook className="icon-book" size={25} />
               About
             </Link>

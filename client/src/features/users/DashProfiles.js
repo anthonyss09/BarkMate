@@ -46,7 +46,7 @@ export default function DashProfiles() {
   } else if (data.filteredMatches.length < 1) {
     content = (
       <div className="no-matches">
-        Currently no matches in your area, try expanding your search.
+        Currently no matches in your area, try expanding your search proximity.
       </div>
     );
   } else {

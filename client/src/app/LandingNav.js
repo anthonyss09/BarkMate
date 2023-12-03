@@ -1,16 +1,19 @@
 import Wrapper from "../assets/wrappers/NavW";
 import Logo from "../components/Logo";
-// import { GiHamburgerMenu } from "react-icons/gi";
 import { HiBars3 } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import DropMenuLanding from "../components/DropMenuLanding";
+import { useDispatch } from "react-redux";
+import { setOverflowHidden } from "../features/alerts/alertsSlice";
 
 export default function LandingNav({ hideNav }) {
   const [showMenu, setShowMenu] = useState(false);
+  const dispatch = useDispatch();
 
   const handleShowMenu = () => {
     setShowMenu(!showMenu);
+    dispatch(setOverflowHidden());
   };
   return (
     <Wrapper>

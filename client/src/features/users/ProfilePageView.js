@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
+import { selectAlertsInfo } from "../alerts/alertsSlice";
 
 export default function ProfilePageView() {
   const Navigate = useNavigate();
@@ -34,6 +35,8 @@ export default function ProfilePageView() {
   const friendRequestId = new mongoose.Types.ObjectId();
   const [requestFriend] = useRequestFriendMutation();
   const [createNotification] = useCreateNotificationMutation();
+
+  const { overflowHidden } = useSelector(selectAlertsInfo);
 
   const [showQuickChat, setShowQuickChat] = useState(false);
   const [requesting, setRequesting] = useState(false);
@@ -120,7 +123,6 @@ export default function ProfilePageView() {
           alertType: "success",
         })
       );
-      console.log(newFriend.data.message);
       createNotification({
         _id: notificationId,
         friendId: profileId,
@@ -154,7 +156,11 @@ export default function ProfilePageView() {
   return (
     <Wrapper>
       <HomeNav />
-      <main className="profile-page-main">
+      <main
+        className={`profile-page-main ${
+          overflowHidden ? "overflow-hidden" : ""
+        }`}
+      >
         {requesting && (
           <div className="alert-container">
             {" "}

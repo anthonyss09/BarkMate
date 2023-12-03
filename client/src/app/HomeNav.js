@@ -16,7 +16,10 @@ import { selectCurrentUser } from "../features/auth/authSlice";
 import NotificationsView from "../features/notifications/NotificationsView";
 import FriendsView from "../features/friends/FriendsView";
 import Alert from "../features/alerts/Alert";
-import { selectAlertsInfo } from "../features/alerts/alertsSlice";
+import {
+  selectAlertsInfo,
+  setOverflowHidden,
+} from "../features/alerts/alertsSlice";
 import { socket } from "../sockets/socketIo";
 
 export default function NavBar() {
@@ -52,6 +55,7 @@ export default function NavBar() {
   };
   const handleBigSidebar = () => {
     setShowBigSidebar(!showBigSidebar);
+    dispatch(setOverflowHidden());
     setSmallShowSidebar(false);
   };
   const handleShowNotifications = () => {

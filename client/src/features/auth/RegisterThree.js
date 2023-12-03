@@ -55,16 +55,16 @@ export default function RegisterThree({
     const response = await registerUser(copyOfUser);
     console.log(response);
     setRequesting(false);
-    const post = {
-      text: "Our first post",
-      authorId: response.data.user._id,
-      coordinates: response.data.user.location.coordinates,
-      authorImageUrl: response.data.user.profileImageUrl,
-      authorName: response.data.user.firstName,
-      authorDogName: response.data.user.dogName,
-      postImageUrl: response.data.user.profileImageUrl,
-    };
-    const newPost = await createPost(post);
+    // const post = {
+    //   text: "Our first post",
+    //   authorId: response.data.user._id,
+    //   coordinates: response.data.user.location.coordinates,
+    //   authorImageUrl: response.data.user.profileImageUrl,
+    //   authorName: response.data.user.firstName,
+    //   authorDogName: response.data.user.dogName,
+    //   postImageUrl: response.data.user.profileImageUrl,
+    // };
+    // const newPost = await createPost(post);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     Navigate("/dashboard/home");

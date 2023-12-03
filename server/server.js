@@ -186,7 +186,7 @@ subscriber.subscribe("commCenter", (data, channel) => {
 
 const start = async () => {
   try {
-    await connectDb(process.env.MONGO_URL);
+    await connectDb(process.env.MONGO_PRODUCTION_URL);
     server.listen(port, () => {
       console.log(`App is listening on port:${port}`);
     });

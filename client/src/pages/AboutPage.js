@@ -8,9 +8,11 @@ import { useSelector } from "react-redux";
 import { selectUserToken } from "../features/auth/authSlice";
 import { IoLogoVenmo } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 
 export default function AboutPage() {
   const token = useSelector(selectUserToken);
+  const { overflowHidden } = useSelector(selectAlertsInfo);
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -33,7 +35,9 @@ export default function AboutPage() {
     <Wrapper>
       {token ? <NavBar /> : <LandingNav />}
 
-      <section className="about-page-main">
+      <section
+        className={`about-page-main ${overflowHidden ? "overflow-hidden" : ""}`}
+      >
         <div className="row-one">
           <img className="img img-one" src={kelseyPetsTop} alt="dog" />
           <div className={`${scrolled ? "about-page-header-container" : ""}`}>

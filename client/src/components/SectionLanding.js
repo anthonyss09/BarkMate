@@ -7,11 +7,18 @@ import deanBowie from "../assets/images/dean&bowieSmall.jpg";
 import stacyProfile from "../assets/images/stacyProfile.jpg";
 import { Link } from "react-router-dom";
 import { IoLogoVenmo } from "react-icons/io5";
+import { selectAlertsInfo } from "../features/alerts/alertsSlice";
+import { useSelector } from "react-redux";
 
 export default function SectionLanding() {
+  const { overflowHidden } = useSelector(selectAlertsInfo);
   return (
     <Wrapper>
-      <section className="section-landing-main">
+      <section
+        className={`section-landing-main ${
+          overflowHidden ? "overflow-hidden" : ""
+        }`}
+      >
         <div className="section-landing-center section-landing-header">
           <h1>
             <span className="span-connect">

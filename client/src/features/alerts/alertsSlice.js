@@ -4,6 +4,7 @@ const initialState = {
   showAlert: false,
   alertType: "",
   alertMessage: "",
+  overflowHidden: false,
 };
 
 export const alertsSlice = createSlice({
@@ -20,10 +21,14 @@ export const alertsSlice = createSlice({
       state.alertType = "";
       state.alertMessage = "";
     },
+    setOverflowHidden(state, action) {
+      state.overflowHidden = !state.overflowHidden;
+    },
   },
 });
 
 export const selectAlertsInfo = (state) => state.alerts;
 
-export const { displayAlert, clearAlert } = alertsSlice.actions;
+export const { displayAlert, clearAlert, setOverflowHidden } =
+  alertsSlice.actions;
 export default alertsSlice.reducer;

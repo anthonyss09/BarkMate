@@ -482,6 +482,10 @@ select {
 select:required:invalid {
   color: rgb(160, 160, 160);
 }
+.overflow-hidden {
+    overflow-x: hidden;
+    position: fixed;
+  }
 
 @media (max-width: 400px) {
   .alert {

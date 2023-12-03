@@ -9,15 +9,16 @@ const Wrapper = styled.aside`
     width: 100vw;
     height: 100vh;
     background: rgb(252, 252, 252, 0.96);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
+    bottom: 0;
     border-right: 1px solid rgb(244, 244, 244);
     z-index: 4;
     font-family: "Ubuntu", sans-serif;
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     transition: all 0.5s ease;
-    overflow: hidden;
+    // background: white;
   }
   .icon-book {
     color: var(--space-cadet);
@@ -29,9 +30,6 @@ const Wrapper = styled.aside`
     color: var(--med-bright-blue);
   }
   .icon-close {
-    // margin: 0.6rem;
-    // margin-bottom: 1rem;
-    // margin-bottom: 2rem;
     color: black;
     align-self: flex-start;
   }
