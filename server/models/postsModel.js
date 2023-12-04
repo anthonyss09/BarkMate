@@ -60,6 +60,7 @@ const PostsSchema = new mongoose.Schema(
     authorImageUrl: {
       type: String,
     },
+    authorProfileName: { type: String },
     text: {
       type: String,
     },

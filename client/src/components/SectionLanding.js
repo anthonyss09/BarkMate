@@ -5,13 +5,51 @@ import ChatLineUser from "../features/chats/ChatLineUser";
 import ChatLineFriend from "../features/chats/ChatLineFriend";
 import deanBowie from "../assets/images/dean&bowieSmall.jpg";
 import stacyProfile from "../assets/images/stacyProfile.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoLogoVenmo } from "react-icons/io5";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLoginUserMutation } from "../features/auth/authSlice";
+import { useState } from "react";
+import DotLoader from "react-spinners/DotLoader";
+import Alert from "../features/alerts/Alert";
+import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 
 export default function SectionLanding() {
-  const { overflowHidden } = useSelector(selectAlertsInfo);
+  const { overflowHidden, showAlert, alertType, alertMessage } =
+    useSelector(selectAlertsInfo);
+  const [loginUser] = useLoginUserMutation();
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [requesting, setRequesting] = useState(false);
+
+  const handleLoginDemoUser = async () => {
+    setRequesting(true);
+
+    const response = await loginUser({
+      email: process.env.REACT_APP_DEMO_EMAIL,
+      password: process.env.REACT_APP_DEMO_PASSWORD,
+    });
+
+    if (response.error) {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: response.error.data.message,
+        })
+      );
+      console.log(response);
+    } else if (response.data) {
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      Navigate("/dashboard/home");
+      window.location.reload();
+    }
+    setTimeout(() => {
+      dispatch(clearAlert());
+    }, 3000);
+    setRequesting(false);
+  };
   return (
     <Wrapper>
       <section
@@ -19,6 +57,17 @@ export default function SectionLanding() {
           overflowHidden ? "overflow-hidden" : ""
         }`}
       >
+        {requesting && (
+          <div className="alert-container">
+            {" "}
+            <DotLoader size={85} color="lightBlue" className="beat-loader" />
+          </div>
+        )}
+        {showAlert && (
+          <div className="alert-container">
+            <Alert alertMessage={alertMessage} alertType={alertType} />
+          </div>
+        )}
         <div className="section-landing-center section-landing-header">
           <h1>
             <span className="span-connect">
@@ -35,7 +84,9 @@ export default function SectionLanding() {
                 Join
               </Link>
             </div>
-            <div className="btn btn-demo">Demo</div>
+            <div className="btn btn-demo" onClick={handleLoginDemoUser}>
+              Demo
+            </div>
           </h1>
           <div className="section-landing-image-jm-container">
             <img

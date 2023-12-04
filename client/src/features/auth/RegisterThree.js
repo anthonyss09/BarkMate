@@ -19,7 +19,6 @@ export default function RegisterThree({
 }) {
   const [profileImage, setProfileImage] = useState();
   const [imageUrl, setImageUrl] = useState();
-  // const [profileImageName, setProfileImageName] = useState();
   const [requesting, setRequesting] = useState(false);
   const [registerUser] = useRegisterUserMutation();
   const [createPost] = useCreatePostMutation();
@@ -30,7 +29,6 @@ export default function RegisterThree({
   const handleImageChange = (e) => {
     const image = e.target.files[0];
     setProfileImage(image);
-    // setProfileImageName(image.name);
     const objUrl = URL.createObjectURL(image);
     setImageUrl(objUrl);
   };
@@ -38,7 +36,8 @@ export default function RegisterThree({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const copyOfUser = { ...newUser };
-    copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
+    // copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
+    copyOfUser.profileName = "Demo";
 
     const cloudinaryFormData = new FormData();
     cloudinaryFormData.append("file", profileImage);
@@ -55,16 +54,16 @@ export default function RegisterThree({
     const response = await registerUser(copyOfUser);
     console.log(response);
     setRequesting(false);
-    // const post = {
-    //   text: "Our first post",
-    //   authorId: response.data.user._id,
-    //   coordinates: response.data.user.location.coordinates,
-    //   authorImageUrl: response.data.user.profileImageUrl,
-    //   authorName: response.data.user.firstName,
-    //   authorDogName: response.data.user.dogName,
-    //   postImageUrl: response.data.user.profileImageUrl,
-    // };
-    // const newPost = await createPost(post);
+    const post = {
+      text: "This is our first post!",
+      authorId: response.data.user._id,
+      coordinates: response.data.user.location.coordinates,
+      authorImageUrl: response.data.user.profileImageUrl,
+      authorName: response.data.user.firstName,
+      authorDogName: response.data.user.dogName,
+      postImageUrl: response.data.user.profileImageUrl,
+    };
+    const newPost = await createPost(post);
     localStorage.setItem("user", JSON.stringify(response.data.user));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     Navigate("/dashboard/home");

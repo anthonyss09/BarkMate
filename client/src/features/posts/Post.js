@@ -22,6 +22,7 @@ export default memo(function Post({
   authorId,
   authorName,
   authorDogName,
+  authorProfileName,
   text,
   authorImageUrl,
   likes,
@@ -200,7 +201,7 @@ export default memo(function Post({
             </Link>
 
             <span className="post-name">
-              {authorName} & {authorDogName} <br />
+              {authorProfileName} <br />
               <span className="post-date">{dateOfPost}</span>
             </span>
           </div>

@@ -20,7 +20,7 @@ const Wrapper = styled.section`
     padding: 0.6rem;
     // color: var(--federal-blue);
     // color: var(--med-font-blue);
-    margin-top: 2rem;
+    // margin-top: 2rem;
     // margin-left: 4rem;
     letter-spacing: 0.05rem;
   }
@@ -38,8 +38,6 @@ const Wrapper = styled.section`
     border-radius: 0;
     display: flex;
     font-size: 1rem;
-    // box-shadow: var(--shadow-main-light);
-    // box-shadow: none;
     display: flex;
     justify-content: center;
     border-radius: 1rem;
@@ -64,7 +62,7 @@ const Wrapper = styled.section`
     align-items: center;
   }
   .section-landing-header-text {
-    margin-top: -4rem;
+    // margin-top: -4rem;
   }
   .second-heading {
     margin-bottom: 4rem;
@@ -100,19 +98,14 @@ const Wrapper = styled.section`
     width: 80px;
     margin: 0 auto;
     color: white;
-    // margin-top: 0.6rem;
     border-radius: 40px;
-    // background: rgb(230, 230, 230);
     color: black;
     letter-spacing: 0.02rem;
     text-decoration: none;
     display: grid;
     place-items: center;
     font-size: 1.1rem;
-    // font-size: 1.3rem;
     font-weight: bold;
-    // margin-bottom: 1rem;
-    // margin-left: 3rem;
   }
   .btn-join:hover {
     cursor: pointer;
@@ -262,7 +255,7 @@ const Wrapper = styled.section`
     }
     .section-landing-header {
       height: 50vh;
-      height: 55vh;
+      // height: 55vh;
     }
     .section-landing-post-header {
       font-size: 1.6rem;

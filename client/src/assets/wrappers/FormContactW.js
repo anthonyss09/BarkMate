@@ -24,13 +24,15 @@ const Wrapper = styled.section`
     padding: 1rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    background: white;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
   }
-  .icon-home {
+  .icon-bars {
     position: absolute;
     top: 1rem;
     left: 1rem;
+  }
+  .icon-bars:hover {
+    cursor: pointer;
   }
   .p-bottom {
     color: var(--grey-80);

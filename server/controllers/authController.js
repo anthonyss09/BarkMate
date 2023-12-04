@@ -1,9 +1,8 @@
-import { BAD_REQUEST, StatusCodes } from "http-status-codes";
+import { StatusCodes } from "http-status-codes";
 import "express-async-errors";
-import { BadRequestError, UnauthenticatedError } from "../Errors/index.js";
+import { BadRequestError } from "../Errors/index.js";
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-import Chat from "../models/chatsModel.js";
 
 const registerUser = async (req, res) => {
   const { firstName, lastName, email, password, location } = req.body;

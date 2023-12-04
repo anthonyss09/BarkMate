@@ -34,10 +34,6 @@ export default function ProfilePageView() {
     isFetching,
   } = useGetProfileByIdQuery(profileId);
 
-  useEffect(() => {
-    console.log("the current user is ", userData.user);
-  }, []);
-
   const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();
   const friendRequestId = new mongoose.Types.ObjectId();
@@ -180,7 +176,7 @@ export default function ProfilePageView() {
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
               <h1 className="profile-preview-name">
-                {userData.user.firstName} & {userData.user.dogName}
+                {userData.user.profileName}
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />

@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   .form-input {
     height: 2rem;
     border: 2px solid var(--test-blue);
+    // border: 2px solid var(--federal-blue);
+    // border: 2px solid var(--med-font-blue);
     border-radius: 1.5rem;
     padding-left: 0.8rem;
     background: none;

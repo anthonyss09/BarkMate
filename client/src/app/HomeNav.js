@@ -21,6 +21,7 @@ import {
   setOverflowHidden,
 } from "../features/alerts/alertsSlice";
 import { socket } from "../sockets/socketIo";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [showSmallSidebar, setSmallShowSidebar] = useState(false);
@@ -115,7 +116,10 @@ export default function NavBar() {
           <HiBars3 size={25} onClick={handleBigSidebar} />
           {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
         </div>
-        <Logo logoClass="logo-nav" iconClass="icon-payment" size={25} />
+        <Link to="/dashboard/home" className="link">
+          <Logo logoClass="logo-nav" iconClass="icon-payment" size={25} />
+        </Link>
+
         <span className="nav-icons-container">
           <span
             className="notification-count"

@@ -68,6 +68,7 @@ export default memo(function CreatePost({
       authorImageUrl: user.profileImageUrl,
       authorName: user.firstName,
       authorDogName: user.dogName,
+      authorProfileName: user.profileName,
       postImageUrl: "",
     };
 

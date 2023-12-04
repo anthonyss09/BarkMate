@@ -2,7 +2,7 @@ import { apiSlice } from "../api/apiSlice";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filters: { distance: 1 },
+  filters: { distance: 5 },
 };
 
 export const usersSlice = createSlice({

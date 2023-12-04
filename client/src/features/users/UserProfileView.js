@@ -34,6 +34,7 @@ export default function UserProfileView() {
     timeNeeded,
     timeAvailable,
     profileImageUrl,
+    profileName,
     _id,
   } = userData.user;
 
@@ -62,9 +63,7 @@ export default function UserProfileView() {
           <div className="profile-page-header">
             <div className="profile-preview-name-container">
               <div className="profile-preview-verification"></div>
-              <h1 className="profile-preview-name">
-                {firstName} & {dogName}
-              </h1>
+              <h1 className="profile-preview-name">{profileName}</h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
                 <span className="location">Williamsburg</span>

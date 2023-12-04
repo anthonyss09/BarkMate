@@ -26,7 +26,18 @@ export default function DashProfiles() {
     setShowFilters(!showFilters);
   };
 
-  const filterOptions = ["1 mile", "2 miles", "3 miles", "4 miles", "5 miles"];
+  const filterOptions = [
+    "1 mile",
+    "2 miles",
+    "3 miles",
+    "4 miles",
+    "5 miles",
+    "6 miles",
+    "7 miles",
+    "8 miles",
+    "9 miles",
+    "10 miles",
+  ];
 
   useEffect(() => {
     // refetch();

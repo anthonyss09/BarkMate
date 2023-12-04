@@ -11,17 +11,23 @@ import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 import { LuHome } from "react-icons/lu";
 import { HiBars3 } from "react-icons/hi2";
+import DropMenuLanding from "../components/DropMenuLanding.js";
 
 export default function ConctactForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
 
   const [sending, setSending] = useState(false);
 
   const dispatch = useDispatch();
 
   let { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
+
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -75,10 +81,11 @@ export default function ConctactForm() {
 
   return (
     <Wrapper>
-      <div className="icon-home">
+      <div className="icon-bars" onClick={handleShowMenu}>
         {" "}
         <HiBars3 size={25} />
       </div>
+      {showMenu && <DropMenuLanding handleShowMenu={handleShowMenu} />}
       <section className="form-main">
         {showAlert && (
           <Alert alertMessage={alertMessage} alertType={alertType} />

@@ -321,6 +321,7 @@ select {
 .form-input-address {
   width: 94%;
   border: 2px solid var(--test-blue);
+  /* border: 2px solid var(--federal-blue); */
 }
 .form-input-image {
   display: none;
@@ -377,6 +378,7 @@ select {
   border-radius: 1.5rem;
   border: 2px solid var(--grey-240);
   border: 2px solid var(--test-blue);
+  /* border: 2px solid var(--federal-blue); */
   padding-left: 0.8rem;
   padding-top: 0.6rem;
   background: none;

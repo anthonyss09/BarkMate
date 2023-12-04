@@ -20,6 +20,7 @@ const createPost = async (req, res) => {
     authorDogName,
     postImageUrl,
     authorImageUrl,
+    authorProfileName,
   } = req.body;
 
   const location = { type: "Point", coordinates: coordinates };
@@ -51,6 +52,7 @@ const createPost = async (req, res) => {
       authorDogName,
       postImageUrl,
       authorImageUrl,
+      authorProfileName,
     });
     // console.log(post);
     res
@@ -85,7 +87,7 @@ const getPosts = async (req, res) => {
         {
           location: {
             $geoWithin: {
-              $centerSphere: [newCoords, 5 / 3963.2],
+              $centerSphere: [newCoords, 15 / 3963.2],
             },
           },
         },

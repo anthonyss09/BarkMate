@@ -1,5 +1,5 @@
 import LoginForm from "../features/auth/LoginForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoginUserMutation } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -59,6 +59,11 @@ export default function LoginPage() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="form-page-blue">
       {" "}

@@ -59,8 +59,11 @@ export default function DashHome() {
     updatedUserRef.current = currentUser ? currentUser.user : user;
     localStorage.setItem("user", JSON.stringify(updatedUserRef.current));
     userRef.current = updatedUserRef.current;
-    window.scrollTo(0, 0);
   }, [currentUser, user]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleClick = () => {
     setShowCreatePost(!showCreatePost);
@@ -75,6 +78,7 @@ export default function DashHome() {
             authorId={post.authorId}
             authorName={post.authorName}
             authorDogName={post.authorDogName}
+            authorProfileName={post.authorProfileName}
             text={post.text}
             authorImageUrl={post.authorImageUrl}
             postImageName={post.postImageName}

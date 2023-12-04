@@ -85,12 +85,12 @@ const Wrapper = styled.aside`
   }
   .post-text {
     font-size: 0.8rem;
-    padding: 1rem;
+    padding: 0.4rem 0.8rem;
     letter-spacing: 0.02rem;
     letter-spacing: 0.03rem;
-    margin-left: 1rem;
-    line-height: 1.1rem;
-    width: 80%;
+    // margin-left: 1rem;
+    line-height: 1rem;
+    // width: 80%;
     margin-bottom: 0.6rem;
   }
   .post-textarea {
