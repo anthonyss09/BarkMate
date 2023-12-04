@@ -75,6 +75,7 @@ const Wrapper = styled.div`
     outline: none;
     resize: none;
     background: none;
+    font-family: "Roboto", sans-serif;
   }
   .hidden {
     width: 0rem;

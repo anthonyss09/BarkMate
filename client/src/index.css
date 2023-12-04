@@ -378,20 +378,16 @@ select {
   border-radius: 1.5rem;
   border: 2px solid var(--grey-240);
   border: 2px solid var(--test-blue);
-  /* border: 2px solid var(--federal-blue); */
   padding-left: 0.8rem;
   padding-top: 0.6rem;
   background: none;
   resize: none;
   outline: none;
   font-size: 16px;
-  font-family: "Signika Negative", sans-serif;
-
 }
 .form-textarea::placeholder {
     color: rgb(180, 180, 180);
-        font-family: "Roboto", sans-serif;
-
+    font-size: 16px;
 }
 
 .full-page {
@@ -414,12 +410,6 @@ select {
   text-decoration: none;
   color: black;
 }
-/* .logo {
-  color: var(--charcoal);
-  display: flex;
-  align-items: center;
-  color: var(--federal-blue);
-} */
 .no-content {
   background: white;
   width: 100vw;
