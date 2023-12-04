@@ -75,6 +75,7 @@ const updateUser = async (req, res) => {
     aboutUs,
     timeNeeded,
     timeAvailable,
+    profileName,
   } = req.body;
 
   console.log("authis ", req.headers.authorization);
@@ -126,6 +127,7 @@ const updateUser = async (req, res) => {
           aboutUs,
           timeNeeded,
           timeAvailable,
+          profileName,
         },
       },
       { returnOriginal: false }

@@ -13,14 +13,14 @@ export default function FiltersDropDown({
   const [filterId, setFilterId] = useState("");
 
   const options = filterOptions.map((item, index) => (
-    <option key={index} value={item}>
+    <option key={index} value={index + 1}>
       {item}
     </option>
   ));
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFilterValue(Number(value[0]));
+    setFilterValue(Number(value));
     setFilterId(id);
   };
 

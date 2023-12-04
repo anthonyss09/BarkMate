@@ -36,8 +36,7 @@ export default function RegisterThree({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const copyOfUser = { ...newUser };
-    // copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
-    copyOfUser.profileName = "Demo";
+    copyOfUser.profileName = newUser.firstName + " & " + newUser.dogName;
 
     const cloudinaryFormData = new FormData();
     cloudinaryFormData.append("file", profileImage);
@@ -61,6 +60,7 @@ export default function RegisterThree({
       authorImageUrl: response.data.user.profileImageUrl,
       authorName: response.data.user.firstName,
       authorDogName: response.data.user.dogName,
+      authorProfileName: response.data.user.profileName,
       postImageUrl: response.data.user.profileImageUrl,
     };
     const newPost = await createPost(post);
