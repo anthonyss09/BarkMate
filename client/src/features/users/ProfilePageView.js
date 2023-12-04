@@ -14,7 +14,7 @@ import mongoose from "mongoose";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import { useRequestFriendMutation } from "../friends/FriendsSlice";
 import QuickChat from "../chats/QuickChat";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DotLoader from "react-spinners/DotLoader";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { logoutUser } from "../auth/authSlice";
@@ -28,7 +28,15 @@ export default function ProfilePageView() {
   const Navigate = useNavigate();
 
   const { profileId } = useParams();
-  const { data: userData, isLoading } = useGetProfileByIdQuery(profileId);
+  const {
+    data: userData,
+    isLoading,
+    isFetching,
+  } = useGetProfileByIdQuery(profileId);
+
+  useEffect(() => {
+    console.log("the current user is ", userData.user);
+  }, []);
 
   const currentUser = useSelector(selectCurrentUser);
   const notificationId = new mongoose.Types.ObjectId();
@@ -47,7 +55,7 @@ export default function ProfilePageView() {
     setShowQuickChat(!showQuickChat);
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <div className="alert-container">
         {" "}

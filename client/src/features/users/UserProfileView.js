@@ -8,8 +8,22 @@ import { selectCurrentUser } from "../auth/authSlice";
 import { useSelector } from "react-redux";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useGetProfileByIdQuery } from "./UsersSlice";
+import { FaFacebookSquare, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function UserProfileView() {
+  const { _id: profileId } = useSelector(selectCurrentUser);
+
+  const {
+    data: userData,
+    isLoading,
+    isFetching,
+  } = useGetProfileByIdQuery(profileId);
+
+  if (isLoading) {
+    return <div>is loading</div>;
+  }
+
   const {
     firstName,
     dogName,
@@ -21,7 +35,7 @@ export default function UserProfileView() {
     timeAvailable,
     profileImageUrl,
     _id,
-  } = useSelector(selectCurrentUser);
+  } = userData.user;
 
   const availabity = timeAvailable.map((time, index) => {
     return (
@@ -109,6 +123,19 @@ export default function UserProfileView() {
             <div className="profile-page-groups">
               <h3 className="section-header">Our Groups</h3>
               <div className="groups-container">
+                <div className="construction">
+                  <div className="construction-center">
+                    {" "}
+                    {/* <h1 className="construction-header"></h1> */}
+                    <p className="construction-p">
+                      If you would like to see new features such as groups{" "}
+                      <Link to="/contact" className="link construction-link">
+                        Contact us
+                      </Link>{" "}
+                      with your thoughts.
+                    </p>
+                  </div>
+                </div>
                 <div className="group-single">
                   {" "}
                   <img className="group-image" src={goodBoys} alt="the group" />
@@ -117,8 +144,36 @@ export default function UserProfileView() {
               </div>
             </div>
             <div className="profile-page-social-links">
+              <div className="construction">
+                <div className="construction-center">
+                  {" "}
+                  {/* <h1 className="construction-header"></h1> */}
+                  <p className="construction-p">
+                    If you would like to see new features such as links to
+                    social media
+                    <br />{" "}
+                    <Link to="/contact" className="link construction-link">
+                      Contact us
+                    </Link>{" "}
+                    with your thoughts.
+                  </p>
+                </div>
+              </div>
               <h3 className="section-header">Social links</h3>
-              these are links to our social media
+              <div className="social-links-container">
+                <div className="social-link-single icon-facebook">
+                  {" "}
+                  <FaFacebookSquare size={45} />
+                </div>
+                <div className="social-link-single icon-instagram">
+                  {" "}
+                  <FaInstagram size={45} />
+                </div>
+                <div className="social-link-single icon-twitter">
+                  {" "}
+                  <FaTwitter size={45} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -9,6 +9,8 @@ import { displayAlert, clearAlert } from "../features/alerts/alertsSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
+import { LuHome } from "react-icons/lu";
+import { HiBars3 } from "react-icons/hi2";
 
 export default function ConctactForm() {
   const [email, setEmail] = useState("");
@@ -73,6 +75,10 @@ export default function ConctactForm() {
 
   return (
     <Wrapper>
+      <div className="icon-home">
+        {" "}
+        <HiBars3 size={25} />
+      </div>
       <section className="form-main">
         {showAlert && (
           <Alert alertMessage={alertMessage} alertType={alertType} />
@@ -83,8 +89,9 @@ export default function ConctactForm() {
             <DotLoader size={85} color="lightBlue" className="beat-loader" />
           </div>
         )}
+
         <div className="form form-contact">
-          <Link to="/dashboard/home" className=" link">
+          <Link to="/dashboard/home" className=" link link-logo">
             <Logo logoClass="logo-payment" iconClass="icon-payment" />
           </Link>
           <h1 className="form-header">
@@ -120,7 +127,7 @@ export default function ConctactForm() {
             <textarea
               id="message"
               name="Message"
-              rows="5"
+              rows="8"
               value={message}
               placeholder="What's on your mind?"
               className="form-textarea"

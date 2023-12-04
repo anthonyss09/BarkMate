@@ -29,6 +29,14 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         method: "Get",
       }),
     }),
+    updateUser: builder.mutation({
+      query: (update) => ({
+        url: "/auth/update-user",
+        method: "POST",
+        body: update,
+      }),
+      invalidatesTags: ["CurrentUser"],
+    }),
   }),
 });
 
@@ -36,6 +44,7 @@ export const {
   useGetProfilesQuery,
   useGetProfileByIdQuery,
   useRequestFriendMutation,
+  useUpdateUserMutation,
 } = extendedApiSlice;
 
 export const selectUsersData = (state) => state.users;

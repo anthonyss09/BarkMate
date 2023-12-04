@@ -13,13 +13,16 @@ const Wrapper = styled.section`
   .btn-demo {
     width: min-content;
     border: 2px solid black;
-    border: 2px solid var(--med-font-blue);
+    // border: 2px solid var(--med-font-blue);
     margin-top: 1rem;
     font-weight: 500;
     font-size: 1.4rem;
     padding: 0.6rem;
-    color: var(--federal-blue;);
-    margin-top: 1rem;
+    // color: var(--federal-blue);
+    // color: var(--med-font-blue);
+    margin-top: 2rem;
+    // margin-left: 4rem;
+    letter-spacing: 0.05rem;
   }
   .btn-learn {
     margin-top: 1rem;
@@ -35,7 +38,8 @@ const Wrapper = styled.section`
     border-radius: 0;
     display: flex;
     font-size: 1rem;
-    box-shadow: var(--shadow-main-light);
+    // box-shadow: var(--shadow-main-light);
+    // box-shadow: none;
     display: flex;
     justify-content: center;
     border-radius: 1rem;
@@ -55,12 +59,13 @@ const Wrapper = styled.section`
     position: static;
     color: rgb(80, 80, 80);
     background: none;
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
+  .section-landing-header-text {
+    margin-top: -4rem;
+  }
   .second-heading {
     margin-bottom: 4rem;
   }
@@ -96,16 +101,18 @@ const Wrapper = styled.section`
     margin: 0 auto;
     color: white;
     // margin-top: 0.6rem;
-    font-size: 1rem;
     border-radius: 40px;
-    background: rgb(230, 230, 230);
+    // background: rgb(230, 230, 230);
     color: black;
     letter-spacing: 0.02rem;
     text-decoration: none;
     display: grid;
     place-items: center;
     font-size: 1.1rem;
+    // font-size: 1.3rem;
     font-weight: bold;
+    // margin-bottom: 1rem;
+    // margin-left: 3rem;
   }
   .btn-join:hover {
     cursor: pointer;
@@ -199,7 +206,7 @@ const Wrapper = styled.section`
     width: 80vw;
     justify-content: center;
     height: 60vh;
-    height: 70vh;
+    // height: 70vh;
   }
   .section-landing-heading {
     display: flex;
@@ -211,6 +218,7 @@ const Wrapper = styled.section`
     position: relative;
     display: grid;
     place-items: center;
+    box-sizing: border-box;
   }
   .overflow-hidden {
     overflow-x: hidden;
@@ -231,6 +239,7 @@ const Wrapper = styled.section`
     letter-spacing: 0.05rem;
     border: 2px solid white;
     padding: 0.4rem;
+    margin-top: 2rem;
   }
 
   @media (max-width: 400px) {

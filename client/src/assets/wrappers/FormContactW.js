@@ -9,9 +9,13 @@ const Wrapper = styled.section`
   .btn-contact {
     width: 100%;
     height: 4rem;
-    background: var(--med-bright-blue);
-    color: white;
+    // background: var(--med-bright-blue);
+    // color: white;
+    background: white;
+    color: var(--federal-blue);
     font-size: 1rem;
+    margin-top: -1.6rem;
+    letter-spacing: 0.05rem;
   }
   .form-main {
     padding-top: 4rem;
@@ -20,6 +24,13 @@ const Wrapper = styled.section`
     padding: 1rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    background: white;
+    letter-spacing: 0.1rem;
+  }
+  .icon-home {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
   }
   .p-bottom {
     color: var(--grey-80);

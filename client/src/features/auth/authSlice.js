@@ -88,10 +88,18 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["CurrentUser"],
     }),
+
     refreshUserCredentials: builder.query({
       query: (userId) => ({
         url: `/users/single-profile?userId=${userId}`,
         method: "GET",
+      }),
+      providesTags: ["CurrentUser"],
+    }),
+    getProfileById: builder.query({
+      query: (profileId) => ({
+        url: `/users/single-profile?userId=${profileId}`,
+        method: "Get",
       }),
       providesTags: ["CurrentUser"],
     }),
@@ -125,6 +133,7 @@ export const {
   useRefreshUserCredentialsQuery,
   useUpdateUserMutation,
   useGetAuthorizationMutation,
+  useGetProfileByIdQuery,
 } = extendedApiSlice;
 
 export default authSlice.reducer;

@@ -58,7 +58,7 @@ const Wrapper = styled.nav`
   .nav-main-landing {
     border: none;
     z-index: 20;
-    border-bottom: 2px solid rgb(240, 240, 240);
+    // border-bottom: 2px solid rgb(240, 240, 240);
   }
   .nav-profile-pic {
     height: 35px;

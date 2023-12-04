@@ -9,7 +9,7 @@ import { useState } from "react";
 import FormCheckbox from "../auth/FormCheckbox";
 import Footer from "../../app/Footer";
 import { useNavigate } from "react-router-dom";
-import { useUpdateUserMutation } from "../auth/authSlice";
+import { useUpdateUserMutation } from "./UsersSlice";
 import DotLoader from "react-spinners/DotLoader";
 import axios from "axios";
 import {

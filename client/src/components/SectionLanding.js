@@ -55,23 +55,23 @@ export default function SectionLanding() {
             <ChatLineFriend
               text="have you and Bowie been to shady tree park?"
               profileImageUrl={stacyProfile}
-              shadow={true}
+              shadow={false}
             />
             <ChatLineUser
               text="yes! we love that place"
               profileImageUrl={deanBowie}
-              shadow={true}
+              shadow={false}
             />
 
             <ChatLineFriend
               text="want to meet at the park and catch a vibe?"
               profileImageUrl={stacyProfile}
-              shadow={true}
+              shadow={false}
             />
             <ChatLineUser
               text="100% we'll be there tomorrow!"
               profileImageUrl={deanBowie}
-              shadow={true}
+              shadow={false}
             />
           </div>
         </div>
