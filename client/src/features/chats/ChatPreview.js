@@ -24,7 +24,7 @@ export default memo(function ChatPreview({
           </div>
           <div className="chat-preview-body">
             <div className="chat-name">{profileName}</div>
-            <span className="chat-excerpt">{content}</span>
+            <div className="chat-excerpt">{content}</div>
           </div>
         </aside>
       </Link>

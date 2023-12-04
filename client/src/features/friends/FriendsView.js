@@ -42,7 +42,6 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
         <h3 className="friend-list-header">Requests</h3>
         {friendRequested.length ? (
           friendRequested.map((friend, index) => {
-            console.log(friend.friend);
             return (
               <div key={index} className="friends-view-single">
                 <Link to={"/" + friend.friend.participantId}>

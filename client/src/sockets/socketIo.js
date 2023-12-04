@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 const user = JSON.parse(localStorage.getItem("user"));
 // let userId = user ? user._id : null;
 
-export let socket = io({
+export let socket = io("http://192.168.1.153:80", {
   path: "/socket.io/",
   auth: { token: "token" },
   query: { userId: user ? JSON.parse(localStorage.getItem("user"))._id : "" },

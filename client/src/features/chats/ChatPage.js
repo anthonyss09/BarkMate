@@ -3,7 +3,7 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { useEffect } from "react";
 import { BsSend } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useParams } from "react-router-dom";
 import ChatLineFriend from "./ChatLineFriend";
@@ -13,7 +13,6 @@ import { useCreateChatMutation, useGetChatsQuery } from "../chats/ChatsSlice";
 import { useCreateNotificationMutation } from "../notifications/NotificationsSlice";
 import mongoose from "mongoose";
 import DotLoader from "react-spinners/DotLoader";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 import { selectAlertsInfo } from "../alerts/alertsSlice";
@@ -45,6 +44,18 @@ export default function ChatPage() {
   };
 
   const handleMessageSend = async () => {
+    if (profileName === "Demo") {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Create a profile to send messages.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      return;
+    }
     const newChat = await createChat({
       participants: [
         {
@@ -74,13 +85,6 @@ export default function ChatPage() {
       );
       console.log(newChat.error.data.message);
     } else if (newChat.data) {
-      // dispatch(
-      //   displayAlert({
-      //     alertMessage: newChat.data.message,
-      //     alertType: "success",
-      //   })
-      // );
-      // console.log(newChat.data.message);
       createNotification({
         _id: id,
         chatId,

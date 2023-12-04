@@ -32,6 +32,8 @@ const Wrapper = styled.div`
     bottom: 1rem;
     background: var(--test-blue);
     background: var(--med-bright-blue);
+    height: 4rem;
+    width: 4rem;
   }
   .quick-chat-btn:hover {
     transform: scale(1.1);

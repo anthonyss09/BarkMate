@@ -39,6 +39,18 @@ export default function QuickChat({
   };
 
   const handleSendMessage = async () => {
+    if (profileName === "Demo") {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Create a profile to send messages.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      return;
+    }
     setMessage("");
     setRequesting(true);
     const newChat = await createChat({

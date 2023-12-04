@@ -24,7 +24,6 @@ const getProfiles = async (req, res) => {
     const filteredMatches = matches.filter(
       (match) => match.firstName !== currentUserName
     );
-    console.log(filteredMatches);
 
     res.status(StatusCodes.OK).json({ filteredMatches });
   } catch (error) {
