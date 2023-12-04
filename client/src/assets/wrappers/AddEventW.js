@@ -102,11 +102,10 @@ const Wrapper = styled.aside`
     align-items: center;
     box-sizing: border-box;
     border: 1px solid rgb(215, 215, 215);
-    // box-shadow: 5px 2px 5px grey;
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
     z-index: 8;
-    border-left: 1px solid rgb(220, 220, 220);
-    border: 4px solid rgb(100,100,100);
-  }
+    border: 2px solid rgb(80,80,80);
+     }
   .add-event-title {
     text-align: center;
     margin-bottom: 1rem;

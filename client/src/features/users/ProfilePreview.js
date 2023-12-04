@@ -22,6 +22,8 @@ export default function ProfilePreview({
   profileImageUrl,
   requesting,
   setRequesting,
+  city,
+  sample,
 }) {
   const [showQuickChat, setShowQuickChat] = useState(false);
 
@@ -161,7 +163,9 @@ export default function ProfilePreview({
                 About Us
                 <div className="location-container">
                   <MdLocationOn size={15} />
-                  <span className="location">{currentUser.city}</span>
+                  <span className="location">
+                    {sample ? "Your city" : city}
+                  </span>
                 </div>
               </h1>
 

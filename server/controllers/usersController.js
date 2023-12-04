@@ -19,6 +19,8 @@ const getProfiles = async (req, res) => {
         },
       },
     });
+    const samples = await User.find({ sample: true });
+    matches.concat(samples);
     const filteredMatches = matches.filter(
       (match) => match.firstName !== currentUserName
     );

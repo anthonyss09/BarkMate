@@ -91,6 +91,7 @@ const getPosts = async (req, res) => {
             },
           },
         },
+        { sample: true },
         { authorId: { $in: friendIds } },
       ],
     })

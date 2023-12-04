@@ -180,7 +180,9 @@ export default function ProfilePageView() {
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
-                <span className="location">{userData.user.city}</span>
+                <span className="location">
+                  {userData.user.sample ? "Your city" : userData.user.city}
+                </span>
               </div>
             </div>
             {currentUser._id === profileId && (

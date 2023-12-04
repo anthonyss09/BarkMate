@@ -48,6 +48,10 @@ const PostsSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    sample: {
+      type: Boolean,
+      default: false,
+    },
     authorName: {
       type: String,
     },

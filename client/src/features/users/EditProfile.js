@@ -1,6 +1,6 @@
 import Wrapper from "../../assets/wrappers/FormEditProfileW";
 import HomeNav from "../../app/HomeNav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../auth/authSlice";
 import { useRef } from "react";
 import AddressInput from "../../components/AddressInput";
@@ -19,11 +19,13 @@ import {
 import { useEditAllChatsByUserMutation } from "../chats/ChatsSlice";
 import { useEditAllNotificationsByUserMutation } from "../notifications/NotificationsSlice";
 import { useEditAllFriendsByUserMutation } from "../friends/FriendsSlice";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 
 export default function EditProfile() {
   const user = useSelector(selectCurrentUser);
   const inputRef = useRef();
 
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   const [updateUser] = useUpdateUserMutation();
@@ -97,6 +99,19 @@ export default function EditProfile() {
 
   const handleSaveEdits = async (e) => {
     e.preventDefault();
+
+    if (user.profileName === "Demo") {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Create a profile to save edits.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      return;
+    }
     const update = {
       profileImageUrl: imageUrl,
       address,
@@ -180,9 +195,7 @@ export default function EditProfile() {
         <div className="edit-profile-center">
           <h1 className="form-row edit-profile-heading">Edit Profile</h1>
 
-          <h1 className="edit-profile-name">
-            {user.firstName + " & " + user.dogName}
-          </h1>
+          <h1 className="edit-profile-name">{user.profileName}</h1>
 
           {!profileImage && (
             <img

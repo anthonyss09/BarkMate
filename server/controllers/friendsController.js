@@ -18,9 +18,7 @@ const requestFriend = async (req, res) => {
     });
 
     if (fFriendExists || sFriendExists) {
-      res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ message: "Friend already exists" });
+      res.status(StatusCodes.BAD_REQUEST).json({ message: "Already friends!" });
       return;
     }
 

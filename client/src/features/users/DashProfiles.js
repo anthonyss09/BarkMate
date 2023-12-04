@@ -69,6 +69,8 @@ export default function DashProfiles() {
           aboutUs={match.aboutUs}
           profileImageUrl={match.profileImageUrl}
           id={match._id}
+          sample={match.sample}
+          city={match.city}
           profileName={match.profileName}
           currentUser={currentUser}
           requesting={requesting}

@@ -36,6 +36,7 @@ export default function UserProfileView() {
     profileImageUrl,
     profileName,
     _id,
+    city,
   } = userData.user;
 
   const availabity = timeAvailable.map((time, index) => {
@@ -66,7 +67,7 @@ export default function UserProfileView() {
               <h1 className="profile-preview-name">{profileName}</h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
-                <span className="location">Williamsburg</span>
+                <span className="location">{city}</span>
               </div>
             </div>
             <Link to="/userProfile/editProfile" className="link">

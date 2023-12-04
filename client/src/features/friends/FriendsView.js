@@ -6,6 +6,8 @@ import {
   useDeclineFriendMutation,
 } from "../friends/FriendsSlice";
 import { Link } from "react-router-dom";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
+import { useDispatch } from "react-redux";
 
 export default function FriendsView({ handleShowFriends, currentUser }) {
   let userFriends;
@@ -18,7 +20,7 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
   const { data: friends, isLoading } = useGetFriendsQuery(currentUser._id);
   const [acceptFriend] = useAcceptFriendMutation();
   const [declineFriend] = useDeclineFriendMutation();
-  console.log("friends are", friends);
+  const dispatch = useDispatch();
 
   if (!isLoading) {
     userFriends = Object.values(friends)
@@ -59,6 +61,19 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 <span
                   className="friend-accept"
                   onClick={() => {
+                    if (currentUser.profileName === "Demo") {
+                      dispatch(
+                        displayAlert({
+                          alertType: "danger",
+                          alertMessage:
+                            "Create a profile to accept friend requests.",
+                        })
+                      );
+                      setTimeout(() => {
+                        dispatch(clearAlert());
+                      }, 3000);
+                      return;
+                    }
                     const friendCopy = { ...friend };
                     friendCopy.recipientStatus = "friends";
                     friendCopy.requesterStatus = "friends";
@@ -74,6 +89,19 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
                 <span
                   className="friend-ignore"
                   onClick={() => {
+                    if (currentUser.profileName === "Demo") {
+                      dispatch(
+                        displayAlert({
+                          alertType: "danger",
+                          alertMessage:
+                            "Create a profile to ignore friend requests.",
+                        })
+                      );
+                      setTimeout(() => {
+                        dispatch(clearAlert());
+                      }, 3000);
+                      return;
+                    }
                     const friendCopy = { ...friend };
                     friendCopy.recipientStatus = "declined";
                     friendCopy.requesterStatus = "declined";
