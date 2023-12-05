@@ -177,6 +177,9 @@ export default function ProfilePageView() {
             <div className="profile-preview-name-container">
               <h1 className="profile-preview-name">
                 {userData.user.profileName}
+                {userData.user.sample && (
+                  <span className="sample-user-name"> Sample user</span>
+                )}
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />

@@ -438,6 +438,11 @@ select {
   max-width: 200px;
   margin-bottom: 1rem;
 }
+.sample-user-name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--bark-pink)
+}
 .scrolled-nav {
   position: fixed;
   top: 0;

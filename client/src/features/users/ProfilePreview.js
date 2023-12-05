@@ -114,7 +114,10 @@ export default function ProfilePreview({
           {" "}
           <div className="profile-preview-header">
             {" "}
-            <h1 className="profile-preview-name">{profileName}</h1>
+            <h1 className="profile-preview-name">
+              {profileName}{" "}
+              {sample && <span className="sample-user-name"> Sample user</span>}
+            </h1>
           </div>
           <div className="profile-preview-body">
             <Link to={`/${id}`} className="profile-pic-container">
