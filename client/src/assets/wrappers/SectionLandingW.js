@@ -106,11 +106,18 @@ const Wrapper = styled.section`
     place-items: center;
     font-size: 1.1rem;
     font-weight: bold;
+    color: var(--federal-blue);
   }
   .btn-join:hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: all 0.3s ease;
+  }
+  .btn-link {
+    color: var(--federal-blue);
+    // font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    font-family: "Roboto", sans-serif;
   }
   .icon-dog {
     color: var(--med-bright-blue);
@@ -156,23 +163,29 @@ const Wrapper = styled.section`
   }
   .section-landing-chat {
     margin: 4rem auto;
-    width: 100vw;
     max-width: 460px;
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
   }
   .section-landing-chat-center {
-    width: 100vw;
+    // width: 80vw;
     background: var(--bark-pink);
-    padding-right: 0.2rem;
     box-sizing: border-box;
+  }
+  .section-landing-chat-container {
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    background: var(--bark-pink);
+    display: grid;
+    place-items: center;
   }
   .section-landing-chat-header {
     color: white;
     margin-top: -4rem;
     margin-right: -2rem;
-    margin-left: 1rem;
+    // margin-left: 1rem;
     border: 2px solid white;
     padding: 0.4rem;
     z-index: 4;
@@ -199,7 +212,6 @@ const Wrapper = styled.section`
     width: 80vw;
     justify-content: center;
     height: 60vh;
-    // height: 70vh;
   }
   .section-landing-heading {
     display: flex;
@@ -227,6 +239,7 @@ const Wrapper = styled.section`
     letter-spacing: 0.02rem;
   }
   .section-landing-post-header {
+    width: 200px;
     color: white;
     font-size: 2rem;
     letter-spacing: 0.05rem;

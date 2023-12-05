@@ -66,7 +66,22 @@ export default memo(function Post({
   };
 
   const handlePostComment = async () => {
+    if (currentUserProfileName === "Demo") {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Create a profile to comment.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      setShowPostComment(!showPostComment);
+      setComment("");
+      return;
+    }
     setRequesting(true);
+
     const newComment = await createComment({
       postId,
       authorId: currentUserId,
@@ -249,6 +264,7 @@ export default memo(function Post({
             <CreateComment
               authorName={authorName}
               authorDogName={authorDogName}
+              authorProfileName={authorProfileName}
               isFocused={isFocused}
               handleShowPostComment={handleShowPostComment}
               showPostComment={showPostComment}

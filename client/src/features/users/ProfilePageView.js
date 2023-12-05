@@ -177,14 +177,18 @@ export default function ProfilePageView() {
             <div className="profile-preview-name-container">
               <h1 className="profile-preview-name">
                 {userData.user.profileName}
-                {userData.user.sample && (
-                  <span className="sample-user-name"> Sample user</span>
-                )}
+                {userData.user.sample &&
+                  userData.user.profileName !== "Bark Mate" && (
+                    <span className="sample-user-name"> Sample user</span>
+                  )}
               </h1>
               <div className="location-container">
                 <MdLocationOn size={15} />
                 <span className="location">
-                  {userData.user.sample ? "Your city" : userData.user.city}
+                  {userData.user.sample &&
+                  userData.user.profileName !== "Bark Mate"
+                    ? "Your city"
+                    : userData.user.city}
                 </span>
               </div>
             </div>

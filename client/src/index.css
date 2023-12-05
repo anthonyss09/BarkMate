@@ -133,6 +133,7 @@ select {
   color: var(--federal-blue);
   color: var(--space-cadet);
   font-weight: bold;
+  z-index: 20;
 }
 .alert-container {
   position: fixed;

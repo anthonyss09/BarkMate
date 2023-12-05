@@ -9,7 +9,6 @@ import { displayAlert, clearAlert } from "../features/alerts/alertsSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-import { LuHome } from "react-icons/lu";
 import { HiBars3 } from "react-icons/hi2";
 import DropMenuLanding from "../components/DropMenuLanding.js";
 

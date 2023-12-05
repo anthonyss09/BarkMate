@@ -60,6 +60,23 @@ export default memo(function CreatePost({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (currentUser.profileName === "Demo") {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Create a profile to post.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      setPostImage("");
+      setImageUrl("");
+      setPostImageName("");
+      setPostText("");
+      handleClick();
+      return;
+    }
 
     const post = {
       text: postText,
@@ -156,9 +173,7 @@ export default memo(function CreatePost({
               alt="user profile"
             />
           </Link>
-          <span className="create-post-name">
-            {currentUser.firstName} & {currentUser.dogName}
-          </span>
+          <span className="create-post-name">{currentUser.profileName}</span>
         </div>
         <div className="create-post-form-row">
           <textarea

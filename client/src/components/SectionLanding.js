@@ -27,8 +27,8 @@ export default function SectionLanding() {
     setRequesting(true);
 
     const response = await loginUser({
-      email: process.env.REACT_APP_DEMO_EMAIL,
-      password: process.env.REACT_APP_DEMO_PASSWORD,
+      email: "demo@gmail.com",
+      password: "123456demo",
     });
 
     if (response.error) {
@@ -80,7 +80,7 @@ export default function SectionLanding() {
             <br />
             <div className="btn-join ">
               {" "}
-              <Link to="/register" className="link">
+              <Link to="/register" className="btn-link link">
                 Join
               </Link>
             </div>
@@ -96,36 +96,40 @@ export default function SectionLanding() {
             />
           </div>
         </div>
-        <div className="section-landing-center section-landing-chat-center">
-          <h1 className="section-landing-chat-header">
-            Chat <br />
-            someone <br />
-            up <br />
-          </h1>
-          <div className="section-landing-chat">
-            <ChatLineFriend
-              text="have you and Bowie been to shady tree park?"
-              profileImageUrl={stacyProfile}
-              shadow={false}
-            />
-            <ChatLineUser
-              text="yes! we love that place"
-              profileImageUrl={deanBowie}
-              shadow={false}
-            />
+        <div className="section-landing-chat-container">
+          {" "}
+          <div className="section-landing-center section-landing-chat-center">
+            <h1 className="section-landing-chat-header">
+              Chat <br />
+              someone <br />
+              up <br />
+            </h1>
+            <div className="section-landing-chat">
+              <ChatLineFriend
+                text="have you and Bowie been to shady tree park?"
+                profileImageUrl={stacyProfile}
+                shadow={false}
+              />
+              <ChatLineUser
+                text="yes! we love that place"
+                profileImageUrl={deanBowie}
+                shadow={false}
+              />
 
-            <ChatLineFriend
-              text="want to meet at the park and catch a vibe?"
-              profileImageUrl={stacyProfile}
-              shadow={false}
-            />
-            <ChatLineUser
-              text="100% we'll be there tomorrow!"
-              profileImageUrl={deanBowie}
-              shadow={false}
-            />
+              <ChatLineFriend
+                text="want to meet at the park and catch a vibe?"
+                profileImageUrl={stacyProfile}
+                shadow={false}
+              />
+              <ChatLineUser
+                text="100% we'll be there tomorrow!"
+                profileImageUrl={deanBowie}
+                shadow={false}
+              />
+            </div>
           </div>
         </div>
+
         <div className="section-landing-center">
           {" "}
           <h1 className="second-heading">

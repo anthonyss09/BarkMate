@@ -24,6 +24,8 @@ export default function ProfilePreview({
   setRequesting,
   city,
   sample,
+  timeNeeded,
+  timeAvailable,
 }) {
   const [showQuickChat, setShowQuickChat] = useState(false);
 
@@ -107,6 +109,21 @@ export default function ProfilePreview({
     setShowQuickChat(!showQuickChat);
   };
 
+  const availability = timeAvailable.map((time, index) => {
+    return (
+      <div key={index} className="time-slot time-slot-available">
+        {time}
+      </div>
+    );
+  });
+  const needed = timeNeeded.map((time, index) => {
+    return (
+      <div key={index} className="time-slot time-slot-needed">
+        {time}
+      </div>
+    );
+  });
+
   return (
     <Wrapper>
       <aside className="profile-preview-main">
@@ -116,7 +133,9 @@ export default function ProfilePreview({
             {" "}
             <h1 className="profile-preview-name">
               {profileName}{" "}
-              {sample && <span className="sample-user-name"> Sample user</span>}
+              {sample && profileName !== "Bark Mate" && (
+                <span className="sample-user-name"> Sample user</span>
+              )}
             </h1>
           </div>
           <div className="profile-preview-body">
@@ -142,11 +161,11 @@ export default function ProfilePreview({
                 {" "}
                 <div className="time-slot-column">
                   <h1 className="time-slot-title">I'm available</h1>
-                  <div className="time-slot time-slot-available">mornings</div>
+                  {availability}
                 </div>
                 <div className="time-slot-column">
                   <h1 className="time-slot-title">I need</h1>
-                  <div className="time-slot time-slot-needed">nights</div>
+                  {needed}
                 </div>
               </div>
               <div className="option-container">
@@ -167,7 +186,7 @@ export default function ProfilePreview({
                 <div className="location-container">
                   <MdLocationOn size={15} />
                   <span className="location">
-                    {sample ? "Your city" : city}
+                    {sample && profileName !== "Bark Mate" ? "Your city" : city}
                   </span>
                 </div>
               </h1>

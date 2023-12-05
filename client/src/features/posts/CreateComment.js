@@ -16,6 +16,7 @@ export default function CreateComment({
   dateOfPost,
   text,
   authorImageUrl,
+  authorProfileName,
   postImageUrl,
   requesting,
 }) {
@@ -62,7 +63,7 @@ export default function CreateComment({
               alt="post comment"
             />
             <span className="post-comment-name">
-              {authorName} & {authorDogName} <br />
+              {authorProfileName} <br />
               <span className=" post-comment-date">{dateOfPost}</span>
             </span>
           </div>

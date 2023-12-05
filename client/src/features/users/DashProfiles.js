@@ -75,6 +75,8 @@ export default function DashProfiles() {
           currentUser={currentUser}
           requesting={requesting}
           setRequesting={setRequesting}
+          timeNeeded={match.timeNeeded}
+          timeAvailable={match.timeAvailable}
         />
       );
     });
