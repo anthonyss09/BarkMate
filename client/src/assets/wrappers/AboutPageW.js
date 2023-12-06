@@ -77,6 +77,7 @@ const Wrapper = styled.section`
     display: flex;
     font-size: 1rem;
     box-shadow: var(--shadow-main-light);
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
     display: flex;
     justify-content: center;
     z-index: 2;

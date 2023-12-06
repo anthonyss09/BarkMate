@@ -1,5 +1,5 @@
 import Wrapper from "../assets/wrappers/SectionLandingW";
-import StacyLanding from "../assets/images/stacyLanding.jpeg";
+import StacyLanding from "../assets/images/beachBums.PNG";
 import postLanding from "../assets/images/goodBoy.jpg";
 import ChatLineUser from "../features/chats/ChatLineUser";
 import ChatLineFriend from "../features/chats/ChatLineFriend";
@@ -73,11 +73,12 @@ export default function SectionLanding() {
             <span className="span-connect">
               {" "}
               Connect, <br />
+              {/* <br /> */}
               meet,
             </span>
             {/* <br /> */}
             <span className="span-responsibilities"> share the leash.</span>
-            <br />
+            {/* <br /> */}
             <div className="btn-join ">
               {" "}
               <Link to="/register" className="btn-link link">

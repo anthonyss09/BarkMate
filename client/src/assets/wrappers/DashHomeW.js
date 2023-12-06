@@ -98,6 +98,12 @@ const Wrapper = styled.section`
     right: 100vw;
     left: 0.8rem;
   }
+  @media (max-width: 400px) {
+    .no-scroll {
+      // position: fixed;
+      // overflow: hidden;
+    }
+  }
 `;
 
 export default Wrapper;

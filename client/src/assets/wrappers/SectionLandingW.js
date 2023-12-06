@@ -13,12 +13,13 @@ const Wrapper = styled.section`
   .btn-demo {
     width: min-content;
     border: 2px solid black;
-    // border: 2px solid var(--med-font-blue);
-    margin-top: 1rem;
+    border: 2px solid var(--federal-blue);
+    // margin-top: 1rem;
     font-weight: 500;
     font-size: 1.4rem;
-    padding: 0.6rem;
-    // color: var(--federal-blue);
+    padding: 0.6rem 0.8rem;
+    padding: 0.8rem;
+    color: var(--federal-blue);
     // color: var(--med-font-blue);
     // margin-top: 2rem;
     // margin-left: 4rem;
@@ -60,6 +61,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -2rem;
   }
   .section-landing-header-text {
     // margin-top: -4rem;
@@ -70,6 +72,12 @@ const Wrapper = styled.section`
   span {
     height: min-content;
     margin: 0;
+  }
+  .span-connect {
+    font-size: 1.4rem;
+  }
+  .span-responsibilities {
+    // margin-top: 1rem;
   }
   .back {
     position: absolute;
@@ -93,10 +101,10 @@ const Wrapper = styled.section`
     font-style: italic;
   }
   .btn-join {
-    margin-left: 5rem;
+    // margin-left: 5rem;
     height: 80px;
     width: 80px;
-    margin: 0 auto;
+    // margin: 0 auto;
     color: white;
     border-radius: 40px;
     color: black;
@@ -149,7 +157,11 @@ const Wrapper = styled.section`
   }
   .section-landing-image-jm-container {
     transform: rotate(-10deg);
-    border: 4px solid pink;
+    // border: 4px solid pink;
+    border: 4px solid var(--test-blue);
+    border-radius: 1rem;
+    margin-top: -4rem;
+    // margin-left: -1rem;
   }
   .section-landing-image-post {
     width: 65vw;
@@ -211,7 +223,7 @@ const Wrapper = styled.section`
     height: min-content;
     width: 80vw;
     justify-content: center;
-    height: 60vh;
+    height: 65vh;
   }
   .section-landing-heading {
     display: flex;
@@ -267,13 +279,18 @@ const Wrapper = styled.section`
       box-sizing: border-box;
     }
     .section-landing-header {
-      height: 50vh;
+      height: 55vh;
       // height: 55vh;
     }
     .section-landing-post-header {
       font-size: 1.6rem;
     }
-
+    .span-connect {
+      font-size: 1.3rem;
+    }
+    span {
+      font-size: 1.6rem;
+    }
     h1 {
       font-size: 1.2rem;
       font-size: 1.4rem;

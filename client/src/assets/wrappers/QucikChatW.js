@@ -97,7 +97,7 @@ const Wrapper = styled.div`
       right: 0;
       width: 100vw;
       height: 55vh;
-      z-index: 8;
+      z-index: 30;
       border-radius: 0;
       height: 100%;
     }

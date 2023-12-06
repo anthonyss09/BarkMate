@@ -7,6 +7,7 @@ import { selectUsersData, useGetProfilesQuery } from "./UsersSlice";
 import { useEffect, useState } from "react";
 import FiltersDropDown from "../../components/FiltersDropDown";
 import DotLoader from "react-spinners/DotLoader";
+import { selectAlertsInfo } from "../alerts/alertsSlice";
 
 export default function DashProfiles() {
   const currentUser = useSelector(selectCurrentUser);
@@ -17,6 +18,7 @@ export default function DashProfiles() {
     coordinates: currentUser.location.coordinates,
     currentUserName: currentUser.firstName,
   });
+  const { overflowHidden } = useSelector(selectAlertsInfo);
 
   const [showFilters, setShowFilters] = useState(false);
   const [requesting, setRequesting] = useState(false);

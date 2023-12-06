@@ -46,6 +46,8 @@ export default function QuickChat({
           alertMessage: "Create a profile to send messages.",
         })
       );
+      setMessage("");
+      handleMessageClick();
       setTimeout(() => {
         dispatch(clearAlert());
       }, 3000);

@@ -149,13 +149,13 @@ select {
   
 }
 .alert-container-second {
-    position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   z-index: 20;
   box-sizing: border-box;
 }
@@ -385,6 +385,7 @@ select {
   resize: none;
   outline: none;
   font-size: 16px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 .form-textarea::placeholder {
     color: rgb(180, 180, 180);

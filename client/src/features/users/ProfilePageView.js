@@ -160,17 +160,17 @@ export default function ProfilePageView() {
   return (
     <Wrapper>
       <HomeNav />
+      {requesting && (
+        <div className="alert-container-second">
+          {" "}
+          <DotLoader color="lightBlue" size={85} className="beat-loader" />
+        </div>
+      )}
       <main
         className={`profile-page-main ${
           overflowHidden ? "overflow-hidden" : ""
         }`}
       >
-        {requesting && (
-          <div className="alert-container">
-            {" "}
-            <DotLoader color="lightBlue" size={85} className="beat-loader" />
-          </div>
-        )}
         <div className="profile-page-center">
           <div className="back-button"> </div>
           <div className="profile-page-header">
