@@ -18,6 +18,7 @@ export default function Footer() {
           <Link to="/contact" className="link">
             Contact
           </Link>
+          <span className="llc">Product of ATOFFETTI DEV LLC</span>
         </div>
       </section>
     </Wrapper>

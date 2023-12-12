@@ -262,7 +262,7 @@ export default function BraintreeDropIn(props) {
 
   return (
     <Wrapper>
-      <div className="unavailable">Tipping feature coming soon</div>
+      <div className="unavailable">Contribution feature coming soon</div>
       {isLoading && (
         <div className="alert-container">
           {" "}
@@ -280,14 +280,14 @@ export default function BraintreeDropIn(props) {
             <p className="p-pink"> Thank you!</p>
             <p className="p-bottom">
               {" "}
-              Enter tip amount then choose method.
+              Enter contribution amount then choose method.
               <br />
             </p>
           </h1>
 
           <FormRow
             id="tip-amount"
-            name="Tip amount"
+            name="Contribution amount"
             type="text"
             placeholder="$5.00"
           />

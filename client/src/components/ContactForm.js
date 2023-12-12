@@ -11,6 +11,8 @@ import Alert from "../features/alerts/Alert";
 import { selectAlertsInfo } from "../features/alerts/alertsSlice";
 import { HiBars3 } from "react-icons/hi2";
 import DropMenuLanding from "../components/DropMenuLanding.js";
+import { useNavigate } from "react-router-dom";
+import { validateEmail } from "../utils/helpers.js";
 
 export default function ConctactForm() {
   const [email, setEmail] = useState("");
@@ -21,6 +23,7 @@ export default function ConctactForm() {
   const [sending, setSending] = useState(false);
 
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   let { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
@@ -42,6 +45,19 @@ export default function ConctactForm() {
   };
 
   const handleSendEmail = async (e) => {
+    const isEmailValid = validateEmail(email);
+    if (!isEmailValid) {
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Please enter a valid email.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+      return;
+    }
     setSending(true);
 
     try {
@@ -50,7 +66,6 @@ export default function ConctactForm() {
         email,
         message,
       });
-      console.log(response);
       dispatch(
         displayAlert({
           alertType: "success",
@@ -67,6 +82,7 @@ export default function ConctactForm() {
     }
     setTimeout(() => {
       dispatch(clearAlert());
+      Navigate("/dashboard/home");
     }, 3000);
     setSending(false);
     setName("");

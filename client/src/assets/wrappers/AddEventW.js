@@ -85,26 +85,33 @@ const Wrapper = styled.aside`
     justify-self: center;
   }
   .add-event-header {
-    // color: var(--federal-blue);
+    margin: 0 1rem;
+    border-bottom: 4px solid rgb(240,240,240);
+    padding-bottom: 1rem;
+    
   }
   .add-event-main {
     width: 100vw;
-    width: 85vw;
+    // width: 85vw;
     height: min-content;
     position: fixed;
     top: 4rem;
     right: 2rem;
-    border-radius: 3rem;
+    top: 0;
+    right: 0;
+    // border-radius: 3rem;
+    border-radius: 0 0 3rem 3rem;
     background: white;
     z-index: 4;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    border: 1px solid rgb(215, 215, 215);
+    box-shadow: 5px 2px 5px rgb(80, 80, 80);
+    box-shadow: var(--shadow-main-light);
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     z-index: 8;
-    border: 2px solid rgb(80,80,80);
+    border: 2px solid var(--test-blue);
      }
   .add-event-title {
     text-align: center;
@@ -133,7 +140,7 @@ const Wrapper = styled.aside`
   .btn-discard-event {
     width: 4rem;
     border: 2px solid black;
-    border: 2px solid var(--test-blue);
+    border: 2px solid var(--med-font-blue);
     background: white;
   
   }

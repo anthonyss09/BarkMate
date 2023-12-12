@@ -10,6 +10,7 @@ import CreatePost from "./CreatePost";
 import { useGetPostsQuery } from "../posts/PostsSlice";
 import DotLoader from "react-spinners/DotLoader";
 import { IoIosAdd } from "react-icons/io";
+import AlertWelcome from "../alerts/AlertWelcome";
 
 export default function DashHome() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -115,6 +116,7 @@ export default function DashHome() {
           <DotLoader size={85} color="lightBlue" className="beat-loader" />
         </div>
       )}
+      {user.newUser && <AlertWelcome user={user} />}
       <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
         <div className="dash-center">
           <div className={`create-post-container ${scrolled}`}>

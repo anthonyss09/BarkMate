@@ -75,18 +75,16 @@ export default function AboutPage() {
           experience of sharing photos and stories about our dogs and lives.
           <br /> I envision Bark mate as a place to create community and connect
           with fellow dog lovers.
-          <br />I hope you enjoy, and if you do, consider leaving Bark mate a
-          tip. Currently Bark mate's only source of funding is from myself and
-          user tips,
-          <br /> it seems fitting as I've worked as a bartender for most of my
-          career. <br />
-          <br /> <p className="first-line">
-            Thanks dog lovers and friends!
-          </p>{" "}
+          <br />I hope you enjoy, and if you do, consider making a contribution.
+          Currently Bark mate's only source of funding is from myself and user
+          contributions.
+          {/* <br /> it seems fitting as I've worked as a bartender for most of my
+          career. <br /> */}
+          <br /> <p className="first-line">Thanks dog lovers and friends!</p>{" "}
         </div>
         <Link to="/payment" className="link btn btn-tip">
           <IoLogoVenmo size={25} className="icon-venmo" />
-          Tip Bark Mate
+          Contribute
         </Link>
       </section>
       <Footer />

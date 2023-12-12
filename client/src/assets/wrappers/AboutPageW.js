@@ -71,15 +71,16 @@ const Wrapper = styled.section`
   }
   .btn-tip {
     margin-bottom: 2rem;
-    width: 200px;
+    width: 130px;
     margin: 2rem auto;
     border-radius: 1rem;
+    border-radius: 2rem;
     display: flex;
     font-size: 1rem;
     box-shadow: var(--shadow-main-light);
     box-shadow: 5px 2px 5px rgb(80, 80, 80);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     z-index: 2;
   }
   .first-line {

@@ -90,6 +90,14 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  newUser: {
+    type: Boolean,
+    default: true,
+  },
+  mailingList: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 UserSchema.pre("save", async function () {

@@ -128,6 +128,7 @@ select {
   padding: 2rem 3rem;
   border-radius: 1rem;
   box-shadow: 5px 2px 5px rgb(80, 80, 80);
+  border: 1px solid var(--test-blue);
   max-width: 250px;
   color: rgb(80, 80, 80);
   color: var(--federal-blue);
@@ -411,6 +412,10 @@ select {
 .link {
   text-decoration: none;
   color: black;
+}
+.llc {
+  color: rgb(180,180,180);
+  font-size: 0.8rem;
 }
 .no-content {
   background: white;

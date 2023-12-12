@@ -67,16 +67,18 @@ const loginUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const {
-    userId,
-    profileImageUrl,
-    address,
-    location,
-    aboutUs,
-    timeNeeded,
-    timeAvailable,
-    profileName,
-  } = req.body;
+  // const {
+  //   userId,
+  //   profileImageUrl,
+  //   address,
+  //   location,
+  //   aboutUs,
+  //   timeNeeded,
+  //   timeAvailable,
+  //   profileName,
+  // } = req.body;
+  const { userId, update } = req.body;
+  console.log(userId, update);
 
   console.log("authis ", req.headers.authorization);
   const token = req.headers.authorization.split(" ")[1];
@@ -89,45 +91,12 @@ const updateUser = async (req, res) => {
     }
   });
 
-  // console.log(location);
-
-  // if (profileImageUrl) {
-  //   try {
-  //     const updatedChat = await Chat.findOne({
-  //       participants: { $elemMatch: { participantId: userId } },
-  //     });
-  //     const participantsCopy = updatedChat.participants.slice();
-  //     const targetIndex = participantsCopy.findIndex(
-  //       (part) => part.participantId == userId
-  //     );
-  //     const targetParticipant = participantsCopy[targetIndex];
-  //     targetParticipant.participantProfileImageUrl = profileImageUrl;
-  //     participantsCopy.splice(targetIndex, 1, targetParticipant);
-
-  //     const chatIsUpdated = await Chat.findOneAndUpdate(
-  //       {
-  //         participants: { $elemMatch: { participantId: userId } },
-  //       },
-  //       { participants: participantsCopy }
-  //     );
-  //     console.log("the new participant is ", chatIsUpdated);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   try {
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },
       {
         $set: {
-          profileImageUrl,
-          address,
-          location,
-          aboutUs,
-          timeNeeded,
-          timeAvailable,
-          profileName,
+          ...update,
         },
       },
       { returnOriginal: false }

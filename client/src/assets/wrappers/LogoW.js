@@ -8,6 +8,11 @@ const Wrapper = styled.div`
   .logo {
     display: flex;
     align-items: center;
+    font-family: "Montserrat", sans-serif;
+  }
+  .logo-big {
+    color: var(--federal-blue);
+    font-size: 3rem;
   }
   .logo-nav {
     font-size: 1.4rem;

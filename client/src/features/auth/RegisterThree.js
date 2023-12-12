@@ -64,6 +64,10 @@ export default function RegisterThree({
       postImageUrl: response.data.user.profileImageUrl,
     };
     const newPost = await createPost(post);
+    const newRecipient = axios.post("/api/transports/add-recipient", {
+      userId: response.data.user._id,
+      emailAddress: response.data.user.email,
+    });
     localStorage.setItem("user", JSON.stringify(response.data.user));
     localStorage.setItem("token", JSON.stringify(response.data.token));
     Navigate("/dashboard/home");

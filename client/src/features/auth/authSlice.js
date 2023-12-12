@@ -104,10 +104,10 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       providesTags: ["CurrentUser"],
     }),
     updateUser: builder.mutation({
-      query: (update) => ({
+      query: ({ userId, update }) => ({
         url: "/auth/update-user",
         method: "POST",
-        body: update,
+        body: { userId, update },
       }),
       invalidatesTags: ["CurrentUser"],
     }),

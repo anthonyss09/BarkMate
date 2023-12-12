@@ -120,7 +120,6 @@ export default function EditProfile() {
       aboutUs,
       timeNeeded,
       timeAvailable,
-      userId: user._id,
       profileName: user.profileName,
     };
 
@@ -145,7 +144,7 @@ export default function EditProfile() {
     }
 
     try {
-      const updatedUser = await updateUser(update);
+      const updatedUser = await updateUser({ userId: user._id, update });
       const updatedUserPosts = await editAllPostsByUser({
         userId: user._id,
         update,

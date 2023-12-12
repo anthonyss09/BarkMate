@@ -26,6 +26,7 @@ export default function DropMenuLanding({ handleShowMenu }) {
         <Link to="/payment" className="link" onClick={handleShowMenu}>
           Contribute
         </Link>
+        <span className="llc">Product of ATOFFETTI DEV LLC</span>
       </aside>
     </Wrapper>
   );

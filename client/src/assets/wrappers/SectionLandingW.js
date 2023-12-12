@@ -12,18 +12,16 @@ const Wrapper = styled.section`
   }
   .btn-demo {
     width: min-content;
-    border: 2px solid black;
-    border: 2px solid var(--federal-blue);
+    border: 3px solid var(--med-font-blue);
     // margin-top: 1rem;
     font-weight: 500;
     font-size: 1.4rem;
     padding: 0.6rem 0.8rem;
-    padding: 0.8rem;
+    padding: 0.9rem;
     color: var(--federal-blue);
-    // color: var(--med-font-blue);
-    // margin-top: 2rem;
-    // margin-left: 4rem;
+    box-shadow: var(--shadow-main-light);
     letter-spacing: 0.05rem;
+    font-weight: bold;
   }
   .btn-learn {
     margin-top: 1rem;
@@ -42,6 +40,7 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: center;
     border-radius: 1rem;
+    border-radius: 2rem;
   }
   h1 {
     font-size: 1.8rem;
@@ -61,7 +60,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -2rem;
+    margin-top: -3rem;
   }
   .section-landing-header-text {
     // margin-top: -4rem;
@@ -105,6 +104,7 @@ const Wrapper = styled.section`
     height: 80px;
     width: 80px;
     // margin: 0 auto;
+    // margin: 1rem 0;
     color: white;
     border-radius: 40px;
     color: black;
@@ -123,6 +123,7 @@ const Wrapper = styled.section`
   }
   .btn-link {
     color: var(--federal-blue);
+    color: black;
     // font-size: 1.4rem;
     letter-spacing: 0.05rem;
     font-family: "Roboto", sans-serif;
@@ -160,7 +161,7 @@ const Wrapper = styled.section`
     // border: 4px solid pink;
     border: 4px solid var(--test-blue);
     border-radius: 1rem;
-    margin-top: -4rem;
+    // margin-top: -4rem;
     // margin-left: -1rem;
   }
   .section-landing-image-post {
@@ -218,6 +219,7 @@ const Wrapper = styled.section`
     justify-content: center;
   }
   .section-landing-header {
+    // padding-top: 1rem;
     display: flex;
     gap: 2rem;
     height: min-content;
@@ -278,6 +280,9 @@ const Wrapper = styled.section`
       padding: 0 0.4rem;
       box-sizing: border-box;
     }
+    .section-landing-chat-header {
+      margin-top: -8rem;
+    }
     .section-landing-header {
       height: 55vh;
       // height: 55vh;
@@ -286,7 +291,7 @@ const Wrapper = styled.section`
       font-size: 1.6rem;
     }
     .span-connect {
-      font-size: 1.3rem;
+      // font-size: 1.3rem;
     }
     span {
       font-size: 1.6rem;
@@ -295,7 +300,7 @@ const Wrapper = styled.section`
       font-size: 1.2rem;
       font-size: 1.4rem;
       // margin-top: -1rem;
-      margin-left: -1rem;
+      // margin-left: -1rem;
     }
   }
 `;
