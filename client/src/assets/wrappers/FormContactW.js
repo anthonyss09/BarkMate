@@ -16,6 +16,8 @@ const Wrapper = styled.section`
     font-size: 1rem;
     margin-top: -1.6rem;
     letter-spacing: 0.05rem;
+    margin-bottom: 1rem;
+    // border: 2px solid black;
   }
   .form-main {
     padding-top: 4rem;

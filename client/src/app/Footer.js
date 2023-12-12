@@ -13,7 +13,7 @@ export default function Footer() {
             About
           </Link>
           <Link to="/payment" className="link">
-            Tips
+            contribute
           </Link>
           <Link to="/contact" className="link">
             Contact

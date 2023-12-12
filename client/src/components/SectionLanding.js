@@ -156,12 +156,12 @@ export default function SectionLanding() {
         <div className="section-landing-center section-landing-center-column">
           {" "}
           <h1 className="second-heading">
-            Bark Mate is funded by user tips. If you enjoy the project and would
-            like see new features please consider contributing a tip.
+            Bark Mate is funded by users. If you enjoy the project and would
+            like to see new features please consider contributing.
             <br />
             <Link to="/payment" className="link btn btn-tip">
               <IoLogoVenmo size={25} className="icon-venmo" />
-              Tip Bark Mate
+              Contribute
             </Link>
             Thank you!
           </h1>

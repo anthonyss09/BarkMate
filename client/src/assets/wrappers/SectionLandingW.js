@@ -32,14 +32,12 @@ const Wrapper = styled.section`
   }
   .btn-tip {
     margin-bottom: 2rem;
-    width: 200px;
+    width: 130px;
     margin: 2rem auto;
-    border-radius: 0;
     display: flex;
     font-size: 1rem;
     display: flex;
-    justify-content: center;
-    border-radius: 1rem;
+    justify-content: space-around;
     border-radius: 2rem;
   }
   h1 {
