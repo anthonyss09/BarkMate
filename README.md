@@ -36,7 +36,7 @@ Cloudinary api used to optimize uploads and generate url to be saved and read fr
 
 ### Security and authentication
 
-Json web tokens are generated during authentication. Json web tokens are validated upon and request to modify user data or access restricted paths.
+Json web tokens (JWT) are generated during authentication. JWTs are validated upon request to modify user data or access restricted paths.
 
 ### Smtp mailing and authentication.
 
