@@ -82,6 +82,8 @@ font-family: 'Roboto Condensed', sans-serif;
   --grey-240: rgb(240, 240, 240);
   --grey-248: rgb(248, 248, 248);
 
+  --llc-blue:  #061d7d;
+
   /* fonts */
    --font-main-rc:font-family: "Roboto Condensed", sans-serif;
 
@@ -416,6 +418,9 @@ select {
 .llc {
   color: rgb(180,180,180);
   font-size: 0.8rem;
+}
+.llc-link {
+  color: var(--test-blue);
 }
 .no-content {
   background: white;

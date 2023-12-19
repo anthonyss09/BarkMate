@@ -52,6 +52,15 @@ const Wrapper = styled.div`
     transition: var(--transition-main);
     padding-left: 2rem;
   }
+  .llc {
+    margin-top: 4rem;
+    color: var(--bark-pink);
+  }
+  .llc-link {
+    color: var(--med-bright-blue);
+    color: var(--llc-blue);
+    font-size: 0.8rem;
+  }
 `;
 
 export default Wrapper;

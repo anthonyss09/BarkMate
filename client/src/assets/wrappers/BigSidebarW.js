@@ -32,6 +32,9 @@ const Wrapper = styled.aside`
   .icon-close {
     color: black;
     align-self: flex-start;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
   }
   .icon-close:hover {
     transform: scale(1.1);
@@ -80,11 +83,8 @@ const Wrapper = styled.aside`
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    gap: 4vh;
-    gap: 1rem;
-
     padding: 2rem;
-    // padding-top: 4rem;
+    padding-top: 3rem;
     gap: 2rem;
   }
   .links-container-small {
@@ -102,6 +102,17 @@ const Wrapper = styled.aside`
     height: 2.8rem;
     font-size: 0.8rem;
     font-weight: 500;
+  }
+  .llc {
+    text-align: center;
+    color: var(--bark-pink);
+    font-size: 0.6rem;
+  }
+  .llc-link {
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--llc-blue);
   }
 `;
 

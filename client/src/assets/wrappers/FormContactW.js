@@ -36,6 +36,10 @@ const Wrapper = styled.section`
   .icon-bars:hover {
     cursor: pointer;
   }
+  .llc-link {
+    color: var(--light-bright-blue);
+    font-weight: bold;
+  }
   .p-bottom {
     color: var(--grey-80);
     margin-top: 0.4rem;

@@ -159,7 +159,9 @@ export default function ConctactForm() {
           <button className="btn btn-contact" onClick={handleSendEmail}>
             Send email
           </button>
-          <span className="llc">Product of ATOFFETTI DEV LLC</span>
+          {/* <div className="llc">
+            Product of <Link className="link llc-link">ATOFFETTI DEV LLC</Link>
+          </div> */}
         </div>
       </section>
     </Wrapper>

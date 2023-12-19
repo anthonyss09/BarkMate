@@ -65,9 +65,15 @@ export default function BigSidebar({ handleClick }) {
               <MdMailOutline className="icon-chat" size={25} />
               Contact
             </Link>
-            <span className="llc">Product of ATOFFETTI DEV LLC</span>
+            <div className="llc">
+              Product of
+              <br />{" "}
+              <Link className="llc-link">
+                ATOFFETTI <br />
+                DEV LLC
+              </Link>
+            </div>
           </div>
-          <div className="links-container-small"></div>
         </div>
       </aside>
     </Wrapper>

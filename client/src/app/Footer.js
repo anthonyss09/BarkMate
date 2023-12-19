@@ -13,12 +13,19 @@ export default function Footer() {
             About
           </Link>
           <Link to="/payment" className="link">
-            contribute
+            Contribute
           </Link>
           <Link to="/contact" className="link">
             Contact
           </Link>
-          <span className="llc">Product of ATOFFETTI DEV LLC</span>
+        </div>
+        <div className="llc">
+          Product of
+          <br />{" "}
+          <Link className="link llc-link">
+            ATOFFETTI <br />
+            DEV LLC
+          </Link>
         </div>
       </section>
     </Wrapper>
