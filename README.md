@@ -2,7 +2,7 @@
 
 ## What is Bark Mate?
 
-Bark Mate is a social media aplication for dog lovers centered around bartering dog walks, creating community and sharing content.
+Bark Mate is a social media application for dog lovers centered around bartering dog walks, creating community and sharing content.
 
 ## Considerations and goals
 
