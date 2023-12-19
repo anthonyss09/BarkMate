@@ -1,9 +1,9 @@
-#Bark Mate#
+#Bark Mate
 
-##What is Bark Mate?##
+##What is Bark Mate?
 Bark Mate is a social media aplication for dog lovers centered around bartering dog walks, creating community and sharing content.
 
-##Considerations and goals##
+##Considerations and goals
 
 ###Minimize data base reads and application re-renders### making use of Redux and RTK's (Redux ToolKit) built in data caching and invalidation abilities. In addition client memoizes react components to prevent unnecessary component renders.
 
