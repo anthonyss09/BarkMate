@@ -56,7 +56,7 @@ export default function NavBar() {
   };
   const handleBigSidebar = () => {
     setShowBigSidebar(!showBigSidebar);
-    dispatch(setOverflowHidden());
+    // dispatch(setOverflowHidden());
     setSmallShowSidebar(false);
   };
   const handleShowNotifications = () => {
@@ -111,10 +111,10 @@ export default function NavBar() {
           currentUser={currentUser}
         />
       )}
+      {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
       <nav className="nav-main ">
         <div className="nav-item bars">
           <HiBars3 size={25} onClick={handleBigSidebar} />
-          {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
         </div>
         <Link to="/dashboard/home" className="link">
           <Logo logoClass="logo-nav" iconClass="icon-payment" size={25} />

@@ -417,10 +417,12 @@ select {
 }
 .llc {
   color: rgb(180,180,180);
+  color: var(--bark-pink);
   font-size: 0.8rem;
 }
 .llc-link {
   color: var(--test-blue);
+  color: var(--llc-blue)
 }
 .no-content {
   background: white;

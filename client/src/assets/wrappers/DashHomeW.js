@@ -17,7 +17,7 @@ const Wrapper = styled.section`
     justify-content: center;
     background: white;
     position: absolute;
-    top: 5rem;
+    top: 1rem;
     right: 1.6rem;
     overflow: hidden;
     border-radius: 5rem;
@@ -40,6 +40,7 @@ const Wrapper = styled.section`
   }
   .dash-center {
     padding: 0;
+    position: relative;
   }
   .dash-profile-pic {
     height: 40px;

@@ -13,14 +13,24 @@ const Wrapper = styled.section`
     // color: white;
     background: white;
     color: var(--federal-blue);
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-top: -1.6rem;
-    letter-spacing: 0.05rem;
+    letter-spacing: 0.1rem;
     margin-bottom: 1rem;
     // border: 2px solid black;
+    font-weight: 600;
+  }
+  .form {
+    border-top: 10px solid rgb(200, 200, 200);
+    border-bottom: 10px solid rgb(200, 200, 200);
+
+    border-radius: 0;
+    padding: 1rem 0;
+    width: 86vw;
+    // max-width: 78vw;
   }
   .form-main {
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
   .form-header {
     padding: 1rem;
@@ -30,8 +40,8 @@ const Wrapper = styled.section`
   }
   .icon-bars {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 2rem;
+    left: 2rem;
   }
   .icon-bars:hover {
     cursor: pointer;

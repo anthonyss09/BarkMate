@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 const Wrapper = styled.footer`
+  a {
+    text-decoration: none;
+    color: var(--med-font-blue);
+  }
   .footer-main {
     border-top: 8px solid rgb(244, 244, 244);
     color: black;
     padding-bottom: 1rem;
+    position: relative;
   }
   .footer-center {
     height: 20vh;
@@ -16,10 +21,17 @@ const Wrapper = styled.footer`
     padding: 1rem;
     margin-bottom: 1rem;
   }
+  .icon-credits {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    font-size: 0.7rem;
+    color: rgb(160, 160, 160);
+  }
   .link {
-    letter-spacing: 0.03rem;
+    letter-spacing: 0.05rem;
     color: var(--federal-blue);
-    font-family: "Ubuntu", sans-serif;
+    // font-family: "Ubuntu", sans-serif;
   }
   .llc {
     text-align: center;
@@ -30,6 +42,7 @@ const Wrapper = styled.footer`
     font-size: 0.6rem;
     color: var(--llc-blue);
     font-weight: bold;
+    letter-spacing: 0;
   }
 `;
 

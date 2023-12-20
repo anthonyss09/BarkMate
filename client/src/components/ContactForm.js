@@ -96,10 +96,10 @@ export default function ConctactForm() {
 
   return (
     <Wrapper>
-      <div className="icon-bars" onClick={handleShowMenu}>
+      {/* <div className="icon-bars" onClick={handleShowMenu}>
         {" "}
         <HiBars3 size={25} />
-      </div>
+      </div> */}
       {showMenu && <DropMenuLanding handleShowMenu={handleShowMenu} />}
       <section className="form-main">
         {showAlert && (

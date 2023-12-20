@@ -27,6 +27,19 @@ export default function Footer() {
             DEV LLC
           </Link>
         </div>
+        <div className="icon-credits">
+          {" "}
+          <a
+            target="_blank"
+            href="https://icons8.com/icon/3muZdKSSpfsx/year-of-dog"
+          >
+            Dog
+          </a>{" "}
+          icon by{" "}
+          <a target="_blank" href="https://icons8.com">
+            Icons8
+          </a>
+        </div>
       </section>
     </Wrapper>
   );
