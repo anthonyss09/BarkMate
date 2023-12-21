@@ -13,6 +13,7 @@ import { HiBars3 } from "react-icons/hi2";
 import DropMenuLanding from "../components/DropMenuLanding.js";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helpers.js";
+import Footer from "../app/Footer.js";
 
 export default function ConctactForm() {
   const [email, setEmail] = useState("");
@@ -111,10 +112,9 @@ export default function ConctactForm() {
             <DotLoader size={85} color="lightBlue" className="beat-loader" />
           </div>
         )}
-
         <div className="form form-contact">
           <Link to="/dashboard/home" className=" link link-logo">
-            <Logo logoClass="logo-payment" iconClass="icon-payment" />
+            <Logo logoClass="logo-nav" iconClass="icon-nav" />
           </Link>
           <h1 className="form-header">
             Contact Us
@@ -164,6 +164,7 @@ export default function ConctactForm() {
           </div> */}
         </div>
       </section>
+      <Footer />
     </Wrapper>
   );
 }

@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  // * {
-  //   text-align: center;
-  // }
   .icon-bars {
     position: absolute;
     top: 2rem;
@@ -26,6 +23,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
   .payment-page-header {
     letter-spacing: 0.05rem;
@@ -34,8 +32,8 @@ const Wrapper = styled.section`
   }
   .payment-page-main {
     width: 100vw;
-    height: 100vw;
-    padding-top: 4rem;
+    // height: 100vw;
+    padding-top: 2rem;
   }
 
   @media (max-width: 400px) {

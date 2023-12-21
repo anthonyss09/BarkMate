@@ -8,29 +8,26 @@ const Wrapper = styled.section`
   }
   .btn-contact {
     width: 100%;
-    height: 4rem;
-    // background: var(--med-bright-blue);
-    // color: white;
+    max-width: 330px;
+    height: 3.6rem;
     background: white;
     color: var(--federal-blue);
     font-size: 1.1rem;
-    margin-top: -1.6rem;
     letter-spacing: 0.1rem;
-    margin-bottom: 1rem;
-    // border: 2px solid black;
-    font-weight: 600;
+    border: 2px solid var(--med-font-blue);
+    background: var(--med-font-blue);
+    color: white;
+    // color: var(--med-font-blue);
   }
   .form {
-    border-top: 10px solid rgb(200, 200, 200);
-    border-bottom: 10px solid rgb(200, 200, 200);
-
     border-radius: 0;
-    padding: 1rem 0;
+    padding-top: 1rem;
     width: 86vw;
-    // max-width: 78vw;
   }
   .form-main {
-    padding-top: 2rem;
+    min-height: 0;
+    height: min-content;
+    padding: 1rem;
   }
   .form-header {
     padding: 1rem;
@@ -45,10 +42,6 @@ const Wrapper = styled.section`
   }
   .icon-bars:hover {
     cursor: pointer;
-  }
-  .llc-link {
-    color: var(--light-bright-blue);
-    font-weight: bold;
   }
   .p-bottom {
     color: var(--grey-80);

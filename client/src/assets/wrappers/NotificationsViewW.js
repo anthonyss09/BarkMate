@@ -75,7 +75,7 @@ const Wrapper = styled.aside`
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: 4;
+    z-index: 22;
     overflow-y: scroll;
     background: white;
     display: flex;

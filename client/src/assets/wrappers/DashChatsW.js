@@ -9,7 +9,7 @@ const Wrapper = styled.main`
     border-top: 1px solid rgb(244, 244, 244);
   }
   .dash-chats-main {
-    padding-bottom: 2rem;
+    // padding-bottom: 2rem;
   }
 `;
 

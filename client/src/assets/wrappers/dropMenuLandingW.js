@@ -55,11 +55,13 @@ const Wrapper = styled.div`
   .llc {
     margin-top: 4rem;
     color: var(--bark-pink);
+    color: rgb(160, 160, 160);
   }
   .llc-link {
     color: var(--med-bright-blue);
     color: var(--llc-blue);
     font-size: 0.8rem;
+    letter-spacing: 0;
   }
 `;
 

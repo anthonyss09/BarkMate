@@ -5,6 +5,7 @@ import { BiCalendar, BiHome } from "react-icons/bi";
 import { HiOutlineChat } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdMailOutline } from "react-icons/md";
+import { IoLogoVenmo } from "react-icons/io5";
 
 export default function BigSidebar({ handleClick }) {
   return (
@@ -69,7 +70,7 @@ export default function BigSidebar({ handleClick }) {
             className="link link-big link-chats"
             onClick={handleClick}
           >
-            <MdMailOutline className="icon-chat" size={25} />
+            <IoLogoVenmo className="icon-chat" size={25} />
             Contribute
           </Link>
           {/* <div className="llc">

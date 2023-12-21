@@ -37,6 +37,7 @@ const Wrapper = styled.footer`
     text-align: center;
     color: var(--bark-pink);
     font-size: 0.6rem;
+    color: rgb(160, 160, 160);
   }
   .llc-link {
     font-size: 0.6rem;

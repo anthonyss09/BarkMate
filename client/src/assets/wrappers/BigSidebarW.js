@@ -73,7 +73,7 @@ const Wrapper = styled.aside`
     background: none;
     border-radius: 2rem;
     // box-shadow: 5px 2px 5px rgb(80, 80, 80);
-    box-shadow: 0.5px 5px 5px 1px rgb(80, 80, 80);
+    // box-shadow: 0.5px 5px 5px 1px rgb(80, 80, 80);
     box-shadow: var(--shadow-main-light);
     background: white;
     // height: 2.8rem;

@@ -9,6 +9,7 @@ import DropMenuLanding from "../components/DropMenuLanding";
 import { HiBars3 } from "react-icons/hi2";
 import { useState } from "react";
 import venmoCode from "../assets/images/venmoCode.jpeg";
+import Footer from "../app/Footer";
 
 export default function PaymentPage() {
   const [showMenu, setShowMenu] = useState(false);
@@ -59,6 +60,7 @@ export default function PaymentPage() {
             <img src={venmoSmall} />
           </a>
         </div>
+        <Footer />
         {/* <BrainTreeForm /> */}
       </section>
     </Wrapper>
