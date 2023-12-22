@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.body`
   .icon-bars {
     position: absolute;
     top: 2rem;
@@ -16,8 +16,7 @@ const Wrapper = styled.section`
   .payment-llc {
     text-align: center;
   }
-  .payment-page-body {
-  }
+
   .payment-page-center {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   .icon-payment {
     color: var(--federal-blue);
     margin: 0 -0.05rem;

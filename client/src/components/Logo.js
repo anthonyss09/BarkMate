@@ -6,11 +6,11 @@ export default function Logo({ logoClass, iconClass, size }) {
     <Wrapper>
       {" "}
       <div className={`logo ${logoClass}`}>
-        Bark{" "}
+        <p>Bark</p>
         <div className="bone">
           <BiBone className={`icon-paw ${iconClass}`} size={size} />
         </div>{" "}
-        Mate
+        <p>Mate</p>
       </div>
     </Wrapper>
   );

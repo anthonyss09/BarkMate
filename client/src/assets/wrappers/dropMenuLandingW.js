@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   .drop-menu-landing-main {
     width: 100vw;
     height: 100vh;

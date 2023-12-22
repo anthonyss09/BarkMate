@@ -19,7 +19,7 @@ export default function LandingNav({ hideNav }) {
     <Wrapper>
       {showMenu && <DropMenuLanding handleShowMenu={handleShowMenu} />}
 
-      <nav
+      <section
         className={`nav-main nav-main-landing ${
           hideNav ? "hidden" : "scrolled-nav"
         }`}
@@ -32,7 +32,7 @@ export default function LandingNav({ hideNav }) {
         <Link to="/login" className="link btn btn-login">
           login
         </Link>
-      </nav>
+      </section>
     </Wrapper>
   );
 }
