@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 const Wrapper = styled.footer`
+  border-top: 8px solid rgb(244, 244, 244);
+  color: black;
+  padding-bottom: 1rem;
+  position: relative;
   a {
     text-decoration: none;
     color: var(--med-font-blue);
   }
-  .footer-main {
-    border-top: 8px solid rgb(244, 244, 244);
-    color: black;
-    padding-bottom: 1rem;
-    position: relative;
-  }
+
   .footer-center {
     height: 20vh;
     display: flex;

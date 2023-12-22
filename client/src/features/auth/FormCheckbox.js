@@ -1,4 +1,3 @@
-import Wrapper from "../../assets/wrappers/FormW";
 import { useState } from "react";
 
 export default function FormCheckbox({
@@ -43,12 +42,9 @@ export default function FormCheckbox({
   });
 
   return (
-    <Wrapper>
-      {" "}
-      <div className="form-checkbox-container">
-        <span className="form-label">{label}</span>
-        {content}
-      </div>
-    </Wrapper>
+    <div className="form-checkbox-container">
+      <span className="form-label">{label}</span>
+      {content}
+    </div>
   );
 }

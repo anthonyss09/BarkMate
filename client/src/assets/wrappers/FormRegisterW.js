@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.main`
   p {
     color: var(--grey-180);
     font-size: 0.8rem;
@@ -24,12 +24,16 @@ const Wrapper = styled.section`
     flex-direction: column;
   }
   .form-header {
-    max-width: 76%;
+    max-width: 100%;
     min-height: 4rem;
   }
   .p-bottom {
     color: var(--grey-80);
     margin-bottom: 1rem;
+  }
+  .p-top {
+    color: black;
+    font-size: 1.2rem;
   }
   .span-login {
     color: var(--bark-pink);

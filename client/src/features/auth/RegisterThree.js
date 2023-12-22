@@ -1,16 +1,15 @@
 import Wrapper from "../../assets/wrappers/FormRegisterW";
-import Logo from "../../components/Logo";
-import FormSteps from "./FormSteps";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormCheckbox from "./FormCheckbox";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectNewUser } from "./authSlice";
 import { useRegisterUserMutation } from "../auth/authSlice";
 import { useCreatePostMutation } from "../posts/PostsSlice";
 import ProfileImageInput from "../../components/ProfileImageInput";
 import axios from "axios";
 import DotLoader from "react-spinners/DotLoader";
+import { displayAlert, clearAlert } from "../alerts/alertsSlice";
 
 export default function RegisterThree({
   handleInputChange,
@@ -25,6 +24,7 @@ export default function RegisterThree({
   const Navigate = useNavigate();
 
   const newUser = useSelector(selectNewUser);
+  const dispatch = useDispatch();
 
   const handleImageChange = (e) => {
     const image = e.target.files[0];
@@ -43,10 +43,24 @@ export default function RegisterThree({
     cloudinaryFormData.append("upload_preset", "bark_mate_standard_pics");
     setRequesting(true);
 
-    const cloudinaryResult = await axios.post(
-      "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
-      cloudinaryFormData
-    );
+    let cloudinaryResult;
+    try {
+      cloudinaryResult = await axios.post(
+        "https://api.cloudinary.com/v1_1/dgrtldcsp/image/upload",
+        cloudinaryFormData
+      );
+    } catch (error) {
+      setRequesting(false);
+      dispatch(
+        displayAlert({
+          alertType: "danger",
+          alertMessage: "Error loading media file.",
+        })
+      );
+      setTimeout(() => {
+        dispatch(clearAlert());
+      }, 3000);
+    }
 
     copyOfUser.profileImageUrl = cloudinaryResult.data.secure_url;
 
@@ -81,59 +95,54 @@ export default function RegisterThree({
           <DotLoader size={85} color="lightBlue" className="beat-loader" />
         </div>
       )}
-      <section className="form-main">
-        <form
-          encType="multipart/form-data"
-          className="form form-three"
-          onSubmit={handleSubmit}
-        >
-          <Link to="/" className=" link link-register">
-            <Logo logoClass="logo-nav" iconClass="icon-payment" />
-          </Link>
-          <FormSteps showRegisterThree={showRegisterThree} />
-          <h1 className="form-header">Finish profile</h1>
 
-          <ProfileImageInput
-            profileImage={profileImage}
-            handleImageChange={handleImageChange}
-            imageUrl={imageUrl}
+      <form
+        encType="multipart/form-data"
+        className="form form-three"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-header">Finish profile</div>
+
+        <ProfileImageInput
+          profileImage={profileImage}
+          handleImageChange={handleImageChange}
+          imageUrl={imageUrl}
+        />
+        <div className="form-row">
+          <label htmlFor="aboutUs" className="form-label">
+            About us
+          </label>
+          <textarea
+            id="aboutUs"
+            name="About us"
+            rows="5"
+            placeholder="Introduce you and pup!"
+            className="form-textarea"
+            onChange={handleInputChange}
           />
-          <div className="form-row">
-            <label htmlFor="aboutUs" className="form-label">
-              About us
-            </label>
-            <textarea
-              id="aboutUs"
-              name="About us"
-              rows="5"
-              placeholder="Introduce you and pup!"
-              className="form-textarea"
-              onChange={handleInputChange}
-            />
-          </div>
-          <FormCheckbox
-            label="Time needed"
-            id="timeNeeded"
-            handleCheckboxChange={handleCheckboxChange}
-            inputs={["mornings", "afternoons", "evenings"]}
-          />
-          <FormCheckbox
-            label="Time available"
-            id="timeAvailable"
-            handleCheckboxChange={handleCheckboxChange}
-            inputs={["mornings", "afternoons", "evenings"]}
-          />
-          <button
-            className="btn btn-register"
-            disabled={requesting}
-            onClick={() => {
-              console.log("submitted");
-            }}
-          >
-            Finish
-          </button>
-        </form>
-      </section>
+        </div>
+        <FormCheckbox
+          label="Time needed"
+          id="timeNeeded"
+          handleCheckboxChange={handleCheckboxChange}
+          inputs={["mornings", "afternoons", "evenings"]}
+        />
+        <FormCheckbox
+          label="Time available"
+          id="timeAvailable"
+          handleCheckboxChange={handleCheckboxChange}
+          inputs={["mornings", "afternoons", "evenings"]}
+        />
+        <button
+          className="btn btn-register"
+          disabled={requesting}
+          onClick={() => {
+            console.log("submitted");
+          }}
+        >
+          Finish
+        </button>
+      </form>
     </Wrapper>
   );
 }

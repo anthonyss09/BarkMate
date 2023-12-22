@@ -1,8 +1,6 @@
 import Wrapper from "../../assets/wrappers/FormRegisterW";
 import FormRow from "./FormRow";
-import Logo from "../../components/Logo";
 import { Link } from "react-router-dom";
-import FormSteps from "./FormSteps";
 import { selectNewUser } from "./authSlice";
 import { useSelector } from "react-redux";
 import validator from "validator";
@@ -11,20 +9,15 @@ import { useDispatch } from "react-redux";
 import { updateNewUserProp } from "./authSlice";
 import AddressInput from "../../components/AddressInput";
 import { displayAlert, clearAlert } from "../alerts/alertsSlice";
-import Alert from "../alerts/Alert";
-import { selectAlertsInfo } from "../alerts/alertsSlice";
 
 export default function RegisterOne({
   handleRegisterOne,
   handleRegisterTwo,
   handleInputChange,
-  showRegisterOne,
 }) {
   const newUser = useSelector(selectNewUser);
   const dispatch = useDispatch();
   const inputRef = useRef();
-
-  const alertsInfo = useSelector(selectAlertsInfo);
 
   const handlePlaceChanged = async () => {
     try {
@@ -46,115 +39,102 @@ export default function RegisterOne({
 
   return (
     <Wrapper>
-      <section className="form-main ">
-        {alertsInfo.showAlert && (
-          <Alert
-            alertMessage={alertsInfo.alertMessage}
-            alertType={alertsInfo.alertType}
-          />
-        )}
-        <form className="form">
-          <Link to="/" className=" link link-register">
-            <Logo logoClass="logo-nav" iconClass="icon-payment" />
-          </Link>
-          <FormSteps showRegisterOne={showRegisterOne} />
+      <form className="form">
+        <div className="form-header">
+          <p className="p-top">Create Profile</p>
+          <p className="p-bottom">
+            Alreday a member?{" "}
+            <Link to="/login" className="span-login link">
+              login
+            </Link>
+          </p>
+        </div>
 
-          <h1 className="form-header">
-            Create Profile{" "}
-            <p className="p-bottom">
-              Alreday a member?{" "}
-              <Link to="/login" className="span-login link">
-                login
-              </Link>
-            </p>
-          </h1>
+        <FormRow
+          type="text"
+          id="firstName"
+          name="first name"
+          placeholder="first name"
+          onChange={handleInputChange}
+        />
+        <FormRow
+          type="text"
+          id="lastName"
+          name="last name"
+          placeholder="last name"
+          onChange={handleInputChange}
+        />
+        <AddressInput
+          inputRef={inputRef}
+          handlePlaceChanged={handlePlaceChanged}
+        />
 
-          <FormRow
-            type="text"
-            id="firstName"
-            name="first name"
-            placeholder="first name"
-            onChange={handleInputChange}
-          />
-          <FormRow
-            type="text"
-            id="lastName"
-            name="last name"
-            placeholder="last name"
-            onChange={handleInputChange}
-          />
-          <AddressInput
-            inputRef={inputRef}
-            handlePlaceChanged={handlePlaceChanged}
-          />
-
-          <FormRow
-            type="text"
-            id="email"
-            name="email"
-            placeholder="email"
-            onChange={handleInputChange}
-          />
-          <FormRow
-            type="text"
-            id="password"
-            name="create password"
-            placeholder="create pasword"
-            onChange={handleInputChange}
-          />
-          <button
-            type="button"
-            className="btn btn-register"
-            onClick={() => {
-              if (
-                newUser.firstName.length < 1 ||
-                newUser.lastName.length < 1 ||
-                newUser.password.length < 6
-              ) {
-                dispatch(
-                  displayAlert({
-                    alertType: "danger",
-                    alertMessage:
-                      "Please check all required fields. Password must be atleast 6 characters in length.",
-                  })
-                );
-                setTimeout(() => {
-                  dispatch(clearAlert());
-                }, 3000);
-                return;
-              }
-              if (newUser.location.length < 2) {
-                dispatch(
-                  displayAlert({
-                    alertType: "danger",
-                    alertMessage: "Please enter valid address.",
-                  })
-                );
-                setTimeout(() => {
-                  dispatch(clearAlert());
-                }, 3000);
-                return;
-              }
-              if (!validator.isEmail(newUser.email)) {
-                dispatch(
-                  displayAlert({
-                    alertType: "danger",
-                    alertMessage: "Please enter valid email.",
-                  })
-                );
-                setTimeout(() => {
-                  dispatch(clearAlert());
-                }, 3000);
-                return;
-              }
-              handleRegisterOne();
-              handleRegisterTwo();
-            }}
-          >
-            Next
-          </button>
-        </form>
-      </section>
+        <FormRow
+          type="text"
+          id="email"
+          name="email"
+          placeholder="email"
+          onChange={handleInputChange}
+        />
+        <FormRow
+          type="text"
+          id="password"
+          name="create password"
+          placeholder="create pasword"
+          onChange={handleInputChange}
+        />
+        <button
+          type="button"
+          className="btn btn-register"
+          onClick={() => {
+            if (
+              newUser.firstName.length < 1 ||
+              newUser.lastName.length < 1 ||
+              newUser.password.length < 6
+            ) {
+              dispatch(
+                displayAlert({
+                  alertType: "danger",
+                  alertMessage:
+                    "Please check all required fields. Password must be atleast 6 characters in length.",
+                })
+              );
+              setTimeout(() => {
+                dispatch(clearAlert());
+              }, 3000);
+              return;
+            }
+            if (newUser.location.length < 2) {
+              dispatch(
+                displayAlert({
+                  alertType: "danger",
+                  alertMessage: "Please enter valid address.",
+                })
+              );
+              setTimeout(() => {
+                dispatch(clearAlert());
+              }, 3000);
+              return;
+            }
+            if (!validator.isEmail(newUser.email)) {
+              dispatch(
+                displayAlert({
+                  alertType: "danger",
+                  alertMessage: "Please enter valid email.",
+                })
+              );
+              setTimeout(() => {
+                dispatch(clearAlert());
+              }, 3000);
+              return;
+            }
+            handleRegisterOne();
+            handleRegisterTwo();
+          }}
+        >
+          Next
+        </button>
+      </form>
     </Wrapper>
   );
 }
