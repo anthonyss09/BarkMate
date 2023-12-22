@@ -7,6 +7,8 @@ export default function LandingPage() {
   const [hideNav, setHideNav] = useState(false);
   const [lastScroll, setLastScroll] = useState(0);
 
+  let test;
+
   const trackNav = () => {
     if (window.scrollY > lastScroll && window.scrollY > 80) {
       setHideNav(true);
