@@ -1,7 +1,6 @@
-import Wrapper from "../assets/wrappers/LandingW";
 import Footer from "../app/Footer";
 import LandingNav from "../app/LandingNav";
-import SectionLanding from "../components/SectionLanding";
+import LandingMain from "../components/LandingMain";
 import { useState, useEffect, useRef } from "react";
 
 export default function LandingPage() {
@@ -35,15 +34,10 @@ export default function LandingPage() {
   }, [lastScroll]);
 
   return (
-    <Wrapper>
-      <main className="full-page">
-        <LandingNav hideNav={hideNav} />
-        <div className={`${!hideNav ? "landing-body" : ""}`}>
-          {" "}
-          <SectionLanding />
-        </div>
-        <Footer />
-      </main>
-    </Wrapper>
+    <body className="full-page">
+      <LandingNav hideNav={hideNav} />
+      <LandingMain />
+      <Footer />
+    </body>
   );
 }

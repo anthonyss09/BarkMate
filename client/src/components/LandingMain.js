@@ -1,4 +1,4 @@
-import Wrapper from "../assets/wrappers/SectionLandingW";
+import Wrapper from "../assets/wrappers/LandingMainW";
 import StacyLanding from "../assets/images/beachBums.PNG";
 import postLanding from "../assets/images/goodBoy.jpg";
 import ChatLineUser from "../features/chats/ChatLineUser";
@@ -15,7 +15,7 @@ import DotLoader from "react-spinners/DotLoader";
 import Alert from "../features/alerts/Alert";
 import { displayAlert, clearAlert } from "../features/alerts/alertsSlice";
 
-export default function SectionLanding() {
+export default function LandingMain() {
   const { overflowHidden, showAlert, alertType, alertMessage } =
     useSelector(selectAlertsInfo);
   const [loginUser] = useLoginUserMutation();
@@ -52,60 +52,55 @@ export default function SectionLanding() {
   };
   return (
     <Wrapper>
-      <section
-        className={`section-landing-main ${
-          overflowHidden ? "overflow-hidden" : ""
-        }`}
+      <div
+        className={`landing-main ${overflowHidden ? "overflow-hidden" : ""}`}
       >
         {requesting && (
-          <div className="alert-container">
+          <aside className="alert-container">
             {" "}
             <DotLoader size={85} color="lightBlue" className="beat-loader" />
-          </div>
+          </aside>
         )}
+
         {showAlert && (
           <div className="alert-container">
             <Alert alertMessage={alertMessage} alertType={alertType} />
           </div>
         )}
-        <div className="section-landing-center section-landing-header">
-          <h1>
-            <span className="span-connect">
-              {" "}
-              Connect, <br />
-              {/* <br /> */}
-              meet,
-            </span>
-            {/* <br /> */}
-            <span className="span-responsibilities"> share the leash.</span>
-            {/* <br /> */}
-            <div className="btn-join ">
-              {" "}
+
+        <section className="landing-top-section">
+          <div className="landing-top-header-container">
+            <h1 className="landing-top-header">
+              <p className="span-connect">
+                {" "}
+                Connect, <br />
+                meet,
+                <br />
+                share the leash.
+              </p>
+
               <Link to="/register" className="btn-link link">
                 Join
               </Link>
-            </div>
-            <div className="btn btn-demo" onClick={handleLoginDemoUser}>
+            </h1>
+            <button className="btn btn-demo" onClick={handleLoginDemoUser}>
               Demo
-            </div>
-          </h1>
-          <div className="section-landing-image-jm-container">
-            <img
-              src={StacyLanding}
-              alt="stacy"
-              className="section-landing-image-jm"
-            />
+            </button>
           </div>
-        </div>
-        <div className="section-landing-chat-container">
+          <figure className="landing-top-img-container">
+            <img src={StacyLanding} alt="stacy" className="landing-top-img" />
+          </figure>
+        </section>
+
+        <section className="landing-section-chat">
           {" "}
-          <div className="section-landing-center section-landing-chat-center">
-            <h1 className="section-landing-chat-header">
+          <div className="landing-chat-center">
+            <h1 className="landing-chat-header">
               Chat <br />
               someone <br />
               up <br />
             </h1>
-            <div className="section-landing-chat">
+            <div className="landing-chat-container">
               <ChatLineFriend
                 text="have you and Bowie been to shady tree park?"
                 profileImageUrl={stacyProfile}
@@ -129,44 +124,41 @@ export default function SectionLanding() {
               />
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="section-landing-center">
+        <section className="landing-section-learn">
           {" "}
-          <h1 className="second-heading">
+          <h1 className="landing-header-learn">
             Get connected with local dog owners, barter walks, build your
             community, & share content.
-            <br />
-            <Link to="/about" className="link btn">
-              <button className="btn btn-learn">learn more</button>
-            </Link>
           </h1>
-        </div>
-        <div className="section-landing-center section-landing-center-column section-landing-post">
+          <Link to="/about" className="link btn">
+            <p className="btn btn-learn">learn more</p>
+          </Link>
+        </section>
+
+        <section className="landing-section-post">
           {" "}
-          <h1 className="section-landing-post-header">
-            Share your favorite pics
-          </h1>
-          <img
-            src={postLanding}
-            alt="post"
-            className="section-landing-image-post"
-          />
-        </div>
-        <div className="section-landing-center section-landing-center-column">
+          <h1 className="landing-post-header">Share your favorite pics</h1>
+          <img src={postLanding} alt="post" className="landing-post-img" />
+        </section>
+
+        <section className="landing-section-learn">
           {" "}
-          <h1 className="second-heading">
-            Bark Mate is funded by users. If you enjoy the project and would
-            like to see new features please consider contributing.
-            <br />
+          <span className="landing-header-learn">
+            <p>
+              {" "}
+              Bark Mate is funded by users. If you enjoy the project and would
+              like to see new features please consider contributing.
+            </p>
             <Link to="/payment" className="link btn btn-tip">
               <IoLogoVenmo size={25} className="icon-venmo" />
-              Contribute
+              <p>Contribute</p>
             </Link>
-            Thank you!
-          </h1>
-        </div>
-      </section>
+            <p> Thank you!</p>
+          </span>
+        </section>
+      </div>
     </Wrapper>
   );
 }
