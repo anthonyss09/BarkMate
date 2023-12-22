@@ -21,7 +21,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AboutPage from "./pages/AboutPage";
 import UserPhotos from "./features/posts/UserPhotos";
 import PaymentPage from "./pages/PaymentPage";
-import ContactForm from "./components/ContactForm";
+import ContactPage from "./pages/ContactPage";
 import PostSinglePage from "./features/posts/PostSinglePage";
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
             <Route exact path="register" element={<RegisterPage />} />
             <Route exact path="login" element={<LoginPage />} />
             <Route exact path="/payment" element={<PaymentPage />} />
-            <Route exact path="/contact" element={<ContactForm />} />
+            <Route exact path="/contact" element={<ContactPage />} />
             <Route
               exact
               path="dashboard"

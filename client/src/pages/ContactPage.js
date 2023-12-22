@@ -1,4 +1,4 @@
-import Wrapper from "../assets/wrappers/FormContactW.js";
+import Wrapper from "../assets/wrappers/ContactPageW.js";
 import FormRow from "../features/auth/FormRow.js";
 import { useState, useEffect } from "react";
 import Logo from "../components/Logo.js";
@@ -7,10 +7,8 @@ import axios from "axios";
 import DotLoader from "react-spinners/DotLoader";
 import { displayAlert, clearAlert } from "../features/alerts/alertsSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import Alert from "../features/alerts/Alert";
-import { selectAlertsInfo } from "../features/alerts/alertsSlice";
-import { HiBars3 } from "react-icons/hi2";
-import DropMenuLanding from "../components/DropMenuLanding.js";
+import Alert from "../features/alerts/Alert.js";
+import { selectAlertsInfo } from "../features/alerts/alertsSlice.js";
 import { useNavigate } from "react-router-dom";
 import { validateEmail } from "../utils/helpers.js";
 import Footer from "../app/Footer.js";
@@ -28,10 +26,6 @@ export default function ConctactForm() {
 
   let { showAlert, alertMessage, alertType } = useSelector(selectAlertsInfo);
 
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
   const handleChange = (e) => {
     const { id, value } = e.target;
 
@@ -46,6 +40,7 @@ export default function ConctactForm() {
   };
 
   const handleSendEmail = async (e) => {
+    e.preventDefault();
     const isEmailValid = validateEmail(email);
     if (!isEmailValid) {
       dispatch(
@@ -97,35 +92,33 @@ export default function ConctactForm() {
 
   return (
     <Wrapper>
-      {/* <div className="icon-bars" onClick={handleShowMenu}>
-        {" "}
-        <HiBars3 size={25} />
-      </div> */}
-      {showMenu && <DropMenuLanding handleShowMenu={handleShowMenu} />}
-      <section className="form-main">
+      <main className="form-main">
         {showAlert && (
           <Alert alertMessage={alertMessage} alertType={alertType} />
         )}
+
         {sending && (
           <div className="alert-container">
             {" "}
             <DotLoader size={85} color="lightBlue" className="beat-loader" />
           </div>
         )}
-        <div className="form form-contact">
+
+        <form className="form form-contact">
           <Link to="/dashboard/home" className=" link link-logo">
             <Logo logoClass="logo-nav" iconClass="icon-nav" />
           </Link>
-          <h1 className="form-header">
-            Contact Us
-            <p className="p-bottom">
-              <span className="span-login">
-                <Link to="/register" className="link span-login">
-                  Thanks for reaching out!
-                </Link>
-              </span>
-            </p>
-          </h1>
+
+          <div className="form-header">
+            <h4>Contact us</h4>
+
+            <span className="span-login">
+              <Link to="/register" className="link span-login">
+                <p className="p-bottom"> Thanks for reaching out!</p>
+              </Link>
+            </span>
+          </div>
+
           <FormRow
             id="name"
             name="Name"
@@ -159,11 +152,9 @@ export default function ConctactForm() {
           <button className="btn btn-contact" onClick={handleSendEmail}>
             Send email
           </button>
-          {/* <div className="llc">
-            Product of <Link className="link llc-link">ATOFFETTI DEV LLC</Link>
-          </div> */}
-        </div>
-      </section>
+        </form>
+      </main>
+
       <Footer />
     </Wrapper>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.body`
   p {
     color: var(--grey-180);
     font-size: 0.8rem;
@@ -17,7 +17,6 @@ const Wrapper = styled.section`
     border: 2px solid var(--med-font-blue);
     background: var(--med-font-blue);
     color: white;
-    // color: var(--med-font-blue);
   }
   .form {
     border-radius: 0;
@@ -35,19 +34,8 @@ const Wrapper = styled.section`
     margin-top: 1rem;
     letter-spacing: 0.05rem;
   }
-  .icon-bars {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-  }
-  .icon-bars:hover {
-    cursor: pointer;
-  }
   .p-bottom {
-    color: var(--grey-80);
     margin-top: 0.4rem;
-  }
-  .span-login {
     color: var(--bark-pink);
   }
 `;

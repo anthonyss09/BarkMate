@@ -3,16 +3,10 @@ import { useEffect } from "react";
 import venmoSmall from "../assets/images/blue_venmo_button_280x48.svg";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
-import { useState } from "react";
 import venmoCode from "../assets/images/venmoCode.jpeg";
 import Footer from "../app/Footer";
 
 export default function PaymentPage() {
-  const [showMenu, setShowMenu] = useState(false);
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
