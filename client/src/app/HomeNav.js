@@ -112,21 +112,18 @@ export default function NavBar() {
         />
       )}
       {showBigSidebar && <BigSidebar handleClick={handleBigSidebar} />}
-      <nav className="nav-main ">
-        <div className="nav-item bars">
+      <section className="nav-main ">
+        <span className="nav-item bars">
           <HiBars3 size={25} onClick={handleBigSidebar} />
-        </div>
+        </span>
         <Link to="/dashboard/home" className="link">
           <Logo logoClass="logo-nav" iconClass="icon-payment" size={25} />
         </Link>
 
         <span className="nav-icons-container">
-          <span
-            className="notification-count"
-            onClick={handleShowNotifications}
-          >
+          <p className="notification-count" onClick={handleShowNotifications}>
             {notificationNumber}
-          </span>
+          </p>
           <IoNotificationsOutline
             size={25}
             className="icon icon-notification"
@@ -140,7 +137,7 @@ export default function NavBar() {
             alt="User profile."
           />
         </span>
-      </nav>
+      </section>
       {showSmallSidebar && (
         <SmallSidebar
           handleClick={handleClick}

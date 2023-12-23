@@ -117,13 +117,17 @@ export default function DashHome() {
         </div>
       )}
       {user.newUser && <AlertWelcome user={user} />}
-      <section className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
+      <div className={`dash-main ${showCreatePost ? "no-scroll" : ""}`}>
         <div className="dash-center">
           <div className={`create-post-container ${scrolled}`}>
-            <div className="create-post" onClick={handleClick}>
-              <IoIosAdd size={35} className="icon-add" />
-            </div>
+            <button className="create-post" onClick={handleClick}>
+              <span>
+                {" "}
+                <IoIosAdd size={35} className="icon-add" />
+              </span>
+            </button>
           </div>
+
           <div
             className={`posts-container ${
               loadingPosts ? "background-white" : ""
@@ -148,7 +152,8 @@ export default function DashHome() {
             load more posts
           </button>
         )}
-      </section>
+      </div>
+
       <CreatePost
         handleClick={handleClick}
         showCreatePost={showCreatePost}

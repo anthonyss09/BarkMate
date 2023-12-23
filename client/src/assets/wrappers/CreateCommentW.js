@@ -56,6 +56,9 @@ const Wrapper = styled.aside`
     margin-left: 1.2rem;
   }
   .post-comment-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height: 100%;
     background: white;

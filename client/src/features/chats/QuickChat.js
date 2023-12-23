@@ -146,13 +146,14 @@ export default function QuickChat({
               alt="the recipient"
               className="quick-chat-image"
             />
-            <div className="header-text">
+            <span className="header-text">
               {" "}
-              <span className="quick-chat-recipient">
+              <p className="quick-chat-recipient">
                 {" " + recipientProfileName}
-              </span>
-            </div>
+              </p>
+            </span>
           </div>
+
           <div className="body">
             <textarea
               id="quick-chat-input"

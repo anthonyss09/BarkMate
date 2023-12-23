@@ -111,91 +111,90 @@ export default function ProfilePreview({
 
   const availability = timeAvailable.map((time, index) => {
     return (
-      <div key={index} className="time-slot time-slot-available">
+      <p key={index} className="time-slot time-slot-available">
         {time}
-      </div>
+      </p>
     );
   });
   const needed = timeNeeded.map((time, index) => {
     return (
-      <div key={index} className="time-slot time-slot-needed">
+      <p key={index} className="time-slot time-slot-needed">
         {time}
-      </div>
+      </p>
     );
   });
 
   return (
     <Wrapper>
-      <aside className="profile-preview-main">
-        <div className="profile-preview-center">
+      <div className="profile-preview-center">
+        {" "}
+        <span className="profile-preview-header">
           {" "}
-          <div className="profile-preview-header">
+          <h1 className="profile-preview-name">
+            {profileName}{" "}
+            {sample && profileName !== "Bark Mate" && (
+              <span className="sample-user-name"> Sample user</span>
+            )}
+          </h1>
+        </span>
+        <div className="profile-preview-body">
+          <Link to={`/${id}`} className="profile-pic-container">
             {" "}
-            <h1 className="profile-preview-name">
-              {profileName}{" "}
-              {sample && profileName !== "Bark Mate" && (
-                <span className="sample-user-name"> Sample user</span>
-              )}
-            </h1>
-          </div>
-          <div className="profile-preview-body">
-            <Link to={`/${id}`} className="profile-pic-container">
+            <img
+              className="profile-preview-pic"
+              src={profileImageUrl}
+              alt="jennie & max"
+            />
+          </Link>{" "}
+          <section className="profile-preview-options">
+            <button className="option-container btn-add-friend">
               {" "}
-              <img
-                className="profile-preview-pic"
-                src={profileImageUrl}
-                alt="jennie & max"
-              />
-            </Link>{" "}
-            <div className="profile-preview-options">
-              <div className="option-container">
+              <span className="add-friend option" onClick={handleFriendRequest}>
                 {" "}
-                <div
-                  className="add-friend option"
-                  onClick={handleFriendRequest}
-                >
-                  + <FaUserFriends size={45} />
-                </div>
-              </div>
-              <div className="time-slots-container">
-                {" "}
-                <div className="time-slot-column">
-                  <h1 className="time-slot-title">I'm available</h1>
-                  {availability}
-                </div>
-                <div className="time-slot-column">
-                  <h1 className="time-slot-title">I need</h1>
-                  {needed}
-                </div>
-              </div>
-              <div className="option-container">
-                {" "}
-                <div
-                  className="message option"
-                  onClick={() => {
-                    handleMessageClick();
-                  }}
-                >
-                  <FiMail size={45} className="message-friend" />
-                </div>
-              </div>
-            </div>
-            <div className="profile-preview-about">
-              <h1 className="about-heading">
-                About Us
-                <div className="location-container">
-                  <MdLocationOn size={15} />
-                  <span className="location">
-                    {sample && profileName !== "Bark Mate" ? "Your city" : city}
-                  </span>
-                </div>
-              </h1>
+                <p>+</p> <FaUserFriends size={45} />
+              </span>
+            </button>
 
-              <p className="profile-preview-p">{aboutUs}</p>
+            <div className="time-slots-container">
+              {" "}
+              <div className="time-slot-column">
+                <h1 className="time-slot-title">I'm available</h1>
+                {availability}
+              </div>
+              <div className="time-slot-column">
+                <h1 className="time-slot-title">I need</h1>
+                {needed}
+              </div>
             </div>
-          </div>
+
+            <button className="option-container btn-add-friend">
+              {" "}
+              <div
+                className="message option"
+                onClick={() => {
+                  handleMessageClick();
+                }}
+              >
+                <FiMail size={45} className="message-friend" />
+              </div>
+            </button>
+          </section>
+          <section className="profile-preview-about">
+            <span className="about-heading">
+              <h1>About Us</h1>
+              <div className="location-container">
+                <MdLocationOn size={15} />
+                <p className="location">
+                  {sample && profileName !== "Bark Mate" ? "Your city" : city}
+                </p>
+              </div>
+            </span>
+
+            <p className="profile-preview-p">{aboutUs}</p>
+          </section>
         </div>
-      </aside>
+      </div>
+
       <QuickChat
         recipientId={id}
         handleMessageClick={handleMessageClick}

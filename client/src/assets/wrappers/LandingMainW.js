@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const Wrapper = styled.section`
   .btn-demo {
     width: min-content;
     border: 3px solid var(--med-font-blue);
@@ -16,8 +16,7 @@ const Wrapper = styled.main`
   }
 
   .btn-join {
-    height: 80px;
-    width: 80px;
+    height: 40px;
     border-radius: 40px;
     letter-spacing: 0.02rem;
     text-decoration: none;
@@ -28,6 +27,8 @@ const Wrapper = styled.main`
     color: var(--federal-blue);
     background: white;
     border: none;
+    padding: 0;
+    margin: 0;
   }
 
   .btn-join:hover {
@@ -90,6 +91,7 @@ const Wrapper = styled.main`
     color: white;
     margin-top: 7rem;
     position: absolute;
+    font-weight: 500;
   }
 
   .landing-header-learn {
@@ -103,7 +105,7 @@ const Wrapper = styled.main`
     box-sizing: border-box;
     text-align: center;
     line-height: 1.3rem;
-    color: rgb(140, 140, 140);
+    color: rgb(160, 160, 160);
     letter-spacing: 0.05rem;
   }
 
@@ -121,6 +123,7 @@ const Wrapper = styled.main`
     text-align: center;
     color: white;
     border: 2px solid white;
+    font-weight: 500;
   }
 
   .landing-post-img {
@@ -170,7 +173,7 @@ const Wrapper = styled.main`
     z-index: 4;
     position: static;
     color: rgb(80, 80, 80);
-    color: rgb(180, 180, 180);
+    color: rgb(190, 190, 190);
     background: none;
     margin-top: -3rem;
     display: flex;
@@ -214,6 +217,14 @@ const Wrapper = styled.main`
   .overflow-hidden {
     overflow-x: hidden;
     position: fixed;
+  }
+
+  .p-connect {
+    font-size: 1.2rem;
+  }
+
+  .p-meet {
+    font-size: 1.8rem;
   }
 
   @media (max-width: 400px) {

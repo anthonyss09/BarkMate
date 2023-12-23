@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const Wrapper = styled.section`
   p {
     color: var(--grey-180);
     font-size: 0.8rem;

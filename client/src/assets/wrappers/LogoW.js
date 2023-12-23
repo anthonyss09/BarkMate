@@ -19,7 +19,7 @@ const Wrapper = styled.aside`
     text-align: center;
     letter-spacing: 0.05rem;
     font-family: "Montserrat", sans-serif;
-    z-index: 4;
+    z-index: 2;
     position: static;
     color: var(--federal-blue);
     font-weight: 500;

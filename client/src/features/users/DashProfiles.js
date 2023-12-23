@@ -92,8 +92,8 @@ export default function DashProfiles() {
           <DotLoader size={85} color="lightBlue" className="beat-loader" />
         </div>
       )}
-      <section className="dash-main">
-        <div className="dash-header">
+      <div className="dash-main">
+        <section className="dash-header">
           <h1 className="dash-page-name">Profiles </h1>
           <div className="filter" onClick={handleClick}>
             <BiFilter size={20} />
@@ -107,16 +107,16 @@ export default function DashProfiles() {
               filterPrompt="select distance"
             />
           )}
-        </div>
+        </section>
 
-        <div
+        <section
           className={`profiles-container ${
             isLoading ? "background-white" : ""
           }`}
         >
           {content}
-        </div>
-      </section>
+        </section>
+      </div>
     </Wrapper>
   );
 }

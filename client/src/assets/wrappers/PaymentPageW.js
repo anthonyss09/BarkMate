@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.body`
+const Wrapper = styled.main`
   .icon-bars {
     position: absolute;
     top: 2rem;
@@ -23,16 +23,12 @@ const Wrapper = styled.body`
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
+    margin-top: 2rem;
   }
   .payment-page-header {
     letter-spacing: 0.05rem;
     font-size: 1rem;
     text-align: center;
-  }
-  .payment-page-main {
-    width: 100vw;
-    // height: 100vw;
-    padding-top: 2rem;
   }
 
   @media (max-width: 400px) {

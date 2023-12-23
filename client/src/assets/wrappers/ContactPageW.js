@@ -22,11 +22,7 @@ const Wrapper = styled.main`
     border-radius: 0;
     padding-top: 1rem;
     width: 86vw;
-  }
-  .form-main {
-    min-height: 0;
-    height: min-content;
-    padding: 1rem;
+    margin: 2rem;
   }
   .form-header {
     padding: 1rem;

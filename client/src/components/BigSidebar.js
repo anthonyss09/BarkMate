@@ -10,79 +10,69 @@ import { IoLogoVenmo } from "react-icons/io5";
 export default function BigSidebar({ handleClick }) {
   return (
     <Wrapper>
-      <aside className="big-sidebar-main">
-        <div className="big-sidebar-center">
-          <AiOutlineClose
-            size={25}
-            className="icon-close"
-            onClick={handleClick}
-          />{" "}
-          <Link
-            to="/dashboard/home"
-            className="link link-big link-profiles"
-            onClick={handleClick}
-          >
-            <BiHome className="icon-home" size={25} />
-            Home
-          </Link>
-          <Link
-            to="/dashboard/profiles"
-            className="link link-big link-profiles"
-            onClick={handleClick}
-          >
-            <MdOutlinePeople className="icon-profile" size={25} />
-            Profiles
-          </Link>
-          <Link
-            to="/dashboard/calender"
-            className="link link-big link-calender"
-            onClick={handleClick}
-          >
-            <BiCalendar className="icon-calender" size={25} />
-            Calender
-          </Link>
-          <Link
-            to="/dashboard/chats"
-            className="link link-big link-chats"
-            onClick={handleClick}
-          >
-            <HiOutlineChat className="icon-chat" size={25} />
-            Chats
-          </Link>
-          <Link
-            to="/about"
-            className="link link-big link-story"
-            onClick={handleClick}
-          >
-            <MdOutlineMenuBook className="icon-book" size={25} />
-            About
-          </Link>
-          <Link
-            to="/contact"
-            className="link link-big link-chats"
-            onClick={handleClick}
-          >
-            <MdMailOutline className="icon-contact" size={25} />
-            Contact
-          </Link>
-          <Link
-            to="/payment"
-            className="link link-big link-chats"
-            onClick={handleClick}
-          >
-            <IoLogoVenmo className="icon-chat" size={25} />
-            Contribute
-          </Link>
-          {/* <div className="llc">
-              Product of
-              <br />{" "}
-              <Link className="llc-link">
-                ATOFFETTI <br />
-                DEV LLC
-              </Link>
-            </div> */}
-        </div>
-      </aside>
+      <section className="big-sidebar-center">
+        <AiOutlineClose
+          size={25}
+          className="icon-close"
+          onClick={handleClick}
+        />{" "}
+        <Link
+          to="/dashboard/home"
+          className="link link-big link-profiles"
+          onClick={handleClick}
+        >
+          <BiHome className="icon-home" size={25} />
+          Home
+        </Link>
+        <Link
+          to="/dashboard/profiles"
+          className="link link-big link-profiles"
+          onClick={handleClick}
+        >
+          <MdOutlinePeople className="icon-profile" size={25} />
+          Profiles
+        </Link>
+        <Link
+          to="/dashboard/calender"
+          className="link link-big link-calender"
+          onClick={handleClick}
+        >
+          <BiCalendar className="icon-calender" size={25} />
+          Calender
+        </Link>
+        <Link
+          to="/dashboard/chats"
+          className="link link-big link-chats"
+          onClick={handleClick}
+        >
+          <HiOutlineChat className="icon-chat" size={25} />
+          Chats
+        </Link>
+        <Link
+          to="/about"
+          className="link link-big link-story"
+          onClick={handleClick}
+        >
+          <MdOutlineMenuBook className="icon-book" size={25} />
+          About
+        </Link>
+        <Link
+          to="/contact"
+          className="link link-big link-chats"
+          onClick={handleClick}
+        >
+          <MdMailOutline className="icon-contact" size={25} />
+          Contact
+        </Link>
+        <Link
+          to="/payment"
+          className="link link-big link-chats"
+          onClick={handleClick}
+        >
+          <IoLogoVenmo className="icon-chat" size={25} />
+          Contribute
+        </Link>
+      </section>
     </Wrapper>
   );
 }

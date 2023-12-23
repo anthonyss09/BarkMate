@@ -16,6 +16,14 @@ const Wrapper = styled.aside`
     box-shadow: 5px 2px 5px grey;
   }
 
+  .btn-upload {
+    width: 100%;
+    padding: 0;
+    background: white;
+    color: black;
+    display: flex;
+  }
+
   .create-post-heading {
     display: flex;
     align-items: center;
@@ -26,6 +34,7 @@ const Wrapper = styled.aside`
     display: none;
   }
   .create-post-label-image {
+    width: 100%;
     height: 2rem;
     border: 1px solid var(--grey-240);
     border-radius: 1.5rem;

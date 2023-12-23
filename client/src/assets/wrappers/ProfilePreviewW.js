@@ -1,13 +1,36 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  width: 100vw;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 0;
+
   .about-heading {
     padding: 0 0.2rem;
     font-size: 1.2rem;
     font-family: "Roboto Condensed", sans-serif;
   }
   .add-friend {
+    width: min-content;
+    height: min-content;
+    display: flex;
     color: var(--test-red);
+    background: white;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  .btn-add-friend {
+    height: min-content;
+    padding: 0;
+    background: white;
+    border: none;
   }
   .icon-star {
     color: var(--federal-blue);
@@ -63,17 +86,7 @@ const Wrapper = styled.aside`
     gap: 1rem;
     margin: 0.2rem 0;
   }
-  .profile-preview-main {
-    width: 100vw;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    box-sizing: border-box;
-    padding: 1rem;
-    padding-top: 0;
-  }
+
   .profile-preview-name {
     font-size: 2rem;
     font-weight: 400;

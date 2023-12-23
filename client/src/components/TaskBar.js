@@ -30,7 +30,7 @@ export default function TaskBar() {
 
   return (
     <Wrapper>
-      <section
+      <div
         className={`task-bar-main ${collapsed ? "collapsed" : ""} ${
           dropped ? "dropped" : ""
         }`}
@@ -74,7 +74,7 @@ export default function TaskBar() {
             </div>
           </div>
         )}
-      </section>
+      </div>
     </Wrapper>
   );
 }

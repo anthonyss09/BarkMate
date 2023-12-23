@@ -42,9 +42,6 @@ export default memo(function Post({
   const [showAllComments, setShowAllComments] = useState(false);
 
   const dateOfPost = moment(createdAt.toString()).startOf("minute").fromNow();
-  // const dateCheck = moment(createdAt.toString()).format();
-  // const dateShort =
-  //   dateOfPost.split(" ")[0] + dateOfPost.split(" ")[1].charAt(0);
   const id = new mongoose.Types.ObjectId();
 
   const Navigate = useNavigate();
@@ -203,86 +200,85 @@ export default memo(function Post({
 
   return (
     <Wrapper>
-      <aside className="post-main">
-        <div className="post-center">
-          <div className="post-heading">
-            <Link to={"/" + authorId}>
-              {" "}
-              <img
-                src={authorImageUrl}
-                className="post-heading-pic"
-                alt="author"
-              />
-            </Link>
-
-            <span className="post-name">
-              {authorProfileName} <br />
-              <span className="post-date">{dateOfPost}</span>
-            </span>
-          </div>
-          <div className="post-text">{text}</div>
-          <div className="post-image">
-            {postImageUrl && (
-              <img
-                src={postImageUrl}
-                className="post-body-pic"
-                alt="the post"
-              />
-            )}
-          </div>
-          <div className="post-info"></div>
-          <div className="post-options">
-            <div className="icon icon-heart-container">
-              {userLikes.includes(currentUserId) ? (
-                <AiFillHeart
-                  size={25}
-                  onClick={handleLikePost}
-                  className="icon-heart-fill"
-                />
-              ) : (
-                <AiOutlineHeart size={25} onClick={handleLikePost} />
-              )}
-
-              {likes.length}
-            </div>
-            <div className="icon icon-comment">
-              <FaRegCommentDots size={25} onClick={handleShowPostComment} />
-            </div>
-          </div>
-          {isSuccess && <div className="comments-container"> {content}</div>}
-          {!showAllComments && isSuccess && comments.content.length > 1 && (
-            <div className="show-comments" onClick={handleShowAllComments}>
-              show all comments
-            </div>
-          )}
-          {showAllComments && (
-            <div className="show-comments" onClick={handleShowAllComments}>
-              show less comments
-            </div>
-          )}
-          {showPostComment && (
-            <CreateComment
-              authorName={authorName}
-              authorDogName={authorDogName}
-              authorProfileName={authorProfileName}
-              isFocused={isFocused}
-              handleShowPostComment={handleShowPostComment}
-              showPostComment={showPostComment}
-              handleCommentChange={handleCommentChange}
-              handlePostComment={handlePostComment}
-              handleFocus={handleFocus}
-              handleBlur={handleBlur}
-              comment={comment}
-              dateOfPost={dateOfPost}
-              text={text}
-              authorImageUrl={authorImageUrl}
-              postImageUrl={postImageUrl}
-              requesting={requesting}
-              setRequesting={setRequesting}
+      <div className="post-center">
+        <section className="post-heading">
+          <Link to={"/" + authorId}>
+            {" "}
+            <img
+              src={authorImageUrl}
+              className="post-heading-pic"
+              alt="author"
             />
+          </Link>
+
+          <span className="post-name">
+            <p> {authorProfileName}</p>
+            <p className="post-date">{dateOfPost}</p>
+          </span>
+        </section>
+
+        <p className="post-text">{text}</p>
+
+        <figure className="post-image">
+          {postImageUrl && (
+            <img src={postImageUrl} className="post-body-pic" alt="the post" />
           )}
-        </div>
-      </aside>
+        </figure>
+
+        <section className="post-options">
+          <span className="icon icon-heart-container">
+            {userLikes.includes(currentUserId) ? (
+              <AiFillHeart
+                size={25}
+                onClick={handleLikePost}
+                className="icon-heart-fill"
+              />
+            ) : (
+              <AiOutlineHeart size={25} onClick={handleLikePost} />
+            )}
+
+            {likes.length}
+          </span>
+          <span className="icon icon-comment">
+            <FaRegCommentDots size={25} onClick={handleShowPostComment} />
+          </span>
+        </section>
+
+        {isSuccess && (
+          <section className="comments-container"> {content}</section>
+        )}
+        {!showAllComments && isSuccess && comments.content.length > 1 && (
+          <p className="show-comments" onClick={handleShowAllComments}>
+            show all comments
+          </p>
+        )}
+        {showAllComments && (
+          <p className="show-comments" onClick={handleShowAllComments}>
+            show less comments
+          </p>
+        )}
+        {showPostComment && (
+          <CreateComment
+            authorName={authorName}
+            authorDogName={authorDogName}
+            authorProfileName={authorProfileName}
+            isFocused={isFocused}
+            handleShowPostComment={handleShowPostComment}
+            showPostComment={showPostComment}
+            handleCommentChange={handleCommentChange}
+            handlePostComment={handlePostComment}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+            comment={comment}
+            dateOfPost={dateOfPost}
+            text={text}
+            authorImageUrl={authorImageUrl}
+            postImageUrl={postImageUrl}
+            requesting={requesting}
+            setRequesting={setRequesting}
+          />
+        )}
+      </div>
     </Wrapper>
   );
 });

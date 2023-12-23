@@ -92,68 +92,64 @@ export default function ConctactForm() {
 
   return (
     <Wrapper>
-      <main className="form-main">
-        {showAlert && (
-          <Alert alertMessage={alertMessage} alertType={alertType} />
-        )}
+      {showAlert && <Alert alertMessage={alertMessage} alertType={alertType} />}
 
-        {sending && (
-          <div className="alert-container">
-            {" "}
-            <DotLoader size={85} color="lightBlue" className="beat-loader" />
-          </div>
-        )}
+      {sending && (
+        <div className="alert-container">
+          {" "}
+          <DotLoader size={85} color="lightBlue" className="beat-loader" />
+        </div>
+      )}
 
-        <form className="form form-contact">
-          <Link to="/dashboard/home" className=" link link-logo">
-            <Logo logoClass="logo-nav" iconClass="icon-nav" />
-          </Link>
+      <form className="form form-contact">
+        <Link to="/dashboard/home" className=" link link-logo">
+          <Logo logoClass="logo-nav" iconClass="icon-nav" />
+        </Link>
 
-          <div className="form-header">
-            <h4>Contact us</h4>
+        <div className="form-header">
+          <h4>Contact us</h4>
 
-            <span className="span-login">
-              <Link to="/register" className="link span-login">
-                <p className="p-bottom"> Thanks for reaching out!</p>
-              </Link>
-            </span>
-          </div>
+          <span className="span-login">
+            <Link to="/register" className="link span-login">
+              <p className="p-bottom"> Thanks for reaching out!</p>
+            </Link>
+          </span>
+        </div>
 
-          <FormRow
-            id="name"
-            name="Name"
-            type="text"
-            placeholder="Name"
-            value={name}
+        <FormRow
+          id="name"
+          name="Name"
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={handleChange}
+        />
+        <FormRow
+          id="email"
+          name="email"
+          type="text"
+          placeholder="email"
+          value={email}
+          onChange={handleChange}
+        />
+        <div className="form-row">
+          <label htmlFor="aboutUs" className="form-label">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="Message"
+            rows="8"
+            value={message}
+            placeholder="What's on your mind?"
+            className="form-textarea"
             onChange={handleChange}
           />
-          <FormRow
-            id="email"
-            name="email"
-            type="text"
-            placeholder="email"
-            value={email}
-            onChange={handleChange}
-          />
-          <div className="form-row">
-            <label htmlFor="aboutUs" className="form-label">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="Message"
-              rows="8"
-              value={message}
-              placeholder="What's on your mind?"
-              className="form-textarea"
-              onChange={handleChange}
-            />
-          </div>
-          <button className="btn btn-contact" onClick={handleSendEmail}>
-            Send email
-          </button>
-        </form>
-      </main>
+        </div>
+        <button className="btn btn-contact" onClick={handleSendEmail}>
+          Send email
+        </button>
+      </form>
 
       <Footer />
     </Wrapper>

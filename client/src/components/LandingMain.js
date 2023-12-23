@@ -71,15 +71,14 @@ export default function LandingMain() {
         <section className="landing-top-section">
           <div className="landing-top-header-container">
             <h1 className="landing-top-header">
-              <p className="span-connect">
+              <span className="span-connect">
                 {" "}
-                Connect, <br />
-                meet,
-                <br />
-                share the leash.
-              </p>
+                <p className="p-connect">Connect,</p>
+                <p className="p-meet">meet,</p>
+                <p className="p-share">share the leash.</p>
+              </span>
 
-              <Link to="/register" className="btn-link link">
+              <Link to="/register" className="btn-link link btn-join">
                 Join
               </Link>
             </h1>

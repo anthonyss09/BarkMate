@@ -1,26 +1,26 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  width: 40vw;
+  height: 100%;
+  background: rgb(252, 252, 252, 0.96);
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  padding: 0 2rem;
+  border-right: 1px solid rgb(220, 220, 220);
+  box-shadow: -1px 2px 100vw grey;
+
   .big-sidebar-center {
     display: flex;
     flex-direction: column;
     padding: 6rem 0 0 0;
     gap: 1.6rem;
   }
-  .big-sidebar-main {
-    width: 40vw;
-    height: 100%;
-    background: rgb(252, 252, 252, 0.96);
-    background: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    display: flex;
-    padding: 0 2rem;
-    border-right: 1px solid rgb(220, 220, 220);
-    box-shadow: -1px 2px 100vw grey;
-  }
+
   .icon-book {
     color: var(--space-cadet);
   }

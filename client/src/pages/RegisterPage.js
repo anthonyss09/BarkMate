@@ -38,7 +38,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <body className="full-page register-page">
+    <main className="full-page register-page">
       {alertsInfo.showAlert && (
         <Alert
           alertMessage={alertsInfo.alertMessage}
@@ -78,6 +78,6 @@ export default function RegisterPage() {
           handleCheckboxChange={handleCheckboxChange}
         />
       )}
-    </body>
+    </main>
   );
 }

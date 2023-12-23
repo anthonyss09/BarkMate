@@ -34,10 +34,10 @@ export default function LandingPage() {
   }, [lastScroll]);
 
   return (
-    <body className="full-page">
+    <main className="full-page">
       <LandingNav hideNav={hideNav} />
       <LandingMain />
       <Footer />
-    </body>
+    </main>
   );
 }

@@ -7,17 +7,15 @@ export default function Comment({
 }) {
   return (
     <Wrapper>
-      <div className={"comment-row"}>
-        <img
-          src={commentAuthorImageUrl}
-          className="comment-image"
-          alt="the comment"
-        />
-        <div className="comment-body">
-          <div className="comment-author"> {commentAuthorName}</div>
-          <div className="comment-text"> {commentText}</div>
-        </div>
-      </div>
+      <img
+        src={commentAuthorImageUrl}
+        className="comment-image"
+        alt="the comment"
+      />
+      <section className="comment-body">
+        <p className="comment-author"> {commentAuthorName}</p>
+        <p className="comment-text"> {commentText}</p>
+      </section>
     </Wrapper>
   );
 }

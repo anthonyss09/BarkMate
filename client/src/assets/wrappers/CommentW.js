@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1rem 0;
+  margin-left: 0.4rem;
+  border-radius: 1.5rem;
+  color: rgb(60, 60, 60);
+  font-size: 0.75rem;
   .comment-author {
     font-weight: bold;
   }

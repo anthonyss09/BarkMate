@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+const Wrapper = styled.aside`
   .beat-loader {
     position: fixed;
     z-index: 20;

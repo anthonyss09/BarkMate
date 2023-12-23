@@ -154,7 +154,7 @@ export default memo(function CreatePost({
         }`}
         onSubmit={handleSubmit}
       >
-        <div
+        <span
           className="icon-container"
           onClick={() => {
             handleClick();
@@ -162,9 +162,9 @@ export default memo(function CreatePost({
           }}
         >
           <AiOutlineCloseCircle size={35} className="icon-close" />
-        </div>
+        </span>
 
-        <div className="create-post-heading">
+        <span className="create-post-heading">
           <Link>
             {" "}
             <img
@@ -173,9 +173,10 @@ export default memo(function CreatePost({
               alt="user profile"
             />
           </Link>
-          <span className="create-post-name">{currentUser.profileName}</span>
-        </div>
-        <div className="create-post-form-row">
+          <p className="create-post-name">{currentUser.profileName}</p>
+        </span>
+
+        <span className="create-post-form-row">
           <textarea
             id="createPost"
             name="Create post"
@@ -187,39 +188,44 @@ export default memo(function CreatePost({
             onBlur={handleBlur}
             value={postText}
           />
-        </div>
-        <div
+        </span>
+
+        <section
           className={`create-post-form-row post-image-row ${
             isFocused ? "focused" : ""
           }`}
         >
           {postImage && (
-            <div className="create-post-image-container">
+            <figure className="create-post-image-container">
               <img src={imageUrl} className="post-image" alt="the post" />
-            </div>
+            </figure>
           )}
-          <label
-            htmlFor="image"
-            className="create-post-label create-post-label-image"
-          >
-            <p>Upload a pic</p> <FiCamera size={20} />
-            <input
-              id="image"
-              type="file"
-              className="create-post-input "
-              onChange={handleImageChange}
-            />
-          </label>
-          <div>
-            <button
-              type="submit"
-              className="btn btn-create-post"
-              disabled={requesting}
+
+          <button type="button" className="btn btn-upload">
+            {" "}
+            <label
+              htmlFor="image"
+              className="create-post-label create-post-label-image"
             >
-              Submit post
-            </button>
-          </div>
-        </div>
+              {" "}
+              <p>Upload a pic</p> <FiCamera size={20} />
+              <input
+                id="image"
+                type="file"
+                className="create-post-input "
+                onChange={handleImageChange}
+              />
+            </label>
+          </button>
+
+          <button
+            type="submit"
+            className="btn btn-create-post"
+            disabled={requesting}
+          >
+            Submit post
+          </button>
+        </section>
       </form>
     </Wrapper>
   );

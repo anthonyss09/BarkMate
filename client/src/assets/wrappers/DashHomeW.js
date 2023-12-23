@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   .active {
     border: 2px solid var(--grey-248);
     box-shadow: 5px 2px 5px var(--grey-220);
@@ -32,11 +32,10 @@ const Wrapper = styled.section`
   }
   .create-post {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.6rem 1.4rem;
+    // padding: 0.6rem 1.4rem;
     border: 1px solid rgb(244, 244, 244);
+    background: white;
+    color: black;
   }
   .dash-center {
     padding: 0;

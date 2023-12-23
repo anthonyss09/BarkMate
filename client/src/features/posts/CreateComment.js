@@ -3,8 +3,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AiOutlineSend } from "react-icons/ai";
 
 export default function CreateComment({
-  authorName,
-  authorDogName,
   isFocused,
   handleShowPostComment,
   showPostComment,
@@ -23,11 +21,11 @@ export default function CreateComment({
   return (
     <Wrapper>
       <div className={`post-comment-row ${showPostComment ? "" : ""}`}>
-        <div className="post-comment-input-row">
-          <div className="comment-icon-close">
+        <section className="post-comment-input-row">
+          <span className="comment-icon-close">
             {" "}
             <AiOutlineClose size={25} onClick={handleShowPostComment} />
-          </div>
+          </span>
           <textarea
             id="createComment"
             name="Create comment"
@@ -51,11 +49,11 @@ export default function CreateComment({
               onClick={handlePostComment}
             />
           </button>
-        </div>
+        </section>
 
-        <div className="post-comment-preview">
+        <section className="post-comment-preview">
           {" "}
-          <div className="post-comment-heading">
+          <span className="post-comment-heading">
             {" "}
             <img
               src={authorImageUrl}
@@ -63,19 +61,19 @@ export default function CreateComment({
               alt="post comment"
             />
             <span className="post-comment-name">
-              {authorProfileName} <br />
-              <span className=" post-comment-date">{dateOfPost}</span>
+              <p>{authorProfileName}</p>
+              <p className=" post-comment-date">{dateOfPost}</p>
             </span>
-          </div>
+          </span>
           <div className="post-comment-body">
-            <div className="post-comment-text">{text}</div>
+            <p className="post-comment-text">{text}</p>
             <img
               src={postImageUrl}
               alt="the post"
               className={`post-comment-body-pic ${isFocused ? "focused" : ""}`}
             />
           </div>
-        </div>
+        </section>
       </div>
     </Wrapper>
   );

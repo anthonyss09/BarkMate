@@ -12,30 +12,28 @@ export default function PaymentPage() {
   }, []);
   return (
     <Wrapper>
-      <main className="payment-page-main">
-        <section className="payment-page-center">
-          <h1 className="payment-page-header">Thank you for contributing!</h1>
+      <section className="payment-page-center">
+        <h1 className="payment-page-header">Thank you for contributing!</h1>
 
-          <Link to="/dashboard/home" className="link">
-            {" "}
-            <Logo logoClass="logo-nav" iconClass="icon-payment" />
-          </Link>
+        <Link to="/dashboard/home" className="link">
+          {" "}
+          <Logo logoClass="logo-nav" iconClass="icon-payment" />
+        </Link>
 
-          <a
-            href="https://venmo.com/code?user_id=3961781617690125210&created=1703050879.9635692&printed=1"
-            className=" link"
-          >
-            <img src={venmoCode} className="img-venmo" />
-          </a>
+        <a
+          href="https://venmo.com/code?user_id=3961781617690125210&created=1703050879.9635692&printed=1"
+          className=" link"
+        >
+          <img src={venmoCode} className="img-venmo" />
+        </a>
 
-          <a
-            href="https://venmo.com/code?user_id=3961781617690125210&created=1703050879.9635692&printed=1"
-            className=" link"
-          >
-            <img src={venmoSmall} />
-          </a>
-        </section>
-      </main>
+        <a
+          href="https://venmo.com/code?user_id=3961781617690125210&created=1703050879.9635692&printed=1"
+          className=" link"
+        >
+          <img src={venmoSmall} />
+        </a>
+      </section>
 
       <Footer />
     </Wrapper>

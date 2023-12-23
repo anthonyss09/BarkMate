@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+    background: white;
+    color: rgb(60, 60, 60);
+    width: 100vw;
+    padding-top: 0.4rem;
+    box-sizing: border-box;
+
   .comments-container {
     margin: 0 1rem;
   }
@@ -28,6 +34,7 @@ const Wrapper = styled.aside`
     cursor: pointer;
   }
   .post-date {
+    width: 60px;
     font-size: 0.6rem;
     color: rgb(100, 100, 100);
     background: rgb(240, 240, 240);
@@ -63,11 +70,7 @@ const Wrapper = styled.aside`
     font-size: 0.8rem;
   }
   .post-main {
-    background: white;
-    color: rgb(60, 60, 60);
-    width: 100vw;
-    padding-top: 0.4rem;
-    box-sizing: border-box;
+   
   }
   .post-name {
     font-weight: bold;
@@ -76,8 +79,10 @@ const Wrapper = styled.aside`
     letter-spacing: 0.02rem;
   }
   .post-options {
+    height: 4rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid var(--test-blue);
     padding: 0 1rem;
     padding-bottom: 0.2rem;

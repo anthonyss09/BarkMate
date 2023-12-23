@@ -16,14 +16,14 @@ export default function DashboardPage() {
         {" "}
         <NavBar />
       </div>
-      <div
+      <main
         className={`outlet-container full-page ${
           overflowHidden ? "overflow-hidden" : ""
         }`}
       >
         <TaskBar />
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </div>
   );
