@@ -11,6 +11,10 @@ const Wrapper = styled.nav`
   .bone {
     color: var(--space-cadet);
   }
+  .btn {
+    padding: 0;
+    background: none;
+  }
   .btn-login {
     margin-right: 1rem;
     padding: 0.4rem 1rem;

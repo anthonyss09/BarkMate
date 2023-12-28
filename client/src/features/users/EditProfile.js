@@ -190,9 +190,9 @@ export default function EditProfile() {
           <DotLoader color="lightBlue" size={85} className="beat-loader" />
         </div>
       )}
-      <section className="edit-profile-main form">
+      <form className="edit-profile-main form">
         <div className="edit-profile-center">
-          <h1 className="form-row edit-profile-heading">Edit Profile</h1>
+          <h3 className="form-row edit-profile-heading">Edit Profile</h3>
 
           <h1 className="edit-profile-name">{user.profileName}</h1>
 
@@ -254,7 +254,7 @@ export default function EditProfile() {
             Save
           </button>
         </div>
-      </section>
+      </form>
       <Footer />
     </Wrapper>
   );

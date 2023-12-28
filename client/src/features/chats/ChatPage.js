@@ -190,30 +190,32 @@ export default function ChatPage() {
           <Alert alertMessage={alertMessage} alertType={alertType} />
         </div>
       )}
-      <div className="chat-page-main">
-        <div className="chat-page-header">
-          <Link to="/dashboard/chats" className="link">
-            {" "}
-            <TbArrowBackUp size={25} />
-          </Link>
-          <h1 className="chat-page-name">{friend.participantProfileName}</h1>
-        </div>
-        <div className="start-chat"></div>
-        <div className="chat-page-body">
-          {content}
-          <div className="end-chat" id="end-chat"></div>
-        </div>
-        <div className="chat-page-footer">
-          <input
-            type="text"
-            placeholder="Write a message"
-            className="chat-page-input"
-            value={message}
-            onChange={handleInputChange}
-          />
-          <BsSend size={35} className="icon-send" onClick={handleMessageSend} />
-        </div>
+
+      <div className="chat-page-header">
+        <Link to="/dashboard/chats" className="link">
+          {" "}
+          <TbArrowBackUp size={25} />
+        </Link>
+        <h1 className="chat-page-name">{friend.participantProfileName}</h1>
       </div>
+      <div className="start-chat"></div>
+      <section className="chat-page-body">
+        {content}
+        <div className="end-chat" id="end-chat"></div>
+      </section>
+      <section className="chat-page-footer">
+        <input
+          type="text"
+          placeholder="Write a message"
+          className="chat-page-input"
+          value={message}
+          onChange={handleInputChange}
+        />
+        <button className="btn">
+          {" "}
+          <BsSend size={35} className="icon-send" onClick={handleMessageSend} />
+        </button>
+      </section>
     </Wrapper>
   );
 }

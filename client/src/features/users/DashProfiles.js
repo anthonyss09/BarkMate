@@ -59,7 +59,10 @@ export default function DashProfiles() {
   } else if (data.filteredMatches.length < 1) {
     content = (
       <div className="no-matches">
-        Currently no matches in your area, try expanding your search proximity.
+        <p>
+          Currently no matches in your area, try expanding your search
+          proximity.
+        </p>
       </div>
     );
   } else {
@@ -92,31 +95,28 @@ export default function DashProfiles() {
           <DotLoader size={85} color="lightBlue" className="beat-loader" />
         </div>
       )}
-      <div className="dash-main">
-        <section className="dash-header">
-          <h1 className="dash-page-name">Profiles </h1>
-          <div className="filter" onClick={handleClick}>
-            <BiFilter size={20} />
-            Filters
-          </div>
-          {showFilters && (
-            <FiltersDropDown
-              filterOptions={filterOptions}
-              handleClick={handleClick}
-              filter="distance"
-              filterPrompt="select distance"
-            />
-          )}
-        </section>
 
-        <section
-          className={`profiles-container ${
-            isLoading ? "background-white" : ""
-          }`}
-        >
-          {content}
-        </section>
-      </div>
+      <section className="dash-header">
+        <h1 className="dash-page-name">Profiles </h1>
+        <div className="filter" onClick={handleClick}>
+          <BiFilter size={20} />
+          Filters
+        </div>
+        {showFilters && (
+          <FiltersDropDown
+            filterOptions={filterOptions}
+            handleClick={handleClick}
+            filter="distance"
+            filterPrompt="select distance"
+          />
+        )}
+      </section>
+
+      <section
+        className={`profiles-container ${isLoading ? "background-white" : ""}`}
+      >
+        {content}
+      </section>
     </Wrapper>
   );
 }

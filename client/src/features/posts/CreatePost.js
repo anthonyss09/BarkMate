@@ -154,15 +154,16 @@ export default memo(function CreatePost({
         }`}
         onSubmit={handleSubmit}
       >
-        <span
-          className="icon-container"
+        <button
+          type="button"
+          className="btn icon-container"
           onClick={() => {
             handleClick();
             setIsFocused(false);
           }}
         >
           <AiOutlineCloseCircle size={35} className="icon-close" />
-        </span>
+        </button>
 
         <span className="create-post-heading">
           <Link>

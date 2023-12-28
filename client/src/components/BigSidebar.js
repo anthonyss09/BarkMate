@@ -11,11 +11,15 @@ export default function BigSidebar({ handleClick }) {
   return (
     <Wrapper>
       <section className="big-sidebar-center">
-        <AiOutlineClose
-          size={25}
-          className="icon-close"
-          onClick={handleClick}
-        />{" "}
+        <button className="btn">
+          {" "}
+          <AiOutlineClose
+            size={25}
+            className="icon-close"
+            onClick={handleClick}
+          />
+        </button>
+
         <Link
           to="/dashboard/home"
           className="link link-big link-profiles"

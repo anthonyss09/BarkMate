@@ -12,26 +12,24 @@ export default function SmallSidebar({
 }) {
   return (
     <Wrapper>
-      <aside className="small-sidebar-main">
-        <div className="icon-close" onClick={handleSmallSidebar}>
-          {" "}
-          <AiOutlineClose size={25} />
+      <button className="btn icon-close" onClick={handleSmallSidebar}>
+        {" "}
+        <AiOutlineClose size={25} />
+      </button>
+      <div className="small-sidebar-center">
+        <Link className="link" to={`/${userId}`}>
+          <FaUserCircle size={25} className="icon-user-circle" />
+          <p>Profile</p>
+        </Link>
+        <Link className="link" onClick={handleShowFriends}>
+          <FaUserFriends className="icon-friends" size={25} />
+          <p>Friends</p>
+        </Link>
+        <div onClick={handleClick} className="link last-link">
+          <BiLogOutCircle size={25} className="icon-logout" />
+          <p>Logout</p>
         </div>
-        <div className="small-sidebar-center">
-          <Link className="link" to={`/${userId}`}>
-            <FaUserCircle size={25} className="icon-user-circle" />
-            Profile
-          </Link>
-          <Link className="link" onClick={handleShowFriends}>
-            <FaUserFriends className="icon-friends" size={25} />
-            Friends
-          </Link>
-          <div onClick={handleClick} className="link last-link">
-            <BiLogOutCircle size={25} className="icon-logout" />
-            Logout
-          </div>
-        </div>
-      </aside>
+      </div>
     </Wrapper>
   );
 }

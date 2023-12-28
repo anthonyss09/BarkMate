@@ -65,7 +65,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <section className="form-page-blue">
+    <main className="form-page-blue">
       {" "}
       {requesting && (
         <div className="alert-container">
@@ -85,6 +85,6 @@ export default function LoginPage() {
         password={password}
         requesting={requesting}
       />
-    </section>
+    </main>
   );
 }

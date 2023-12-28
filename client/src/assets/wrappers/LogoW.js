@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.aside`
+const Wrapper = styled.div`
   .icon-payment {
     color: var(--federal-blue);
     margin: 0 -0.05rem;
@@ -25,7 +25,6 @@ const Wrapper = styled.aside`
     font-weight: 500;
   }
   .logo-login {
-    margin-left: -1rem;
     font-size: 2rem;
     color: var(--federal-blue);
   }

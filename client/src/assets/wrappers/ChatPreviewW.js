@@ -24,7 +24,6 @@ const Wrapper = styled.aside`
     border-radius: 5rem;
   }
   .chat-preview-main {
-    // height: 80px;
     border-bottom: 2px solid rgb(248, 248, 248);
     padding: 1rem;
     display: flex;

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .btn {
+    background: none;
+    color: black;
+  }
   .beat-loader {
     position: fixed;
     top: 10vh;

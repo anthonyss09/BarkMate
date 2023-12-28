@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  .btn {
+    width: min-content;
+  }
   .drop-menu-landing-main {
     width: 100vw;
     height: 100vh;

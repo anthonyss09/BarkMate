@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
-  .task-arrow-right:hover {
-  }
+const Wrapper = styled.div`
   .task-bar-center {
     width: 100%;
     display: flex;

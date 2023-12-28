@@ -22,7 +22,7 @@ export default function DashChats() {
     );
   } else if (!Object.keys(data).length) {
     chatPreviews = (
-      <div className="no-content">No chats to display. Hit someone up!</div>
+      <p className="no-content">No chats to display. Hit someone up!</p>
     );
   } else {
     // console.log(data);
@@ -47,12 +47,10 @@ export default function DashChats() {
 
   return (
     <Wrapper>
-      <main className="dash-chats-main">
-        <div className="dash-header">
-          <h1 className="dash-page-name">Chats</h1>
-        </div>
-        <div className="dash-chats-center">{chatPreviews}</div>
-      </main>
+      <div className="dash-header">
+        <h1 className="dash-page-name">Chats</h1>
+      </div>
+      <div className="dash-chats-center">{chatPreviews}</div>
     </Wrapper>
   );
 }

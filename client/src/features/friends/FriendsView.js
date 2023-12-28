@@ -191,21 +191,19 @@ export default function FriendsView({ handleShowFriends, currentUser }) {
 
   return (
     <Wrapper>
-      <div className="friends-view-main">
-        <div className="friends-view-header">
+      <div className="friends-view-header">
+        {" "}
+        <button className="btn">
           {" "}
-          <div className="div">
-            {" "}
-            <AiOutlineClose
-              size={25}
-              onClick={handleShowFriends}
-              className="friends-view-icon-close"
-            />
-          </div>
-          <h3 className="friends-title">Friends</h3>
-        </div>
-        {content}
+          <AiOutlineClose
+            size={25}
+            onClick={handleShowFriends}
+            className="friends-view-icon-close"
+          />
+        </button>
+        <h3 className="friends-title">Friends</h3>
       </div>
+      {content}
     </Wrapper>
   );
 }

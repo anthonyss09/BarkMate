@@ -1,6 +1,21 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  width: 100%;
+  max-width: 300px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 22;
+  overflow-y: scroll;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  border-left: 1px solid rgb(220, 220, 220);
+  border-top: 1px solid rgb(220, 220, 220);
+  box-shadow: -1px 2px 100vw grey;
   h3 {
     height: min-content;
     padding: 0.8rem 1.2rem;
@@ -69,21 +84,6 @@ const Wrapper = styled.aside`
     margin: 1rem;
   }
   .notifications-view-main {
-    width: 100%;
-    max-width: 300px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 22;
-    overflow-y: scroll;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.8rem;
-    border-left: 1px solid rgb(220, 220, 220);
-    border-top: 1px solid rgb(220, 220, 220);
-    box-shadow: -1px 2px 100vw grey;
   }
   .notification-view-single {
     height: 4.2rem;

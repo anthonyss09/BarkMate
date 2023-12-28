@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const Wrapper = styled.div`
   .add-event {
     width: 2.4rem;
     height: 2.4rem;
@@ -29,6 +29,10 @@ const Wrapper = styled.main`
     margin-top: 0.4rem;
     margin-left: -0.6rem;
   }
+  .btn {
+    padding: 0;
+    background: none;
+  }
   .dash-cal-center {
     width: 100%;
     display: flex;
@@ -45,7 +49,7 @@ const Wrapper = styled.main`
     align-items: center;
     padding: 0 1rem;
     font-weight: bold;
-    color: var(--federal-blue); 
+    color: var(--federal-blue);
     display: flex;
     align-items: center;
     gap: 1rem;

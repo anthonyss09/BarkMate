@@ -35,8 +35,6 @@ export default function DashHome() {
 
   const [showCreatePost, setShowCreatePost] = useState(false);
 
-  // let updatedUser;
-
   const [scrolled, setScrolled] = useState("");
   const [requesting, setRequesting] = useState(false);
 
@@ -121,10 +119,7 @@ export default function DashHome() {
         <div className="dash-center">
           <div className={`create-post-container ${scrolled}`}>
             <button className="create-post" onClick={handleClick}>
-              <span>
-                {" "}
-                <IoIosAdd size={35} className="icon-add" />
-              </span>
+              <IoIosAdd size={35} className="icon-add" />
             </button>
           </div>
 

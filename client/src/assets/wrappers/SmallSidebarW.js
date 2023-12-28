@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  min-width: 100px;
+  max-width: 200px;
+  width: 50vw;
+  height: 28vh;
+  position: absolute;
+  top: 3.2rem;
+  right: 1rem;
+  z-index: 3;
+  border: 1px solid rgb(240, 240, 240);
+  box-shadow: 5px 2px 5px grey;
+  border-radius: 1.5rem;
+  background: white;
   .icon-close {
     margin: 1rem;
     margin-bottom: 0.2rem;
@@ -46,18 +58,6 @@ const Wrapper = styled.aside`
     gap: 1rem;
   }
   .small-sidebar-main {
-    min-width: 100px;
-    max-width: 200px;
-    width: 50vw;
-    height: 28vh;
-    position: absolute;
-    top: 3.2rem;
-    right: 1rem;
-    z-index: 3;
-    border: 1px solid rgb(240, 240, 240);
-    box-shadow: 5px 2px 5px grey;
-    border-radius: 1.5rem;
-    background: white;
   }
 `;
 

@@ -14,7 +14,6 @@ export default function NotificationsView({
   const user = useSelector(selectCurrentUser);
   let content;
   const [markNotificationViewed] = useMarkNotificationViewedMutation();
-  console.log(notifications);
 
   if (notifications.length) {
     content = notifications.map((notification, index) => {
@@ -46,10 +45,10 @@ export default function NotificationsView({
                   className="notification-image"
                   alt="the notification"
                 />
-                <span className="notification-sender">
+                <p className="notification-sender">
                   {notification.senderProfileName}
-                </span>
-                <span className="notification-text"> Sent you a message</span>
+                </p>
+                <p className="notification-text"> Sent you a message</p>
               </div>
             </Link>
           );
@@ -76,13 +75,13 @@ export default function NotificationsView({
                   className="notification-image"
                   alt="user profile"
                 />
-                <span className="notification-sender">
+                <p className="notification-sender">
                   {notification.senderProfileName}
-                </span>
-                <span className="notification-text">
+                </p>
+                <p className="notification-text">
                   {" "}
                   Sent you a {notification.notificationType}
-                </span>
+                </p>
               </div>
             </Link>
           );
@@ -119,37 +118,31 @@ export default function NotificationsView({
       }
     });
   } else {
-    content = (
-      <div className="notifications-view-no-content">no notifications</div>
-    );
+    content = <p className="notifications-view-no-content">no notifications</p>;
   }
   return (
     <Wrapper>
-      <aside className="notifications-view-main">
-        <div className="div">
-          <div className="notifications-view-title">
-            <div className="div">
-              {" "}
-              <AiOutlineClose
-                size={25}
-                onClick={handleShowNotifications}
-                className="notifications-view-icon-close"
-              />
-            </div>
-            <h3> Notifications</h3>
-          </div>
-        </div>
-        <h3 className="notifications-view-header">Recent notifications</h3>
-        {content}
-        {notifications.length > 0 && notifications.length % 5 === 0 && (
-          <button
-            className="btn btn-more-notifications"
-            onClick={incrementNotificationLimit}
-          >
-            Show even older stuff
-          </button>
-        )}
-      </aside>
+      <div className="notifications-view-title">
+        <button className="btn">
+          {" "}
+          <AiOutlineClose
+            size={25}
+            onClick={handleShowNotifications}
+            className="notifications-view-icon-close"
+          />
+        </button>
+        <h3> Notifications</h3>
+      </div>
+      <h3 className="notifications-view-header">Recent notifications</h3>
+      {content}
+      {notifications.length > 0 && notifications.length % 5 === 0 && (
+        <button
+          className="btn btn-more-notifications"
+          onClick={incrementNotificationLimit}
+        >
+          Show even older stuff
+        </button>
+      )}
     </Wrapper>
   );
 }

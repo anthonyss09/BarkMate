@@ -12,7 +12,6 @@ import { useUpdateEventsMutation } from "./CalenderSlice";
 export default function DashCal() {
   const [showAddEvent, setShowAddEvent] = useState(false);
   const [todayString, setTodayString] = useState("");
-  // console.log("today is ", todayString);
 
   const { _id: userId } = useSelector(selectCurrentUser);
   const { data, isLoading } = useGetEventsQuery(userId);
@@ -63,46 +62,41 @@ export default function DashCal() {
 
   useEffect(() => {
     if (!isLoading) {
-      // console.log(data);
       const { eventsCopy, eventsMutated } = adjustEvents(data.events);
       if (eventsMutated) {
-        // console.log("events are mutated");
-        // console.log(eventsCopy);
         updateEvents({ eventsCopy });
       }
     }
   }, [data, isLoading, updateEvents]);
   return (
     <Wrapper>
-      <main className="dash-main">
-        <div className="dash-header">
-          <h1 className="dash-page-name">Calender</h1>
-        </div>
-        <section className="dash-cal-center">
-          <EventsRow
-            eventsTitle="Today's events"
-            events={todaysEvents}
-            isLoading={isLoading}
-          />
-          <EventsRow
-            eventsTitle="Upcoming one time events"
-            events={upcomingOneTimeEvents}
-            isLoading={isLoading}
-          />
-          <EventsRow
-            eventsTitle="Reoccurring events"
-            events={reoccurringEvents}
-            isLoading={isLoading}
-          />
-          <div className="add-line" onClick={handleClick}>
-            {" "}
-            <div className="add-event">
-              <IoIosAdd size={30} />
-            </div>
-            <span className="add-span">Add event</span>
+      <div className="dash-header">
+        <h1 className="dash-page-name">Calender</h1>
+      </div>
+      <section className="dash-cal-center">
+        <EventsRow
+          eventsTitle="Today's events"
+          events={todaysEvents}
+          isLoading={isLoading}
+        />
+        <EventsRow
+          eventsTitle="Upcoming one time events"
+          events={upcomingOneTimeEvents}
+          isLoading={isLoading}
+        />
+        <EventsRow
+          eventsTitle="Reoccurring events"
+          events={reoccurringEvents}
+          isLoading={isLoading}
+        />
+        <button className="btn add-line" onClick={handleClick}>
+          {" "}
+          <div className="add-event">
+            <IoIosAdd size={30} />
           </div>
-        </section>
-      </main>
+          <span className="add-span">Add event</span>
+        </button>
+      </section>
       {showAddEvent && <AddEvent setShowAddEvent={setShowAddEvent} />}
     </Wrapper>
   );

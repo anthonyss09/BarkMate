@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-const Wrapper = styled.section`
+const Wrapper = styled.form`
+  margin-top: 6rem;
+  margin: 6rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min-content;
+
   p {
     color: var(--grey-180);
     font-size: 0.8rem;
@@ -17,12 +25,7 @@ const Wrapper = styled.section`
     width: 100%;
     font-size: 1rem;
   }
-  .form-login {
-    margin-top: 6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+
   .p-bottom {
     color: var(--grey-80);
     margin-bottom: 1rem;

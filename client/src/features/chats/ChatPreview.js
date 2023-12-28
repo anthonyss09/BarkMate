@@ -13,7 +13,7 @@ export default memo(function ChatPreview({
     <Wrapper>
       <Link to={"/chats/" + chatId} className="link">
         {" "}
-        <aside className="chat-preview-main">
+        <div className="chat-preview-main">
           {" "}
           <div to="/profileid">
             <img
@@ -22,11 +22,11 @@ export default memo(function ChatPreview({
               alt="user profile"
             />
           </div>
-          <div className="chat-preview-body">
+          <section className="chat-preview-body">
             <div className="chat-name">{profileName}</div>
             <div className="chat-excerpt">{content}</div>
-          </div>
-        </aside>
+          </section>
+        </div>
       </Link>
     </Wrapper>
   );

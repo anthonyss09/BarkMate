@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const Wrapper = styled.div`
+  .btn {
+    padding: 0;
+    background: none;
+  }
   .chat-page-body {
     padding: 0 1rem;
     padding-top: 2rem;

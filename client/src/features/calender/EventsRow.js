@@ -11,37 +11,34 @@ export default function EventsRow({ eventsTitle, events, isLoading }) {
       events.map((event, index) => {
         return (
           <div key={index} className="event">
-            <div className="event-date">{event.dateString}</div>
-            <div className="event-time">{event.eventTime}</div>
-            <div className="event-note">{event.eventNote}</div>
+            <p className="event-date">{event.dateString}</p>
+            <p className="event-time">{event.eventTime}</p>
+            <p className="event-note">{event.eventNote}</p>
           </div>
         );
       })
     ) : (
-      <div className="no-events">No scheduled events.</div>
+      <p className="no-events">No scheduled events.</p>
     );
   return (
     <Wrapper>
-      <div className="events-row-main">
-        {" "}
-        <div
-          className="events-row-header"
-          onClick={() => {
-            setShowEvents(!showEvents);
-          }}
-        >
-          {!isLoading && events.length !== 0 && (
-            <span className="number-circle">{numEvents}</span>
-          )}
+      <div
+        className="events-row-header"
+        onClick={() => {
+          setShowEvents(!showEvents);
+        }}
+      >
+        {!isLoading && events.length !== 0 && (
+          <span className="number-circle">{numEvents}</span>
+        )}
 
-          <p>{eventsTitle}</p>
-          <div className="arrow-icon">
-            {showEvents && <MdKeyboardArrowUp size={25} />}
-            {!showEvents && <MdKeyboardArrowDown size={25} />}
-          </div>
+        <p>{eventsTitle}</p>
+        <div className="arrow-icon">
+          {showEvents && <MdKeyboardArrowUp size={25} />}
+          {!showEvents && <MdKeyboardArrowDown size={25} />}
         </div>
-        {showEvents && <div className="event-list">{eventList}</div>}
       </div>
+      {showEvents && <div className="event-list">{eventList}</div>}
     </Wrapper>
   );
 }

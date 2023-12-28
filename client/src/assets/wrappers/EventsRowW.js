@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  background: var(--grey-248);
+  margin: 0 1rem;
+  border-radius: 2rem;
+  padding: 0 1rem;
   .arrow-icon {
     margin-top: 0.4rem;
     margin-left: -0.6rem;
@@ -54,10 +58,6 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
   .events-row-main {
-    background: var(--grey-248);
-    margin: 0 1rem;
-    border-radius: 2rem;
-    padding: 0 1rem;
   }
   .event-time {
     font-weight: bold;

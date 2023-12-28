@@ -1,6 +1,22 @@
 import styled from "styled-components";
 
 const Wrapper = styled.aside`
+  width: 100%;
+  max-width: 300px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  border-left: 1px solid rgb(220, 220, 220);
+  box-shadow: -1px 2px 100vw grey;
+  background: white;
+  overflow-y: scroll;
+  box-sizing: border-box;
   .friends-title {
     font-size: 1.4rem;
     margin: 0 auto;
@@ -86,22 +102,6 @@ const Wrapper = styled.aside`
     margin-bottom: 1rem;
   }
   .friends-view-main {
-    width: 100%;
-    max-width: 300px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 4;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.8rem;
-    border-left: 1px solid rgb(220, 220, 220);
-    box-shadow: -1px 2px 100vw grey;
-    background: white;
-    overflow-y: scroll;
-    box-sizing: border-box;
   }
   .friends-view-single {
     height: 3.6rem;

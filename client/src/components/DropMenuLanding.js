@@ -6,11 +6,15 @@ export default function DropMenuLanding({ handleShowMenu }) {
   return (
     <Wrapper>
       <main className="drop-menu-landing-main">
-        <AiOutlineClose
-          size={25}
-          onClick={handleShowMenu}
-          className="icon-close"
-        />
+        <button className="btn">
+          {" "}
+          <AiOutlineClose
+            size={25}
+            onClick={handleShowMenu}
+            className="icon-close"
+          />
+        </button>
+
         <Link to="/" className="link" onClick={handleShowMenu}>
           Home
         </Link>
